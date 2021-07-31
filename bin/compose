@@ -1,0 +1,41 @@
+#!/bin/bash
+
+
+COMMAND=$1
+
+case $COMMAND in
+  "ps" )
+    docker-compose ps ;;
+
+  "start" )
+    docker-compose start ;;
+  "stop" )
+    docker-compose stop ;;
+
+  "up" )
+    docker-compose up -d ;;
+  "down" )
+    docker-compose down ;;
+  "rebuild" )
+    docker-compose down
+    docker-compose up -d --build ;;
+
+  "exec" )
+    docker-compose exec ${@:2} ;;
+
+  "init-db" )
+    docker-compose exec web bin/cake migrations rollback -t 0
+    docker-compose exec web bin/cake migrations migrate
+    docker-compose exec web bin/cake migrations seed --seed DevelopmentSeed -s Seeds
+    docker-compose exec web bin/cake cache clear_all
+    ;;
+
+  "composer" )
+    docker-compose exec web composer ${@:2} ;;
+
+  * )
+    printf "\e[35m${COMMAND}\e[m is not valid docker-compose command!\n" && exit 1 ;;
+esac
+
+
+
