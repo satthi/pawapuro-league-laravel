@@ -1,9 +1,12 @@
 import VueRouter from 'vue-router';
 import HeaderComponent from "./components/HeaderComponent";
-import TaskListComponent from "./components/TaskListComponent";
-import TaskShowComponent from "./components/TaskShowComponent";
-import TaskCreateComponent from "./components/TaskCreateComponent";
-import TaskEditComponent from "./components/TaskEditComponent";
+// import TaskListComponent from "./components/TaskListComponent";
+// import TaskShowComponent from "./components/TaskShowComponent";
+// import TaskCreateComponent from "./components/TaskCreateComponent";
+// import TaskEditComponent from "./components/TaskEditComponent";
+import TeamIndexComponent from "./components/Team/IndexComponent";
+import TeamAddComponent from "./components/Team/AddComponent";
+import TeamEditComponent from "./components/Team/EditComponent";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -20,26 +23,44 @@ Vue.use(VueRouter);
 const router = new VueRouter({
     mode: 'history',
     routes: [
+        // {
+        //     path: '/tasks',
+        //     name: 'task.list',
+        //     component: TaskListComponent
+        // },
+        // {
+        //     path: '/tasks/:taskId',
+        //     name: 'task.show',
+        //     component: TaskShowComponent,
+        //     props: true
+        // },
+        // {
+        //     path: '/tasks/create',
+        //     name: 'task.create',
+        //     component: TaskCreateComponent
+        // },
+        // {
+        //     path: '/tasks/:taskId/edit',
+        //     name: 'task.edit',
+        //     component: TaskEditComponent,
+        //     props: true
+        // },
         {
-            path: '/tasks',
-            name: 'task.list',
-            component: TaskListComponent
-        },
-        {
-            path: '/tasks/:taskId',
-            name: 'task.show',
-            component: TaskShowComponent,
+            path: '/teams',
+            name: 'team.index',
+            component: TeamIndexComponent,
             props: true
         },
         {
-            path: '/tasks/create',
-            name: 'task.create',
-            component: TaskCreateComponent
+            path: '/teams',
+            name: 'team.add',
+            component: TeamAddComponent,
+            props: true
         },
         {
-            path: '/tasks/:taskId/edit',
-            name: 'task.edit',
-            component: TaskEditComponent,
+            path: '/team/:teamId/edit',
+            name: 'team.edit',
+            component: TeamEditComponent,
             props: true
         },
     ]

@@ -4,11 +4,16 @@
             <nav class="navbar navbar-dark">
                 <span class="navbar-brand mb-0 h1">Vue Laravel SPA</span>
                 <div>
+                <!--
                     <router-link v-bind:to="{name: 'task.list'}">
                         <button class="btn btn-success">List</button>
                     </router-link>
                     <router-link v-bind:to="{name: 'task.create'}">
                         <button class="btn btn-success">ADD</button>
+                    </router-link>
+                    -->
+                    <router-link v-bind:to="{name: 'team.index'}">
+                        <button class="btn btn-success">チーム</button>
                     </router-link>
                 </div>
             </nav>
