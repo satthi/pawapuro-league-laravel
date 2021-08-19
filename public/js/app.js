@@ -2165,7 +2165,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__.default({
     component: _components_Team_IndexComponent__WEBPACK_IMPORTED_MODULE_1__.default,
     props: true
   }, {
-    path: '/teams',
+    path: '/teams/add',
     name: 'team.add',
     component: _components_Team_AddComponent__WEBPACK_IMPORTED_MODULE_2__.default,
     props: true

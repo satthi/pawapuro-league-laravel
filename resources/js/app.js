@@ -52,7 +52,7 @@ const router = new VueRouter({
             props: true
         },
         {
-            path: '/teams',
+            path: '/teams/add',
             name: 'team.add',
             component: TeamAddComponent,
             props: true
