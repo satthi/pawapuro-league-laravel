@@ -1938,21 +1938,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      team: {}
+      team: {},
+      errors: {}
     };
   },
   methods: {
     submit: function submit() {
       var _this = this;
 
+      this.errors = [];
       axios.post('/api/teams', this.team).then(function (res) {
-        _this.$router.push({
-          name: 'team.index'
-        });
+        console.log(res.data);
+
+        if (res.data.save) {
+          _this.$router.push({
+            name: 'team.index'
+          });
+        } else {
+          _this.errors = res.data.errorMessages;
+        }
       });
+    },
+    isError: function isError(field) {
+      // undefined時はエラーはない
+      if (!(field in this.errors)) {
+        return false;
+      }
+
+      return this.errors[field].length > 0;
     }
   }
 });
@@ -38111,71 +38129,95 @@ var render = function() {
             }
           },
           [
-            _c("div", { staticClass: "form-group row" }, [
-              _c(
-                "label",
-                {
-                  staticClass: "col-sm-3 col-form-label",
-                  attrs: { for: "name" }
-                },
-                [_vm._v("Title")]
-              ),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
+            _c(
+              "div",
+              { staticClass: "form-group row" },
+              [
+                _c(
+                  "label",
                   {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.team.name,
-                    expression: "team.name"
-                  }
-                ],
-                staticClass: "col-sm-9 form-control",
-                attrs: { type: "text", id: "name" },
-                domProps: { value: _vm.team.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+                    staticClass: "col-sm-3 col-form-label",
+                    attrs: { for: "name" }
+                  },
+                  [_vm._v("チーム名")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.team.name,
+                      expression: "team.name"
                     }
-                    _vm.$set(_vm.team, "name", $event.target.value)
+                  ],
+                  staticClass: "col-sm-9 form-control",
+                  class: { "is-invalid": _vm.isError("name") },
+                  attrs: { type: "text", id: "name" },
+                  domProps: { value: _vm.team.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.team, "name", $event.target.value)
+                    }
                   }
-                }
-              })
-            ]),
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.errors.name, function(error) {
+                  return _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(_vm._s(error))
+                  ])
+                })
+              ],
+              2
+            ),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group row" }, [
-              _c(
-                "label",
-                {
-                  staticClass: "col-sm-3 col-form-label",
-                  attrs: { for: "ryaku_name" }
-                },
-                [_vm._v("Content")]
-              ),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
+            _c(
+              "div",
+              { staticClass: "form-group row" },
+              [
+                _c(
+                  "label",
                   {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.team.ryaku_name,
-                    expression: "team.ryaku_name"
-                  }
-                ],
-                staticClass: "col-sm-9 form-control",
-                attrs: { type: "text", id: "ryaku_name" },
-                domProps: { value: _vm.team.ryaku_name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+                    staticClass: "col-sm-3 col-form-label",
+                    attrs: { for: "ryaku_name" }
+                  },
+                  [_vm._v("略称")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.team.ryaku_name,
+                      expression: "team.ryaku_name"
                     }
-                    _vm.$set(_vm.team, "ryaku_name", $event.target.value)
+                  ],
+                  staticClass: "col-sm-9 form-control",
+                  class: { "is-invalid": _vm.isError("ryaku_name") },
+                  attrs: { type: "text", id: "ryaku_name" },
+                  domProps: { value: _vm.team.ryaku_name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.team, "ryaku_name", $event.target.value)
+                    }
                   }
-                }
-              })
-            ]),
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.errors.ryaku_name, function(error) {
+                  return _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(_vm._s(error))
+                  ])
+                })
+              ],
+              2
+            ),
             _vm._v(" "),
             _c(
               "button",
