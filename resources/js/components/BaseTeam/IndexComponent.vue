@@ -10,8 +10,7 @@
             <tr>
                 <th scope="col">チーム名</th>
                 <th scope="col">略称</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -23,8 +22,9 @@
                         <router-link v-bind:to="{name: 'base-team.edit', params: {baseTeamId: baseTeam.id.toString() }}">
                             <button class="btn btn-success">Edit</button>
                         </router-link>
-                    </td>
-                    <td>
+                        <router-link v-bind:to="{name: 'base-player.index', params: {baseTeamId: baseTeam.id.toString() }}">
+                            <button class="btn btn-success">選手一覧</button>
+                        </router-link>
                         <button class="btn btn-danger" v-on:click="deleteBaseTeam(baseTeam.id)">Delete</button>
                     </td>
                 </tr>
