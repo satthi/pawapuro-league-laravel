@@ -29,3 +29,10 @@ Route::post('/base-teams', 'App\Http\Controllers\BaseTeamController@add');
 Route::get('/base-teams/{baseTeam}', 'App\Http\Controllers\BaseTeamController@show');
 Route::put('/base-teams/{baseTeam}', 'App\Http\Controllers\BaseTeamController@update');
 Route::delete('/base-teams/{baseTeam}', 'App\Http\Controllers\BaseTeamController@destroy');
+
+Route::get('/base-players/{baseTeam}', 'App\Http\Controllers\BasePlayerController@index');
+Route::post('/base-players/{baseTeam}', 'App\Http\Controllers\BasePlayerController@add');
+Route::get('/base-players/{basePlayer}', 'App\Http\Controllers\BasePlayerController@show');
+Route::put('/base-players/{basePlayer}', 'App\Http\Controllers\BasePlayerController@update');
+Route::delete('/base-players/{basePlayer}', 'App\Http\Controllers\BasePlayerController@destroy');
+
