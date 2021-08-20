@@ -10,7 +10,6 @@ class BaseTeamController extends Controller
 {
      public function index()
      {
-        \Log::debug(BaseTeam::all());
          return BaseTeam::all();
      }
 
