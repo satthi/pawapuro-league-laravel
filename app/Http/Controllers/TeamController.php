@@ -23,7 +23,6 @@ class TeamController extends Controller
             'name' => 'required',
             'ryaku_name' => 'required',
         ]);
-        \Log::debug($validator->messages());
 
         if ($validator->fails()) {
             return response()->json(['save' => false, 'errorMessages' => $validator->messages()]);
@@ -37,8 +36,17 @@ class TeamController extends Controller
 
     public function update(Request $request, Team $team)
     {
-        $team->update($request->all());
-        return $team;
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'ryaku_name' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['save' => false, 'errorMessages' => $validator->messages()]);
+        } else {
+            $team->update($request->all());
+            return response()->json(['save' => true]);
+        }
     }
 
     public function destroy(Team $team)
