@@ -2,14 +2,14 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-sm-6">
-                <form v-on:submit.prevent="submit">
+                <form v-on:submit.prevent="submit(getPath, 'base-team.index')">
                     <div class="form-group row">
                         <label for="id" class="col-sm-3 col-form-label">ID</label>
-                        <input type="text" class="col-sm-9 form-control-plaintext" readonly id="id" v-model="baseTeam.id" >
+                        <input type="text" class="col-sm-9 form-control-plaintext" readonly id="id" v-model="data.id" >
                     </div>
 
-                    <input-component label="チーム名" :errors="errors.name" :value="baseTeam.name" v-model="baseTeam.name"/>
-                    <input-component label="略称" :errors="errors.ryaku_name" :value="baseTeam.name" v-model="baseTeam.ryaku_name"/>
+                    <input-component label="チーム名" :errors="errors.name" :value="data.name" v-model="data.name"/>
+                    <input-component label="略称" :errors="errors.ryaku_name" :value="data.name" v-model="data.ryaku_name"/>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -20,41 +20,26 @@
 
 <script>
     import InputComponent from '../common/form/InputComponent';
+    import editMixin from '../../mixins/form/edit.js';
     export default {
         components: {InputComponent},
+        mixins : [editMixin],
         props: {
             baseTeamId: String
         },
+        computed: {
+          getPath() {
+            return '/api/base-teams/' + this.baseTeamId;
+          }
+        },
         data: function () {
             return {
-                baseTeam: {},
+                data: {},
                 errors: {}
             }
         },
-        methods: {
-            getBaseTeam() {
-                axios.get('/api/base-teams/' + this.baseTeamId)
-                    .then((res) => {
-                        console.log(res.data)
-                        this.baseTeam = res.data;
-                    });
-            },
-            submit() {
-                this.errors = [];
-                axios.put('/api/base-teams/' + this.baseTeamId, this.baseTeam)
-                    .then((res) => {
-                    console.log(res.data)
-                        if (res.data.save) {
-                            this.$router.push({name: 'base-team.index'});
-                        } else {
-                            this.errors = res.data.errorMessages;
-                            console.log(this.errors);
-                        }
-                    });
-            }
-        },
         mounted() {
-            this.getBaseTeam();
+            this.getData('/api/base-teams/' + this.baseTeamId);
         }
     }
 </script>

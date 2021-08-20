@@ -1846,6 +1846,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _common_form_InputComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../common/form/InputComponent */ "./resources/js/components/common/form/InputComponent.vue");
+/* harmony import */ var _mixins_form_add_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/form/add.js */ "./resources/js/mixins/form/add.js");
 //
 //
 //
@@ -1861,32 +1862,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     InputComponent: _common_form_InputComponent__WEBPACK_IMPORTED_MODULE_0__.default
   },
+  mixins: [_mixins_form_add_js__WEBPACK_IMPORTED_MODULE_1__.default],
   data: function data() {
     return {
-      baseTeam: {},
+      data: {},
       errors: {}
     };
-  },
-  methods: {
-    submit: function submit() {
-      var _this = this;
-
-      this.errors = [];
-      axios.post('/api/base-teams', this.baseTeam).then(function (res) {
-        if (res.data.save) {
-          _this.$router.push({
-            name: 'base-team.index'
-          });
-        } else {
-          _this.errors = res.data.errorMessages;
-        }
-      });
-    }
   }
 });
 
@@ -1904,6 +1891,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _common_form_InputComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../common/form/InputComponent */ "./resources/js/components/common/form/InputComponent.vue");
+/* harmony import */ var _mixins_form_edit_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/form/edit.js */ "./resources/js/mixins/form/edit.js");
 //
 //
 //
@@ -1924,49 +1912,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     InputComponent: _common_form_InputComponent__WEBPACK_IMPORTED_MODULE_0__.default
   },
+  mixins: [_mixins_form_edit_js__WEBPACK_IMPORTED_MODULE_1__.default],
   props: {
     baseTeamId: String
   },
+  computed: {
+    getPath: function getPath() {
+      return '/api/base-teams/' + this.baseTeamId;
+    }
+  },
   data: function data() {
     return {
-      baseTeam: {},
+      data: {},
       errors: {}
     };
   },
-  methods: {
-    getBaseTeam: function getBaseTeam() {
-      var _this = this;
-
-      axios.get('/api/base-teams/' + this.baseTeamId).then(function (res) {
-        console.log(res.data);
-        _this.baseTeam = res.data;
-      });
-    },
-    submit: function submit() {
-      var _this2 = this;
-
-      this.errors = [];
-      axios.put('/api/base-teams/' + this.baseTeamId, this.baseTeam).then(function (res) {
-        console.log(res.data);
-
-        if (res.data.save) {
-          _this2.$router.push({
-            name: 'base-team.index'
-          });
-        } else {
-          _this2.errors = res.data.errorMessages;
-          console.log(_this2.errors);
-        }
-      });
-    }
-  },
   mounted: function mounted() {
-    this.getBaseTeam();
+    this.getData('/api/base-teams/' + this.baseTeamId);
   }
 });
 
@@ -2300,6 +2268,78 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/mixins/form/add.js":
+/*!*****************************************!*\
+  !*** ./resources/js/mixins/form/add.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  methods: {
+    submit: function submit(postPath, redirectPath) {
+      var _this = this;
+
+      this.errors = [];
+      axios.post(postPath, this.data).then(function (res) {
+        if (res.data.save) {
+          _this.$router.push({
+            name: redirectPath
+          });
+        } else {
+          _this.errors = res.data.errorMessages;
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/mixins/form/edit.js":
+/*!******************************************!*\
+  !*** ./resources/js/mixins/form/edit.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  methods: {
+    getData: function getData(getPath) {
+      var _this = this;
+
+      axios.get(getPath).then(function (res) {
+        _this.data = res.data;
+      });
+    },
+    submit: function submit(postPath, redirectPath) {
+      var _this2 = this;
+
+      this.errors = [];
+      axios.put(postPath, this.data).then(function (res) {
+        if (res.data.save) {
+          _this2.$router.push({
+            name: redirectPath
+          });
+        } else {
+          _this2.errors = res.data.errorMessages;
+          console.log(_this2.errors);
+        }
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -38143,7 +38183,7 @@ var render = function() {
             on: {
               submit: function($event) {
                 $event.preventDefault()
-                return _vm.submit.apply(null, arguments)
+                return _vm.submit("/api/base-teams", "base-team.index")
               }
             }
           },
@@ -38151,22 +38191,22 @@ var render = function() {
             _c("input-component", {
               attrs: { label: "チーム名", errors: _vm.errors.name },
               model: {
-                value: _vm.baseTeam.name,
+                value: _vm.data.name,
                 callback: function($$v) {
-                  _vm.$set(_vm.baseTeam, "name", $$v)
+                  _vm.$set(_vm.data, "name", $$v)
                 },
-                expression: "baseTeam.name"
+                expression: "data.name"
               }
             }),
             _vm._v(" "),
             _c("input-component", {
               attrs: { label: "略称", errors: _vm.errors.ryaku_name },
               model: {
-                value: _vm.baseTeam.ryaku_name,
+                value: _vm.data.ryaku_name,
                 callback: function($$v) {
-                  _vm.$set(_vm.baseTeam, "ryaku_name", $$v)
+                  _vm.$set(_vm.data, "ryaku_name", $$v)
                 },
-                expression: "baseTeam.ryaku_name"
+                expression: "data.ryaku_name"
               }
             }),
             _vm._v(" "),
@@ -38214,7 +38254,7 @@ var render = function() {
             on: {
               submit: function($event) {
                 $event.preventDefault()
-                return _vm.submit.apply(null, arguments)
+                return _vm.submit(_vm.getPath, "base-team.index")
               }
             }
           },
@@ -38234,19 +38274,19 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.baseTeam.id,
-                    expression: "baseTeam.id"
+                    value: _vm.data.id,
+                    expression: "data.id"
                   }
                 ],
                 staticClass: "col-sm-9 form-control-plaintext",
                 attrs: { type: "text", readonly: "", id: "id" },
-                domProps: { value: _vm.baseTeam.id },
+                domProps: { value: _vm.data.id },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.baseTeam, "id", $event.target.value)
+                    _vm.$set(_vm.data, "id", $event.target.value)
                   }
                 }
               })
@@ -38256,14 +38296,14 @@ var render = function() {
               attrs: {
                 label: "チーム名",
                 errors: _vm.errors.name,
-                value: _vm.baseTeam.name
+                value: _vm.data.name
               },
               model: {
-                value: _vm.baseTeam.name,
+                value: _vm.data.name,
                 callback: function($$v) {
-                  _vm.$set(_vm.baseTeam, "name", $$v)
+                  _vm.$set(_vm.data, "name", $$v)
                 },
-                expression: "baseTeam.name"
+                expression: "data.name"
               }
             }),
             _vm._v(" "),
@@ -38271,14 +38311,14 @@ var render = function() {
               attrs: {
                 label: "略称",
                 errors: _vm.errors.ryaku_name,
-                value: _vm.baseTeam.name
+                value: _vm.data.name
               },
               model: {
-                value: _vm.baseTeam.ryaku_name,
+                value: _vm.data.ryaku_name,
                 callback: function($$v) {
-                  _vm.$set(_vm.baseTeam, "ryaku_name", $$v)
+                  _vm.$set(_vm.data, "ryaku_name", $$v)
                 },
-                expression: "baseTeam.ryaku_name"
+                expression: "data.ryaku_name"
               }
             }),
             _vm._v(" "),
