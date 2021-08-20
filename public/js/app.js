@@ -2289,13 +2289,11 @@ __webpack_require__.r(__webpack_exports__);
 
       this.errors = [];
       axios.post(postPath, this.data).then(function (res) {
-        if (res.data.save) {
-          _this.$router.push({
-            name: redirectPath
-          });
-        } else {
-          _this.errors = res.data.errorMessages;
-        }
+        _this.$router.push({
+          name: redirectPath
+        });
+      })["catch"](function (error) {
+        _this.errors = error.response.data.errors;
       });
     }
   }
@@ -2328,14 +2326,11 @@ __webpack_require__.r(__webpack_exports__);
 
       this.errors = [];
       axios.put(postPath, this.data).then(function (res) {
-        if (res.data.save) {
-          _this2.$router.push({
-            name: redirectPath
-          });
-        } else {
-          _this2.errors = res.data.errorMessages;
-          console.log(_this2.errors);
-        }
+        _this2.$router.push({
+          name: redirectPath
+        });
+      })["catch"](function (error) {
+        _this2.errors = error.response.data.errors;
       });
     }
   }

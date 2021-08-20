@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BaseTeam;
-use Illuminate\Http\Request;
+use App\Http\Requests\BaseTeamRequest;
 use Illuminate\Support\Facades\Validator;
 
 class BaseTeamController extends Controller
@@ -18,36 +18,14 @@ class BaseTeamController extends Controller
     {
         return $baseTeam;
     }
-    public function add(Request $request)
+    public function add(BaseTeamRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'ryaku_name' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['save' => false, 'errorMessages' => $validator->messages()]);
-        } else {
-            BaseTeam::create($request->all());
-            return response()->json(['save' => true]);
-        }
-
-        return BaseTeam::create($request->all());
+        BaseTeam::create($request->all());
     }
 
-    public function update(Request $request, BaseTeam $baseTeam)
+    public function update(BaseTeamRequest $request, BaseTeam $baseTeam)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'ryaku_name' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['save' => false, 'errorMessages' => $validator->messages()]);
-        } else {
-            $baseTeam->update($request->all());
-            return response()->json(['save' => true]);
-        }
+        $baseTeam->update($request->all());
     }
 
     public function destroy(BaseTeam $baseTeam)

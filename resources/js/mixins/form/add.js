@@ -4,11 +4,10 @@ export default {
             this.errors = [];
             axios.post(postPath, this.data)
                 .then((res) => {
-                    if (res.data.save) {
-                        this.$router.push({name: redirectPath});
-                    } else {
-                        this.errors = res.data.errorMessages;
-                    }
+                    this.$router.push({name: redirectPath});
+                })
+                .catch((error) => {
+                    this.errors = error.response.data.errors;
                 });
         }
     }
