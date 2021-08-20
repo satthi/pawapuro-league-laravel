@@ -12,7 +12,7 @@
                         <button class="btn btn-success">ADD</button>
                     </router-link>
                     -->
-                    <router-link v-bind:to="{name: 'team.index'}">
+                    <router-link v-bind:to="{name: 'base-team.index'}">
                         <button class="btn btn-success">チーム</button>
                     </router-link>
                 </div>

@@ -24,8 +24,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Route::put('/tasks/{task}', 'App\Http\Controllers\TaskController@update');
 // Route::delete('/tasks/{task}', 'App\Http\Controllers\TaskController@destroy');
 
-Route::get('/teams', 'App\Http\Controllers\TeamController@index');
-Route::post('/teams', 'App\Http\Controllers\TeamController@add');
-Route::get('/teams/{team}', 'App\Http\Controllers\TeamController@show');
-Route::put('/teams/{team}', 'App\Http\Controllers\TeamController@update');
-Route::delete('/teams/{team}', 'App\Http\Controllers\TeamController@destroy');
+Route::get('/base-teams', 'App\Http\Controllers\BaseTeamController@index');
+Route::post('/base-teams', 'App\Http\Controllers\BaseTeamController@add');
+Route::get('/base-teams/{baseTeam}', 'App\Http\Controllers\BaseTeamController@show');
+Route::put('/base-teams/{baseTeam}', 'App\Http\Controllers\BaseTeamController@update');
+Route::delete('/base-teams/{baseTeam}', 'App\Http\Controllers\BaseTeamController@destroy');

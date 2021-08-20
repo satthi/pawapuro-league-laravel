@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Team;
+use App\Models\BaseTeam;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class TeamController extends Controller
+class BaseTeamController extends Controller
 {
      public function index()
      {
-         return Team::all();
+        \Log::debug(BaseTeam::all());
+         return BaseTeam::all();
      }
 
-    public function show(Team $team)
+    public function show(BaseTeam $baseTeam)
     {
-        return $team;
+        return $baseTeam;
     }
     public function add(Request $request)
     {
@@ -27,14 +28,14 @@ class TeamController extends Controller
         if ($validator->fails()) {
             return response()->json(['save' => false, 'errorMessages' => $validator->messages()]);
         } else {
-            Team::create($request->all());
+            BaseTeam::create($request->all());
             return response()->json(['save' => true]);
         }
 
-        return Team::create($request->all());
+        return BaseTeam::create($request->all());
     }
 
-    public function update(Request $request, Team $team)
+    public function update(Request $request, BaseTeam $baseTeam)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -44,15 +45,15 @@ class TeamController extends Controller
         if ($validator->fails()) {
             return response()->json(['save' => false, 'errorMessages' => $validator->messages()]);
         } else {
-            $team->update($request->all());
+            $baseTeam->update($request->all());
             return response()->json(['save' => true]);
         }
     }
 
-    public function destroy(Team $team)
+    public function destroy(BaseTeam $baseTeam)
     {
-        $team->delete();
+        $baseTeam->delete();
 
-        return $team;
+        return $baseTeam;
     }
 }

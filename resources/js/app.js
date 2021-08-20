@@ -4,9 +4,9 @@ import HeaderComponent from "./components/HeaderComponent";
 // import TaskShowComponent from "./components/TaskShowComponent";
 // import TaskCreateComponent from "./components/TaskCreateComponent";
 // import TaskEditComponent from "./components/TaskEditComponent";
-import TeamIndexComponent from "./components/Team/IndexComponent";
-import TeamAddComponent from "./components/Team/AddComponent";
-import TeamEditComponent from "./components/Team/EditComponent";
+import BaseTeamIndexComponent from "./components/BaseTeam/IndexComponent";
+import BaseTeamAddComponent from "./components/BaseTeam/AddComponent";
+import BaseTeamEditComponent from "./components/BaseTeam/EditComponent";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -46,21 +46,21 @@ const router = new VueRouter({
         //     props: true
         // },
         {
-            path: '/teams',
-            name: 'team.index',
-            component: TeamIndexComponent,
+            path: '/base-teams',
+            name: 'base-team.index',
+            component: BaseTeamIndexComponent,
             props: true
         },
         {
-            path: '/teams/add',
-            name: 'team.add',
-            component: TeamAddComponent,
+            path: '/base-teams/add',
+            name: 'base-team.add',
+            component: BaseTeamAddComponent,
             props: true
         },
         {
-            path: '/team/:teamId/edit',
-            name: 'team.edit',
-            component: TeamEditComponent,
+            path: '/base-team/:baseTeamId/edit',
+            name: 'base-team.edit',
+            component: BaseTeamEditComponent,
             props: true
         },
     ]

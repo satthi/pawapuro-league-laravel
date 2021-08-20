@@ -3,8 +3,8 @@
         <div class="row justify-content-center">
             <div class="col-sm-6">
                 <form v-on:submit.prevent="submit">
-                    <input-component label="チーム名" :errors="errors.name" v-model="team.name"/>
-                    <input-component label="略称" :errors="errors.ryaku_name" v-model="team.ryaku_name"/>
+                    <input-component label="チーム名" :errors="errors.name" v-model="baseTeam.name"/>
+                    <input-component label="略称" :errors="errors.ryaku_name" v-model="baseTeam.ryaku_name"/>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -19,17 +19,17 @@
         components: {InputComponent},
         data: function () {
             return {
-                team: {},
+                baseTeam: {},
                 errors: {}
             }
         },
         methods: {
             submit() {
                 this.errors = [];
-                axios.post('/api/teams', this.team)
+                axios.post('/api/base-teams', this.baseTeam)
                     .then((res) => {
                         if (res.data.save) {
-                            this.$router.push({name: 'team.index'});
+                            this.$router.push({name: 'base-team.index'});
                         } else {
                             this.errors = res.data.errorMessages;
                         }

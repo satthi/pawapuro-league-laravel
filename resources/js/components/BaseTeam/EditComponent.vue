@@ -5,11 +5,11 @@
                 <form v-on:submit.prevent="submit">
                     <div class="form-group row">
                         <label for="id" class="col-sm-3 col-form-label">ID</label>
-                        <input type="text" class="col-sm-9 form-control-plaintext" readonly id="id" v-model="team.id" >
+                        <input type="text" class="col-sm-9 form-control-plaintext" readonly id="id" v-model="baseTeam.id" >
                     </div>
 
-                    <input-component label="チーム名" :errors="errors.name" :value="team.name" v-model="team.name"/>
-                    <input-component label="略称" :errors="errors.ryaku_name" :value="team.name" v-model="team.ryaku_name"/>
+                    <input-component label="チーム名" :errors="errors.name" :value="baseTeam.name" v-model="baseTeam.name"/>
+                    <input-component label="略称" :errors="errors.ryaku_name" :value="baseTeam.name" v-model="baseTeam.ryaku_name"/>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -23,28 +23,29 @@
     export default {
         components: {InputComponent},
         props: {
-            teamId: String
+            baseTeamId: String
         },
         data: function () {
             return {
-                team: {},
+                baseTeam: {},
                 errors: {}
             }
         },
         methods: {
-            getTeam() {
-                axios.get('/api/teams/' + this.teamId)
+            getBaseTeam() {
+                axios.get('/api/base-teams/' + this.baseTeamId)
                     .then((res) => {
-                        this.team = res.data;
+                        console.log(res.data)
+                        this.baseTeam = res.data;
                     });
             },
             submit() {
                 this.errors = [];
-                axios.put('/api/teams/' + this.teamId, this.team)
+                axios.put('/api/base-teams/' + this.baseTeamId, this.baseTeam)
                     .then((res) => {
                     console.log(res.data)
                         if (res.data.save) {
-                            this.$router.push({name: 'team.index'});
+                            this.$router.push({name: 'base-team.index'});
                         } else {
                             this.errors = res.data.errorMessages;
                             console.log(this.errors);
@@ -53,7 +54,7 @@
             }
         },
         mounted() {
-            this.getTeam();
+            this.getBaseTeam();
         }
     }
 </script>

@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="clearfix">
-            <router-link v-bind:to="{name: 'team.add'}">
+            <router-link v-bind:to="{name: 'base-team.add'}">
                 <button class="btn btn-success float-right">追加</button>
             </router-link>
         </div>
@@ -16,16 +16,16 @@
             </thead>
             <tbody>
 
-                <tr v-for="(team, index) in teams" :key="index">
-                    <td scope="row">{{ team.name }}</td>
-                    <td>{{ team.ryaku_name }}</td>
+                <tr v-for="(baseTeam, index) in baseTeams" :key="index">
+                    <td scope="row">{{ baseTeam.name }}</td>
+                    <td>{{ baseTeam.ryaku_name }}</td>
                     <td>
-                        <router-link v-bind:to="{name: 'team.edit', params: {teamId: team.id.toString() }}">
+                        <router-link v-bind:to="{name: 'base-team.edit', params: {baseTeamId: baseTeam.id.toString() }}">
                             <button class="btn btn-success">Edit</button>
                         </router-link>
                     </td>
                     <td>
-                        <button class="btn btn-danger" v-on:click="deleteTeam(team.id)">Delete</button>
+                        <button class="btn btn-danger" v-on:click="deleteBaseTeam(baseTeam.id)">Delete</button>
                     </td>
                 </tr>
 
@@ -37,25 +37,25 @@
     export default {
         data: function () {
             return {
-                teams: []
+                baseTeams: []
             }
         },
         methods: {
-            getTeams() {
-                axios.get('/api/teams')
+            getBaseTeams() {
+                axios.get('/api/base-teams')
                     .then((res) => {
-                        this.teams = res.data;
+                        this.baseTeams = res.data;
                     });
             },
-            deleteTeam(id) {
-                axios.delete('/api/teams/' + id)
+            deleteBaseTeam(id) {
+                axios.delete('/api/base-teams/' + id)
                     .then((res) => {
-                        this.getTeams();
+                        this.getBaseTeams();
                     });
             }
         },
          mounted() {
-            this.getTeams();
+            this.getBaseTeams();
         }
     }
 </script>
