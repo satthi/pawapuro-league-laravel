@@ -10,6 +10,9 @@ import BaseTeamEditComponent from "./components/BaseTeam/EditComponent";
 import BasePlayerIndexComponent from "./components/BasePlayer/IndexComponent";
 import BasePlayerAddComponent from "./components/BasePlayer/AddComponent";
 import BasePlayerEditComponent from "./components/BasePlayer/EditComponent";
+import SeasonIndexComponent from "./components/Season/IndexComponent";
+import SeasonAddComponent from "./components/Season/AddComponent";
+import SeasonEditComponent from "./components/Season/EditComponent";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -84,6 +87,25 @@ const router = new VueRouter({
             path: '/base-player/:basePlayerId/edit',
             name: 'base-player.edit',
             component: BasePlayerEditComponent,
+            props: true
+        },
+        // ベースのチーム
+        {
+            path: '/seasons',
+            name: 'season.index',
+            component: SeasonIndexComponent,
+            props: true
+        },
+        {
+            path: '/seasons/add',
+            name: 'season.add',
+            component: SeasonAddComponent,
+            props: true
+        },
+        {
+            path: '/season/:seasonId/edit',
+            name: 'season.edit',
+            component: SeasonEditComponent,
             props: true
         },
 

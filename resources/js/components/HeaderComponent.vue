@@ -15,6 +15,9 @@
                     <router-link v-bind:to="{name: 'base-team.index'}">
                         <button class="btn btn-success">チーム</button>
                     </router-link>
+                    <router-link v-bind:to="{name: 'season.index'}">
+                        <button class="btn btn-success">シーズン</button>
+                    </router-link>
                 </div>
             </nav>
         </div>
