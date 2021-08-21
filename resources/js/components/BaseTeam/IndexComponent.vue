@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <h2>チーム一覧</h2>
         <div class="clearfix">
             <router-link v-bind:to="{name: 'base-team.add'}">
                 <button class="btn btn-success float-right">追加</button>

@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <h2>チーム名：{{ team.name }}</h2>
         <div class="clearfix">
             <router-link v-bind:to="{name: 'base-player.add', params: {basePlayerId: baseTeamId.toString() }}">
                 <button class="btn btn-success float-right">追加</button>
@@ -42,7 +43,8 @@
         },
         data: function () {
             return {
-                basePlayers: []
+                basePlayers: {},
+                team: {}
             }
         },
         methods: {
@@ -57,10 +59,17 @@
                     .then((res) => {
                         this.getBasePlayers();
                     });
+            },
+            getTeamData(getPath) {
+                axios.get(getPath)
+                    .then((res) => {
+                        this.team = res.data;
+                    });
             }
         },
          mounted() {
             this.getBasePlayers();
+            this.getTeamData('/api/base-teams/' + this.baseTeamId);
         }
     }
 </script>

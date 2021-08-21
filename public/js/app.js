@@ -1882,6 +1882,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -1940,6 +1944,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_form_SelectComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/form/SelectComponent */ "./resources/js/components/common/form/SelectComponent.vue");
 /* harmony import */ var _mixins_form_edit_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/form/edit.js */ "./resources/js/mixins/form/edit.js");
 /* harmony import */ var _mixins_enums_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../mixins/enums.js */ "./resources/js/mixins/enums.js");
+//
+//
+//
 //
 //
 //
@@ -2062,13 +2069,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     baseTeamId: String
   },
   data: function data() {
     return {
-      basePlayers: []
+      basePlayers: {},
+      team: {}
     };
   },
   methods: {
@@ -2085,10 +2094,18 @@ __webpack_require__.r(__webpack_exports__);
       axios["delete"]('/api/base-players/' + id).then(function (res) {
         _this2.getBasePlayers();
       });
+    },
+    getTeamData: function getTeamData(getPath) {
+      var _this3 = this;
+
+      axios.get(getPath).then(function (res) {
+        _this3.team = res.data;
+      });
     }
   },
   mounted: function mounted() {
     this.getBasePlayers();
+    this.getTeamData('/api/base-teams/' + this.baseTeamId);
   }
 });
 
@@ -2107,6 +2124,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _common_form_InputComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../common/form/InputComponent */ "./resources/js/components/common/form/InputComponent.vue");
 /* harmony import */ var _mixins_form_add_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/form/add.js */ "./resources/js/mixins/form/add.js");
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2172,6 +2194,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2211,6 +2238,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
 //
 //
 //
@@ -38975,6 +39003,23 @@ var render = function() {
               "button",
               { staticClass: "btn btn-primary", attrs: { type: "submit" } },
               [_vm._v("Submit")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                attrs: {
+                  to: {
+                    name: "base-player.index",
+                    params: { baseTeamId: _vm.baseTeamId.toString() }
+                  }
+                }
+              },
+              [
+                _c("button", { staticClass: "btn btn-success float-right" }, [
+                  _vm._v("一覧に戻る")
+                ])
+              ]
             )
           ],
           1
@@ -39192,6 +39237,23 @@ var render = function() {
               "button",
               { staticClass: "btn btn-primary", attrs: { type: "submit" } },
               [_vm._v("Submit")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                attrs: {
+                  to: {
+                    name: "base-player.index",
+                    params: { baseTeamId: _vm.data.base_team_id.toString() }
+                  }
+                }
+              },
+              [
+                _c("button", { staticClass: "btn btn-success float-right" }, [
+                  _vm._v("一覧に戻る")
+                ])
+              ]
             )
           ],
           1
@@ -39224,6 +39286,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _c("h2", [_vm._v("チーム名：" + _vm._s(_vm.team.name))]),
+    _vm._v(" "),
     _c(
       "div",
       { staticClass: "clearfix" },
@@ -39354,6 +39418,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _c("h2", [_vm._v("チーム新規登録")]),
+    _vm._v(" "),
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-sm-6" }, [
         _c(
@@ -39395,7 +39461,13 @@ var render = function() {
               "button",
               { staticClass: "btn btn-primary", attrs: { type: "submit" } },
               [_vm._v("Submit")]
-            )
+            ),
+            _vm._v(" "),
+            _c("router-link", { attrs: { to: { name: "base-team.index" } } }, [
+              _c("button", { staticClass: "btn btn-success float-right" }, [
+                _vm._v("一覧に戻る")
+              ])
+            ])
           ],
           1
         )
@@ -39427,6 +39499,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _c("h2", [_vm._v("チーム修正")]),
+    _vm._v(" "),
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-sm-6" }, [
         _c(
@@ -39507,7 +39581,13 @@ var render = function() {
               "button",
               { staticClass: "btn btn-primary", attrs: { type: "submit" } },
               [_vm._v("Submit")]
-            )
+            ),
+            _vm._v(" "),
+            _c("router-link", { attrs: { to: { name: "base-team.index" } } }, [
+              _c("button", { staticClass: "btn btn-success float-right" }, [
+                _vm._v("一覧に戻る")
+              ])
+            ])
           ],
           1
         )
@@ -39539,6 +39619,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _c("h2", [_vm._v("チーム一覧")]),
+    _vm._v(" "),
     _c(
       "div",
       { staticClass: "clearfix" },
