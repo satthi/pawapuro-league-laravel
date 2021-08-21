@@ -39697,6 +39697,7 @@ var render = function() {
                   "button",
                   {
                     staticClass: "btn btn-danger",
+                    attrs: { disabled: !baseTeam.is_deletable },
                     on: {
                       click: function($event) {
                         return _vm.deleteBaseTeam(baseTeam.id)

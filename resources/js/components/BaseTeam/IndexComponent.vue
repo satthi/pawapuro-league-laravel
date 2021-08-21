@@ -26,7 +26,7 @@
                         <router-link v-bind:to="{name: 'base-player.index', params: {baseTeamId: baseTeam.id.toString() }}">
                             <button class="btn btn-success">選手一覧</button>
                         </router-link>
-                        <button class="btn btn-danger" v-on:click="deleteBaseTeam(baseTeam.id)">Delete</button>
+                        <button class="btn btn-danger" v-bind:disabled="!baseTeam.is_deletable" v-on:click="deleteBaseTeam(baseTeam.id)">Delete</button>
                     </td>
                 </tr>
 
