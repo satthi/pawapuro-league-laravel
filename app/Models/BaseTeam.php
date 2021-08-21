@@ -17,6 +17,14 @@ class BaseTeam extends Model
     ];
 
     /**
+     * ブログポストのコメントを取得
+     */
+    public function base_players()
+    {
+        return $this->hasMany(BasePlayer::class);
+    }
+
+    /**
      * 利き(投げ) テキスト表示
      *
      * @param  string  $value
@@ -24,7 +32,6 @@ class BaseTeam extends Model
      */
     public function getIsDeletableAttribute($value)
     {
-        \Log::debug(BasePlayer::where('base_team_id', $this->id)->exists());
         return !BasePlayer::where('base_team_id', $this->id)->exists();
     }
 

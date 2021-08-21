@@ -16,7 +16,6 @@ class BasePlayerRequest extends FormRequest
      */
     public function rules()
     {
-        // \Log::debug(Kiki::getValues());
         return [
             'number' => [
                 'required',

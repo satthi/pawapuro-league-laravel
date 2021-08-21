@@ -21,7 +21,6 @@ class BasePlayerController extends Controller
     public function add(BasePlayerRequest $request, BaseTeam $baseTeam)
     {
         $requestData = $request->all();
-        \Log::debug($requestData);
         BasePlayer::create($request->all());
     }
 

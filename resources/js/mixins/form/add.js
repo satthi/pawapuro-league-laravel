@@ -5,7 +5,7 @@ export default {
             console.log(this.data)
             axios.post(postPath, this.data)
                 .then((res) => {
-                    this.$router.push(redirectRoute);
+                    //this.$router.push(redirectRoute);
                 })
                 .catch((error) => {
                     this.errors = error.response.data.errors;

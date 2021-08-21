@@ -3012,8 +3012,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.errors = [];
       console.log(this.data);
-      axios.post(postPath, this.data).then(function (res) {
-        _this.$router.push(redirectRoute);
+      axios.post(postPath, this.data).then(function (res) {//this.$router.push(redirectRoute);
       })["catch"](function (error) {
         _this.errors = error.response.data.errors;
       });

@@ -20,7 +20,7 @@ class SeasonController extends Controller
     }
     public function add(SeasonRequest $request)
     {
-        Season::create($request->all());
+        (new Season())->add($request->all());
     }
 
     public function update(SeasonRequest $request, Season $season)
