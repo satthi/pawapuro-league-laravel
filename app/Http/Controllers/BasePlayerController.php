@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BasePlayerRequest;
 use App\Models\BasePlayer;
 use App\Models\BaseTeam;
-use App\Http\Requests\BasePlayerRequest;
 use Illuminate\Support\Facades\Validator;
 
 class BasePlayerController extends Controller

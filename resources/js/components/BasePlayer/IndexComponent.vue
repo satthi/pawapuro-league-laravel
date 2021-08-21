@@ -8,18 +8,23 @@
         <table class="table table-hover">
             <thead class="thead-light">
             <tr>
+                <th scope="col">メインP</th>
+                <th scope="col">背番号</th>
                 <th scope="col">選手名</th>
                 <th scope="col">表示名</th>
+                <th scope="col">投打</th>
                 <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
 
                 <tr v-for="(basePlayer, index) in basePlayers" :key="index">
+                    <td scope="row">{{ basePlayer.position_main_text }}</td>
                     <td scope="row">{{ basePlayer.name }}</td>
                     <td>{{ basePlayer.name_short }}</td>
+                    <td>{{ basePlayer.hand_full_text }}</td>
                     <td>
-                        <router-link v-bind:to="{name: 'base-Player.edit', params: {basePlayerId: basePlayer.id.toString() }}">
+                        <router-link v-bind:to="{name: 'base-player.edit', params: {basePlayerId: basePlayer.id.toString() }}">
                             <button class="btn btn-success">Edit</button>
                         </router-link>
                         <button class="btn btn-danger" v-on:click="deleteBasePlayer(basePlayerId.id)">Delete</button>

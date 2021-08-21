@@ -9,7 +9,7 @@ import BaseTeamAddComponent from "./components/BaseTeam/AddComponent";
 import BaseTeamEditComponent from "./components/BaseTeam/EditComponent";
 import BasePlayerIndexComponent from "./components/BasePlayer/IndexComponent";
 import BasePlayerAddComponent from "./components/BasePlayer/AddComponent";
-// import BasePlayerEditComponent from "./components/BasePlayer/EditComponent";
+import BasePlayerEditComponent from "./components/BasePlayer/EditComponent";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -75,17 +75,17 @@ const router = new VueRouter({
             props: true
         },
         {
-            path: '/base-players/add/:baseTeamId',
+            path: '/base-players/:baseTeamId/add',
             name: 'base-player.add',
             component: BasePlayerAddComponent,
             props: true
         },
-        // {
-        //     path: '/base-player/:basePlayerId/edit',
-        //     name: 'base-player.edit',
-        //     component: BasePlayerEditComponent,
-        //     props: true
-        // },
+        {
+            path: '/base-player/:basePlayerId/edit',
+            name: 'base-player.edit',
+            component: BasePlayerEditComponent,
+            props: true
+        },
 
     ]
 });
