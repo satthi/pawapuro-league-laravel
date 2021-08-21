@@ -25,6 +25,10 @@
                     <select-component label="サブP3" :errors="errors.position_sub3" :options="enums.PlayerPosition" :empty=true v-model="data.position_sub3"/>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
+
+                    <router-link v-bind:to="{name: 'base-player.index', params: {baseTeamId: baseTeamId.toString() }}">
+                        <button class="btn btn-success float-right">一覧に戻る</button>
+                    </router-link>
                 </form>
             </div>
         </div>
