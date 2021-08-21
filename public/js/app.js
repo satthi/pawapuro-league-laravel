@@ -2109,7 +2109,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getBasePlayers();
-    this.getTeamData('/api/base-teams/' + this.baseTeamId);
+    this.getTeamData('/api/base-teams/view/' + this.baseTeamId);
   }
 });
 

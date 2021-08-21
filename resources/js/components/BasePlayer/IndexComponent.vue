@@ -70,7 +70,7 @@
         },
          mounted() {
             this.getBasePlayers();
-            this.getTeamData('/api/base-teams/' + this.baseTeamId);
+            this.getTeamData('/api/base-teams/view/' + this.baseTeamId);
         }
     }
 </script>
