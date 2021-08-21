@@ -28,14 +28,14 @@ Route::get('/enums', 'App\Http\Controllers\EnumsController@index');
 
 Route::get('/base-teams', 'App\Http\Controllers\BaseTeamController@index');
 Route::get('/base-teams/get-options', 'App\Http\Controllers\BaseTeamController@getOptions');
-Route::post('/base-teams', 'App\Http\Controllers\BaseTeamController@add');
-Route::get('/base-teams/{baseTeam}', 'App\Http\Controllers\BaseTeamController@show');
-Route::put('/base-teams/{baseTeam}', 'App\Http\Controllers\BaseTeamController@update');
-Route::delete('/base-teams/{baseTeam}', 'App\Http\Controllers\BaseTeamController@destroy');
+Route::post('/base-teams/add', 'App\Http\Controllers\BaseTeamController@add');
+Route::get('/base-teams/view/{baseTeam}', 'App\Http\Controllers\BaseTeamController@show');
+Route::put('/base-teams/edit/{baseTeam}', 'App\Http\Controllers\BaseTeamController@update');
+Route::delete('/base-teams/delete/{baseTeam}', 'App\Http\Controllers\BaseTeamController@destroy');
 
 Route::get('/base-players/{baseTeam}', 'App\Http\Controllers\BasePlayerController@index');
-Route::post('/base-players/{baseTeam}', 'App\Http\Controllers\BasePlayerController@add');
+Route::post('/base-players/add/{baseTeam}', 'App\Http\Controllers\BasePlayerController@add');
 Route::get('/base-players/view/{basePlayer}', 'App\Http\Controllers\BasePlayerController@show');
-Route::put('/base-players/{basePlayer}', 'App\Http\Controllers\BasePlayerController@update');
-Route::delete('/base-players/{basePlayer}', 'App\Http\Controllers\BasePlayerController@destroy');
+Route::put('/base-players/edit/{basePlayer}', 'App\Http\Controllers\BasePlayerController@update');
+Route::delete('/base-players/delete/{basePlayer}', 'App\Http\Controllers\BasePlayerController@destroy');
 

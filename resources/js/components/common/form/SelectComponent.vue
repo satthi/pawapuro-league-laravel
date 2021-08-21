@@ -4,10 +4,10 @@
         <select
             class="col-sm-9 form-control"
             v-bind:class="{'is-invalid' : isError()}"
-            v-model="value"
+            :value="value"
             @change="updateValue"
         >
-            <option v-if="empty" value=null>未選択</option>
+            <option v-if="empty" v-bind:value=null>未選択</option>
             <option v-for="option in options" v-bind:value="option.value">
                 {{ option.text }}
             </option>

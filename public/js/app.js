@@ -1901,7 +1901,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     submitPath: function submitPath() {
-      return '/api/base-players/' + this.baseTeamId;
+      return '/api/base-players/add/' + this.baseTeamId;
     }
   },
   data: function data() {
@@ -1919,11 +1919,12 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get(getPath).then(function (res) {
         _this.team = res.data;
+        console.log(_this.team);
       });
     }
   },
   mounted: function mounted() {
-    this.getTeamData('/api/base-teams/' + this.baseTeamId);
+    this.getTeamData('/api/base-teams/view/' + this.baseTeamId);
   }
 });
 
@@ -1993,12 +1994,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     submitPath: function submitPath() {
-      return '/api/base-players/' + this.basePlayerId;
+      return '/api/base-players/edit/' + this.basePlayerId;
     }
   },
   data: function data() {
     return {
-      data: {},
+      data: {
+        'base_team_id': 'dummy'
+      },
       errors: {},
       teamOptions: {}
     };
@@ -2014,8 +2017,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.getData('/api/base-players/view/' + this.basePlayerId);
     this.getTeamOptions('/api/base-teams/get-options');
+    this.getData('/api/base-players/view/' + this.basePlayerId);
   }
 });
 
@@ -2032,6 +2035,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
 //
 //
 //
@@ -2091,7 +2095,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteBasePlayer: function deleteBasePlayer(id) {
       var _this2 = this;
 
-      axios["delete"]('/api/base-players/' + id).then(function (res) {
+      axios["delete"]('/api/base-players/delete/' + id).then(function (res) {
         _this2.getBasePlayers();
       });
     },
@@ -2210,8 +2214,8 @@ __webpack_require__.r(__webpack_exports__);
     baseTeamId: String
   },
   computed: {
-    getPath: function getPath() {
-      return '/api/base-teams/' + this.baseTeamId;
+    submitPath: function submitPath() {
+      return '/api/base-teams/edit/' + this.baseTeamId;
     }
   },
   data: function data() {
@@ -2221,7 +2225,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.getData('/api/base-teams/' + this.baseTeamId);
+    this.getData('/api/base-teams/view/' + this.baseTeamId);
   }
 });
 
@@ -2291,7 +2295,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteBaseTeam: function deleteBaseTeam(id) {
       var _this2 = this;
 
-      axios["delete"]('/api/base-teams/' + id).then(function (res) {
+      axios["delete"]('/api/base-teams/delete/' + id).then(function (res) {
         _this2.getBaseTeams();
       });
     }
@@ -2703,6 +2707,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get(getPath).then(function (res) {
         _this.data = res.data;
+        console.log(_this.data);
       });
     },
     submit: function submit(postPath, redirectRoute) {
@@ -39324,6 +39329,10 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("td", { attrs: { scope: "row" } }, [
+              _vm._v(_vm._s(basePlayer.number))
+            ]),
+            _vm._v(" "),
+            _c("td", { attrs: { scope: "row" } }, [
               _vm._v(_vm._s(basePlayer.name))
             ]),
             _vm._v(" "),
@@ -39428,7 +39437,7 @@ var render = function() {
             on: {
               submit: function($event) {
                 $event.preventDefault()
-                return _vm.submit("/api/base-teams", {
+                return _vm.submit("/api/base-teams/add", {
                   name: "base-team.index"
                 })
               }
@@ -39509,7 +39518,7 @@ var render = function() {
             on: {
               submit: function($event) {
                 $event.preventDefault()
-                return _vm.submit(_vm.getPath, { name: "base-team.index" })
+                return _vm.submit(_vm.submitPath, { name: "base-team.index" })
               }
             }
           },
@@ -39900,38 +39909,14 @@ var render = function() {
       _c(
         "select",
         {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.value,
-              expression: "value"
-            }
-          ],
           staticClass: "col-sm-9 form-control",
           class: { "is-invalid": _vm.isError() },
-          on: {
-            change: [
-              function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.value = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              },
-              _vm.updateValue
-            ]
-          }
+          domProps: { value: _vm.value },
+          on: { change: _vm.updateValue }
         },
         [
           _vm.empty
-            ? _c("option", { attrs: { value: "null" } }, [_vm._v("未選択")])
+            ? _c("option", { domProps: { value: null } }, [_vm._v("未選択")])
             : _vm._e(),
           _vm._v(" "),
           _vm._l(_vm.options, function(option) {

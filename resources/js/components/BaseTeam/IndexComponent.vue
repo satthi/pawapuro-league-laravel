@@ -49,7 +49,7 @@
                     });
             },
             deleteBaseTeam(id) {
-                axios.delete('/api/base-teams/' + id)
+                axios.delete('/api/base-teams/delete/' + id)
                     .then((res) => {
                         this.getBaseTeams();
                     });

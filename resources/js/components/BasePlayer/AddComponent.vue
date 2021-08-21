@@ -48,7 +48,7 @@
         },
         computed: {
           submitPath() {
-            return '/api/base-players/' + this.baseTeamId;
+            return '/api/base-players/add/' + this.baseTeamId;
           }
         },
         data: function () {
@@ -65,12 +65,13 @@
                 axios.get(getPath)
                     .then((res) => {
                         this.team = res.data;
+                        console.log(this.team)
                     });
             },
         },
 
         mounted() {
-            this.getTeamData('/api/base-teams/' + this.baseTeamId);
+            this.getTeamData('/api/base-teams/view/' + this.baseTeamId);
         }
 
     }

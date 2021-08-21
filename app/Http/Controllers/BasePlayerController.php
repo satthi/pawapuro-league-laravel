@@ -11,7 +11,7 @@ class BasePlayerController extends Controller
 {
      public function index(BaseTeam $baseTeam)
      {
-         return BasePlayer::all();
+         return BasePlayer::where('base_team_id', $baseTeam->id)->get();
      }
 
     public function show(BasePlayer $basePlayer)

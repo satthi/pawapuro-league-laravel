@@ -4,6 +4,7 @@ export default {
             axios.get(getPath)
                 .then((res) => {
                     this.data = res.data;
+                    console.log(this.data)
                 });
         },
         submit(postPath, redirectRoute) {

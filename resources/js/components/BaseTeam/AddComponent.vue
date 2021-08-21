@@ -3,7 +3,7 @@
         <h2>チーム新規登録</h2>
         <div class="row justify-content-center">
             <div class="col-sm-6">
-                <form v-on:submit.prevent="submit('/api/base-teams', {name: 'base-team.index'})">
+                <form v-on:submit.prevent="submit('/api/base-teams/add', {name: 'base-team.index'})">
                     <input-component label="チーム名" :errors="errors.name" v-model="data.name"/>
                     <input-component label="略称" :errors="errors.ryaku_name" v-model="data.ryaku_name"/>
 

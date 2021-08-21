@@ -21,6 +21,7 @@
 
                 <tr v-for="(basePlayer, index) in basePlayers" :key="index">
                     <td scope="row">{{ basePlayer.position_main_text }}</td>
+                    <td scope="row">{{ basePlayer.number }}</td>
                     <td scope="row">{{ basePlayer.name }}</td>
                     <td>{{ basePlayer.name_short }}</td>
                     <td>{{ basePlayer.hand_full_text }}</td>
@@ -55,7 +56,7 @@
                     });
             },
             deleteBasePlayer(id) {
-                axios.delete('/api/base-players/' + id)
+                axios.delete('/api/base-players/delete/' + id)
                     .then((res) => {
                         this.getBasePlayers();
                     });

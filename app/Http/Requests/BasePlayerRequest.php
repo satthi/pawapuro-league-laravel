@@ -21,7 +21,9 @@ class BasePlayerRequest extends FormRequest
             'number' => [
                 'required',
                 'regex:/^[0-9]+$/i',
-                Rule::unique('base_players', 'base_team_id')->ignore($this->id),
+                Rule::unique('base_players')->ignore($this->id)->where(function($query) {
+                    $query->where('base_team_id', $this->input('base_team_id'));
+                }),
             ],
             'name' => 'required',
             'name_short' => 'required',

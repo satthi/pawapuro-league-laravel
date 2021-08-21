@@ -3,7 +3,7 @@
         <h2>チーム修正</h2>
         <div class="row justify-content-center">
             <div class="col-sm-6">
-                <form v-on:submit.prevent="submit(getPath, {name: 'base-team.index'})">
+                <form v-on:submit.prevent="submit(submitPath, {name: 'base-team.index'})">
                     <div class="form-group row">
                         <label for="id" class="col-sm-3 col-form-label">ID</label>
                         <input type="text" class="col-sm-9 form-control-plaintext" readonly id="id" v-model="data.id" >
@@ -33,8 +33,8 @@
             baseTeamId: String
         },
         computed: {
-          getPath() {
-            return '/api/base-teams/' + this.baseTeamId;
+          submitPath() {
+            return '/api/base-teams/edit/' + this.baseTeamId;
           }
         },
         data: function () {
@@ -44,7 +44,7 @@
             }
         },
         mounted() {
-            this.getData('/api/base-teams/' + this.baseTeamId);
+            this.getData('/api/base-teams/view/' + this.baseTeamId);
         }
     }
 </script>

@@ -45,12 +45,14 @@
         },
         computed: {
           submitPath() {
-            return '/api/base-players/' + this.basePlayerId;
+            return '/api/base-players/edit/' + this.basePlayerId;
           }
         },
         data: function () {
             return {
-                data: {},
+                data: {
+                    'base_team_id' : 'dummy'
+                },
                 errors: {},
                 teamOptions: {}
             }
@@ -65,8 +67,8 @@
             },
         },
         mounted() {
-            this.getData('/api/base-players/view/' + this.basePlayerId);
             this.getTeamOptions('/api/base-teams/get-options')
+            this.getData('/api/base-players/view/' + this.basePlayerId);
         }
     }
 </script>
