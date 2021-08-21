@@ -7,6 +7,9 @@ import HeaderComponent from "./components/HeaderComponent";
 import BaseTeamIndexComponent from "./components/BaseTeam/IndexComponent";
 import BaseTeamAddComponent from "./components/BaseTeam/AddComponent";
 import BaseTeamEditComponent from "./components/BaseTeam/EditComponent";
+import BasePlayerIndexComponent from "./components/BasePlayer/IndexComponent";
+import BasePlayerAddComponent from "./components/BasePlayer/AddComponent";
+import BasePlayerEditComponent from "./components/BasePlayer/EditComponent";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -45,6 +48,7 @@ const router = new VueRouter({
         //     component: TaskEditComponent,
         //     props: true
         // },
+        // ベースのチーム
         {
             path: '/base-teams',
             name: 'base-team.index',
@@ -63,6 +67,26 @@ const router = new VueRouter({
             component: BaseTeamEditComponent,
             props: true
         },
+        // ベースの選手
+        {
+            path: '/base-players/:baseTeamId',
+            name: 'base-player.index',
+            component: BasePlayerIndexComponent,
+            props: true
+        },
+        {
+            path: '/base-players/:baseTeamId/add',
+            name: 'base-player.add',
+            component: BasePlayerAddComponent,
+            props: true
+        },
+        {
+            path: '/base-player/:basePlayerId/edit',
+            name: 'base-player.edit',
+            component: BasePlayerEditComponent,
+            props: true
+        },
+
     ]
 });
 

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BaseTeam;
 use App\Http\Requests\BaseTeamRequest;
+use App\Models\BaseTeam;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class BaseTeamController extends Controller
@@ -32,5 +33,11 @@ class BaseTeamController extends Controller
         $baseTeam->delete();
 
         return $baseTeam;
+    }
+
+    public function getOptions()
+    {
+        $baseTeamModel = new BaseTeam();
+        return $baseTeamModel->select('id as value', 'name as text')->get();
     }
 }
