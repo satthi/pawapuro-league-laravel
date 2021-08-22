@@ -13,6 +13,12 @@
 
                     <input-component label="開始日" :errors="errors.start_date" v-model="data.start_date"/>
                     <!-- 前年順位の設定を最後にやるけどひとまず無視 -->
+                    <select-component label="1位チーム" :errors="errors.team_id_1" :options="teamOptions" :empty=true v-model="data.team_id_1"/>
+                    <select-component label="2位チーム" :errors="errors.team_id_2" :options="teamOptions" :empty=true v-model="data.team_id_2"/>
+                    <select-component label="3位チーム" :errors="errors.team_id_3" :options="teamOptions" :empty=true v-model="data.team_id_3"/>
+                    <select-component label="4位チーム" :errors="errors.team_id_4" :options="teamOptions" :empty=true v-model="data.team_id_4"/>
+                    <select-component label="5位チーム" :errors="errors.team_id_5" :options="teamOptions" :empty=true v-model="data.team_id_5"/>
+                    <select-component label="6位チーム" :errors="errors.team_id_6" :options="teamOptions" :empty=true v-model="data.team_id_6"/>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
 
@@ -27,9 +33,10 @@
 
 <script>
     import InputComponent from '../common/form/InputComponent';
+    import SelectComponent from '../common/form/SelectComponent';
     import addMixin from '../../mixins/form/add.js';
     export default {
-        components: {InputComponent},
+        components: {InputComponent, SelectComponent},
         mixins : [addMixin],
         props: {
             seasonId: String

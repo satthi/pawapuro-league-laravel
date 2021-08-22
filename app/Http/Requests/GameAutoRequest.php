@@ -25,7 +25,60 @@ class GameAutoRequest extends FormRequest
                     }
                 },
             ],
-            'dh_flag' => 'boolean',
+            'team_id_1' => [
+                'required',
+                'integer',
+            ],
+            'team_id_2' => [
+                'required',
+                'integer',
+                function ($attribute, $value, $fail) {
+                    
+                    if ($this->team_id_1 == $value) {
+                        $fail('チームが重複しています');
+                    }
+                },
+            ],
+            'team_id_3' => [
+                'required',
+                'integer',
+                function ($attribute, $value, $fail) {
+                    
+                    if ($this->team_id_1 == $value || $this->team_id_2 == $value) {
+                        $fail('チームが重複しています');
+                    }
+                },
+            ],
+            'team_id_4' => [
+                'required',
+                'integer',
+                function ($attribute, $value, $fail) {
+                    
+                    if ($this->team_id_1 == $value || $this->team_id_2 == $value || $this->team_id_3 == $value) {
+                        $fail('チームが重複しています');
+                    }
+                },
+            ],
+            'team_id_5' => [
+                'required',
+                'integer',
+                function ($attribute, $value, $fail) {
+                    
+                    if ($this->team_id_1 == $value || $this->team_id_2 == $value || $this->team_id_3 == $value || $this->team_id_4 == $value) {
+                        $fail('チームが重複しています');
+                    }
+                },
+            ],
+            'team_id_6' => [
+                'required',
+                'integer',
+                function ($attribute, $value, $fail) {
+                    
+                    if ($this->team_id_1 == $value || $this->team_id_2 == $value || $this->team_id_3 == $value || $this->team_id_4 == $value || $this->team_id_5 == $value) {
+                        $fail('チームが重複しています');
+                    }
+                },
+            ],
         ];
     }
 
@@ -39,6 +92,12 @@ class GameAutoRequest extends FormRequest
     {
         return [
             'start_date' => '試合日',
+            'team_id_1' => '1位チーム',
+            'team_id_2' => '1位チーム',
+            'team_id_3' => '1位チーム',
+            'team_id_4' => '1位チーム',
+            'team_id_5' => '1位チーム',
+            'team_id_6' => '1位チーム',
         ];
     }
 
@@ -51,6 +110,18 @@ class GameAutoRequest extends FormRequest
         return [
             'start_date.required' => ':attributeを入力してください',
             'start_date.date' => ':attributeを正しく入力してください',
+            'team_id_1.required' => ':attributeを入力してください',
+            'team_id_1.integer' => ':attributeを正しく入力してください',
+            'team_id_2.required' => ':attributeを入力してください',
+            'team_id_2.integer' => ':attributeを正しく入力してください',
+            'team_id_3.required' => ':attributeを入力してください',
+            'team_id_3.integer' => ':attributeを正しく入力してください',
+            'team_id_4.required' => ':attributeを入力してください',
+            'team_id_4.integer' => ':attributeを正しく入力してください',
+            'team_id_5.required' => ':attributeを入力してください',
+            'team_id_5.integer' => ':attributeを正しく入力してください',
+            'team_id_6.required' => ':attributeを入力してください',
+            'team_id_6.integer' => ':attributeを正しく入力してください',
         ];
     }
 }

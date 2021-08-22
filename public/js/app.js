@@ -2453,7 +2453,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _common_form_InputComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../common/form/InputComponent */ "./resources/js/components/common/form/InputComponent.vue");
-/* harmony import */ var _mixins_form_add_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/form/add.js */ "./resources/js/mixins/form/add.js");
+/* harmony import */ var _common_form_SelectComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/form/SelectComponent */ "./resources/js/components/common/form/SelectComponent.vue");
+/* harmony import */ var _mixins_form_add_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/form/add.js */ "./resources/js/mixins/form/add.js");
 //
 //
 //
@@ -2481,13 +2482,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    InputComponent: _common_form_InputComponent__WEBPACK_IMPORTED_MODULE_0__.default
+    InputComponent: _common_form_InputComponent__WEBPACK_IMPORTED_MODULE_0__.default,
+    SelectComponent: _common_form_SelectComponent__WEBPACK_IMPORTED_MODULE_1__.default
   },
-  mixins: [_mixins_form_add_js__WEBPACK_IMPORTED_MODULE_1__.default],
+  mixins: [_mixins_form_add_js__WEBPACK_IMPORTED_MODULE_2__.default],
   props: {
     seasonId: String
   },
@@ -41306,6 +41315,102 @@ var render = function() {
                   _vm.$set(_vm.data, "start_date", $$v)
                 },
                 expression: "data.start_date"
+              }
+            }),
+            _vm._v(" "),
+            _c("select-component", {
+              attrs: {
+                label: "1位チーム",
+                errors: _vm.errors.team_id_1,
+                options: _vm.teamOptions,
+                empty: true
+              },
+              model: {
+                value: _vm.data.team_id_1,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "team_id_1", $$v)
+                },
+                expression: "data.team_id_1"
+              }
+            }),
+            _vm._v(" "),
+            _c("select-component", {
+              attrs: {
+                label: "2位チーム",
+                errors: _vm.errors.team_id_2,
+                options: _vm.teamOptions,
+                empty: true
+              },
+              model: {
+                value: _vm.data.team_id_2,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "team_id_2", $$v)
+                },
+                expression: "data.team_id_2"
+              }
+            }),
+            _vm._v(" "),
+            _c("select-component", {
+              attrs: {
+                label: "3位チーム",
+                errors: _vm.errors.team_id_3,
+                options: _vm.teamOptions,
+                empty: true
+              },
+              model: {
+                value: _vm.data.team_id_3,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "team_id_3", $$v)
+                },
+                expression: "data.team_id_3"
+              }
+            }),
+            _vm._v(" "),
+            _c("select-component", {
+              attrs: {
+                label: "4位チーム",
+                errors: _vm.errors.team_id_4,
+                options: _vm.teamOptions,
+                empty: true
+              },
+              model: {
+                value: _vm.data.team_id_4,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "team_id_4", $$v)
+                },
+                expression: "data.team_id_4"
+              }
+            }),
+            _vm._v(" "),
+            _c("select-component", {
+              attrs: {
+                label: "5位チーム",
+                errors: _vm.errors.team_id_5,
+                options: _vm.teamOptions,
+                empty: true
+              },
+              model: {
+                value: _vm.data.team_id_5,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "team_id_5", $$v)
+                },
+                expression: "data.team_id_5"
+              }
+            }),
+            _vm._v(" "),
+            _c("select-component", {
+              attrs: {
+                label: "6位チーム",
+                errors: _vm.errors.team_id_6,
+                options: _vm.teamOptions,
+                empty: true
+              },
+              model: {
+                value: _vm.data.team_id_6,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "team_id_6", $$v)
+                },
+                expression: "data.team_id_6"
               }
             }),
             _vm._v(" "),

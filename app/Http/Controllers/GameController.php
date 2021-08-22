@@ -33,14 +33,4 @@ class GameController extends Controller
 
         return $game;
     }
-
-    // 後で消す
-   public function autoAddTest()
-    {
-        (new Game())->autoAdd(['start_date' => '2021-03-26'], 1);
-        // \Log::debug('HHH');
-        // Game::create($request->all());
-    }
-
-
 }

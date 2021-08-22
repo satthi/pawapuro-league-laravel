@@ -90,7 +90,9 @@ class Game extends Model
     public function autoAdd($requestData, $seasonId)
     {
         // 回数は調整
-        for($i = 1;$i <= 200;$i++) {
+        $autoWaku = null;
+        $checkPoint = null;
+        for($i = 1;$i <= 20000;$i++) {
             $tempAutoWaku = $this->autoWakuMake();
             if (empty($tempAutoWaku)) {
                 continue;
@@ -102,21 +104,27 @@ class Game extends Model
             // 2カード空けて同一カードがある(同一ホーム)があるとき 3
             // 2カード空けて同一カードがある(別ホーム)があるとき 2
             // でかけるか足すかは別途調整してみる
-            $autoWaku = $tempAutoWaku;
-            break;
+            $targetCheckPoint = $this->checkPoint($tempAutoWaku);
+            if (is_null($checkPoint) || $targetCheckPoint < $checkPoint) {
+                $checkPoint = $targetCheckPoint;
+                $autoWaku = $tempAutoWaku;
+            }
         }
 
         // 枠が取得できたのであとは枠に合わせてデータを作成する
         // チーム割り振りも後調整
         $teamList = [
-            1 => 1,
-            2 => 2,
-            3 => 3,
-            4 => 4,
-            5 => 5,
-            6 => 6,
+            1 => $requestData['team_id_1'],
+            2 => $requestData['team_id_2'],
+            3 => $requestData['team_id_3'],
+            4 => $requestData['team_id_4'],
+            5 => $requestData['team_id_5'],
+            6 => $requestData['team_id_6'],
         ];
+        $startDate = new Carbon($requestData['start_date']);
         $date = new Carbon($requestData['start_date']);
+
+        $skipFlag = false;
         foreach ($autoWaku as $autoWakuParts) {
             // 月曜日のときは火曜日にスライドする
             if ($date->format('w') == 1) {
@@ -141,6 +149,12 @@ class Game extends Model
             }
             // 処理が終わったときは3日進める
             $date = $date->addDay(3);
+
+            // 100日ほどたったところで1週間の休みを一度加える(AS休み的な何か)
+            if (!$skipFlag && $date->format('w') == 1 && $date->diffInDays($startDate) > 110) {
+                $skipFlag = true;
+                $date = $date->addDay(7);
+            }
         }
     }
 
@@ -284,5 +298,68 @@ class Game extends Model
         }
 
         return $gameList;
+    }
+
+    private function checkPoint($waku)
+    {
+        // 連続で同一カードはない前提
+        // 1カード空けて同一カードがある(同一ホーム)があるとき 8
+        // 1カード空けて同一カードがある(別ホーム)があるとき 4
+        // 2カード空けて同一カードがある(同一ホーム)があるとき 3
+        // 2カード空けて同一カードがある(別ホーム)があるとき 2
+        // でかけるか足すかは別途調整してみる
+
+        $point = 1;
+        $beforeWaku = [];
+        foreach ($waku as $wakuParts) {
+            if (!empty($beforeWaku[2])) {
+                // 2カード空けて同一カードがある(同一ホーム)があるとき 3
+                // 2カード空けて同一カードがある(別ホーム)があるとき 2
+                foreach ($wakuParts as $nowWakuPartsGame) {
+                    foreach ($beforeWaku[2] as $beforeWakuPartsGame) {
+                        if (
+                            $nowWakuPartsGame['home_team'] == $beforeWakuPartsGame['home_team'] &&
+                            $nowWakuPartsGame['visitor_team'] == $beforeWakuPartsGame['visitor_team']
+                        ) {
+                            $point *= 3;
+                        }
+                        if (
+                            $nowWakuPartsGame['home_team'] == $beforeWakuPartsGame['visitor_team'] &&
+                            $nowWakuPartsGame['visitor_team'] == $beforeWakuPartsGame['home_team']
+                        ) {
+                            $point *= 2;
+                        }
+                    }
+                }
+            }
+            if (!empty($beforeWaku[1])) {
+                // 1カード空けて同一カードがある(同一ホーム)があるとき 8
+                // 1カード空けて同一カードがある(別ホーム)があるとき 4
+                foreach ($wakuParts as $nowWakuPartsGame) {
+                    foreach ($beforeWaku[1] as $beforeWakuPartsGame) {
+                        if (
+                            $nowWakuPartsGame['home_team'] == $beforeWakuPartsGame['home_team'] &&
+                            $nowWakuPartsGame['visitor_team'] == $beforeWakuPartsGame['visitor_team']
+                        ) {
+                            $point *= 8;
+                        }
+                        if (
+                            $nowWakuPartsGame['home_team'] == $beforeWakuPartsGame['visitor_team'] &&
+                            $nowWakuPartsGame['visitor_team'] == $beforeWakuPartsGame['home_team']
+                        ) {
+                            $point *= 4;
+                        }
+                    }
+                }
+
+                $beforeWaku[2] = $beforeWaku[1];
+            }
+            if (!empty($beforeWaku[0])) {
+                $beforeWaku[1] = $beforeWaku[0];
+            }
+            $beforeWaku[0] = $wakuParts;
+        }
+
+        return $point;
     }
 }
