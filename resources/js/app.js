@@ -16,6 +16,7 @@ import SeasonEditComponent from "./components/Season/EditComponent";
 import SeasonViewComponent from "./components/Season/ViewComponent";
 import gameIndexComponent from "./components/Game/IndexComponent";
 import gameAddComponent from "./components/Game/AddComponent";
+import gameAutoAddComponent from "./components/Game/AutoAddComponent";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -127,6 +128,12 @@ const router = new VueRouter({
             path: '/games/:seasonId/add',
             name: 'game.add',
             component: gameAddComponent,
+            props: true
+        },
+        {
+            path: '/games/:seasonId/auto-add',
+            name: 'game.auto_add',
+            component: gameAutoAddComponent,
             props: true
         },
 

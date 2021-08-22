@@ -5,6 +5,9 @@
             <router-link v-bind:to="{name: 'game.add', params: {seasonId: seasonId.toString() }}">
                 <button class="btn btn-success float-right">日程追加</button>
             </router-link>
+            <router-link v-bind:to="{name: 'game.auto_add', params: {seasonId: seasonId.toString() }}">
+                <button class="btn btn-success float-right">日程自動作成</button>
+            </router-link>
         </div>
         <table class="table table-hover">
             <tbody>

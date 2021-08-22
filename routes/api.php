@@ -46,8 +46,10 @@ Route::get('/seasons/detail/{season}', 'App\Http\Controllers\SeasonController@de
 Route::put('/seasons/edit/{season}', 'App\Http\Controllers\SeasonController@update');
 Route::delete('/seasons/delete/{season}', 'App\Http\Controllers\SeasonController@destroy');
 
+Route::get('/games/auto-add-test', 'App\Http\Controllers\GameController@autoAddTest');// 後で消す
 Route::get('/games/{season}', 'App\Http\Controllers\GameController@index');
 Route::post('/games/add/{season}', 'App\Http\Controllers\GameController@add');
+Route::post('/games/auto-add/{season}', 'App\Http\Controllers\GameController@autoAdd');
 Route::delete('/games/delete/{game}', 'App\Http\Controllers\GameController@destroy');
 
 Route::get('/teams/get-options/{season}', 'App\Http\Controllers\TeamController@getOptions');

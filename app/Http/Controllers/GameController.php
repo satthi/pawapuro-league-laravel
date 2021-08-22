@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GameAutoRequest;
 use App\Http\Requests\GameRequest;
 use App\Models\Game;
 use App\Models\Season;
@@ -19,6 +20,12 @@ class GameController extends Controller
     {
         Game::create($request->all());
     }
+   public function autoAdd(GameAutoRequest $request, Season $season)
+    {
+        (new Game())->autoAdd($request->all(), $season->id);
+        // \Log::debug('HHH');
+        // Game::create($request->all());
+    }
 
     public function destroy(Game $game)
     {
@@ -26,4 +33,14 @@ class GameController extends Controller
 
         return $game;
     }
+
+    // 後で消す
+   public function autoAddTest()
+    {
+        (new Game())->autoAdd(['start_date' => '2021-03-26'], 1);
+        // \Log::debug('HHH');
+        // Game::create($request->all());
+    }
+
+
 }
