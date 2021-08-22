@@ -6,3 +6,13 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// custom
+td.selected {
+    background-color: red;
+}
+
+.hikae_waku {
+    height: 600px;
+    overflow-y: scroll;
+}

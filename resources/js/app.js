@@ -19,6 +19,7 @@ import GameAddComponent from "./components/Game/AddComponent";
 import GameAutoAddComponent from "./components/Game/AutoAddComponent";
 import GameViewComponent from "./components/Game/ViewComponent";
 import GameProbablePitcherUpdateComponent from "./components/Game/ProbablePitcherUpdateComponent";
+import GameStamenEditComponent from "./components/Game/StamenEditComponent";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -148,6 +149,12 @@ const router = new VueRouter({
             path: '/games/:gameId/probable-pitcher-edit',
             name: 'game.probable-pitcher-edit',
             component: GameProbablePitcherUpdateComponent,
+            props: true
+        },
+        {
+            path: '/games/:gameId/:stamenType/stamen-edit',
+            name: 'game.stamen-edit',
+            component: GameStamenEditComponent,
             props: true
         },
 

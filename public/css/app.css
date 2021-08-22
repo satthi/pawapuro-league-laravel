@@ -10002,3 +10002,11 @@ h3 {
     border-color: #dee2e6;
   }
 }
+td.selected {
+  background-color: red;
+}
+
+.hikae_waku {
+  height: 600px;
+  overflow-y: scroll;
+}

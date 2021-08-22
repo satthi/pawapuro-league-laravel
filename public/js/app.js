@@ -2698,6 +2698,185 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/StamenEditComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/StamenEditComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    gameId: String,
+    stamenType: String
+  },
+  computed: {
+    submitPath: function submitPath() {
+      return '/api/games/stamen-edit/' + this.gameId + '/' + this.stamenType;
+    }
+  },
+  data: function data() {
+    return {
+      gameData: {
+        'home_team': {
+          'name': ''
+        },
+        'visitor_team': {
+          'name': ''
+        }
+      },
+      stamenData: {},
+      playerClicked: null,
+      positionClicked: null
+    };
+  },
+  methods: {
+    getData: function getData(getPath) {
+      var _this = this;
+
+      axios.get(getPath).then(function (res) {
+        _this.gameData = res.data;
+      });
+    },
+    getStamenData: function getStamenData(getPath) {
+      var _this2 = this;
+
+      axios.get(getPath).then(function (res) {
+        _this2.stamenData = res.data;
+        console.log(_this2.stamenData);
+      });
+    },
+    // playerClick
+    playerClick: function playerClick(event) {
+      // player選択中を外す
+      this.positionClicked = null;
+      var clickKey = event.target.dataset.key;
+
+      if (this.playerClicked == null) {
+        this.playerClicked = clickKey;
+      } else {
+        if (clickKey <= 10 && this.playerClicked == 10 || clickKey == 10 && this.playerClicked <= 10) {
+          // スタメンメンバーとピッチャーは交換できない
+          alert('変更できません');
+          this.playerClicked = null;
+        } else {
+          // 選手を入れ替え
+          var basePlayer = this.getPlayerInfo(this.playerClicked);
+          var movePlayer = this.getPlayerInfo(clickKey);
+          this.setPlayerInfo(basePlayer, clickKey);
+          this.setPlayerInfo(movePlayer, this.playerClicked); // positionの切り替えも同時に行う
+
+          if (clickKey <= 10 && this.playerClicked <= 10) {
+            var basePosition = this.stamenData.stamen[this.playerClicked].position;
+            var movePosition = this.stamenData.stamen[clickKey].position;
+            this.stamenData.stamen[clickKey].position = basePosition;
+            this.stamenData.stamen[this.playerClicked].position = movePosition;
+          }
+
+          this.playerClicked = null;
+        }
+      }
+    },
+    getPlayerInfo: function getPlayerInfo(key) {
+      // playerClickで使用
+      if (key <= 10) {
+        //stamenから
+        return this.stamenData.stamen[key].player;
+      } else {
+        // hikaeから
+        return this.stamenData.hikae[key];
+      }
+    },
+    setPlayerInfo: function setPlayerInfo(playerInfo, key) {
+      if (key <= 10) {
+        //stamenに
+        this.stamenData.stamen[key].player = playerInfo;
+      } else {
+        // hikaeに
+        this.stamenData.hikae[key] = playerInfo;
+      }
+    },
+    // positionClick
+    positionClick: function positionClick(event) {
+      // player選択中を外す
+      this.playerClicked = null;
+      var clickKey = event.target.dataset.key;
+
+      if (this.positionClicked == null) {
+        this.positionClicked = clickKey;
+      } else {
+        // 選手を入れ替え
+        var basePosition = this.getPositionInfo(this.positionClicked);
+        var movePosition = this.getPositionInfo(clickKey);
+        this.setPositionInfo(basePosition, clickKey);
+        this.setPositionInfo(movePosition, this.positionClicked);
+        this.positionClicked = null;
+      }
+    },
+    getPositionInfo: function getPositionInfo(key) {
+      //stamenから
+      return this.stamenData.stamen[key].position;
+    },
+    setPositionInfo: function setPositionInfo(positionInfo, key) {
+      //stamenに
+      this.stamenData.stamen[key].position = positionInfo;
+    },
+    submit: function submit(postPath, redirectRoute) {
+      var _this3 = this;
+
+      axios.post(postPath, this.stamenData).then(function (res) {
+        _this3.$router.push(redirectRoute);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getData('/api/games/view/' + this.gameId);
+    this.getStamenData('/api/games/get-stamen-initial-data/' + this.gameId + '/' + this.stamenType);
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/ViewComponent.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/ViewComponent.vue?vue&type=script&lang=js& ***!
@@ -2709,6 +2888,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2745,6 +2962,10 @@ __webpack_require__.r(__webpack_exports__);
         'visitor_team': {
           'name': ''
         }
+      },
+      'stamen': {
+        'home_team': {},
+        'visitor_team': {}
       }
     };
   },
@@ -2755,10 +2976,19 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(getPath).then(function (res) {
         _this.data = res.data;
       });
+    },
+    getStamenData: function getStamenData(getPath) {
+      var _this2 = this;
+
+      axios.get(getPath).then(function (res) {
+        _this2.stamen = res.data;
+        console.log(_this2.stamen);
+      });
     }
   },
   mounted: function mounted() {
     this.getData('/api/games/view/' + this.gameId);
+    this.getStamenData('/api/games/get-stamen/' + this.gameId);
   }
 });
 
@@ -3257,7 +3487,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _components_HeaderComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/HeaderComponent */ "./resources/js/components/HeaderComponent.vue");
 /* harmony import */ var _components_BaseTeam_IndexComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/BaseTeam/IndexComponent */ "./resources/js/components/BaseTeam/IndexComponent.vue");
 /* harmony import */ var _components_BaseTeam_AddComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/BaseTeam/AddComponent */ "./resources/js/components/BaseTeam/AddComponent.vue");
@@ -3274,11 +3504,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Game_AutoAddComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Game/AutoAddComponent */ "./resources/js/components/Game/AutoAddComponent.vue");
 /* harmony import */ var _components_Game_ViewComponent__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Game/ViewComponent */ "./resources/js/components/Game/ViewComponent.vue");
 /* harmony import */ var _components_Game_ProbablePitcherUpdateComponent__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Game/ProbablePitcherUpdateComponent */ "./resources/js/components/Game/ProbablePitcherUpdateComponent.vue");
+/* harmony import */ var _components_Game_StamenEditComponent__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Game/StamenEditComponent */ "./resources/js/components/Game/StamenEditComponent.vue");
 
  // import TaskListComponent from "./components/TaskListComponent";
 // import TaskShowComponent from "./components/TaskShowComponent";
 // import TaskCreateComponent from "./components/TaskCreateComponent";
 // import TaskEditComponent from "./components/TaskEditComponent";
+
 
 
 
@@ -3304,8 +3536,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default;
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_16__.default);
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_16__.default({
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_17__.default);
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_17__.default({
   mode: 'history',
   routes: [// {
   //     path: '/tasks',
@@ -3406,6 +3638,11 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_16__.default({
     path: '/games/:gameId/probable-pitcher-edit',
     name: 'game.probable-pitcher-edit',
     component: _components_Game_ProbablePitcherUpdateComponent__WEBPACK_IMPORTED_MODULE_15__.default,
+    props: true
+  }, {
+    path: '/games/:gameId/:stamenType/stamen-edit',
+    name: 'game.stamen-edit',
+    component: _components_Game_StamenEditComponent__WEBPACK_IMPORTED_MODULE_16__.default,
     props: true
   }]
 });
@@ -39386,6 +39623,45 @@ component.options.__file = "resources/js/components/Game/ProbablePitcherUpdateCo
 
 /***/ }),
 
+/***/ "./resources/js/components/Game/StamenEditComponent.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/Game/StamenEditComponent.vue ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _StamenEditComponent_vue_vue_type_template_id_d630c0aa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./StamenEditComponent.vue?vue&type=template&id=d630c0aa& */ "./resources/js/components/Game/StamenEditComponent.vue?vue&type=template&id=d630c0aa&");
+/* harmony import */ var _StamenEditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./StamenEditComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Game/StamenEditComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _StamenEditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _StamenEditComponent_vue_vue_type_template_id_d630c0aa___WEBPACK_IMPORTED_MODULE_0__.render,
+  _StamenEditComponent_vue_vue_type_template_id_d630c0aa___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Game/StamenEditComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Game/ViewComponent.vue":
 /*!********************************************************!*\
   !*** ./resources/js/components/Game/ViewComponent.vue ***!
@@ -39952,6 +40228,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Game/StamenEditComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/Game/StamenEditComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_StamenEditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./StamenEditComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/StamenEditComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_StamenEditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Game/ViewComponent.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************!*\
   !*** ./resources/js/components/Game/ViewComponent.vue?vue&type=script&lang=js& ***!
@@ -40295,6 +40587,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProbablePitcherUpdateComponent_vue_vue_type_template_id_748323d8___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProbablePitcherUpdateComponent_vue_vue_type_template_id_748323d8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ProbablePitcherUpdateComponent.vue?vue&type=template&id=748323d8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/ProbablePitcherUpdateComponent.vue?vue&type=template&id=748323d8&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Game/StamenEditComponent.vue?vue&type=template&id=d630c0aa&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/Game/StamenEditComponent.vue?vue&type=template&id=d630c0aa& ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StamenEditComponent_vue_vue_type_template_id_d630c0aa___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StamenEditComponent_vue_vue_type_template_id_d630c0aa___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StamenEditComponent_vue_vue_type_template_id_d630c0aa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./StamenEditComponent.vue?vue&type=template&id=d630c0aa& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/StamenEditComponent.vue?vue&type=template&id=d630c0aa&");
 
 
 /***/ }),
@@ -42004,6 +42313,151 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/StamenEditComponent.vue?vue&type=template&id=d630c0aa&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/StamenEditComponent.vue?vue&type=template&id=d630c0aa& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("h2", [
+      _vm._v(
+        _vm._s(_vm.gameData.date) +
+          " " +
+          _vm._s(_vm.gameData.home_team.name) +
+          " VS " +
+          _vm._s(_vm.gameData.visitor_team.name)
+      )
+    ]),
+    _vm._v(" "),
+    _vm.stamenType == "visitor"
+      ? _c("h3", [
+          _vm._v(_vm._s(_vm.gameData.visitor_team.name) + " スタメン設定")
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.stamenType == "home"
+      ? _c("h3", [
+          _vm._v(_vm._s(_vm.gameData.home_team.name) + " スタメン設定")
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-4" }, [
+        _c(
+          "table",
+          { staticClass: "table table-hover" },
+          _vm._l(this.stamenData.stamen, function(stamen, dajun) {
+            return _c("tr", [
+              _c("td", [_vm._v(_vm._s(stamen.dajun))]),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  class: { selected: _vm.positionClicked == dajun },
+                  attrs: { "data-key": dajun },
+                  on: { click: _vm.positionClick }
+                },
+                [_vm._v(_vm._s(stamen.position.text))]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  class: { selected: _vm.playerClicked == dajun },
+                  attrs: { "data-key": dajun },
+                  on: { click: _vm.playerClick }
+                },
+                [_vm._v(_vm._s(stamen.player.name))]
+              )
+            ])
+          }),
+          0
+        ),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                _vm.submit(_vm.submitPath, {
+                  name: "game.view",
+                  params: { gameId: _vm.gameId.toString() }
+                })
+              }
+            }
+          },
+          [
+            _c(
+              "button",
+              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+              [_vm._v("Submit")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                attrs: {
+                  to: {
+                    name: "game.view",
+                    params: { gameId: _vm.gameId.toString() }
+                  }
+                }
+              },
+              [
+                _c("button", { staticClass: "btn btn-success float-right" }, [
+                  _vm._v("一覧に戻る")
+                ])
+              ]
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-1" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-3 hikae_waku" }, [
+        _c(
+          "table",
+          { staticClass: "table table-hover" },
+          _vm._l(this.stamenData.hikae, function(hikae, playerKey) {
+            return _c("tr", [
+              _c(
+                "td",
+                {
+                  class: { selected: _vm.playerClicked == playerKey },
+                  attrs: { "data-key": playerKey },
+                  on: { click: _vm.playerClick }
+                },
+                [_vm._v(_vm._s(hikae.name))]
+              )
+            ])
+          }),
+          0
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/ViewComponent.vue?vue&type=template&id=16a7bef4&":
 /*!******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/ViewComponent.vue?vue&type=template&id=16a7bef4& ***!
@@ -42020,46 +42474,54 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("h2", [
-      _vm._v(
-        _vm._s(_vm.data.date) +
-          " " +
-          _vm._s(_vm.data.home_team.name) +
-          " VS " +
-          _vm._s(_vm.data.visitor_team.name)
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row justify-content-center" }, [
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c("h2", [
+        _vm._v(
+          _vm._s(_vm.data.date) +
+            " " +
+            _vm._s(_vm.data.home_team.name) +
+            " VS " +
+            _vm._s(_vm.data.visitor_team.name)
+        )
+      ]),
+      _vm._v(" "),
       _c(
-        "div",
-        { staticClass: "col-sm-6" },
+        "router-link",
+        {
+          attrs: {
+            to: {
+              name: "season.view",
+              params: { seasonId: _vm.data.season_id.toString() }
+            }
+          }
+        },
         [
-          _c("br"),
-          _vm._v(" "),
-          _c("h4", [_vm._v("予告先発")]),
-          _vm._v(
-            "\n                先行予告先発： " +
-              _vm._s(
-                _vm.data.visitor_probable_pitcher
-                  ? _vm.data.visitor_probable_pitcher.name
-                  : "未設定"
-              ) +
-              "\n\n                "
-          ),
-          _c("br"),
-          _vm._v(
-            "\n                後攻予告先発： " +
-              _vm._s(
-                _vm.data.home_probable_pitcher
-                  ? _vm.data.home_probable_pitcher.name
-                  : "未設定"
-              ) +
-              "\n                "
-          ),
-          _c("br"),
-          _vm._v(" "),
+          _c("button", { staticClass: "btn btn-success" }, [
+            _vm._v("シーズン詳細")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "router-link",
+        {
+          attrs: {
+            to: {
+              name: "game.index",
+              params: { seasonId: _vm.data.season_id.toString() }
+            }
+          }
+        },
+        [_c("button", { staticClass: "btn btn-success" }, [_vm._v("日程一覧")])]
+      ),
+      _vm._v(" "),
+      _c(
+        "h4",
+        [
+          _vm._v("\n    予告先発\n    "),
           _c(
             "router-link",
             {
@@ -42071,16 +42533,137 @@ var render = function() {
               }
             },
             [_c("button", { staticClass: "btn btn-success" }, [_vm._v("設定")])]
-          ),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("h4", [_vm._v("スタメン")])
+          )
         ],
         1
-      )
-    ])
-  ])
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-6" }, [
+          _vm._v(
+            "\n            予告先発： " +
+              _vm._s(
+                _vm.data.home_probable_pitcher
+                  ? _vm.data.home_probable_pitcher.name
+                  : "未設定"
+              ) +
+              "\n        "
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-6" }, [
+          _vm._v(
+            "\n            予告先発： " +
+              _vm._s(
+                _vm.data.visitor_probable_pitcher
+                  ? _vm.data.visitor_probable_pitcher.name
+                  : "未設定"
+              ) +
+              "\n        "
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("h4", [_vm._v("スタメン")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          { staticClass: "col-sm-6" },
+          [
+            _vm._v("\n\n            " + _vm._s(_vm.data.home_team.name)),
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                attrs: {
+                  to: {
+                    name: "game.stamen-edit",
+                    params: {
+                      gameId: _vm.gameId.toString(),
+                      stamenType: "home"
+                    }
+                  }
+                }
+              },
+              [
+                _c("button", { staticClass: "btn btn-success" }, [
+                  _vm._v("設定")
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              _vm._l(this.stamen.home_team.stamen, function(stamen, dajun) {
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(stamen.dajun))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(stamen.position.text))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(stamen.player.name))])
+                ])
+              }),
+              0
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-sm-6" },
+          [
+            _vm._v("\n            " + _vm._s(_vm.data.visitor_team.name)),
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                attrs: {
+                  to: {
+                    name: "game.stamen-edit",
+                    params: {
+                      gameId: _vm.gameId.toString(),
+                      stamenType: "visitor"
+                    }
+                  }
+                }
+              },
+              [
+                _c("button", { staticClass: "btn btn-success" }, [
+                  _vm._v("設定")
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              _vm._l(this.stamen.visitor_team.stamen, function(stamen, dajun) {
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(stamen.dajun))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(stamen.position.text))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(stamen.player.name))])
+                ])
+              }),
+              0
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6" })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

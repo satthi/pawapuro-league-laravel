@@ -53,7 +53,9 @@ Route::post('/games/auto-add/{season}', 'App\Http\Controllers\GameController@aut
 Route::delete('/games/delete/{game}', 'App\Http\Controllers\GameController@destroy');
 Route::get('/games/get-probable-pitcher-options/{game}', 'App\Http\Controllers\GameController@getProbablePitcherOptions');
 Route::put('/games/probable-pitcher-edit/{game}', 'App\Http\Controllers\GameController@probablePitcherUpdate');
-
+Route::get('/games/get-stamen-initial-data/{game}/{stamenType}', 'App\Http\Controllers\GameController@getStamenInitialData');
+Route::post('/games/stamen-edit/{game}/{stamenType}', 'App\Http\Controllers\GameController@stamenEdit');
+Route::get('/games/get-stamen/{game}', 'App\Http\Controllers\GameController@getStamen');
 
 
 Route::get('/teams/get-options/{season}', 'App\Http\Controllers\TeamController@getOptions');
