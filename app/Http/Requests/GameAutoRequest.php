@@ -93,11 +93,11 @@ class GameAutoRequest extends FormRequest
         return [
             'start_date' => '試合日',
             'team_id_1' => '1位チーム',
-            'team_id_2' => '1位チーム',
-            'team_id_3' => '1位チーム',
-            'team_id_4' => '1位チーム',
-            'team_id_5' => '1位チーム',
-            'team_id_6' => '1位チーム',
+            'team_id_2' => '2位チーム',
+            'team_id_3' => '3位チーム',
+            'team_id_4' => '4位チーム',
+            'team_id_5' => '5位チーム',
+            'team_id_6' => '6位チーム',
         ];
     }
 

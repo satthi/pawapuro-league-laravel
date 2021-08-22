@@ -14,9 +14,11 @@ import SeasonIndexComponent from "./components/Season/IndexComponent";
 import SeasonAddComponent from "./components/Season/AddComponent";
 import SeasonEditComponent from "./components/Season/EditComponent";
 import SeasonViewComponent from "./components/Season/ViewComponent";
-import gameIndexComponent from "./components/Game/IndexComponent";
-import gameAddComponent from "./components/Game/AddComponent";
-import gameAutoAddComponent from "./components/Game/AutoAddComponent";
+import GameIndexComponent from "./components/Game/IndexComponent";
+import GameAddComponent from "./components/Game/AddComponent";
+import GameAutoAddComponent from "./components/Game/AutoAddComponent";
+import GameViewComponent from "./components/Game/ViewComponent";
+import GameProbablePitcherUpdateComponent from "./components/Game/ProbablePitcherUpdateComponent";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -121,19 +123,31 @@ const router = new VueRouter({
         {
             path: '/games/:seasonId',
             name: 'game.index',
-            component: gameIndexComponent,
+            component: GameIndexComponent,
             props: true
         },
         {
             path: '/games/:seasonId/add',
             name: 'game.add',
-            component: gameAddComponent,
+            component: GameAddComponent,
             props: true
         },
         {
             path: '/games/:seasonId/auto-add',
             name: 'game.auto_add',
-            component: gameAutoAddComponent,
+            component: GameAutoAddComponent,
+            props: true
+        },
+        {
+            path: '/games/view/:gameId',
+            name: 'game.view',
+            component: GameViewComponent,
+            props: true
+        },
+        {
+            path: '/games/:gameId/probable-pitcher-edit',
+            name: 'game.probable-pitcher-edit',
+            component: GameProbablePitcherUpdateComponent,
             props: true
         },
 

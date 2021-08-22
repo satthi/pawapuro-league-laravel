@@ -14,9 +14,12 @@ class Game extends Model
         'date',
         'home_team_id',
         'visitor_team_id',
+        'home_probable_pitcher_id',
+        'visitor_probable_pitcher_id',
         'dh_flag',
     ];
 
+    ### relation
 
     /**
      * home team
@@ -32,6 +35,22 @@ class Game extends Model
     {
         return $this->belongsTo(Team::class, 'visitor_team_id');
     }
+    /**
+     * home team
+     */
+    public function home_probable_pitcher()
+    {
+        return $this->belongsTo(Player::class, 'home_probable_pitcher_id');
+    }
+    /**
+     * home team
+     */
+    public function visitor_probable_pitcher()
+    {
+        return $this->belongsTo(Player::class, 'visitor_probable_pitcher_id');
+    }
+
+    ### index
 
     public function getIndexList(int $seasonId)
     {
@@ -86,6 +105,8 @@ class Game extends Model
 
         return $gameLists;
     }
+
+    ### auto add
 
     public function autoAdd($requestData, $seasonId)
     {
@@ -361,5 +382,18 @@ class Game extends Model
         }
 
         return $point;
+    }
+
+
+    ### game view
+    public function getViewInfo($gameId)
+    {
+        return $this->where('id', $gameId)
+            ->with('home_team')
+            ->with('visitor_team')
+            ->with('home_probable_pitcher')
+            ->with('visitor_probable_pitcher')
+            ->first()
+            ;
     }
 }

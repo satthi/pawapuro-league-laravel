@@ -19,6 +19,8 @@ class CreateGamesTable extends Migration
             $table->date('date');
             $table->integer('home_team_id');
             $table->integer('visitor_team_id');
+            $table->integer('home_probable_pitcher_id')->nullable();
+            $table->integer('visitor_probable_pitcher_id')->nullable();
             $table->boolean('dh_flag');
             $table->timestamps();
         });

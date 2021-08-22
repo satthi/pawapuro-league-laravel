@@ -2580,6 +2580,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     seasonId: String
@@ -2610,6 +2617,148 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.getSeasonData('/api/seasons/view/' + this.seasonId);
     this.getGames('/api/games/' + this.seasonId);
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/ProbablePitcherUpdateComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/ProbablePitcherUpdateComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _common_form_SelectComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../common/form/SelectComponent */ "./resources/js/components/common/form/SelectComponent.vue");
+/* harmony import */ var _mixins_form_edit_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/form/edit.js */ "./resources/js/mixins/form/edit.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    SelectComponent: _common_form_SelectComponent__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  mixins: [_mixins_form_edit_js__WEBPACK_IMPORTED_MODULE_1__.default],
+  props: {
+    gameId: String
+  },
+  computed: {
+    submitPath: function submitPath() {
+      return '/api/games/probable-pitcher-edit/' + this.gameId;
+    }
+  },
+  data: function data() {
+    return {
+      data: {},
+      errors: {},
+      homePlayerOptions: {},
+      visitorPlayerOptions: {}
+    };
+  },
+  methods: {
+    getPlayerOptions: function getPlayerOptions(getPath) {
+      var _this = this;
+
+      axios.get(getPath).then(function (res) {
+        _this.homePlayerOptions = res.data.home;
+        _this.visitorPlayerOptions = res.data.visitor;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getPlayerOptions('/api/games/get-probable-pitcher-options/' + this.gameId);
+    this.getData('/api/games/view/' + this.gameId);
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/ViewComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/ViewComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    gameId: String
+  },
+  data: function data() {
+    return {
+      data: {
+        'home_team': {
+          'name': ''
+        },
+        'visitor_team': {
+          'name': ''
+        }
+      }
+    };
+  },
+  methods: {
+    getData: function getData(getPath) {
+      var _this = this;
+
+      axios.get(getPath).then(function (res) {
+        _this.data = res.data;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getData('/api/games/view/' + this.gameId);
   }
 });
 
@@ -3108,7 +3257,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _components_HeaderComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/HeaderComponent */ "./resources/js/components/HeaderComponent.vue");
 /* harmony import */ var _components_BaseTeam_IndexComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/BaseTeam/IndexComponent */ "./resources/js/components/BaseTeam/IndexComponent.vue");
 /* harmony import */ var _components_BaseTeam_AddComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/BaseTeam/AddComponent */ "./resources/js/components/BaseTeam/AddComponent.vue");
@@ -3123,11 +3272,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Game_IndexComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Game/IndexComponent */ "./resources/js/components/Game/IndexComponent.vue");
 /* harmony import */ var _components_Game_AddComponent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Game/AddComponent */ "./resources/js/components/Game/AddComponent.vue");
 /* harmony import */ var _components_Game_AutoAddComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Game/AutoAddComponent */ "./resources/js/components/Game/AutoAddComponent.vue");
+/* harmony import */ var _components_Game_ViewComponent__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Game/ViewComponent */ "./resources/js/components/Game/ViewComponent.vue");
+/* harmony import */ var _components_Game_ProbablePitcherUpdateComponent__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Game/ProbablePitcherUpdateComponent */ "./resources/js/components/Game/ProbablePitcherUpdateComponent.vue");
 
  // import TaskListComponent from "./components/TaskListComponent";
 // import TaskShowComponent from "./components/TaskShowComponent";
 // import TaskCreateComponent from "./components/TaskCreateComponent";
 // import TaskEditComponent from "./components/TaskEditComponent";
+
+
 
 
 
@@ -3151,8 +3304,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default;
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_14__.default);
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_14__.default({
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_16__.default);
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_16__.default({
   mode: 'history',
   routes: [// {
   //     path: '/tasks',
@@ -3243,6 +3396,16 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_14__.default({
     path: '/games/:seasonId/auto-add',
     name: 'game.auto_add',
     component: _components_Game_AutoAddComponent__WEBPACK_IMPORTED_MODULE_13__.default,
+    props: true
+  }, {
+    path: '/games/view/:gameId',
+    name: 'game.view',
+    component: _components_Game_ViewComponent__WEBPACK_IMPORTED_MODULE_14__.default,
+    props: true
+  }, {
+    path: '/games/:gameId/probable-pitcher-edit',
+    name: 'game.probable-pitcher-edit',
+    component: _components_Game_ProbablePitcherUpdateComponent__WEBPACK_IMPORTED_MODULE_15__.default,
     props: true
   }]
 });
@@ -39184,6 +39347,84 @@ component.options.__file = "resources/js/components/Game/IndexComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Game/ProbablePitcherUpdateComponent.vue":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/Game/ProbablePitcherUpdateComponent.vue ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ProbablePitcherUpdateComponent_vue_vue_type_template_id_748323d8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProbablePitcherUpdateComponent.vue?vue&type=template&id=748323d8& */ "./resources/js/components/Game/ProbablePitcherUpdateComponent.vue?vue&type=template&id=748323d8&");
+/* harmony import */ var _ProbablePitcherUpdateComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProbablePitcherUpdateComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Game/ProbablePitcherUpdateComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _ProbablePitcherUpdateComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _ProbablePitcherUpdateComponent_vue_vue_type_template_id_748323d8___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ProbablePitcherUpdateComponent_vue_vue_type_template_id_748323d8___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Game/ProbablePitcherUpdateComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Game/ViewComponent.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/Game/ViewComponent.vue ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ViewComponent_vue_vue_type_template_id_16a7bef4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ViewComponent.vue?vue&type=template&id=16a7bef4& */ "./resources/js/components/Game/ViewComponent.vue?vue&type=template&id=16a7bef4&");
+/* harmony import */ var _ViewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ViewComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Game/ViewComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _ViewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _ViewComponent_vue_vue_type_template_id_16a7bef4___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ViewComponent_vue_vue_type_template_id_16a7bef4___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Game/ViewComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/HeaderComponent.vue":
 /*!*****************************************************!*\
   !*** ./resources/js/components/HeaderComponent.vue ***!
@@ -39695,6 +39936,38 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Game/ProbablePitcherUpdateComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/Game/ProbablePitcherUpdateComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProbablePitcherUpdateComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ProbablePitcherUpdateComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/ProbablePitcherUpdateComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProbablePitcherUpdateComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Game/ViewComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/Game/ViewComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ViewComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/ViewComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/HeaderComponent.vue?vue&type=script&lang=js&":
 /*!******************************************************************************!*\
   !*** ./resources/js/components/HeaderComponent.vue?vue&type=script&lang=js& ***!
@@ -40005,6 +40278,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexComponent_vue_vue_type_template_id_67b94a0d___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexComponent_vue_vue_type_template_id_67b94a0d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./IndexComponent.vue?vue&type=template&id=67b94a0d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/IndexComponent.vue?vue&type=template&id=67b94a0d&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Game/ProbablePitcherUpdateComponent.vue?vue&type=template&id=748323d8&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/Game/ProbablePitcherUpdateComponent.vue?vue&type=template&id=748323d8& ***!
+  \********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProbablePitcherUpdateComponent_vue_vue_type_template_id_748323d8___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProbablePitcherUpdateComponent_vue_vue_type_template_id_748323d8___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProbablePitcherUpdateComponent_vue_vue_type_template_id_748323d8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ProbablePitcherUpdateComponent.vue?vue&type=template&id=748323d8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/ProbablePitcherUpdateComponent.vue?vue&type=template&id=748323d8&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Game/ViewComponent.vue?vue&type=template&id=16a7bef4&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/Game/ViewComponent.vue?vue&type=template&id=16a7bef4& ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_template_id_16a7bef4___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_template_id_16a7bef4___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_template_id_16a7bef4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ViewComponent.vue?vue&type=template&id=16a7bef4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/ViewComponent.vue?vue&type=template&id=16a7bef4&");
 
 
 /***/ }),
@@ -41478,13 +41785,30 @@ var render = function() {
           {
             attrs: {
               to: {
+                name: "season.view",
+                params: { seasonId: _vm.seasonId.toString() }
+              }
+            }
+          },
+          [
+            _c("button", { staticClass: "btn btn-success" }, [
+              _vm._v("シーズン詳細")
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          {
+            attrs: {
+              to: {
                 name: "game.add",
                 params: { seasonId: _vm.seasonId.toString() }
               }
             }
           },
           [
-            _c("button", { staticClass: "btn btn-success float-right" }, [
+            _c("button", { staticClass: "btn btn-success" }, [
               _vm._v("日程追加")
             ])
           ]
@@ -41501,7 +41825,7 @@ var render = function() {
             }
           },
           [
-            _c("button", { staticClass: "btn btn-success float-right" }, [
+            _c("button", { staticClass: "btn btn-success" }, [
               _vm._v("日程自動作成")
             ])
           ]
@@ -41522,20 +41846,41 @@ var render = function() {
               _vm._l(game.game, function(gameDetail) {
                 return _c("td", [
                   gameDetail.id
-                    ? _c("div", [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(gameDetail.home_team.ryaku_name) +
-                            " VS " +
-                            _vm._s(gameDetail.visitor_team.ryaku_name)
-                        ),
-                        _c("br"),
-                        _vm._v(
-                          "\n                        DH: " +
-                            _vm._s(gameDetail.dh_flag ? "有" : "無") +
-                            "\n                    "
-                        )
-                      ])
+                    ? _c(
+                        "div",
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(gameDetail.home_team.ryaku_name) +
+                              " VS " +
+                              _vm._s(gameDetail.visitor_team.ryaku_name)
+                          ),
+                          _c("br"),
+                          _vm._v(
+                            "\n                        DH: " +
+                              _vm._s(gameDetail.dh_flag ? "有" : "無")
+                          ),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "game.view",
+                                  params: { gameId: gameDetail.id.toString() }
+                                }
+                              }
+                            },
+                            [
+                              _c("button", { staticClass: "btn btn-success" }, [
+                                _vm._v("ゲーム")
+                              ])
+                            ]
+                          )
+                        ],
+                        1
+                      )
                     : _c("div", [_vm._v(" - ")])
                 ])
               })
@@ -41544,6 +41889,195 @@ var render = function() {
           )
         }),
         0
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/ProbablePitcherUpdateComponent.vue?vue&type=template&id=748323d8&":
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/ProbablePitcherUpdateComponent.vue?vue&type=template&id=748323d8& ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-sm-6" }, [
+        _vm._v("\n                " + _vm._s(_vm.data) + "\n\n            "),
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                _vm.submit(_vm.submitPath, {
+                  name: "game.view",
+                  params: { gameId: _vm.gameId.toString() }
+                })
+              }
+            }
+          },
+          [
+            _c("select-component", {
+              attrs: {
+                label: "先行 予告先発",
+                errors: _vm.errors.visitor_probable_pitcher_id,
+                options: _vm.visitorPlayerOptions,
+                empty: true,
+                value: _vm.data.visitor_probable_pitcher_id
+              },
+              model: {
+                value: _vm.data.visitor_probable_pitcher_id,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "visitor_probable_pitcher_id", $$v)
+                },
+                expression: "data.visitor_probable_pitcher_id"
+              }
+            }),
+            _vm._v(" "),
+            _c("select-component", {
+              attrs: {
+                label: "後攻 予告先発",
+                errors: _vm.errors.home_probable_pitcher_id,
+                options: _vm.homePlayerOptions,
+                empty: true,
+                value: _vm.data.home_probable_pitcher_id
+              },
+              model: {
+                value: _vm.data.home_probable_pitcher_id,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "home_probable_pitcher_id", $$v)
+                },
+                expression: "data.home_probable_pitcher_id"
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+              [_vm._v("Submit")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                attrs: {
+                  to: {
+                    name: "game.view",
+                    params: { gameId: _vm.gameId.toString() }
+                  }
+                }
+              },
+              [
+                _c("button", { staticClass: "btn btn-success float-right" }, [
+                  _vm._v("ゲーム詳細に戻る")
+                ])
+              ]
+            )
+          ],
+          1
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/ViewComponent.vue?vue&type=template&id=16a7bef4&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/ViewComponent.vue?vue&type=template&id=16a7bef4& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("h2", [
+      _vm._v(
+        _vm._s(_vm.data.date) +
+          " " +
+          _vm._s(_vm.data.home_team.name) +
+          " VS " +
+          _vm._s(_vm.data.visitor_team.name)
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c(
+        "div",
+        { staticClass: "col-sm-6" },
+        [
+          _c("br"),
+          _vm._v(" "),
+          _c("h4", [_vm._v("予告先発")]),
+          _vm._v(
+            "\n                先行予告先発： " +
+              _vm._s(
+                _vm.data.visitor_probable_pitcher
+                  ? _vm.data.visitor_probable_pitcher.name
+                  : "未設定"
+              ) +
+              "\n\n                "
+          ),
+          _c("br"),
+          _vm._v(
+            "\n                後攻予告先発： " +
+              _vm._s(
+                _vm.data.home_probable_pitcher
+                  ? _vm.data.home_probable_pitcher.name
+                  : "未設定"
+              ) +
+              "\n                "
+          ),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              attrs: {
+                to: {
+                  name: "game.probable-pitcher-edit",
+                  params: { gameId: _vm.gameId.toString() }
+                }
+              }
+            },
+            [_c("button", { staticClass: "btn btn-success" }, [_vm._v("設定")])]
+          ),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("h4", [_vm._v("スタメン")])
+        ],
+        1
       )
     ])
   ])

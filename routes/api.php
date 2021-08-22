@@ -47,8 +47,13 @@ Route::put('/seasons/edit/{season}', 'App\Http\Controllers\SeasonController@upda
 Route::delete('/seasons/delete/{season}', 'App\Http\Controllers\SeasonController@destroy');
 
 Route::get('/games/{season}', 'App\Http\Controllers\GameController@index');
+Route::get('/games/view/{game}', 'App\Http\Controllers\GameController@view');
 Route::post('/games/add/{season}', 'App\Http\Controllers\GameController@add');
 Route::post('/games/auto-add/{season}', 'App\Http\Controllers\GameController@autoAdd');
 Route::delete('/games/delete/{game}', 'App\Http\Controllers\GameController@destroy');
+Route::get('/games/get-probable-pitcher-options/{game}', 'App\Http\Controllers\GameController@getProbablePitcherOptions');
+Route::put('/games/probable-pitcher-edit/{game}', 'App\Http\Controllers\GameController@probablePitcherUpdate');
+
+
 
 Route::get('/teams/get-options/{season}', 'App\Http\Controllers\TeamController@getOptions');

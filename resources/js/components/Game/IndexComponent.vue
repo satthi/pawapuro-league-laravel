@@ -2,11 +2,14 @@
     <div class="container">
         <h2>{{ season.name }} 日程一覧</h2>
         <div class="clearfix">
+            <router-link v-bind:to="{name: 'season.view', params: {seasonId: seasonId.toString() }}">
+                <button class="btn btn-success">シーズン詳細</button>
+            </router-link>
             <router-link v-bind:to="{name: 'game.add', params: {seasonId: seasonId.toString() }}">
-                <button class="btn btn-success float-right">日程追加</button>
+                <button class="btn btn-success">日程追加</button>
             </router-link>
             <router-link v-bind:to="{name: 'game.auto_add', params: {seasonId: seasonId.toString() }}">
-                <button class="btn btn-success float-right">日程自動作成</button>
+                <button class="btn btn-success">日程自動作成</button>
             </router-link>
         </div>
         <table class="table table-hover">
@@ -16,7 +19,11 @@
                     <td v-for="gameDetail in game.game">
                         <div v-if="gameDetail.id">
                             {{ gameDetail.home_team.ryaku_name }} VS {{ gameDetail.visitor_team.ryaku_name }}<br />
-                            DH: {{ gameDetail.dh_flag ? '有' : '無' }}
+                            DH: {{ gameDetail.dh_flag ? '有' : '無' }}<br />
+                            <router-link v-bind:to="{name: 'game.view', params: {gameId: gameDetail.id.toString() }}">
+                                <button class="btn btn-success">ゲーム</button>
+                            </router-link>
+
                         </div>
                         <div v-else> - </div>
                     </td>
