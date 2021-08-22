@@ -34,4 +34,13 @@ class SeasonController extends Controller
 
         return $season;
     }
+
+    public function detail(Season $season)
+    {
+
+        return [
+            'season' => $season
+        ];
+    }
+
 }

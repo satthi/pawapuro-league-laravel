@@ -42,5 +42,11 @@ Route::delete('/base-players/delete/{basePlayer}', 'App\Http\Controllers\BasePla
 Route::get('/seasons', 'App\Http\Controllers\SeasonController@index');
 Route::post('/seasons/add', 'App\Http\Controllers\SeasonController@add');
 Route::get('/seasons/view/{season}', 'App\Http\Controllers\SeasonController@show');
+Route::get('/seasons/detail/{season}', 'App\Http\Controllers\SeasonController@detail');
 Route::put('/seasons/edit/{season}', 'App\Http\Controllers\SeasonController@update');
 Route::delete('/seasons/delete/{season}', 'App\Http\Controllers\SeasonController@destroy');
+
+Route::post('/games/add/{season}', 'App\Http\Controllers\GameController@add');
+Route::delete('/games/delete/{game}', 'App\Http\Controllers\GameController@destroy');
+
+Route::get('/teams/get-options/{season}', 'App\Http\Controllers\TeamController@getOptions');
