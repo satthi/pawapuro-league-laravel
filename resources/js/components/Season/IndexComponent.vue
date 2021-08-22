@@ -18,6 +18,9 @@
                 <tr v-for="(season, index) in seasons" :key="index">
                     <td scope="row">{{ season.name }}</td>
                     <td>
+                        <router-link v-bind:to="{name: 'season.view', params: {seasonId: season.id.toString() }}">
+                            <button class="btn btn-success">詳細</button>
+                        </router-link>
                         <router-link v-bind:to="{name: 'season.edit', params: {seasonId: season.id.toString() }}">
                             <button class="btn btn-success">Edit</button>
                         </router-link>

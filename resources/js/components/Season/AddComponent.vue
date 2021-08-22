@@ -6,8 +6,6 @@
                 {{ data }}
                 <form v-on:submit.prevent="submit('/api/seasons/add', {name: 'season.index'})">
                     <input-component label="シーズン名" :errors="errors.name" v-model="data.name"/>
-                    <input-component label="開始日" :errors="errors.start_date" v-model="data.start_date"/>
-                    <input-component label="試合数" :errors="errors.game_count" v-model="data.game_count"/>
                     <checkbox-component label="レギュラーフラグ" :errors="errors.regular_flag" v-model="data.regular_flag"/>
 
                     <hr />
@@ -38,7 +36,8 @@
         data: function () {
             return {
                 data: {
-                    'selected_teams' : []
+                    'selected_teams' : [],
+                    'regular_flag' : false,
                 },
                 errors: {},
                 baseTeams: {}

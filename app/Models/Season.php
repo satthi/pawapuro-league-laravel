@@ -11,9 +11,7 @@ class Season extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'start_date',
         'regular_flag',
-        'game_count',
     ];
     protected $appends = [
         'is_deletable',
@@ -23,10 +21,12 @@ class Season extends Model
     public function add($requestData)
     {
         DB::transaction(function () use ($requestData) {
+            $selectedTeams = $requestData['selected_teams'];
+            unset($requestData['selected_teams']);
             $season = $this::create($requestData);
             $seasonId = $season->id;
 
-            $baseTeams = BaseTeam::whereIn('id', $requestData['selected_teams'])->get();
+            $baseTeams = BaseTeam::whereIn('id', $selectedTeams)->get();
 
             foreach ($baseTeams as $baseTeam) {
                 $teamCopy = $baseTeam->toArray();
@@ -48,6 +48,10 @@ class Season extends Model
                     unset($playerCopy['base_team_id']);
                     unset($playerCopy['created_at']);
                     unset($playerCopy['updated_at']);
+                    unset($playerCopy['hand_p_text']);
+                    unset($playerCopy['hand_b_text']);
+                    unset($playerCopy['hand_full_text']);
+                    unset($playerCopy['position_main_text']);
 
                     $playerData = array_merge($playerCopy, [
                         'base_player_id' => $basePlayer->id,

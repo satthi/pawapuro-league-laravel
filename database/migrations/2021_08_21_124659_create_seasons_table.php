@@ -16,9 +16,7 @@ class CreateSeasonsTable extends Migration
         Schema::create('seasons', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 100);
-            $table->date('start_date');
             $table->boolean('regular_flag');
-            $table->integer('game_count');
             $table->timestamps();
         });
     }

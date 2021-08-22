@@ -13,6 +13,7 @@ import BasePlayerEditComponent from "./components/BasePlayer/EditComponent";
 import SeasonIndexComponent from "./components/Season/IndexComponent";
 import SeasonAddComponent from "./components/Season/AddComponent";
 import SeasonEditComponent from "./components/Season/EditComponent";
+import SeasonViewComponent from "./components/Season/ViewComponent";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -106,6 +107,12 @@ const router = new VueRouter({
             path: '/season/:seasonId/edit',
             name: 'season.edit',
             component: SeasonEditComponent,
+            props: true
+        },
+        {
+            path: '/season/:seasonId/view',
+            name: 'season.view',
+            component: SeasonViewComponent,
             props: true
         },
 
