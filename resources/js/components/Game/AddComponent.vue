@@ -5,7 +5,7 @@
 
                     {{ data }}
 
-                <form v-on:submit.prevent="submit(submitPath, {name: 'season.view', params: {seasonId: seasonId.toString() }})">
+                <form v-on:submit.prevent="submit(submitPath, {name: 'game.index', params: {seasonId: seasonId.toString() }})">
                     <div class="form-group row">
                         <label for="id" class="col-sm-3 col-form-label">シーズン</label>
                         <div v-text="season.name"></div>

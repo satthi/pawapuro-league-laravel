@@ -14,6 +14,7 @@ import SeasonIndexComponent from "./components/Season/IndexComponent";
 import SeasonAddComponent from "./components/Season/AddComponent";
 import SeasonEditComponent from "./components/Season/EditComponent";
 import SeasonViewComponent from "./components/Season/ViewComponent";
+import gameIndexComponent from "./components/Game/IndexComponent";
 import gameAddComponent from "./components/Game/AddComponent";
 
 /**
@@ -114,6 +115,12 @@ const router = new VueRouter({
             path: '/season/:seasonId/view',
             name: 'season.view',
             component: SeasonViewComponent,
+            props: true
+        },
+        {
+            path: '/games/:seasonId',
+            name: 'game.index',
+            component: gameIndexComponent,
             props: true
         },
         {

@@ -2441,6 +2441,77 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/IndexComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/IndexComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    seasonId: String
+  },
+  data: function data() {
+    return {
+      season: {},
+      games: {}
+    };
+  },
+  methods: {
+    getSeasonData: function getSeasonData(getPath) {
+      var _this = this;
+
+      axios.get(getPath).then(function (res) {
+        _this.season = res.data;
+      });
+    },
+    getGames: function getGames(getPath) {
+      var _this2 = this;
+
+      axios.get(getPath).then(function (res) {
+        _this2.games = res.data;
+        console.log(_this2.games);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getSeasonData('/api/seasons/view/' + this.seasonId);
+    this.getGames('/api/games/' + this.seasonId);
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HeaderComponent.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HeaderComponent.vue?vue&type=script&lang=js& ***!
@@ -2934,7 +3005,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _components_HeaderComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/HeaderComponent */ "./resources/js/components/HeaderComponent.vue");
 /* harmony import */ var _components_BaseTeam_IndexComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/BaseTeam/IndexComponent */ "./resources/js/components/BaseTeam/IndexComponent.vue");
 /* harmony import */ var _components_BaseTeam_AddComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/BaseTeam/AddComponent */ "./resources/js/components/BaseTeam/AddComponent.vue");
@@ -2946,12 +3017,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Season_AddComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Season/AddComponent */ "./resources/js/components/Season/AddComponent.vue");
 /* harmony import */ var _components_Season_EditComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Season/EditComponent */ "./resources/js/components/Season/EditComponent.vue");
 /* harmony import */ var _components_Season_ViewComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Season/ViewComponent */ "./resources/js/components/Season/ViewComponent.vue");
-/* harmony import */ var _components_Game_AddComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Game/AddComponent */ "./resources/js/components/Game/AddComponent.vue");
+/* harmony import */ var _components_Game_IndexComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Game/IndexComponent */ "./resources/js/components/Game/IndexComponent.vue");
+/* harmony import */ var _components_Game_AddComponent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Game/AddComponent */ "./resources/js/components/Game/AddComponent.vue");
 
  // import TaskListComponent from "./components/TaskListComponent";
 // import TaskShowComponent from "./components/TaskShowComponent";
 // import TaskCreateComponent from "./components/TaskCreateComponent";
 // import TaskEditComponent from "./components/TaskEditComponent";
+
 
 
 
@@ -2973,8 +3046,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default;
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_12__.default);
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_12__.default({
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_13__.default);
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_13__.default({
   mode: 'history',
   routes: [// {
   //     path: '/tasks',
@@ -3052,9 +3125,14 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_12__.default({
     component: _components_Season_ViewComponent__WEBPACK_IMPORTED_MODULE_10__.default,
     props: true
   }, {
+    path: '/games/:seasonId',
+    name: 'game.index',
+    component: _components_Game_IndexComponent__WEBPACK_IMPORTED_MODULE_11__.default,
+    props: true
+  }, {
     path: '/games/:seasonId/add',
     name: 'game.add',
-    component: _components_Game_AddComponent__WEBPACK_IMPORTED_MODULE_11__.default,
+    component: _components_Game_AddComponent__WEBPACK_IMPORTED_MODULE_12__.default,
     props: true
   }]
 });
@@ -38918,6 +38996,45 @@ component.options.__file = "resources/js/components/Game/AddComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Game/IndexComponent.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/Game/IndexComponent.vue ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _IndexComponent_vue_vue_type_template_id_67b94a0d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./IndexComponent.vue?vue&type=template&id=67b94a0d& */ "./resources/js/components/Game/IndexComponent.vue?vue&type=template&id=67b94a0d&");
+/* harmony import */ var _IndexComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./IndexComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Game/IndexComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _IndexComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _IndexComponent_vue_vue_type_template_id_67b94a0d___WEBPACK_IMPORTED_MODULE_0__.render,
+  _IndexComponent_vue_vue_type_template_id_67b94a0d___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Game/IndexComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/HeaderComponent.vue":
 /*!*****************************************************!*\
   !*** ./resources/js/components/HeaderComponent.vue ***!
@@ -39397,6 +39514,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Game/IndexComponent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/Game/IndexComponent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./IndexComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/IndexComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/HeaderComponent.vue?vue&type=script&lang=js&":
 /*!******************************************************************************!*\
   !*** ./resources/js/components/HeaderComponent.vue?vue&type=script&lang=js& ***!
@@ -39673,6 +39806,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddComponent_vue_vue_type_template_id_513af5c4___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddComponent_vue_vue_type_template_id_513af5c4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AddComponent.vue?vue&type=template&id=513af5c4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/AddComponent.vue?vue&type=template&id=513af5c4&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Game/IndexComponent.vue?vue&type=template&id=67b94a0d&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/Game/IndexComponent.vue?vue&type=template&id=67b94a0d& ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexComponent_vue_vue_type_template_id_67b94a0d___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexComponent_vue_vue_type_template_id_67b94a0d___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexComponent_vue_vue_type_template_id_67b94a0d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./IndexComponent.vue?vue&type=template&id=67b94a0d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/IndexComponent.vue?vue&type=template&id=67b94a0d&");
 
 
 /***/ }),
@@ -40815,7 +40965,7 @@ var render = function() {
               submit: function($event) {
                 $event.preventDefault()
                 _vm.submit(_vm.submitPath, {
-                  name: "season.view",
+                  name: "game.index",
                   params: { seasonId: _vm.seasonId.toString() }
                 })
               }
@@ -40915,6 +41065,94 @@ var render = function() {
           1
         )
       ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/IndexComponent.vue?vue&type=template&id=67b94a0d&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/IndexComponent.vue?vue&type=template&id=67b94a0d& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("h2", [_vm._v(_vm._s(_vm.season.name) + " 日程一覧")]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "clearfix" },
+      [
+        _c(
+          "router-link",
+          {
+            attrs: {
+              to: {
+                name: "game.add",
+                params: { seasonId: _vm.seasonId.toString() }
+              }
+            }
+          },
+          [
+            _c("button", { staticClass: "btn btn-success float-right" }, [
+              _vm._v("日程追加")
+            ])
+          ]
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("table", { staticClass: "table table-hover" }, [
+      _c(
+        "tbody",
+        _vm._l(_vm.games, function(game) {
+          return _c(
+            "tr",
+            [
+              _c("th", [_vm._v(_vm._s(game.date))]),
+              _vm._v(" "),
+              _vm._l(game.game, function(gameDetail) {
+                return _c("td", [
+                  gameDetail.id
+                    ? _c("div", [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(gameDetail.home_team.ryaku_name) +
+                            " VS " +
+                            _vm._s(gameDetail.visitor_team.ryaku_name)
+                        ),
+                        _c("br"),
+                        _vm._v(
+                          "\n                        DH: " +
+                            _vm._s(gameDetail.dh_flag ? "有" : "無") +
+                            "\n                    "
+                        )
+                      ])
+                    : _c("div", [_vm._v(" - ")])
+                ])
+              })
+            ],
+            2
+          )
+        }),
+        0
+      )
     ])
   ])
 }
@@ -41354,14 +41592,14 @@ var render = function() {
           {
             attrs: {
               to: {
-                name: "game.add",
+                name: "game.index",
                 params: { seasonId: _vm.seasonId.toString() }
               }
             }
           },
           [
             _c("button", { staticClass: "btn btn-success float-right" }, [
-              _vm._v("日程追加")
+              _vm._v("日程一覧")
             ])
           ]
         )

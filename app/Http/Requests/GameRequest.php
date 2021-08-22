@@ -18,7 +18,18 @@ class GameRequest extends FormRequest
             'season_id' => 'required|integer',
             'date' => 'required|date',
             'home_team_id' => 'required|integer',
-            'visitor_team_id' => 'required|integer',
+            'visitor_team_id' => [
+                'required',
+                'integer',
+                function ($attribute, $value, $fail) {
+                    \Log::debug($attribute);
+                    \Log::debug($value);
+                    \Log::debug($this);
+                    if ($this->home_team_id == $value) {
+                        $fail('ホームとビジターは違うチームを指定してください');
+                    }
+                },
+            ],
             'dh_flag' => 'boolean',
         ];
     }

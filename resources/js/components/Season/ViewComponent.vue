@@ -2,8 +2,8 @@
     <div class="container">
         <h2>{{  data.season.name }}</h2>
         <div class="clearfix">
-            <router-link v-bind:to="{name: 'game.add', params: {seasonId: seasonId.toString() }}">
-                <button class="btn btn-success float-right">日程追加</button>
+            <router-link v-bind:to="{name: 'game.index', params: {seasonId: seasonId.toString() }}">
+                <button class="btn btn-success float-right">日程一覧</button>
             </router-link>
         </div>
     </div>

@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Validator;
 
 class GameController extends Controller
 {
+     public function index(Season $season)
+     {
+         return (new Game())->getIndexList($season->id);
+     }
+
    public function add(GameRequest $request, Season $season)
     {
         Game::create($request->all());
