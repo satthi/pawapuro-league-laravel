@@ -7,6 +7,9 @@
         <router-link v-bind:to="{name: 'game.index', params: {seasonId: data.season_id.toString() }}">
             <button class="btn btn-success">日程一覧</button>
         </router-link>
+        <router-link v-bind:to="{name: 'game.play', params: {gameId: gameId.toString() }}">
+            <button class="btn btn-success">試合へ</button>
+        </router-link>
         <h4>
         予告先発
         <router-link v-bind:to="{name: 'game.probable-pitcher-edit', params: {gameId: gameId.toString() }}">

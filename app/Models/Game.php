@@ -17,6 +17,10 @@ class Game extends Model
         'home_probable_pitcher_id',
         'visitor_probable_pitcher_id',
         'dh_flag',
+        'inning',
+        'out',
+        'home_point',
+        'visitor_point',
     ];
 
     ### relation

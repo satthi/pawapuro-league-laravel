@@ -46,6 +46,7 @@ Route::get('/seasons/detail/{season}', 'App\Http\Controllers\SeasonController@de
 Route::put('/seasons/edit/{season}', 'App\Http\Controllers\SeasonController@update');
 Route::delete('/seasons/delete/{season}', 'App\Http\Controllers\SeasonController@destroy');
 
+Route::get('/games/get-result', 'App\Http\Controllers\GameController@getResult');
 Route::get('/games/{season}', 'App\Http\Controllers\GameController@index');
 Route::get('/games/view/{game}', 'App\Http\Controllers\GameController@view');
 Route::post('/games/add/{season}', 'App\Http\Controllers\GameController@add');
@@ -56,6 +57,9 @@ Route::put('/games/probable-pitcher-edit/{game}', 'App\Http\Controllers\GameCont
 Route::get('/games/get-stamen-initial-data/{game}/{stamenType}', 'App\Http\Controllers\GameController@getStamenInitialData');
 Route::post('/games/stamen-edit/{game}/{stamenType}', 'App\Http\Controllers\GameController@stamenEdit');
 Route::get('/games/get-stamen/{game}', 'App\Http\Controllers\GameController@getStamen');
+Route::get('/games/get-play/{game}', 'App\Http\Controllers\GameController@getPlay');
+Route::post('/games/save-play/{game}', 'App\Http\Controllers\GameController@savePlay');
+Route::post('/games/back-play/{game}', 'App\Http\Controllers\GameController@backPlay');
 
 
 Route::get('/teams/get-options/{season}', 'App\Http\Controllers\TeamController@getOptions');

@@ -2622,6 +2622,204 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PlayComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PlayComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _common_form_SelectComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../common/form/SelectComponent */ "./resources/js/components/common/form/SelectComponent.vue");
+/* harmony import */ var _mixins_enums_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/enums.js */ "./resources/js/mixins/enums.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    SelectComponent: _common_form_SelectComponent__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  props: {
+    gameId: String
+  },
+  mixins: [_mixins_enums_js__WEBPACK_IMPORTED_MODULE_1__.default],
+  computed: {
+    playSubmitPath: function playSubmitPath() {
+      return '/api/games/save-play/' + this.gameId;
+    },
+    backSubmitPath: function backSubmitPath() {
+      return '/api/games/back-play/' + this.gameId;
+    }
+  },
+  data: function data() {
+    return {
+      gameData: {
+        'home_team': {},
+        'visitor_team': {}
+      },
+      playData: {
+        'member': {
+          'home_team': {},
+          'visitor_team': {}
+        },
+        'now_player_id': null,
+        'now_pitcher_id': null
+      },
+      resultData: {},
+      data: {
+        'out': 0,
+        'point': 0,
+        selectedResult: null
+      }
+    };
+  },
+  methods: {
+    initial: function initial() {
+      this.getGameData('/api/games/view/' + this.gameId);
+      this.getPlayData('/api/games/get-play/' + this.gameId);
+      this.getResultData('/api/games/get-result');
+    },
+    getPlayData: function getPlayData(getPath) {
+      var _this = this;
+
+      axios.get(getPath).then(function (res) {
+        _this.playData = res.data;
+      });
+    },
+    getGameData: function getGameData(getPath) {
+      var _this2 = this;
+
+      axios.get(getPath).then(function (res) {
+        _this2.gameData = res.data;
+      });
+    },
+    getResultData: function getResultData(getPath) {
+      var _this3 = this;
+
+      axios.get(getPath).then(function (res) {
+        _this3.resultData = res.data;
+      });
+    },
+    resultButtonClick: function resultButtonClick(resultId) {
+      this.data.selectedResult = resultId;
+    },
+    submit: function submit(postPath, redirectRoute) {
+      var _this4 = this;
+
+      var postData = this.data;
+      postData['now_player_id'] = this.playData.now_player_id;
+      postData['now_pitcher_id'] = this.playData.now_pitcher_id;
+      axios.post(postPath, this.data).then(function (res) {
+        _this4.initial();
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.initial();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/ProbablePitcherUpdateComponent.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/ProbablePitcherUpdateComponent.vue?vue&type=script&lang=js& ***!
@@ -2888,6 +3086,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
 //
 //
 //
@@ -3487,7 +3688,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _components_HeaderComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/HeaderComponent */ "./resources/js/components/HeaderComponent.vue");
 /* harmony import */ var _components_BaseTeam_IndexComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/BaseTeam/IndexComponent */ "./resources/js/components/BaseTeam/IndexComponent.vue");
 /* harmony import */ var _components_BaseTeam_AddComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/BaseTeam/AddComponent */ "./resources/js/components/BaseTeam/AddComponent.vue");
@@ -3505,11 +3706,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Game_ViewComponent__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Game/ViewComponent */ "./resources/js/components/Game/ViewComponent.vue");
 /* harmony import */ var _components_Game_ProbablePitcherUpdateComponent__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Game/ProbablePitcherUpdateComponent */ "./resources/js/components/Game/ProbablePitcherUpdateComponent.vue");
 /* harmony import */ var _components_Game_StamenEditComponent__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Game/StamenEditComponent */ "./resources/js/components/Game/StamenEditComponent.vue");
+/* harmony import */ var _components_Game_PlayComponent__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Game/PlayComponent */ "./resources/js/components/Game/PlayComponent.vue");
 
  // import TaskListComponent from "./components/TaskListComponent";
 // import TaskShowComponent from "./components/TaskShowComponent";
 // import TaskCreateComponent from "./components/TaskCreateComponent";
 // import TaskEditComponent from "./components/TaskEditComponent";
+
 
 
 
@@ -3536,8 +3739,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default;
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_17__.default);
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_17__.default({
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_18__.default);
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_18__.default({
   mode: 'history',
   routes: [// {
   //     path: '/tasks',
@@ -3643,6 +3846,11 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_17__.default({
     path: '/games/:gameId/:stamenType/stamen-edit',
     name: 'game.stamen-edit',
     component: _components_Game_StamenEditComponent__WEBPACK_IMPORTED_MODULE_16__.default,
+    props: true
+  }, {
+    path: '/games/:gameId/play',
+    name: 'game.play',
+    component: _components_Game_PlayComponent__WEBPACK_IMPORTED_MODULE_17__.default,
     props: true
   }]
 });
@@ -39584,6 +39792,45 @@ component.options.__file = "resources/js/components/Game/IndexComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Game/PlayComponent.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/Game/PlayComponent.vue ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _PlayComponent_vue_vue_type_template_id_11b47057___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PlayComponent.vue?vue&type=template&id=11b47057& */ "./resources/js/components/Game/PlayComponent.vue?vue&type=template&id=11b47057&");
+/* harmony import */ var _PlayComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PlayComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Game/PlayComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _PlayComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _PlayComponent_vue_vue_type_template_id_11b47057___WEBPACK_IMPORTED_MODULE_0__.render,
+  _PlayComponent_vue_vue_type_template_id_11b47057___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Game/PlayComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Game/ProbablePitcherUpdateComponent.vue":
 /*!*************************************************************************!*\
   !*** ./resources/js/components/Game/ProbablePitcherUpdateComponent.vue ***!
@@ -40212,6 +40459,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Game/PlayComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/Game/PlayComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PlayComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PlayComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Game/ProbablePitcherUpdateComponent.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************!*\
   !*** ./resources/js/components/Game/ProbablePitcherUpdateComponent.vue?vue&type=script&lang=js& ***!
@@ -40570,6 +40833,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexComponent_vue_vue_type_template_id_67b94a0d___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexComponent_vue_vue_type_template_id_67b94a0d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./IndexComponent.vue?vue&type=template&id=67b94a0d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/IndexComponent.vue?vue&type=template&id=67b94a0d&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Game/PlayComponent.vue?vue&type=template&id=11b47057&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/Game/PlayComponent.vue?vue&type=template&id=11b47057& ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayComponent_vue_vue_type_template_id_11b47057___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayComponent_vue_vue_type_template_id_11b47057___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayComponent_vue_vue_type_template_id_11b47057___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PlayComponent.vue?vue&type=template&id=11b47057& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PlayComponent.vue?vue&type=template&id=11b47057&");
 
 
 /***/ }),
@@ -42209,6 +42489,354 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PlayComponent.vue?vue&type=template&id=11b47057&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PlayComponent.vue?vue&type=template&id=11b47057& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container", attrs: { id: "play_wrap" } }, [
+    _c("h2", [
+      _vm._v(
+        _vm._s(_vm.gameData.date) +
+          " " +
+          _vm._s(_vm.gameData.home_team.name) +
+          " VS " +
+          _vm._s(_vm.gameData.visitor_team.name)
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-3" }, [
+        _c(
+          "table",
+          { staticClass: "table table-hover stamen" },
+          _vm._l(this.playData.member.visitor_team, function(member, dajun) {
+            return _c("tr", [
+              _c(
+                "td",
+                {
+                  class: {
+                    member_selected:
+                      member.player.id == _vm.playData.now_player_id
+                  }
+                },
+                [_vm._v(_vm._s(member.position.text))]
+              ),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(member.player.name_short))])
+            ])
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6" }, [
+        _c(
+          "table",
+          { staticClass: "table table-hover", attrs: { id: "score_board" } },
+          [
+            _c(
+              "tr",
+              [
+                _c("td"),
+                _vm._v(" "),
+                _vm._l(12, function(inning) {
+                  return _c("td", [_vm._v(_vm._s(inning))])
+                }),
+                _vm._v(" "),
+                _c("td", [_vm._v("R")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("H")])
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "tr",
+              [
+                _c("td", [_vm._v(_vm._s(_vm.gameData.home_team.ryaku_name))]),
+                _vm._v(" "),
+                _vm._l(12, function(inning) {
+                  return _c(
+                    "td",
+                    {
+                      class: {
+                        inning_selected: _vm.gameData.inning == inning * 10 + 1
+                      }
+                    },
+                    [_vm._v("0")]
+                  )
+                }),
+                _vm._v(" "),
+                _c("td"),
+                _vm._v(" "),
+                _c("td")
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "tr",
+              [
+                _c("td", [
+                  _vm._v(_vm._s(_vm.gameData.visitor_team.ryaku_name))
+                ]),
+                _vm._v(" "),
+                _vm._l(12, function(inning) {
+                  return _c(
+                    "td",
+                    {
+                      class: {
+                        inning_selected: _vm.gameData.inning == inning * 10 + 2
+                      }
+                    },
+                    [_vm._v("0")]
+                  )
+                }),
+                _vm._v(" "),
+                _c("td"),
+                _vm._v(" "),
+                _c("td")
+              ],
+              2
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _vm.gameData.inning == null
+          ? _c("div", [
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      _vm.submit(_vm.playSubmitPath, {
+                        name: "game.play",
+                        params: { gameId: _vm.gameId.toString() }
+                      })
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v("試合開始")]
+                  )
+                ]
+              )
+            ])
+          : _vm.gameData.out != 3
+          ? _c("div", [
+              _c("div", { staticClass: "row" }, [
+                _c(
+                  "div",
+                  { staticClass: "col-sm-3" },
+                  [
+                    _c("select-component", {
+                      attrs: {
+                        label: "",
+                        options: _vm.enums.ResultOut,
+                        empty: false
+                      },
+                      model: {
+                        value: _vm.data.out,
+                        callback: function($$v) {
+                          _vm.$set(_vm.data, "out", $$v)
+                        },
+                        expression: "data.out"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-sm-3" },
+                  [
+                    _c("select-component", {
+                      attrs: {
+                        label: "",
+                        options: _vm.enums.ResultPoint,
+                        empty: false
+                      },
+                      model: {
+                        value: _vm.data.point,
+                        callback: function($$v) {
+                          _vm.$set(_vm.data, "point", $$v)
+                        },
+                        expression: "data.point"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.gameData.out) +
+                      "アウト\n                    "
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "clearfix" },
+                _vm._l(10, function(button_position) {
+                  return _c(
+                    "table",
+                    { staticClass: "board_table" },
+                    _vm._l(_vm.resultData, function(result) {
+                      return result.button_position == button_position - 1
+                        ? _c(
+                            "tr",
+                            { class: "result_button_" + result.button_type },
+                            [
+                              _c(
+                                "td",
+                                {
+                                  class: {
+                                    result_selected:
+                                      result.id == _vm.data.selectedResult
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.resultButtonClick(result.id)
+                                    }
+                                  }
+                                },
+                                [_vm._v(_vm._s(result.name))]
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    }),
+                    0
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "row", staticStyle: { "margin-top": "20px" } },
+                [
+                  _c("div", { staticClass: "col-sm-1" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-2" }, [
+                    _c(
+                      "form",
+                      {
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            _vm.submit(_vm.playSubmitPath, {
+                              name: "game.play",
+                              params: { gameId: _vm.gameId.toString() }
+                            })
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary",
+                            attrs: { type: "submit" }
+                          },
+                          [_vm._v("登録")]
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-6" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-2" }, [
+                    _c(
+                      "form",
+                      {
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            _vm.submit(_vm.backSubmitPath, {
+                              name: "game.play",
+                              params: { gameId: _vm.gameId.toString() }
+                            })
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary",
+                            attrs: { type: "submit" }
+                          },
+                          [_vm._v("戻る")]
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-1" })
+                ]
+              )
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-3 clearfix" }, [
+        _c(
+          "table",
+          { staticClass: "table table-hover stamen" },
+          _vm._l(this.playData.member.home_team, function(member, dajun) {
+            return _c("tr", [
+              _c(
+                "td",
+                {
+                  class: {
+                    member_selected:
+                      member.player.id == _vm.playData.now_player_id
+                  }
+                },
+                [_vm._v(_vm._s(member.position.text))]
+              ),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(member.player.name_short))])
+            ])
+          }),
+          0
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/ProbablePitcherUpdateComponent.vue?vue&type=template&id=748323d8&":
 /*!***********************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/ProbablePitcherUpdateComponent.vue?vue&type=template&id=748323d8& ***!
@@ -42516,6 +43144,16 @@ var render = function() {
           }
         },
         [_c("button", { staticClass: "btn btn-success" }, [_vm._v("日程一覧")])]
+      ),
+      _vm._v(" "),
+      _c(
+        "router-link",
+        {
+          attrs: {
+            to: { name: "game.play", params: { gameId: _vm.gameId.toString() } }
+          }
+        },
+        [_c("button", { staticClass: "btn btn-success" }, [_vm._v("試合へ")])]
       ),
       _vm._v(" "),
       _c(
