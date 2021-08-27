@@ -1,6 +1,6 @@
 <template>
-    <div class="form-group row">
-        <label for="name" class="col-sm-3 col-form-label" v-text="label"></label>
+    <div class="form-group">
+        <label for="name" class="col-sm-3 col-form-label" v-text="label" v-if="label"></label>
         <input
             type="checkbox"
             v-bind:class="{'is-invalid' : isError()}"

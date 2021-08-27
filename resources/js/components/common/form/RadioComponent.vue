@@ -2,10 +2,10 @@
     <div class="form-group">
         <label for="name" class="col-sm-3 col-form-label" v-text="label" v-if="label"></label>
         <input
-            type="text"
-            class="col-sm-9 form-control"
+            type="radio"
+            :name="name"
             v-bind:class="{'is-invalid' : isError()}"
-            :value="value"
+            :value="radio_value"
             @input="updateValue"
         >
 
@@ -15,7 +15,13 @@
 
 <script>
     export default {
-        props: ['label', 'errors', 'value'],
+        props: [
+            'label',
+            'errors',
+            'value',
+            'radio_value',
+            'name'
+        ],
         methods: {
             isError() {
                 return typeof(this.errors) !== 'undefined' && this.errors.length > 0;

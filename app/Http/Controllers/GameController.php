@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\GameBoardStatus;
 use App\Http\Requests\GameAutoRequest;
 use App\Http\Requests\GameProbablePitcherRequest;
 use App\Http\Requests\GameRequest;
 use App\Models\Game;
 use App\Models\Play;
 use App\Models\Player;
+use App\Models\Result;
 use App\Models\Season;
 use App\Models\Stamen;
-use App\Models\Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -84,7 +85,7 @@ class GameController extends Controller
     {
         $stamenModel = new Stamen();
         $playModel = new Play();
-        if (is_null($game->inning)) {
+        if ($game->board_status == GameBoardStatus::STATUS_START) {
             $stamen = $stamenModel->getStamen($game);
             return [
                 'member' => [
@@ -93,8 +94,10 @@ class GameController extends Controller
                 ],
                 'now_player_id' => null,
                 'now_pitcher_id' => null,
+                'inning_info' => [],
+                'pithcer_info' => [],
             ];
-        } else {
+        } elseif ($game->board_status == GameBoardStatus::STATUS_GAME) {
             // 試合中
             $member = $playModel->getMember($game);
             $nowPlayerId = $playModel->getNowPlayerId($member, $game);
@@ -103,14 +106,38 @@ class GameController extends Controller
                 'member' => $member,
                 'now_player_id' => $nowPlayerId,
                 'now_pitcher_id' => $nowPithcerId,
-
+                'inning_info' => $playModel->getInningInfo($game),
+                'pithcer_info' => [],
+            ];
+        } elseif ($game->board_status == GameBoardStatus::STATUS_INNING_END) {
+            // 交代
+            $member = $playModel->getMember($game);
+            return [
+                'member' => $member,
+                'now_player_id' => null,
+                'now_pitcher_id' => null,
+                'inning_info' => $playModel->getInningInfo($game),
+                'pithcer_info' => [],
+            ];
+        } elseif ($game->board_status == GameBoardStatus::STATUS_GAMEEND) {
+            // 試合終了
+            $member = $playModel->getMember($game);
+            return [
+                'member' => $member,
+                'now_player_id' => null,
+                'now_pitcher_id' => null,
+                'inning_info' => $playModel->getInningInfo($game),
+                'pithcer_info' => $playModel->getPitcherInfo($game),
             ];
         }
+        // error.
     }
 
     public function getResult()
     {
-        return Result::orderBy('id', 'ASC')->get();
+        return Result::orderBy('id', 'ASC')
+            ->get()
+            ->keyBy('id');
     }
 
 
@@ -120,44 +147,29 @@ class GameController extends Controller
 
         // requestは後で調整するかも
         if (is_null($game->inning)) {
-            // 試合初期パターン
-            $gameUpdateData = [
-                'inning' => 11,
-                'out' => 0,
-                'home_point' => 0,
-                'visitor_point' => 0,
-            ];
-            $game->update($gameUpdateData);
-
             // スタメンデータのコピー
             (new Play())->setStamen($game);
         } elseif (!is_null($requestData['selectedResult'])) {
-            // 更新方法の後調整(集計をし直しにすることで全体を共通化したい)
-            // 打撃情報の保存
-            if ($game->inning % 10 == 1) {
-                $pointType = 'home_point';
-            } elseif ($game->inning % 10 == 2) {
-                $pointType = 'visitor_point';
-            } else {
-                // エラー
-            }
-            $gameUpdateData = [
-                'inning' => 11,
-                'out' => $game->out + $requestData['out'],
-                $pointType => $game->{$pointType} + $requestData['point'],
-                'visitor_point' => 0,
-            ];
-            $game->update($gameUpdateData);
-
             // 打撃成績の保存
             (new Play())->saveDageki($requestData, $game);
-            // dump($requestData);
         }
+        $game->gameUpdate($game);
     }
 
-   public function backPlay(GameRequest $request, Game $game)
+   public function backPlay(Request $request, Game $game)
     {
-        
+        (new Play())->backPlay($game);
+        $game->gameUpdate($game);
     }
 
+   public function nextInningPlay(Request $request, Game $game)
+    {
+        $game->nextInningUpdate($game);
+    }
+
+    public function gameEndPlay(Request $request, Game $game)
+    {
+        $requestData = $request->all();
+        $game->gameEndPlay($requestData, $game);
+    }
 }

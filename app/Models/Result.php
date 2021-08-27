@@ -22,7 +22,7 @@ class Result extends Model
          'sac_fly_flag',
          'out_count',
          'point_require_flag',
-         'dasu_count',
+         'dasu_count_flag',
          'button_position',
          'button_type',
     ];

@@ -17,15 +17,18 @@ class EnumsController extends Controller
             $className = preg_replace('/\.php$/', '', $file->getBasename());
             $enumClass = '\\App\\Enums\\' . $className;
 
+
             $enums[$className] = [];
             $values = $enumClass::getValues();
-            foreach ($values as $value) {
-                $enums[$className][] = [
+            $keys = $enumClass::getKeys();
+            foreach ($values as $valueKey => $value) {
+                $enums[$className][$keys[$valueKey]] = [
                     'value' => $value,
                     'text' => $enumClass::getDescription($value)
                 ];
             }
         }
+
         return $enums;
     }
 }

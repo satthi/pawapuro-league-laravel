@@ -31,6 +31,21 @@ class Play extends Model
     {
         return $this->belongsTo(Player::class, 'player_id');
     }
+    /**
+     * home team
+     */
+    public function pitcher()
+    {
+        return $this->belongsTo(Player::class, 'pitcher_id');
+    }
+
+    /**
+     * home team
+     */
+    public function result()
+    {
+        return $this->belongsTo(Result::class, 'result_id');
+    }
 
     public function setStamen(Game $game)
     {
@@ -41,7 +56,7 @@ class Play extends Model
                 $this::create([
                     'game_id' => $game->id,
                     'team_id' => $teamId,
-                    'inning' => $game->inning,
+                    'inning' => 11, // 1回表としてセット
                     'type' => PlayType::TYPE_STAMEN,
                     'result_id' => null,
                     'out_count' => null,
@@ -149,6 +164,42 @@ class Play extends Model
         // 抜けることはないはず。あったらエラー
     }
 
+    public function backPlay($game)
+    {
+        $playInfos = $this::where('game_id', $game->id)
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $beforeInfo = [];
+        foreach ($playInfos as $playInfo) {
+            // beforeInfoが設定済みで、前と状態が違うものが来たら終了
+            if (
+                !empty($beforeInfo) &&
+                (
+                    $playInfo->type != $beforeInfo['type'] ||
+                    $playInfo->team_id != $beforeInfo['team_id']
+                )
+            ) {
+                return;
+            }
+
+            $playInfo->delete();
+            // 打撃結果/盗塁/ポイントのみは1件だけ処理して終わり
+            if (
+                $playInfo->type == PlayType::TYPE_DAGEKI_KEKKA || 
+                $playInfo->type == PlayType::TYPE_STEAL ||
+                $playInfo->type == PlayType::TYPE_POINT_ONLY
+            ) {
+                return;
+            }
+
+            $beforeInfo = [
+                'type' => $playInfo->type,
+                'team_id' => $playInfo->team_id,
+            ];
+        }
+    }
+
     public function saveDageki($requestData, $game)
     {
         $member = $this->getMember($game);
@@ -184,6 +235,97 @@ class Play extends Model
             'dajun' => $targetDajun,
             'position' => null,
         ]);
+    }
+
+    public function getInningInfo($game)
+    {
+        $playInfos = $this::where('game_id', $game->id)
+            ->with('result')
+            ->whereIn('type', [PlayType::TYPE_DAGEKI_KEKKA, PlayType::TYPE_STEAL, PlayType::TYPE_POINT_ONLY])
+            ->orderBy('id', 'ASC')
+            ->get();
+
+        $inningInfo = [
+            'inning' => [],
+            'home_point' => null,
+            'home_hit' => null,
+            'visitor_point' => null,
+            'visitor_hit' => null,
+        ];
+        $homeTeamId = $game->home_team_id;
+        $visitorTeamId = $game->visitor_team_id;
+
+        $outCount = 0;
+        foreach ($playInfos as $playInfo) {
+            if ($playInfo->team_id == $homeTeamId) {
+                $inningInfo['home_point'] += $playInfo->point_count;
+                if (!$inningInfo['home_hit']) {
+                    $inningInfo['home_hit'] = 0;
+                }
+                if (!is_null($playInfo->result) && $playInfo->result->hit_flag) {
+                    $inningInfo['home_hit']++;
+                }
+            } elseif ($playInfo->team_id == $visitorTeamId) {
+                $inningInfo['visitor_point'] += $playInfo->point_count;
+                if (!$inningInfo['visitor_hit']) {
+                    $inningInfo['visitor_hit'] = 0;
+                }
+                if (!is_null($playInfo->result) && $playInfo->result->hit_flag) {
+                    $inningInfo['visitor_hit']++;
+                }
+            } else {
+                // error
+            }
+
+            if ($playInfo->point_count > 0) {
+                if (!array_key_exists($playInfo->inning, $inningInfo['inning'])) {
+                    $inningInfo['inning'][$playInfo->inning] = 0;
+                }
+                $inningInfo['inning'][$playInfo->inning] += $playInfo->point_count;
+            }
+
+            // 3アウトの0を埋める
+            $outCount += $playInfo->out_count;
+            if ($outCount == 3) {
+                if (!array_key_exists($playInfo->inning, $inningInfo['inning'])) {
+                    $inningInfo['inning'][$playInfo->inning] = 0;
+                }
+                $outCount = 0;
+            }
+        }
+
+        return $inningInfo;
+    }
+
+    public function getPitcherInfo(Game $game)
+    {
+        $homeTeamId = $game->home_team_id;
+        $visitorTeamId = $game->visitor_team_id;
+
+        // memberにカラム処理のみ
+        $playForPitchers = $this::whereIn('type', [PlayType::TYPE_STAMEN, PlayType::TYPE_MEMBER_CHANGE])
+            ->where('game_id', $game->id)
+            ->where('position', Position::POSITION_P)
+            ->with('player')
+            ->orderBy('id', 'ASC')
+            ->get();
+
+        $pitcherInfo = [
+            'home_team' => [],
+            'visitor_team' => [],
+        ];
+
+        foreach ($playForPitchers as $playForPitcher) {
+            if ($playForPitcher->team_id == $game->home_team_id) {
+                $pitcherInfo['home_team'][] = $playForPitcher;
+            } elseif ($playForPitcher->team_id == $game->visitor_team_id) {
+                $pitcherInfo['visitor_team'][] = $playForPitcher;
+            } else {
+                // error
+            }
+        }
+
+        return $pitcherInfo;
     }
 
 
