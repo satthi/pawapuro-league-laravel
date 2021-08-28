@@ -206,7 +206,10 @@ class Play extends Model
                 !empty($beforeInfo) &&
                 (
                     $playInfo->type != $beforeInfo['type'] ||
-                    $playInfo->team_id != $beforeInfo['team_id']
+                    (
+                        $playInfo->team_id != $beforeInfo['team_id'] &&
+                        $playInfo->type != PlayType::TYPE_STAMEN
+                    )
                 )
             ) {
                 return;

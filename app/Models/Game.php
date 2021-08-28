@@ -537,7 +537,7 @@ class Game extends Model
         // playinfoない時はnullでセット
         if ($playInfos->isEmpty()) {
             $updateGameInfo = [
-                'inning' => 11,
+                'inning' => null,
                 'out' => null,
                 'home_point' => null,
                 'visitor_point' => null,
