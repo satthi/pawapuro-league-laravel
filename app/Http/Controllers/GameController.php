@@ -228,6 +228,53 @@ class GameController extends Controller
         // error
     }
 
+    public function saveStealSuccess(Request $request, Game $game)
+    {
+        $requestData = $request->all();
+        $stealPlayerId = $requestData['steal_player_id'];
+        $stealPlayer = Player::find($stealPlayerId);
+
+        // 盗塁成功
+        Play::create([
+            'game_id' => $game->id,
+            'team_id' => $stealPlayer->team_id,
+            'inning' => $game->inning,
+            'type' => PlayType::TYPE_STEAL,
+            'result_id' => null,
+            'out_count' => 0,
+            'point_count' => null,
+            'player_id' => $stealPlayer->id,
+            'pitcher_id' => null,
+            'dajun' => null,
+            'position' => null,
+        ]);
+        $game->gameUpdate($game);
+    }
+
+    public function saveStealFail(Request $request, Game $game)
+    {
+        $requestData = $request->all();
+        $stealPlayerId = $requestData['steal_player_id'];
+        $stealPlayer = Player::find($stealPlayerId);
+
+        // 盗塁失敗
+        Play::create([
+            'game_id' => $game->id,
+            'team_id' => $stealPlayer->team_id,
+            'inning' => $game->inning,
+            'type' => PlayType::TYPE_STEAL,
+            'result_id' => null,
+            'out_count' => 1,
+            'point_count' => null,
+            'player_id' => $stealPlayer->id,
+            'pitcher_id' => null,
+            'dajun' => null,
+            'position' => null,
+        ]);
+        $game->gameUpdate($game);
+    }
+
+
     public function savePositionChange(Request $request, Game $game, string $teamType)
     {
         $playModel = new Play();

@@ -19,6 +19,10 @@
                         <button class="btn btn-success">代走</button>
                     </router-link>
 
+                    <router-link v-bind:to="{name: 'game.steal', params: {gameId: gameId.toString(), teamType: 'visitor' }}" v-if="gameData.is_visitor_team_phpr">
+                        <button class="btn btn-success">盗塁</button>
+                    </router-link>
+
                     <router-link v-bind:to="{name: 'game.position', params: {gameId: gameId.toString(), teamType: 'visitor' }}" v-if="gameData.is_visitor_team_position">
                         <button class="btn btn-success">守備</button>
                     </router-link>
@@ -210,6 +214,10 @@
 
                     <router-link v-bind:to="{name: 'game.pr', params: {gameId: gameId.toString(), teamType: 'home' }}" v-if="gameData.is_home_team_phpr">
                         <button class="btn btn-success">代走</button>
+                    </router-link>
+
+                    <router-link v-bind:to="{name: 'game.steal', params: {gameId: gameId.toString(), teamType: 'home' }}" v-if="gameData.is_visitor_team_phpr">
+                        <button class="btn btn-success">盗塁</button>
                     </router-link>
 
                     <router-link v-bind:to="{name: 'game.position', params: {gameId: gameId.toString(), teamType: 'home' }}" v-if="gameData.is_home_team_position">

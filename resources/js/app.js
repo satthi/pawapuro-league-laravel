@@ -25,6 +25,7 @@ import GameResultComponent from "./components/Game/ResultComponent";
 import GamePinchHitterComponent from "./components/Game/PinchHitterComponent";
 import GamePinchRunnerComponent from "./components/Game/PinchRunnerComponent";
 import GamePositionChangeComponent from "./components/Game/PositionChangeComponent";
+import GameStealComponent from "./components/Game/StealComponent";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -190,6 +191,12 @@ const router = new VueRouter({
             path: '/games/:gameId/:teamType/position',
             name: 'game.position',
             component: GamePositionChangeComponent,
+            props: true
+        },
+        {
+            path: '/games/:gameId/:teamType/steal',
+            name: 'game.steal',
+            component: GameStealComponent,
             props: true
         },
 
