@@ -4,14 +4,8 @@
         <h3>{{ teamType == 'home' ? gameData.home_team.name : gameData.visitor_team.name }} 代打設定</h3>
         <div class="row">
             <div class="col-sm-3">
-                <table class="table table-hover stamen" v-if="teamType == 'visitor'">
-                    <tr v-for="(member, dajun) in this.playData.member.visitor_team">
-                        <td v-bind:class="{'member_selected' : member.player.id == playData.now_player_id}">{{ member.position.text }}</td>
-                        <td>{{ member.player.name_short }}</td>
-                    </tr>
-                </table>
-                <table class="table table-hover stamen" v-if="teamType == 'home'">
-                    <tr v-for="(member, dajun) in this.playData.member.visitor_team">
+                <table class="table table-hover stamen">
+                    <tr v-for="(member, dajun) in this.memberData">
                         <td v-bind:class="{'member_selected' : member.player.id == playData.now_player_id}">{{ member.position.text }}</td>
                         <td>{{ member.player.name_short }}</td>
                     </tr>
@@ -29,13 +23,8 @@
             <div class="col-sm-1">
             </div>
             <div class="col-sm-3 hikae_waku">
-                <table class="table table-hover" v-if="teamType == 'visitor'">
-                    <tr v-for="(hikae, playerKey) in this.playData.member.visitor_team_hikae">
-                        <td v-on:click="playerClick" :data-key="hikae.id" v-bind:class="{'selected' : playerClicked==hikae.id}">{{ hikae.name }}</td>
-                    </tr>
-                </table>
-                <table class="table table-hover" v-if="teamType == 'home'">
-                    <tr v-for="(hikae, playerKey) in this.playData.member.home_team_hikae">
+                <table class="table table-hover">
+                    <tr v-for="(hikae, playerKey) in hikaeMemberData">
                         <td v-on:click="playerClick" :data-key="hikae.id" v-bind:class="{'selected' : playerClicked==hikae.id}">{{ hikae.name }}</td>
                     </tr>
                 </table>
@@ -80,6 +69,8 @@
                 },
                 data: {},
                 playerClicked: null,
+                memberData: {},
+                hikaeMemberData: {},
             }
         },
         methods: {
@@ -92,6 +83,17 @@
                 axios.get('/api/games/get-play/' + this.gameId)
                     .then((res) => {
                         this.playData = res.data;
+
+                        if (this.teamType == 'home') {
+                            this.memberData = this.playData.member.home_team;
+                            this.hikaeMemberData = this.playData.member.home_team_hikae;
+                        } else if (this.teamType == 'visitor') {
+                            this.memberData = this.playData.member.visitor_team;
+                            this.hikaeMemberData = this.playData.member.visitor_team_hikae;
+                        } else {
+                            // error/
+                        }
+
                     });
             },
             // playerClick

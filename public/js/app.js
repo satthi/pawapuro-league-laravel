@@ -2669,17 +2669,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -2714,7 +2703,9 @@ __webpack_require__.r(__webpack_exports__);
         }
       },
       data: {},
-      playerClicked: null
+      playerClicked: null,
+      memberData: {},
+      hikaeMemberData: {}
     };
   },
   methods: {
@@ -2727,6 +2718,15 @@ __webpack_require__.r(__webpack_exports__);
       });
       axios.get('/api/games/get-play/' + this.gameId).then(function (res) {
         _this.playData = res.data;
+
+        if (_this.teamType == 'home') {
+          _this.memberData = _this.playData.member.home_team;
+          _this.hikaeMemberData = _this.playData.member.home_team_hikae;
+        } else if (_this.teamType == 'visitor') {
+          _this.memberData = _this.playData.member.visitor_team;
+          _this.hikaeMemberData = _this.playData.member.visitor_team_hikae;
+        } else {// error/
+        }
       });
     },
     // playerClick
@@ -2740,6 +2740,141 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var postData = this.data;
+      axios.post(postPath, this.data).then(function (res) {
+        _this2.$router.push(redirectRoute);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.initial();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PinchRunnerComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PinchRunnerComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/enums.js */ "./resources/js/mixins/enums.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    gameId: String,
+    teamType: String
+  },
+  mixins: [_mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__.default],
+  computed: {
+    submitPath: function submitPath() {
+      return '/api/games/save-position-change/' + this.gameId + '/' + this.teamType;
+    }
+  },
+  data: function data() {
+    return {
+      gameData: {
+        'home_team': {},
+        'visitor_team': {}
+      },
+      playData: {
+        'member': {
+          'home_team': {},
+          'visitor_team': {}
+        },
+        'now_player_id': null,
+        'now_pitcher_id': null,
+        'inning_info': {
+          inning: {}
+        },
+        'pithcer_info': {
+          'home_team': {},
+          'visitor_team': {}
+        }
+      },
+      data: {},
+      memberClicked: null,
+      hikaePlayerClicked: null,
+      memberData: {},
+      hikaeMemberData: {}
+    };
+  },
+  methods: {
+    initial: function initial() {
+      var _this = this;
+
+      axios.get('/api/games/view/' + this.gameId).then(function (res) {
+        _this.gameData = res.data;
+        console.log(_this.gameData);
+      });
+      axios.get('/api/games/get-play/' + this.gameId).then(function (res) {
+        _this.playData = res.data;
+
+        if (_this.teamType == 'home') {
+          _this.memberData = _this.playData.member.home_team;
+          _this.hikaeMemberData = _this.playData.member.home_team_hikae;
+        } else if (_this.teamType == 'visitor') {
+          _this.memberData = _this.playData.member.visitor_team;
+          _this.hikaeMemberData = _this.playData.member.visitor_team_hikae;
+        } else {// error/
+        }
+      });
+    },
+    // memberClick
+    memberClick: function memberClick(event) {
+      var clickKey = event.target.dataset.key;
+      this.memberClicked = clickKey;
+      this.data.base_runner_id = clickKey;
+    },
+    // playerClick
+    playerClick: function playerClick(event) {
+      var clickKey = event.target.dataset.key;
+      this.hikaePlayerClicked = clickKey;
+      this.data.pinch_runner_id = clickKey;
+    },
+    submit: function submit(postPath, redirectRoute) {
+      var _this2 = this;
+
       axios.post(postPath, this.data).then(function (res) {
         _this2.$router.push(redirectRoute);
       });
@@ -3100,6 +3235,201 @@ __webpack_require__.r(__webpack_exports__);
       postData['now_pitcher_id'] = this.playData.now_pitcher_id;
       axios.post(postPath, this.data).then(function (res) {
         _this2.initial();
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.initial();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PositionChangeComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PositionChangeComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/enums.js */ "./resources/js/mixins/enums.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    gameId: String,
+    teamType: String
+  },
+  mixins: [_mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__.default],
+  computed: {
+    submitPath: function submitPath() {
+      return '/api/games/save-position-change/' + this.gameId + '/' + this.teamType;
+    }
+  },
+  data: function data() {
+    return {
+      gameData: {
+        'home_team': {},
+        'visitor_team': {}
+      },
+      playData: {
+        'member': {
+          'home_team': {},
+          'visitor_team': {}
+        },
+        'now_player_id': null,
+        'now_pitcher_id': null,
+        'inning_info': {
+          inning: {}
+        },
+        'pithcer_info': {
+          'home_team': {},
+          'visitor_team': {}
+        }
+      },
+      data: {},
+      playerClicked: null,
+      positionClicked: null,
+      memberData: {},
+      hikaeMemberData: {}
+    };
+  },
+  methods: {
+    initial: function initial() {
+      var _this = this;
+
+      axios.get('/api/games/view/' + this.gameId).then(function (res) {
+        _this.gameData = res.data;
+      });
+      axios.get('/api/games/get-play/' + this.gameId).then(function (res) {
+        _this.playData = res.data;
+
+        if (_this.teamType == 'home') {
+          _this.memberData = _this.playData.member.home_team;
+          _this.hikaeMemberData = _this.playData.member.home_team_hikae;
+        } else if (_this.teamType == 'visitor') {
+          _this.memberData = _this.playData.member.visitor_team;
+          _this.hikaeMemberData = _this.playData.member.visitor_team_hikae;
+        } else {// error/
+        }
+      });
+    },
+    // playerClick
+    playerClick: function playerClick(event) {
+      // player選択中を外す
+      this.positionClicked = null;
+      var clickKey = event.target.dataset.key;
+
+      if (this.playerClicked == null) {
+        this.playerClicked = clickKey;
+      } else {
+        if (clickKey <= 10 && this.playerClicked == 10 || clickKey == 10 && this.playerClicked <= 10) {
+          // スタメンメンバーとピッチャーは交換できない
+          alert('変更できません');
+          this.playerClicked = null;
+        } else {
+          // 選手を入れ替え
+          // positionの切り替えも同時に行う
+          if (clickKey <= 10 && this.playerClicked <= 10) {
+            // メンバー同士の選手交代はしない
+            this.playerClicked = null;
+          } else {
+            var basePlayer = this.getPlayerInfo(this.playerClicked);
+            var movePlayer = this.getPlayerInfo(clickKey);
+            this.setPlayerInfo(basePlayer, clickKey);
+            this.setPlayerInfo(movePlayer, this.playerClicked);
+            this.playerClicked = null;
+          }
+        }
+      }
+    },
+    getPlayerInfo: function getPlayerInfo(key) {
+      // playerClickで使用
+      if (key <= 10) {
+        //memberから
+        return this.memberData[key].player;
+      } else {
+        // hikaeから
+        return this.hikaeMemberData[key];
+      }
+    },
+    setPlayerInfo: function setPlayerInfo(playerInfo, key) {
+      if (key <= 10) {
+        //memberに
+        this.memberData[key].player = playerInfo;
+      } else {
+        // hikaeに
+        this.hikaeMemberData[key] = playerInfo;
+      }
+    },
+    // positionClick
+    positionClick: function positionClick(event) {
+      // player選択中を外す
+      this.playerClicked = null;
+      var clickKey = event.target.dataset.key;
+
+      if (this.positionClicked == null) {
+        this.positionClicked = clickKey;
+      } else {
+        // 選手を入れ替え
+        var basePosition = this.getPositionInfo(this.positionClicked);
+        var movePosition = this.getPositionInfo(clickKey);
+        this.setPositionInfo(basePosition, clickKey);
+        this.setPositionInfo(movePosition, this.positionClicked);
+        this.positionClicked = null;
+      }
+    },
+    getPositionInfo: function getPositionInfo(key) {
+      //stamenから
+      return this.memberData[key].base_position;
+    },
+    setPositionInfo: function setPositionInfo(positionInfo, key) {
+      //stamenに
+      this.memberData[key].base_position = positionInfo;
+    },
+    submit: function submit(postPath, redirectRoute) {
+      var _this2 = this;
+
+      axios.post(postPath, this.memberData).then(function (res) {
+        _this2.$router.push(redirectRoute);
       });
     }
   },
@@ -40201,15 +40531,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _PinchRunnerComponent_vue_vue_type_template_id_a08bdc56___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PinchRunnerComponent.vue?vue&type=template&id=a08bdc56& */ "./resources/js/components/Game/PinchRunnerComponent.vue?vue&type=template&id=a08bdc56&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _PinchRunnerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PinchRunnerComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Game/PinchRunnerComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 ;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__.default)(
-  script,
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _PinchRunnerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
   _PinchRunnerComponent_vue_vue_type_template_id_a08bdc56___WEBPACK_IMPORTED_MODULE_0__.render,
   _PinchRunnerComponent_vue_vue_type_template_id_a08bdc56___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
@@ -40277,15 +40609,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _PositionChangeComponent_vue_vue_type_template_id_315e51f2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PositionChangeComponent.vue?vue&type=template&id=315e51f2& */ "./resources/js/components/Game/PositionChangeComponent.vue?vue&type=template&id=315e51f2&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _PositionChangeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PositionChangeComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Game/PositionChangeComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 ;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__.default)(
-  script,
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _PositionChangeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
   _PositionChangeComponent_vue_vue_type_template_id_315e51f2___WEBPACK_IMPORTED_MODULE_0__.render,
   _PositionChangeComponent_vue_vue_type_template_id_315e51f2___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
@@ -41022,6 +41356,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Game/PinchRunnerComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/Game/PinchRunnerComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PinchRunnerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PinchRunnerComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PinchRunnerComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PinchRunnerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Game/PlayComponent.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************!*\
   !*** ./resources/js/components/Game/PlayComponent.vue?vue&type=script&lang=js& ***!
@@ -41035,6 +41385,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PlayComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PlayComponent.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Game/PositionChangeComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/Game/PositionChangeComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PositionChangeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PositionChangeComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PositionChangeComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PositionChangeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -43193,59 +43559,27 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-sm-3" }, [
-            _vm.teamType == "visitor"
-              ? _c(
-                  "table",
-                  { staticClass: "table table-hover stamen" },
-                  _vm._l(this.playData.member.visitor_team, function(
-                    member,
-                    dajun
-                  ) {
-                    return _c("tr", [
-                      _c(
-                        "td",
-                        {
-                          class: {
-                            member_selected:
-                              member.player.id == _vm.playData.now_player_id
-                          }
-                        },
-                        [_vm._v(_vm._s(member.position.text))]
-                      ),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(member.player.name_short))])
-                    ])
-                  }),
-                  0
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.teamType == "home"
-              ? _c(
-                  "table",
-                  { staticClass: "table table-hover stamen" },
-                  _vm._l(this.playData.member.visitor_team, function(
-                    member,
-                    dajun
-                  ) {
-                    return _c("tr", [
-                      _c(
-                        "td",
-                        {
-                          class: {
-                            member_selected:
-                              member.player.id == _vm.playData.now_player_id
-                          }
-                        },
-                        [_vm._v(_vm._s(member.position.text))]
-                      ),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(member.player.name_short))])
-                    ])
-                  }),
-                  0
-                )
-              : _vm._e(),
+            _c(
+              "table",
+              { staticClass: "table table-hover stamen" },
+              _vm._l(this.memberData, function(member, dajun) {
+                return _c("tr", [
+                  _c(
+                    "td",
+                    {
+                      class: {
+                        member_selected:
+                          member.player.id == _vm.playData.now_player_id
+                      }
+                    },
+                    [_vm._v(_vm._s(member.position.text))]
+                  ),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(member.player.name_short))])
+                ])
+              }),
+              0
+            ),
             _vm._v(" "),
             _c(
               "form",
@@ -43293,53 +43627,24 @@ var render = function() {
           _c("div", { staticClass: "col-sm-1" }),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-3 hikae_waku" }, [
-            _vm.teamType == "visitor"
-              ? _c(
-                  "table",
-                  { staticClass: "table table-hover" },
-                  _vm._l(this.playData.member.visitor_team_hikae, function(
-                    hikae,
-                    playerKey
-                  ) {
-                    return _c("tr", [
-                      _c(
-                        "td",
-                        {
-                          class: { selected: _vm.playerClicked == hikae.id },
-                          attrs: { "data-key": hikae.id },
-                          on: { click: _vm.playerClick }
-                        },
-                        [_vm._v(_vm._s(hikae.name))]
-                      )
-                    ])
-                  }),
-                  0
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.teamType == "home"
-              ? _c(
-                  "table",
-                  { staticClass: "table table-hover" },
-                  _vm._l(this.playData.member.home_team_hikae, function(
-                    hikae,
-                    playerKey
-                  ) {
-                    return _c("tr", [
-                      _c(
-                        "td",
-                        {
-                          class: { selected: _vm.playerClicked == hikae.id },
-                          attrs: { "data-key": hikae.id },
-                          on: { click: _vm.playerClick }
-                        },
-                        [_vm._v(_vm._s(hikae.name))]
-                      )
-                    ])
-                  }),
-                  0
-                )
-              : _vm._e()
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              _vm._l(_vm.hikaeMemberData, function(hikae, playerKey) {
+                return _c("tr", [
+                  _c(
+                    "td",
+                    {
+                      class: { selected: _vm.playerClicked == hikae.id },
+                      attrs: { "data-key": hikae.id },
+                      on: { click: _vm.playerClick }
+                    },
+                    [_vm._v(_vm._s(hikae.name))]
+                  )
+                ])
+              }),
+              0
+            )
           ])
         ])
       ])
@@ -43368,7 +43673,121 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("代走")])
+  return Object.keys(_vm.enums).length
+    ? _c("div", { staticClass: "container", attrs: { id: "play_wrap" } }, [
+        _c("h2", [
+          _vm._v(
+            _vm._s(_vm.gameData.date) +
+              " " +
+              _vm._s(_vm.gameData.home_team.name) +
+              " VS " +
+              _vm._s(_vm.gameData.visitor_team.name)
+          )
+        ]),
+        _vm._v(" "),
+        _c("h3", [
+          _vm._v(
+            _vm._s(
+              _vm.teamType == "home"
+                ? _vm.gameData.home_team.name
+                : _vm.gameData.visitor_team.name
+            ) + " 代走設定"
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c(
+              "table",
+              { staticClass: "table table-hover stamen" },
+              _vm._l(_vm.memberData, function(member, dajun) {
+                return _c("tr", [
+                  _c(
+                    "td",
+                    {
+                      class: {
+                        member_selected: member.player.id == _vm.memberClicked
+                      },
+                      attrs: { "data-key": member.player.id },
+                      on: { click: _vm.memberClick }
+                    },
+                    [_vm._v(_vm._s(member.position.text))]
+                  ),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(member.player.name_short))])
+                ])
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    _vm.submit(_vm.submitPath, {
+                      name: "game.play",
+                      params: { gameId: _vm.gameId.toString() }
+                    })
+                  }
+                }
+              },
+              [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+                  [_vm._v("代走登録")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: {
+                        name: "game.play",
+                        params: { gameId: _vm.gameId.toString() }
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "button",
+                      { staticClass: "btn btn-success float-right" },
+                      [_vm._v("一覧に戻る")]
+                    )
+                  ]
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-1" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3 hikae_waku" }, [
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              _vm._l(_vm.hikaeMemberData, function(hikae, playerKey) {
+                return _c("tr", [
+                  _c(
+                    "td",
+                    {
+                      class: { selected: _vm.hikaePlayerClicked == hikae.id },
+                      attrs: { "data-key": hikae.id },
+                      on: { click: _vm.playerClick }
+                    },
+                    [_vm._v(_vm._s(hikae.name))]
+                  )
+                ])
+              }),
+              0
+            )
+          ])
+        ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -43534,7 +43953,7 @@ var render = function() {
                   "tr",
                   [
                     _c("td", [
-                      _vm._v(_vm._s(_vm.gameData.home_team.ryaku_name))
+                      _vm._v(_vm._s(_vm.gameData.visitor_team.ryaku_name))
                     ]),
                     _vm._v(" "),
                     _vm._l(12, function(inning) {
@@ -43571,7 +43990,7 @@ var render = function() {
                   "tr",
                   [
                     _c("td", [
-                      _vm._v(_vm._s(_vm.gameData.visitor_team.ryaku_name))
+                      _vm._v(_vm._s(_vm.gameData.home_team.ryaku_name))
                     ]),
                     _vm._v(" "),
                     _vm._l(12, function(inning) {
@@ -44433,7 +44852,127 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("守備変更")])
+  return Object.keys(_vm.enums).length
+    ? _c("div", { staticClass: "container", attrs: { id: "play_wrap" } }, [
+        _c("h2", [
+          _vm._v(
+            _vm._s(_vm.gameData.date) +
+              " " +
+              _vm._s(_vm.gameData.home_team.name) +
+              " VS " +
+              _vm._s(_vm.gameData.visitor_team.name)
+          )
+        ]),
+        _vm._v(" "),
+        _c("h3", [
+          _vm._v(
+            _vm._s(
+              _vm.teamType == "home"
+                ? _vm.gameData.home_team.name
+                : _vm.gameData.visitor_team.name
+            ) + " 守備変更設定"
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c(
+              "table",
+              { staticClass: "table table-hover stamen" },
+              _vm._l(_vm.memberData, function(member, dajun) {
+                return _c("tr", [
+                  _c(
+                    "td",
+                    {
+                      class: { member_selected: _vm.positionClicked == dajun },
+                      attrs: { "data-key": dajun },
+                      on: { click: _vm.positionClick }
+                    },
+                    [_vm._v(_vm._s(member.base_position.text))]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    {
+                      class: { member_selected: _vm.playerClicked == dajun },
+                      attrs: { "data-key": dajun },
+                      on: { click: _vm.playerClick }
+                    },
+                    [_vm._v(_vm._s(member.player.name))]
+                  )
+                ])
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    _vm.submit(_vm.submitPath, {
+                      name: "game.play",
+                      params: { gameId: _vm.gameId.toString() }
+                    })
+                  }
+                }
+              },
+              [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+                  [_vm._v("守備変更登録")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: {
+                        name: "game.play",
+                        params: { gameId: _vm.gameId.toString() }
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "button",
+                      { staticClass: "btn btn-success float-right" },
+                      [_vm._v("一覧に戻る")]
+                    )
+                  ]
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-1" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3 hikae_waku" }, [
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              _vm._l(_vm.hikaeMemberData, function(hikae, playerKey) {
+                return _c("tr", [
+                  _c(
+                    "td",
+                    {
+                      class: { selected: _vm.playerClicked == playerKey },
+                      attrs: { "data-key": playerKey },
+                      on: { click: _vm.playerClick }
+                    },
+                    [_vm._v(_vm._s(hikae.name))]
+                  )
+                ])
+              }),
+              0
+            )
+          ])
+        ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -101,14 +101,33 @@ class Play extends Model
                 'position' => $positionOptions[$playForMember->position],
                 'player' => $playForMember->player->toArray(),
             ];
+
+            // 代打/代走を除いてセットする
+            if ($playForMember->position <= 10) {
+                $member[$teamType][$playForMember->dajun]['base_position'] = $positionOptions[$playForMember->position];
+            }
         }
 
-        $member['home_team_hikae'] = Player::where('team_id', $game->home_team_id)
+        $hikaePlayers = Player::where('team_id', $game->home_team_id)
             ->whereNotIn('id', $memberIds)
             ->get();
-        $member['visitor_team_hikae'] = Player::where('team_id', $game->visitor_team_id)
+        $key = 10;
+        $member['home_team_hikae'] = [];
+        foreach ($hikaePlayers as $hikaePlayer) {
+            $key++;
+            $member['home_team_hikae'][$key] = $hikaePlayer;
+        }
+
+
+        $hikaePlayers = Player::where('team_id', $game->visitor_team_id)
             ->whereNotIn('id', $memberIds)
             ->get();
+        $key = 10;
+        $member['visitor_team_hikae'] = [];
+        foreach ($hikaePlayers as $hikaePlayer) {
+            $key++;
+            $member['visitor_team_hikae'][$key] = $hikaePlayer;
+        }
 
         return $member;
     }

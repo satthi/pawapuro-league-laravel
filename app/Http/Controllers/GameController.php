@@ -194,6 +194,74 @@ class GameController extends Controller
         // error
     }
 
+    public function savePinchRunner(Request $request, Game $game, string $teamType)
+    {
+        $requestData = $request->all();
+        $playModel = new Play();
+        $member = $playModel->getMember($game);
+        $baseRunnerId = $requestData['base_runner_id'];
+        $pinchRunnerInfo = Player::find($requestData['pinch_runner_id']);
+        $inningInfo = $playModel->getInningInfo($game);
+
+        $memberLists = $teamType == 'home' ? $member['home_team'] : $member['visitor_team'];
+        foreach ($memberLists as $memberList) {
+            if ($memberList['player']['id'] == $baseRunnerId) {
+                // 代走処理
+                Play::create([
+                    'game_id' => $game->id,
+                    'team_id' => $pinchRunnerInfo->team_id,
+                    'inning' => $game->inning,
+                    'type' => PlayType::TYPE_MEMBER_CHANGE,
+                    'result_id' => null,
+                    'out_count' => null,
+                    'point_count' => null,
+                    'player_id' => $pinchRunnerInfo->id,
+                    'pitcher_id' => null,
+                    'dajun' => $memberList['dajun'],
+                    'position' => Position::POSITION_PR,
+                ]);
+
+                return;
+            }
+        }
+
+        // error
+    }
+
+    public function savePositionChange(Request $request, Game $game, string $teamType)
+    {
+        $playModel = new Play();
+        // 現在のメンバー情報との差分を見る
+        $requestData = $request->all();
+        $member = $playModel->getMember($game);
+        $memberLists = $teamType == 'home' ? $member['home_team'] : $member['visitor_team'];
+        $teamId = $teamType == 'home' ? $game->home_team_id : $game->visitor_team_id;
+
+        foreach ($memberLists as $dajun => $memberList) {
+            $changeMemberData = $requestData[$dajun];
+            // requestDataはbase_positionで比較する
+            if (
+                $memberList['position']['value'] != $requestData[$dajun]['base_position']['value'] || 
+                $memberList['player']['id'] != $requestData[$dajun]['player']['id']
+            ) {
+                // 守備変更
+                Play::create([
+                    'game_id' => $game->id,
+                    'team_id' => $teamId,
+                    'inning' => $game->inning,
+                    'type' => PlayType::TYPE_MEMBER_CHANGE,
+                    'result_id' => null,
+                    'out_count' => null,
+                    'point_count' => null,
+                    'player_id' => $requestData[$dajun]['player']['id'],
+                    'pitcher_id' => null,
+                    'dajun' => $memberList['dajun'],
+                    'position' => $requestData[$dajun]['base_position']['value'],
+                ]);
+            }
+        }
+    }
+
    public function backPlay(Request $request, Game $game)
     {
         (new Play())->backPlay($game);

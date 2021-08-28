@@ -35,13 +35,13 @@
                         <td>H</td>
                     </tr>
                     <tr>
-                        <td>{{ gameData.home_team.ryaku_name }}</td>
+                        <td>{{ gameData.visitor_team.ryaku_name }}</td>
                         <td v-for="inning in 12" v-bind:class="{'inning_selected' : gameData.inning == inning * 10 + 1}">{{ playData.inning_info.inning[inning * 10 + 1] }}</td>
                         <td>{{ playData.inning_info.visitor_point }}</td>
                         <td>{{ playData.inning_info.visitor_hit }}</td>
                     </tr>
                     <tr>
-                        <td>{{ gameData.visitor_team.ryaku_name }}</td>
+                        <td>{{ gameData.home_team.ryaku_name }}</td>
                         <td v-for="inning in 12" v-bind:class="{'inning_selected' : gameData.inning == inning * 10 + 2}">{{ playData.inning_info.inning[inning * 10 + 2] }}</td>
                         <td>{{ playData.inning_info.home_point }}</td>
                         <td>{{ playData.inning_info.home_hit }}</td>
