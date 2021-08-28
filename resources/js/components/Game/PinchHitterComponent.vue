@@ -4,6 +4,9 @@
         <h3>{{ teamType == 'home' ? gameData.home_team.name : gameData.visitor_team.name }} 代打設定</h3>
         <div class="row">
             <div class="col-sm-3">
+                <div v-for="error in errors">
+                    <div v-for="errorMessage in error" class="invalid-feedback" style="display:block;">{{ errorMessage }}</div>
+                </div>
                 <table class="table table-hover stamen">
                     <tr v-for="(member, dajun) in this.memberData">
                         <td v-bind:class="{'member_selected' : member.player.id == playData.now_player_id}">{{ member.position.text }}</td>
@@ -68,6 +71,7 @@
                     }
                 },
                 data: {},
+                errors: {},
                 playerClicked: null,
                 memberData: {},
                 hikaeMemberData: {},
@@ -109,6 +113,9 @@
                 axios.post(postPath, this.data)
                     .then((res) => {
                         this.$router.push(redirectRoute);
+                    })
+                    .catch((error) => {
+                        this.errors = error.response.data.errors;
                     });
             }
         },

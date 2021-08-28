@@ -2669,6 +2669,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -2703,6 +2706,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       },
       data: {},
+      errors: {},
       playerClicked: null,
       memberData: {},
       hikaeMemberData: {}
@@ -2742,6 +2746,8 @@ __webpack_require__.r(__webpack_exports__);
       var postData = this.data;
       axios.post(postPath, this.data).then(function (res) {
         _this2.$router.push(redirectRoute);
+      })["catch"](function (error) {
+        _this2.errors = error.response.data.errors;
       });
     }
   },
@@ -2799,6 +2805,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -2808,7 +2817,7 @@ __webpack_require__.r(__webpack_exports__);
   mixins: [_mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__.default],
   computed: {
     submitPath: function submitPath() {
-      return '/api/games/save-position-change/' + this.gameId + '/' + this.teamType;
+      return '/api/games/save-pinch-runner/' + this.gameId + '/' + this.teamType;
     }
   },
   data: function data() {
@@ -2833,6 +2842,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       },
       data: {},
+      errors: {},
       memberClicked: null,
       hikaePlayerClicked: null,
       memberData: {},
@@ -2877,6 +2887,8 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post(postPath, this.data).then(function (res) {
         _this2.$router.push(redirectRoute);
+      })["catch"](function (error) {
+        _this2.errors = error.response.data.errors;
       });
     }
   },
@@ -3772,6 +3784,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -3809,6 +3824,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       },
       data: {},
+      errors: {},
       memberClicked: null,
       memberData: {}
     };
@@ -3843,6 +3859,8 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post(postPath, this.data).then(function (res) {
         _this2.$router.push(redirectRoute);
+      })["catch"](function (error) {
+        _this2.errors = error.response.data.errors;
       });
     }
   },
@@ -43798,71 +43816,96 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-3" }, [
-            _c(
-              "table",
-              { staticClass: "table table-hover stamen" },
-              _vm._l(this.memberData, function(member, dajun) {
-                return _c("tr", [
-                  _c(
-                    "td",
-                    {
-                      class: {
-                        member_selected:
-                          member.player.id == _vm.playData.now_player_id
-                      }
-                    },
-                    [_vm._v(_vm._s(member.position.text))]
-                  ),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(member.player.name_short))])
-                ])
+          _c(
+            "div",
+            { staticClass: "col-sm-3" },
+            [
+              _vm._l(_vm.errors, function(error) {
+                return _c(
+                  "div",
+                  _vm._l(error, function(errorMessage) {
+                    return _c(
+                      "div",
+                      {
+                        staticClass: "invalid-feedback",
+                        staticStyle: { display: "block" }
+                      },
+                      [_vm._v(_vm._s(errorMessage))]
+                    )
+                  }),
+                  0
+                )
               }),
-              0
-            ),
-            _vm._v(" "),
-            _c(
-              "form",
-              {
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    _vm.submit(_vm.submitPath, {
-                      name: "game.play",
-                      params: { gameId: _vm.gameId.toString() }
-                    })
-                  }
-                }
-              },
-              [
-                _c(
-                  "button",
-                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                  [_vm._v("代打登録")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      to: {
+              _vm._v(" "),
+              _c(
+                "table",
+                { staticClass: "table table-hover stamen" },
+                _vm._l(this.memberData, function(member, dajun) {
+                  return _c("tr", [
+                    _c(
+                      "td",
+                      {
+                        class: {
+                          member_selected:
+                            member.player.id == _vm.playData.now_player_id
+                        }
+                      },
+                      [_vm._v(_vm._s(member.position.text))]
+                    ),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(member.player.name_short))])
+                  ])
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      _vm.submit(_vm.submitPath, {
                         name: "game.play",
                         params: { gameId: _vm.gameId.toString() }
-                      }
+                      })
                     }
-                  },
-                  [
-                    _c(
-                      "button",
-                      { staticClass: "btn btn-success float-right" },
-                      [_vm._v("一覧に戻る")]
-                    )
-                  ]
-                )
-              ],
-              1
-            )
-          ]),
+                  }
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v("代打登録")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "game.play",
+                          params: { gameId: _vm.gameId.toString() }
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "button",
+                        { staticClass: "btn btn-success float-right" },
+                        [_vm._v("一覧に戻る")]
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            ],
+            2
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-1" }),
           _vm._v(" "),
@@ -43936,72 +43979,97 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-3" }, [
-            _c(
-              "table",
-              { staticClass: "table table-hover stamen" },
-              _vm._l(_vm.memberData, function(member, dajun) {
-                return _c("tr", [
-                  _c(
-                    "td",
-                    {
-                      class: {
-                        member_selected: member.player.id == _vm.memberClicked
+          _c(
+            "div",
+            { staticClass: "col-sm-3" },
+            [
+              _vm._l(_vm.errors, function(error) {
+                return _c(
+                  "div",
+                  _vm._l(error, function(errorMessage) {
+                    return _c(
+                      "div",
+                      {
+                        staticClass: "invalid-feedback",
+                        staticStyle: { display: "block" }
                       },
-                      attrs: { "data-key": member.player.id },
-                      on: { click: _vm.memberClick }
-                    },
-                    [_vm._v(_vm._s(member.position.text))]
-                  ),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(member.player.name_short))])
-                ])
+                      [_vm._v(_vm._s(errorMessage))]
+                    )
+                  }),
+                  0
+                )
               }),
-              0
-            ),
-            _vm._v(" "),
-            _c(
-              "form",
-              {
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    _vm.submit(_vm.submitPath, {
-                      name: "game.play",
-                      params: { gameId: _vm.gameId.toString() }
-                    })
-                  }
-                }
-              },
-              [
-                _c(
-                  "button",
-                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                  [_vm._v("代走登録")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      to: {
+              _vm._v(" "),
+              _c(
+                "table",
+                { staticClass: "table table-hover stamen" },
+                _vm._l(_vm.memberData, function(member, dajun) {
+                  return _c("tr", [
+                    _c(
+                      "td",
+                      {
+                        class: {
+                          member_selected: member.player.id == _vm.memberClicked
+                        },
+                        attrs: { "data-key": member.player.id },
+                        on: { click: _vm.memberClick }
+                      },
+                      [_vm._v(_vm._s(member.position.text))]
+                    ),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(member.player.name_short))])
+                  ])
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      _vm.submit(_vm.submitPath, {
                         name: "game.play",
                         params: { gameId: _vm.gameId.toString() }
-                      }
+                      })
                     }
-                  },
-                  [
-                    _c(
-                      "button",
-                      { staticClass: "btn btn-success float-right" },
-                      [_vm._v("一覧に戻る")]
-                    )
-                  ]
-                )
-              ],
-              1
-            )
-          ]),
+                  }
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v("代走登録")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "game.play",
+                          params: { gameId: _vm.gameId.toString() }
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "button",
+                        { staticClass: "btn btn-success float-right" },
+                        [_vm._v("一覧に戻る")]
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            ],
+            2
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-1" }),
           _vm._v(" "),
@@ -45624,30 +45692,52 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-3" }, [
-            _c(
-              "table",
-              { staticClass: "table table-hover stamen" },
-              _vm._l(_vm.memberData, function(member, dajun) {
-                return _c("tr", [
-                  _c(
-                    "td",
-                    {
-                      class: {
-                        member_selected: member.player.id == _vm.memberClicked
+          _c(
+            "div",
+            { staticClass: "col-sm-3" },
+            [
+              _vm._l(_vm.errors, function(error) {
+                return _c(
+                  "div",
+                  _vm._l(error, function(errorMessage) {
+                    return _c(
+                      "div",
+                      {
+                        staticClass: "invalid-feedback",
+                        staticStyle: { display: "block" }
                       },
-                      attrs: { "data-key": member.player.id },
-                      on: { click: _vm.memberClick }
-                    },
-                    [_vm._v(_vm._s(member.position.text))]
-                  ),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(member.player.name_short))])
-                ])
+                      [_vm._v(_vm._s(errorMessage))]
+                    )
+                  }),
+                  0
+                )
               }),
-              0
-            )
-          ]),
+              _vm._v(" "),
+              _c(
+                "table",
+                { staticClass: "table table-hover stamen" },
+                _vm._l(_vm.memberData, function(member, dajun) {
+                  return _c("tr", [
+                    _c(
+                      "td",
+                      {
+                        class: {
+                          member_selected: member.player.id == _vm.memberClicked
+                        },
+                        attrs: { "data-key": member.player.id },
+                        on: { click: _vm.memberClick }
+                      },
+                      [_vm._v(_vm._s(member.position.text))]
+                    ),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(member.player.name_short))])
+                  ])
+                }),
+                0
+              )
+            ],
+            2
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-6" }, [
             _c("div", { staticClass: "row" }, [

@@ -9,6 +9,9 @@ use App\Http\Requests\GameAutoRequest;
 use App\Http\Requests\GameProbablePitcherRequest;
 use App\Http\Requests\GameRequest;
 use App\Http\Requests\GamePlayRequest;
+use App\Http\Requests\GamePinchHitterRequest;
+use App\Http\Requests\GamePinchRunnerRequest;
+use App\Http\Requests\GameStealRequest;
 use App\Models\Game;
 use App\Models\Play;
 use App\Models\Player;
@@ -197,7 +200,7 @@ class GameController extends Controller
         $game->gameUpdate($game);
     }
 
-    public function savePinchHitter(Request $request, Game $game, string $teamType)
+    public function savePinchHitter(GamePinchHitterRequest $request, Game $game, string $teamType)
     {
         $requestData = $request->all();
         $playModel = new Play();
@@ -231,7 +234,7 @@ class GameController extends Controller
         // error
     }
 
-    public function savePinchRunner(Request $request, Game $game, string $teamType)
+    public function savePinchRunner(GamePinchRunnerRequest $request, Game $game, string $teamType)
     {
         $requestData = $request->all();
         $playModel = new Play();
@@ -265,7 +268,7 @@ class GameController extends Controller
         // error
     }
 
-    public function saveStealSuccess(Request $request, Game $game)
+    public function saveStealSuccess(GameStealRequest $request, Game $game)
     {
         $playModel = new Play();
         $requestData = $request->all();
@@ -291,7 +294,7 @@ class GameController extends Controller
         $game->gameUpdate($game);
     }
 
-    public function saveStealFail(Request $request, Game $game)
+    public function saveStealFail(GameStealRequest $request, Game $game)
     {
         $playModel = new Play();
         $requestData = $request->all();
