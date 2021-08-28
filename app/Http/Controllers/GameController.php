@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\GameBoardStatus;
 use App\Http\Requests\GameAutoRequest;
 use App\Http\Requests\GameProbablePitcherRequest;
 use App\Http\Requests\GameRequest;
 use App\Models\Game;
+use App\Models\Play;
 use App\Models\Player;
+use App\Models\Result;
 use App\Models\Season;
 use App\Models\Stamen;
 use Illuminate\Http\Request;
@@ -75,24 +78,98 @@ class GameController extends Controller
     public function getStamen(Game $game)
     {
         return (new Stamen())->getStamen($game);
-        if ($stamenType == 'visitor') {
-            $teamId = $game->visitor_team_id;
-            $probablePitcherId = $game->visitor_probable_pitcher_id;
-        } else if ($stamenType == 'home') {
-            $teamId = $game->home_team_id;
-            $probablePitcherId = $game->home_probable_pitcher_id;
-        } else {
-            // error.
-        }
-
-        // 現在のスタメンの編集ということで現在情報を取得
-        $stamens = $this::where('game_id', $game->id)
-            ->where('team_id', $teamId)
-            ->with('player')
-            ->orderBy('dajun', 'ASC')
-            ->get();
-
-        return (new Stamen())->showStamenData($stamens, $teamId);
     }
 
+    ## ゲーム情報の取得
+    public function getPlay(Game $game)
+    {
+        $stamenModel = new Stamen();
+        $playModel = new Play();
+        if ($game->board_status == GameBoardStatus::STATUS_START) {
+            $stamen = $stamenModel->getStamen($game);
+            return [
+                'member' => [
+                    'home_team' => $stamen['home_team']['stamen'],
+                    'visitor_team' => $stamen['visitor_team']['stamen'],
+                ],
+                'now_player_id' => null,
+                'now_pitcher_id' => null,
+                'inning_info' => [],
+                'pithcer_info' => [],
+            ];
+        } elseif ($game->board_status == GameBoardStatus::STATUS_GAME) {
+            // 試合中
+            $member = $playModel->getMember($game);
+            $nowPlayerId = $playModel->getNowPlayerId($member, $game);
+            $nowPithcerId = $playModel->getNowPitcherId($member, $game);
+            return [
+                'member' => $member,
+                'now_player_id' => $nowPlayerId,
+                'now_pitcher_id' => $nowPithcerId,
+                'inning_info' => $playModel->getInningInfo($game),
+                'pithcer_info' => [],
+            ];
+        } elseif ($game->board_status == GameBoardStatus::STATUS_INNING_END) {
+            // 交代
+            $member = $playModel->getMember($game);
+            return [
+                'member' => $member,
+                'now_player_id' => null,
+                'now_pitcher_id' => null,
+                'inning_info' => $playModel->getInningInfo($game),
+                'pithcer_info' => [],
+            ];
+        } elseif ($game->board_status == GameBoardStatus::STATUS_GAMEEND) {
+            // 試合終了
+            $member = $playModel->getMember($game);
+            return [
+                'member' => $member,
+                'now_player_id' => null,
+                'now_pitcher_id' => null,
+                'inning_info' => $playModel->getInningInfo($game),
+                'pithcer_info' => $playModel->getPitcherInfo($game),
+            ];
+        }
+        // error.
+    }
+
+    public function getResult()
+    {
+        return Result::orderBy('id', 'ASC')
+            ->get()
+            ->keyBy('id');
+    }
+
+
+   public function savePlay(Request $request, Game $game)
+    {
+        $requestData = $request->all();
+
+        // requestは後で調整するかも
+        if (is_null($game->inning)) {
+            // スタメンデータのコピー
+            (new Play())->setStamen($game);
+        } elseif (!is_null($requestData['selectedResult'])) {
+            // 打撃成績の保存
+            (new Play())->saveDageki($requestData, $game);
+        }
+        $game->gameUpdate($game);
+    }
+
+   public function backPlay(Request $request, Game $game)
+    {
+        (new Play())->backPlay($game);
+        $game->gameUpdate($game);
+    }
+
+   public function nextInningPlay(Request $request, Game $game)
+    {
+        $game->nextInningUpdate($game);
+    }
+
+    public function gameEndPlay(Request $request, Game $game)
+    {
+        $requestData = $request->all();
+        $game->gameEndPlay($requestData, $game);
+    }
 }

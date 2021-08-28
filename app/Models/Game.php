@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\GameBoardStatus;
+use App\Enums\PlayType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
@@ -17,6 +19,14 @@ class Game extends Model
         'home_probable_pitcher_id',
         'visitor_probable_pitcher_id',
         'dh_flag',
+        'inning',
+        'out',
+        'home_point',
+        'visitor_point',
+    ];
+
+    protected $appends = [
+        'board_status',
     ];
 
     ### relation
@@ -50,6 +60,64 @@ class Game extends Model
         return $this->belongsTo(Player::class, 'visitor_probable_pitcher_id');
     }
 
+    ## attribute
+
+    /**
+     * playのボードステータス
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getBoardStatusAttribute($value)
+    {
+        if (is_null($this->inning)) {
+            // 試合開始
+            return GameBoardStatus::STATUS_START;
+        } elseif ($this->inning == 999) {
+            return GameBoardStatus::STATUS_GAMEENDED;
+
+        } elseif ($this->isGameEnd()) {
+            return GameBoardStatus::STATUS_GAMEEND;
+        } elseif ($this->out === 3) {
+            // 3アウト/ イニング終了
+            return GameBoardStatus::STATUS_INNING_END;
+        } else {
+            // 試合中
+            return GameBoardStatus::STATUS_GAME;
+        }
+    }
+
+    private function isGameEnd()
+    {
+        // 9回までは終了はしない
+        if ($this->inning < 91) {
+            return false;
+        }
+        if ($this->inning == 91) {
+            // 9表で終わるとき 3アウトでかつ後攻が勝っている
+            if ($this->out === 3 && $this->home_point > $this->visitor_point) {
+                return true;
+            }
+        }
+
+        if ($this->inning % 10 == 2) {
+            // 後攻で終わるときは後攻が勝っているとき
+            if ($this->home_point > $this->visitor_point) {
+                return true;
+            }
+            // 3アウト時に先行が買っている
+            if ($this->out === 3 && $this->home_point < $this->visitor_point) {
+                return true;
+            }
+        }
+
+        // 12回裏で3アウト時試合終了
+        if ($this->inning == 122 && $this->out === 3) {
+            return true;
+        }
+
+        return false;
+    }
     ### index
 
     public function getIndexList(int $seasonId)
@@ -395,5 +463,158 @@ class Game extends Model
             ->with('visitor_probable_pitcher')
             ->first()
             ;
+    }
+
+    ### game update
+    public function gameUpdate($game)
+    {
+        $playInfos = Play::where('game_id', $game->id)
+            ->orderBy('id', 'ASC')
+            ->get();
+        $homeTeamId = $game->home_team_id;
+        $visitorTeamId = $game->visitor_team_id;
+
+        // playinfoない時はnullでセット
+        if ($playInfos->isEmpty()) {
+            $updateGameInfo = [
+                'inning' => 11,
+                'out' => null,
+                'home_point' => null,
+                'visitor_point' => null,
+            ];
+            $game->update($updateGameInfo);
+
+            return;
+        }
+
+        // 
+        $updateGameInfo = [
+            'inning' => 11,
+            'out' => 0,
+            'home_point' => 0,
+            'visitor_point' => 0,
+        ];
+        foreach ($playInfos as $playInfo) {
+            if ($updateGameInfo['inning'] != $playInfo->inning) {
+                $updateGameInfo['inning'] = $playInfo->inning;
+                $updateGameInfo['out'] = 0;
+            }
+
+            $updateGameInfo['out'] += $playInfo->out_count;
+            if ($playInfo->team_id == $homeTeamId) {
+                $updateGameInfo['home_point'] += $playInfo->point_count;
+            } elseif ($playInfo->team_id == $visitorTeamId) {
+                $updateGameInfo['visitor_point'] += $playInfo->point_count;
+            }
+        }
+
+        $game->update($updateGameInfo);
+    }
+
+    public function nextInningUpdate($game)
+    {
+
+        $nextInning = null;
+        // @todo: 試合終了の判定
+
+        // 通常の次のイニング判定
+        if ($game->out != 3) {
+            // error
+            dump('error');
+            exit;
+        }
+        if ($game->inning % 10 == 1) {
+            // 表から裏に
+            $nextInning = $game->inning + 1;
+        } elseif ($game->inning % 10 == 2) {
+            // 裏から表に
+            $nextInning = $game->inning + 9;
+        } else {
+            // error
+            exit;
+        }
+        $game->update([
+            'inning' => $nextInning,
+            'out' => 0,
+        ]);
+    }
+
+    public function gameEndPlay($requestData, $game)
+    {
+        $pitcherShukei = [];
+        $initialDataSet = [
+            'game_id' => $game->id,
+            'win_flag' => false,
+            'lose_flag' => false,
+            'hold_flag' => false,
+            'save_flag' => false,
+            'jiseki' => 0,
+            'inning' => 0,
+            'daseki' => 0,
+            'dasu' => 0,
+            'hit' => 0,
+            'hr' => 0,
+            'sansin' => 0,
+            'walk' => 0,
+            'dead' => 0,
+        ];
+        $playForPitchers = Play::whereIn('type', [PlayType::TYPE_DAGEKI_KEKKA, PlayType::TYPE_STEAL, PlayType::TYPE_POINT_ONLY])
+            ->with('result')
+            ->with('pitcher')
+            ->where('game_id', $game->id)
+            ->orderBy('id', 'ASC')
+            ->get();
+        foreach ($playForPitchers as $playForPitcher) {
+            if (!array_key_exists($playForPitcher->pitcher_id, $pitcherShukei)) {
+                $pitcherShukei[$playForPitcher->pitcher_id] = $initialDataSet;
+                if (!empty($requestData['pitcherResult']['win']) && $requestData['pitcherResult']['win'] == $playForPitcher->pitcher_id) {
+                    $pitcherShukei[$playForPitcher->pitcher_id]['win_flag'] = true;
+                }
+                if (!empty($requestData['pitcherResult']['lose']) && $requestData['pitcherResult']['lose'] == $playForPitcher->pitcher_id) {
+                    $pitcherShukei[$playForPitcher->pitcher_id]['lose_flag'] = true;
+                }
+                if (!empty($requestData['pitcherResult']['hold'][$playForPitcher->pitcher_id])) {
+                    $pitcherShukei[$playForPitcher->pitcher_id]['hold_flag'] = true;
+                }
+                if (!empty($requestData['pitcherResult']['save']) && $requestData['pitcherResult']['save'] == $playForPitcher->pitcher_id) {
+                    $pitcherShukei[$playForPitcher->pitcher_id]['save_flag'] = true;
+                }
+                $pitcherShukei[$playForPitcher->pitcher_id]['jiseki'] = $requestData['pitcherResult']['jiseki'][$playForPitcher->pitcher_id];
+                $pitcherShukei[$playForPitcher->pitcher_id]['player_id'] = $playForPitcher->pitcher_id;
+                $pitcherShukei[$playForPitcher->pitcher_id]['team_id'] = $playForPitcher->pitcher->team_id;
+            }
+
+            $pitcherShukei[$playForPitcher->pitcher_id]['inning'] += $playForPitcher->out_count;
+            if (!is_null($playForPitcher->result)) {
+                $pitcherShukei[$playForPitcher->pitcher_id]['daseki']++;
+                if ($playForPitcher->result->dasu_count_flag) {
+                    $pitcherShukei[$playForPitcher->pitcher_id]['dasu']++;
+                }
+                if ($playForPitcher->result->hit_flag) {
+                    $pitcherShukei[$playForPitcher->pitcher_id]['hit']++;
+                }
+                if ($playForPitcher->result->hr_flag) {
+                    $pitcherShukei[$playForPitcher->pitcher_id]['hr']++;
+                }
+                if ($playForPitcher->result->sansin_flag) {
+                    $pitcherShukei[$playForPitcher->pitcher_id]['sansin']++;
+                }
+                if ($playForPitcher->result->walk_flag) {
+                    $pitcherShukei[$playForPitcher->pitcher_id]['walk']++;
+                }
+                if ($playForPitcher->result->dead_flag) {
+                    $pitcherShukei[$playForPitcher->pitcher_id]['dead']++;
+                }
+            }
+        }
+
+        foreach ($pitcherShukei as $pitcherShukeiParts) {
+            GamePitcher::create($pitcherShukeiParts);
+        }
+
+        // 試合終了登録
+        $game->update([
+            'inning' => 999, // 終了
+        ]);
     }
 }

@@ -22,6 +22,10 @@ class CreateGamesTable extends Migration
             $table->integer('home_probable_pitcher_id')->nullable();
             $table->integer('visitor_probable_pitcher_id')->nullable();
             $table->boolean('dh_flag');
+            $table->integer('inning')->nullable();
+            $table->integer('out')->nullable();
+            $table->integer('home_point')->nullable();
+            $table->integer('visitor_point')->nullable();
             $table->timestamps();
         });
     }

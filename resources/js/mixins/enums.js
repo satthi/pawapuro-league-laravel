@@ -8,7 +8,6 @@ export default {
         axios.get('/api/enums')
             .then((res) => {
                 this.enums = res.data;
-                console.log(this.enums);
             });
     }
 }
