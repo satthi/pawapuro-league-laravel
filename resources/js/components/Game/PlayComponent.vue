@@ -59,10 +59,10 @@
                                 <button type="submit" class="btn btn-primary">試合開始</button>
                             </form>
                         </div>
-                        <div class="col-sm-3">
-                            <form v-on:submit.prevent="submit(backSubmitPath)">
-                                <button type="submit" class="btn btn-primary">戻る</button>
-                            </form>
+                        <div class="col-sm-5">
+                            <router-link v-bind:to="{name: 'game.view', params: {gameId: gameId.toString() }}">
+                                <button class="btn btn-success">試合TOPに戻る</button>
+                            </router-link>
                         </div>
                     </div>
                 </div>
@@ -307,8 +307,7 @@
             initial() {
                 axios.get('/api/games/view/' + this.gameId)
                     .then((res) => {
-                        console.log(res.data)
-                        if (res.data.board_status == 5) { // enumを読み切れてないパターンがあるので
+                        if (res.data.board_status == 6) { // GameBoardStatus::STATUS_GAMEENDED enumを読み切れてないパターンがあるので
                             // 試合終了済み
                             this.$router.push({name: 'game.result', params: {gameId: this.gameId.toString() }});
                         } else {

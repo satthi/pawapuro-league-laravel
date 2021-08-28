@@ -3217,10 +3217,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get('/api/games/view/' + this.gameId).then(function (res) {
-        console.log(res.data);
-
-        if (res.data.board_status == 5) {
-          // enumを読み切れてないパターンがあるので
+        if (res.data.board_status == 6) {
+          // GameBoardStatus::STATUS_GAMEENDED enumを読み切れてないパターンがあるので
           // 試合終了済み
           _this.$router.push({
             name: 'game.result',
@@ -3854,6 +3852,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/enums.js */ "./resources/js/mixins/enums.js");
 //
 //
 //
@@ -3918,10 +3917,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     gameId: String
   },
+  mixins: [_mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__.default],
   data: function data() {
     return {
       data: {
@@ -44302,29 +44303,29 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-sm-3" }, [
-                      _c(
-                        "form",
-                        {
-                          on: {
-                            submit: function($event) {
-                              $event.preventDefault()
-                              return _vm.submit(_vm.backSubmitPath)
+                    _c(
+                      "div",
+                      { staticClass: "col-sm-5" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "game.view",
+                                params: { gameId: _vm.gameId.toString() }
+                              }
                             }
-                          }
-                        },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-primary",
-                              attrs: { type: "submit" }
-                            },
-                            [_vm._v("戻る")]
-                          )
-                        ]
-                      )
-                    ])
+                          },
+                          [
+                            _c("button", { staticClass: "btn btn-success" }, [
+                              _vm._v("試合TOPに戻る")
+                            ])
+                          ]
+                        )
+                      ],
+                      1
+                    )
                   ])
                 ])
               : _vm.gameData.board_status ==
@@ -45446,7 +45447,7 @@ var render = function() {
                   attrs: { "data-key": dajun },
                   on: { click: _vm.playerClick }
                 },
-                [_vm._v(_vm._s(stamen.player.name))]
+                [_vm._v(_vm._s(stamen.player.name_short))]
               )
             ])
           }),
@@ -45509,7 +45510,7 @@ var render = function() {
                   attrs: { "data-key": playerKey },
                   on: { click: _vm.playerClick }
                 },
-                [_vm._v(_vm._s(hikae.name))]
+                [_vm._v(_vm._s(hikae.name_short))]
               )
             ])
           }),
@@ -45698,206 +45699,238 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [
-      _c("h2", [
-        _vm._v(
-          _vm._s(_vm.data.date) +
-            " " +
-            _vm._s(_vm.data.home_team.name) +
-            " VS " +
-            _vm._s(_vm.data.visitor_team.name)
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "router-link",
-        {
-          attrs: {
-            to: {
-              name: "season.view",
-              params: { seasonId: _vm.data.season_id.toString() }
-            }
-          }
-        },
+  return Object.keys(_vm.enums).length
+    ? _c(
+        "div",
+        { staticClass: "container" },
         [
-          _c("button", { staticClass: "btn btn-success" }, [
-            _vm._v("シーズン詳細")
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "router-link",
-        {
-          attrs: {
-            to: {
-              name: "game.index",
-              params: { seasonId: _vm.data.season_id.toString() }
-            }
-          }
-        },
-        [_c("button", { staticClass: "btn btn-success" }, [_vm._v("日程一覧")])]
-      ),
-      _vm._v(" "),
-      _c(
-        "router-link",
-        {
-          attrs: {
-            to: { name: "game.play", params: { gameId: _vm.gameId.toString() } }
-          }
-        },
-        [_c("button", { staticClass: "btn btn-success" }, [_vm._v("試合へ")])]
-      ),
-      _vm._v(" "),
-      _c(
-        "h4",
-        [
-          _vm._v("\n    予告先発\n    "),
+          _c("h2", [
+            _vm._v(
+              _vm._s(_vm.data.date) +
+                " " +
+                _vm._s(_vm.data.home_team.name) +
+                " VS " +
+                _vm._s(_vm.data.visitor_team.name)
+            )
+          ]),
+          _vm._v(" "),
           _c(
             "router-link",
             {
               attrs: {
                 to: {
-                  name: "game.probable-pitcher-edit",
-                  params: { gameId: _vm.gameId.toString() }
+                  name: "season.view",
+                  params: { seasonId: _vm.data.season_id.toString() }
                 }
               }
             },
-            [_c("button", { staticClass: "btn btn-success" }, [_vm._v("設定")])]
-          )
+            [
+              _c("button", { staticClass: "btn btn-success" }, [
+                _vm._v("シーズン詳細")
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              attrs: {
+                to: {
+                  name: "game.index",
+                  params: { seasonId: _vm.data.season_id.toString() }
+                }
+              }
+            },
+            [
+              _c("button", { staticClass: "btn btn-success" }, [
+                _vm._v("日程一覧")
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _vm.data.board_status >
+          _vm.enums.GameBoardStatus.STATUS_STAMEN_SETTING.value
+            ? _c(
+                "router-link",
+                {
+                  attrs: {
+                    to: {
+                      name: "game.play",
+                      params: { gameId: _vm.gameId.toString() }
+                    }
+                  }
+                },
+                [
+                  _c("button", { staticClass: "btn btn-success" }, [
+                    _vm._v("試合へ")
+                  ])
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "h4",
+            [
+              _vm._v("\n    予告先発\n    "),
+              _vm.data.board_status <=
+              _vm.enums.GameBoardStatus.STATUS_START.value
+                ? _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "game.probable-pitcher-edit",
+                          params: { gameId: _vm.gameId.toString() }
+                        }
+                      }
+                    },
+                    [
+                      _c("button", { staticClass: "btn btn-success" }, [
+                        _vm._v("設定")
+                      ])
+                    ]
+                  )
+                : _vm._e()
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-sm-6" }, [
+              _vm._v(
+                "\n            予告先発： " +
+                  _vm._s(
+                    _vm.data.home_probable_pitcher
+                      ? _vm.data.home_probable_pitcher.name
+                      : "未設定"
+                  ) +
+                  "\n        "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-6" }, [
+              _vm._v(
+                "\n            予告先発： " +
+                  _vm._s(
+                    _vm.data.visitor_probable_pitcher
+                      ? _vm.data.visitor_probable_pitcher.name
+                      : "未設定"
+                  ) +
+                  "\n        "
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("h4", [_vm._v("スタメン")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c(
+              "div",
+              { staticClass: "col-sm-6" },
+              [
+                _vm._v("\n\n            " + _vm._s(_vm.data.home_team.name)),
+                _c("br"),
+                _vm._v(" "),
+                _vm.data.board_status <=
+                _vm.enums.GameBoardStatus.STATUS_START.value
+                  ? _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "game.stamen-edit",
+                            params: {
+                              gameId: _vm.gameId.toString(),
+                              stamenType: "home"
+                            }
+                          }
+                        }
+                      },
+                      [
+                        _c("button", { staticClass: "btn btn-success" }, [
+                          _vm._v("設定")
+                        ])
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "table",
+                  { staticClass: "table table-hover" },
+                  _vm._l(this.stamen.home_team.stamen, function(stamen, dajun) {
+                    return _c("tr", [
+                      _c("td", [_vm._v(_vm._s(stamen.dajun))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(stamen.position.text))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(stamen.player.name))])
+                    ])
+                  }),
+                  0
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-sm-6" },
+              [
+                _vm._v("\n            " + _vm._s(_vm.data.visitor_team.name)),
+                _c("br"),
+                _vm._v(" "),
+                _vm.data.board_status <=
+                _vm.enums.GameBoardStatus.STATUS_START.value
+                  ? _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "game.stamen-edit",
+                            params: {
+                              gameId: _vm.gameId.toString(),
+                              stamenType: "visitor"
+                            }
+                          }
+                        }
+                      },
+                      [
+                        _c("button", { staticClass: "btn btn-success" }, [
+                          _vm._v("設定")
+                        ])
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "table",
+                  { staticClass: "table table-hover" },
+                  _vm._l(this.stamen.visitor_team.stamen, function(
+                    stamen,
+                    dajun
+                  ) {
+                    return _c("tr", [
+                      _c("td", [_vm._v(_vm._s(stamen.dajun))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(stamen.position.text))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(stamen.player.name))])
+                    ])
+                  }),
+                  0
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-6" })
         ],
         1
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-6" }, [
-          _vm._v(
-            "\n            予告先発： " +
-              _vm._s(
-                _vm.data.home_probable_pitcher
-                  ? _vm.data.home_probable_pitcher.name
-                  : "未設定"
-              ) +
-              "\n        "
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-6" }, [
-          _vm._v(
-            "\n            予告先発： " +
-              _vm._s(
-                _vm.data.visitor_probable_pitcher
-                  ? _vm.data.visitor_probable_pitcher.name
-                  : "未設定"
-              ) +
-              "\n        "
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("h4", [_vm._v("スタメン")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          { staticClass: "col-sm-6" },
-          [
-            _vm._v("\n\n            " + _vm._s(_vm.data.home_team.name)),
-            _c("br"),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                attrs: {
-                  to: {
-                    name: "game.stamen-edit",
-                    params: {
-                      gameId: _vm.gameId.toString(),
-                      stamenType: "home"
-                    }
-                  }
-                }
-              },
-              [
-                _c("button", { staticClass: "btn btn-success" }, [
-                  _vm._v("設定")
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "table",
-              { staticClass: "table table-hover" },
-              _vm._l(this.stamen.home_team.stamen, function(stamen, dajun) {
-                return _c("tr", [
-                  _c("td", [_vm._v(_vm._s(stamen.dajun))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(stamen.position.text))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(stamen.player.name))])
-                ])
-              }),
-              0
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-sm-6" },
-          [
-            _vm._v("\n            " + _vm._s(_vm.data.visitor_team.name)),
-            _c("br"),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                attrs: {
-                  to: {
-                    name: "game.stamen-edit",
-                    params: {
-                      gameId: _vm.gameId.toString(),
-                      stamenType: "visitor"
-                    }
-                  }
-                }
-              },
-              [
-                _c("button", { staticClass: "btn btn-success" }, [
-                  _vm._v("設定")
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "table",
-              { staticClass: "table table-hover" },
-              _vm._l(this.stamen.visitor_team.stamen, function(stamen, dajun) {
-                return _c("tr", [
-                  _c("td", [_vm._v(_vm._s(stamen.dajun))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(stamen.position.text))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(stamen.player.name))])
-                ])
-              }),
-              0
-            )
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-6" })
-    ],
-    1
-  )
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

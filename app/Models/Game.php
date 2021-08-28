@@ -73,7 +73,18 @@ class Game extends Model
      */
     public function getBoardStatusAttribute($value)
     {
-        if (is_null($this->inning)) {
+        // スタメン未設定時
+        $homeStamens = Stamen::where('game_id', $this->id)
+            ->where('team_id', $this->home_team_id)
+            ->get();
+        $visitorStamens = Stamen::where('game_id', $this->id)
+            ->where('team_id', $this->visitor_team_id)
+            ->get();
+
+        if ($homeStamens->isEmpty() || $visitorStamens->isEmpty()) {
+            // スタメン未設定時
+            return GameBoardStatus::STATUS_STAMEN_SETTING;
+        } elseif (is_null($this->inning)) {
             // 試合開始
             return GameBoardStatus::STATUS_START;
         } elseif ($this->inning == 999) {

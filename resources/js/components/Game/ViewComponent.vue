@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" v-if="Object.keys(enums).length">
         <h2>{{ data.date }} {{ data.home_team.name }} VS {{ data.visitor_team.name }}</h2>
         <router-link v-bind:to="{name: 'season.view', params: {seasonId: data.season_id.toString() }}">
             <button class="btn btn-success">シーズン詳細</button>
@@ -7,12 +7,12 @@
         <router-link v-bind:to="{name: 'game.index', params: {seasonId: data.season_id.toString() }}">
             <button class="btn btn-success">日程一覧</button>
         </router-link>
-        <router-link v-bind:to="{name: 'game.play', params: {gameId: gameId.toString() }}">
+        <router-link v-bind:to="{name: 'game.play', params: {gameId: gameId.toString() }}" v-if="data.board_status > enums.GameBoardStatus.STATUS_STAMEN_SETTING.value">
             <button class="btn btn-success">試合へ</button>
         </router-link>
         <h4>
         予告先発
-        <router-link v-bind:to="{name: 'game.probable-pitcher-edit', params: {gameId: gameId.toString() }}">
+        <router-link v-bind:to="{name: 'game.probable-pitcher-edit', params: {gameId: gameId.toString() }}" v-if="data.board_status <= enums.GameBoardStatus.STATUS_START.value">
             <button class="btn btn-success">設定</button>
         </router-link>
         </h4>
@@ -31,7 +31,7 @@
             <div class="col-sm-6">
 
                 {{ data.home_team.name }}<br />
-                <router-link v-bind:to="{name: 'game.stamen-edit', params: {gameId: gameId.toString(), stamenType: 'home' }}">
+                <router-link v-bind:to="{name: 'game.stamen-edit', params: {gameId: gameId.toString(), stamenType: 'home' }}" v-if="data.board_status <= enums.GameBoardStatus.STATUS_START.value">
                     <button class="btn btn-success">設定</button>
                 </router-link>
                 <table class="table table-hover">
@@ -44,7 +44,7 @@
             </div>
             <div class="col-sm-6">
                 {{ data.visitor_team.name }}<br />
-                <router-link v-bind:to="{name: 'game.stamen-edit', params: {gameId: gameId.toString(), stamenType: 'visitor' }}">
+                <router-link v-bind:to="{name: 'game.stamen-edit', params: {gameId: gameId.toString(), stamenType: 'visitor' }}" v-if="data.board_status <= enums.GameBoardStatus.STATUS_START.value">
                     <button class="btn btn-success">設定</button>
                 </router-link>
 
@@ -63,10 +63,12 @@
 </template>
 
 <script>
+    import EnumsMixin from '../../mixins/enums.js';
     export default {
         props: {
             gameId: String
         },
+        mixins : [EnumsMixin],
         data: function () {
             return {
                 data: {

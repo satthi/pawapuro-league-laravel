@@ -10,7 +10,7 @@
                     <tr v-for="(stamen, dajun) in this.stamenData.stamen">
                         <td>{{ stamen.dajun }}</td>
                         <td v-on:click="positionClick" :data-key="dajun" v-bind:class="{'selected' : positionClicked==dajun}">{{ stamen.position.text }}</td>
-                        <td v-on:click="playerClick" :data-key="dajun" v-bind:class="{'selected' : playerClicked==dajun}">{{ stamen.player.name }}</td>
+                        <td v-on:click="playerClick" :data-key="dajun" v-bind:class="{'selected' : playerClicked==dajun}">{{ stamen.player.name_short }}</td>
                     </tr>
                 </table>
                 <form v-on:submit.prevent="submit(submitPath, {name: 'game.view', params: {gameId: gameId.toString() }})">
@@ -27,7 +27,7 @@
             <div class="col-sm-3 hikae_waku">
                 <table class="table table-hover">
                     <tr v-for="(hikae, playerKey) in this.stamenData.hikae">
-                        <td v-on:click="playerClick" :data-key="playerKey" v-bind:class="{'selected' : playerClicked==playerKey}">{{ hikae.name }}</td>
+                        <td v-on:click="playerClick" :data-key="playerKey" v-bind:class="{'selected' : playerClicked==playerKey}">{{ hikae.name_short }}</td>
                     </tr>
                 </table>
             </div>

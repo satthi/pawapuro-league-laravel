@@ -314,6 +314,8 @@ class Stamen extends Model
         }
         $pitcherPosition = $positionOptions[Position::POSITION_P];
 
+        unset($positionOptions[Position::POSITION_PH]);
+        unset($positionOptions[Position::POSITION_PR]);
         if ($game->dh_flag) {
             // ピッチャーが普通の打順から除去
             unset($positionOptions[Position::POSITION_P]);
