@@ -8,6 +8,7 @@ use App\Enums\Position;
 use App\Http\Requests\GameAutoRequest;
 use App\Http\Requests\GameProbablePitcherRequest;
 use App\Http\Requests\GameRequest;
+use App\Http\Requests\GamePlayRequest;
 use App\Models\Game;
 use App\Models\Play;
 use App\Models\Player;
@@ -151,7 +152,7 @@ class GameController extends Controller
         $game->gameUpdate($game);
    }
 
-   public function savePlay(Request $request, Game $game)
+   public function savePlay(GamePlayRequest $request, Game $game)
     {
         $requestData = $request->all();
 

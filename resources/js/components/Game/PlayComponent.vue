@@ -52,11 +52,15 @@
                     </tr>
                 </table>
 
+                <div v-for="error in errors">
+                    <div v-for="errorMessage in error" class="invalid-feedback" style="display:block;">{{ errorMessage }}</div>
+                </div>
+
                 <div v-if="gameData.board_status == enums.GameBoardStatus.STATUS_START.value">
                     <div class="row">
                         <div class="col-sm-3">
                             <form v-on:submit.prevent="submit(gameStartSubmitPath)">
-                                <button type="submit" class="btn btn-primary">試合開始</button>
+                                <button type="submit" class="btn btn-primary" v-bind:disabled="disabled">試合開始</button>
                             </form>
                         </div>
                         <div class="col-sm-5">
@@ -93,19 +97,19 @@
                         </div>
                         <div class="col-sm-2">
                             <form v-on:submit.prevent="submit(playSubmitPath)">
-                                <button type="submit" class="btn btn-primary">登録</button>
+                                <button type="submit" class="btn btn-primary" v-bind:disabled="disabled">登録</button>
                             </form>
                         </div>
                         <div class="col-sm-4">
                             <form v-on:submit.prevent="submit(pointOnlySubmitPath)">
-                                <button type="submit" class="btn btn-primary">点数のみ</button>
+                                <button type="submit" class="btn btn-primary" v-bind:disabled="disabled">点数のみ</button>
                             </form>
                         </div>
                         <div class="col-sm-2">
                         </div>
                         <div class="col-sm-2">
                             <form v-on:submit.prevent="submit(backSubmitPath)">
-                                <button type="submit" class="btn btn-primary">戻る</button>
+                                <button type="submit" class="btn btn-primary" v-bind:disabled="disabled">戻る</button>
                             </form>
                         </div>
                         <div class="col-sm-1">
@@ -117,12 +121,12 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <form v-on:submit.prevent="submit(nextInningSubmitPath)">
-                                <button type="submit" class="btn btn-primary">次のイニングへ</button>
+                                <button type="submit" class="btn btn-primary" v-bind:disabled="disabled">次のイニングへ</button>
                             </form>
                         </div>
                         <div class="col-sm-3">
                             <form v-on:submit.prevent="submit(backSubmitPath)">
-                                <button type="submit" class="btn btn-primary">戻る</button>
+                                <button type="submit" class="btn btn-primary" v-bind:disabled="disabled">戻る</button>
                             </form>
                         </div>
                     </div>
@@ -192,12 +196,12 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <form v-on:submit.prevent="submit(gameEndSubmitPath)">
-                                <button type="submit" class="btn btn-primary">試合終了</button>
+                                <button type="submit" class="btn btn-primary" v-bind:disabled="disabled">試合終了</button>
                             </form>
                         </div>
                         <div class="col-sm-3">
                             <form v-on:submit.prevent="submit(backSubmitPath)">
-                                <button type="submit" class="btn btn-primary">戻る</button>
+                                <button type="submit" class="btn btn-primary" v-bind:disabled="disabled">戻る</button>
                             </form>
                         </div>
                     </div>
@@ -301,6 +305,7 @@
                         'jiseki' : {},
                     },
                 },
+                disabled: false,
             }
         },
         methods: {
@@ -315,6 +320,7 @@
                             axios.get('/api/games/get-play/' + this.gameId)
                                 .then((res) => {
                                     this.playData = res.data;
+                                    this.disabled = false;
                                 });
                             axios.get('/api/games/get-result')
                                 .then((res) => {
@@ -323,6 +329,7 @@
                             this.data.out = 0;
                             this.data.point = 0;
                             this.data.selectedResult = null;
+                            this.errors = {};
                         }
                     });
             },
@@ -332,12 +339,18 @@
                 this.data.out = this.resultData[resultId].out_count;
             },
             submit(postPath) {
+                this.disabled = true;
                 var postData = this.data;
+                postData['game_id'] = this.gameId;
                 postData['now_player_id'] = this.playData.now_player_id;
                 postData['now_pitcher_id'] = this.playData.now_pitcher_id;
                 axios.post(postPath, this.data)
                     .then((res) => {
                         this.initial();
+                    })
+                    .catch((error) => {
+                        this.errors = error.response.data.errors;
+                        this.disabled = false;
                     });
             }
         },

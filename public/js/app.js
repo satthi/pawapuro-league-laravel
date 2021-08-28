@@ -3139,6 +3139,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -3209,7 +3213,8 @@ __webpack_require__.r(__webpack_exports__);
           'hold': {},
           'jiseki': {}
         }
-      }
+      },
+      disabled: false
     };
   },
   methods: {
@@ -3230,6 +3235,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.gameData = res.data;
           axios.get('/api/games/get-play/' + _this.gameId).then(function (res) {
             _this.playData = res.data;
+            _this.disabled = false;
           });
           axios.get('/api/games/get-result').then(function (res) {
             _this.resultData = res.data;
@@ -3237,6 +3243,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.data.out = 0;
           _this.data.point = 0;
           _this.data.selectedResult = null;
+          _this.errors = {};
         }
       });
     },
@@ -3247,11 +3254,16 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit(postPath) {
       var _this2 = this;
 
+      this.disabled = true;
       var postData = this.data;
+      postData['game_id'] = this.gameId;
       postData['now_player_id'] = this.playData.now_player_id;
       postData['now_pitcher_id'] = this.playData.now_pitcher_id;
       axios.post(postPath, this.data).then(function (res) {
         _this2.initial();
+      })["catch"](function (error) {
+        _this2.errors = error.response.data.errors;
+        _this2.disabled = false;
       });
     }
   },
@@ -44175,275 +44187,138 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-sm-6" }, [
-            _c(
-              "table",
-              {
-                staticClass: "table table-hover",
-                attrs: { id: "score_board" }
-              },
-              [
-                _c(
-                  "tr",
-                  [
-                    _c("td"),
-                    _vm._v(" "),
-                    _vm._l(12, function(inning) {
-                      return _c("td", [_vm._v(_vm._s(inning))])
-                    }),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("R")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("H")])
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c(
-                  "tr",
-                  [
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.gameData.visitor_team.ryaku_name))
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(12, function(inning) {
-                      return _c(
-                        "td",
-                        {
-                          class: {
-                            inning_selected:
-                              _vm.gameData.inning == inning * 10 + 1
-                          }
-                        },
-                        [
-                          _vm._v(
-                            _vm._s(
-                              _vm.playData.inning_info.inning[inning * 10 + 1]
-                            )
-                          )
-                        ]
-                      )
-                    }),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.playData.inning_info.visitor_point))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.playData.inning_info.visitor_hit))
-                    ])
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c(
-                  "tr",
-                  [
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.gameData.home_team.ryaku_name))
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(12, function(inning) {
-                      return _c(
-                        "td",
-                        {
-                          class: {
-                            inning_selected:
-                              _vm.gameData.inning == inning * 10 + 2
-                          }
-                        },
-                        [
-                          _vm._v(
-                            _vm._s(
-                              _vm.playData.inning_info.inning[inning * 10 + 2]
-                            )
-                          )
-                        ]
-                      )
-                    }),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.playData.inning_info.home_point))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.playData.inning_info.home_hit))
-                    ])
-                  ],
-                  2
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _vm.gameData.board_status ==
-            _vm.enums.GameBoardStatus.STATUS_START.value
-              ? _c("div", [
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-sm-3" }, [
-                      _c(
-                        "form",
-                        {
-                          on: {
-                            submit: function($event) {
-                              $event.preventDefault()
-                              return _vm.submit(_vm.gameStartSubmitPath)
-                            }
-                          }
-                        },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-primary",
-                              attrs: { type: "submit" }
-                            },
-                            [_vm._v("試合開始")]
-                          )
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "col-sm-5" },
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            attrs: {
-                              to: {
-                                name: "game.view",
-                                params: { gameId: _vm.gameId.toString() }
-                              }
-                            }
-                          },
-                          [
-                            _c("button", { staticClass: "btn btn-success" }, [
-                              _vm._v("試合TOPに戻る")
-                            ])
-                          ]
-                        )
-                      ],
-                      1
-                    )
-                  ])
-                ])
-              : _vm.gameData.board_status ==
-                _vm.enums.GameBoardStatus.STATUS_GAME.value
-              ? _c("div", [
-                  _c("div", { staticClass: "row" }, [
-                    _c(
-                      "div",
-                      { staticClass: "col-sm-3" },
-                      [
-                        _c("select-component", {
-                          attrs: {
-                            label: "",
-                            options: _vm.enums.ResultOut,
-                            empty: false
-                          },
-                          model: {
-                            value: _vm.data.out,
-                            callback: function($$v) {
-                              _vm.$set(_vm.data, "out", $$v)
-                            },
-                            expression: "data.out"
-                          }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "col-sm-3" },
-                      [
-                        _c("select-component", {
-                          attrs: {
-                            label: "",
-                            options: _vm.enums.ResultPoint,
-                            empty: false
-                          },
-                          model: {
-                            value: _vm.data.point,
-                            callback: function($$v) {
-                              _vm.$set(_vm.data, "point", $$v)
-                            },
-                            expression: "data.point"
-                          }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-sm-3" }, [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(_vm.gameData.out) +
-                          "アウト\n                    "
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "col-sm-6" },
+            [
+              _c(
+                "table",
+                {
+                  staticClass: "table table-hover",
+                  attrs: { id: "score_board" }
+                },
+                [
                   _c(
-                    "div",
-                    { staticClass: "clearfix" },
-                    _vm._l(10, function(button_position) {
-                      return _c(
-                        "table",
-                        { staticClass: "board_table" },
-                        _vm._l(_vm.resultData, function(result) {
-                          return result.button_position == button_position - 1
-                            ? _c(
-                                "tr",
-                                {
-                                  class: "result_button_" + result.button_type
-                                },
-                                [
-                                  _c(
-                                    "td",
-                                    {
-                                      class: {
-                                        result_selected:
-                                          result.id == _vm.data.selectedResult
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.resultButtonClick(
-                                            result.id
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [_vm._v(_vm._s(result.name))]
-                                  )
-                                ]
-                              )
-                            : _vm._e()
-                        }),
-                        0
-                      )
-                    }),
-                    0
+                    "tr",
+                    [
+                      _c("td"),
+                      _vm._v(" "),
+                      _vm._l(12, function(inning) {
+                        return _c("td", [_vm._v(_vm._s(inning))])
+                      }),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("R")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("H")])
+                    ],
+                    2
                   ),
                   _vm._v(" "),
                   _c(
-                    "div",
-                    {
-                      staticClass: "row",
-                      staticStyle: { "margin-top": "20px" }
-                    },
+                    "tr",
                     [
-                      _c("div", { staticClass: "col-sm-1" }),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.gameData.visitor_team.ryaku_name))
+                      ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-2" }, [
+                      _vm._l(12, function(inning) {
+                        return _c(
+                          "td",
+                          {
+                            class: {
+                              inning_selected:
+                                _vm.gameData.inning == inning * 10 + 1
+                            }
+                          },
+                          [
+                            _vm._v(
+                              _vm._s(
+                                _vm.playData.inning_info.inning[inning * 10 + 1]
+                              )
+                            )
+                          ]
+                        )
+                      }),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.playData.inning_info.visitor_point))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.playData.inning_info.visitor_hit))
+                      ])
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "tr",
+                    [
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.gameData.home_team.ryaku_name))
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(12, function(inning) {
+                        return _c(
+                          "td",
+                          {
+                            class: {
+                              inning_selected:
+                                _vm.gameData.inning == inning * 10 + 2
+                            }
+                          },
+                          [
+                            _vm._v(
+                              _vm._s(
+                                _vm.playData.inning_info.inning[inning * 10 + 2]
+                              )
+                            )
+                          ]
+                        )
+                      }),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.playData.inning_info.home_point))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.playData.inning_info.home_hit))
+                      ])
+                    ],
+                    2
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.errors, function(error) {
+                return _c(
+                  "div",
+                  _vm._l(error, function(errorMessage) {
+                    return _c(
+                      "div",
+                      {
+                        staticClass: "invalid-feedback",
+                        staticStyle: { display: "block" }
+                      },
+                      [_vm._v(_vm._s(errorMessage))]
+                    )
+                  }),
+                  0
+                )
+              }),
+              _vm._v(" "),
+              _vm.gameData.board_status ==
+              _vm.enums.GameBoardStatus.STATUS_START.value
+                ? _c("div", [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-sm-3" }, [
                         _c(
                           "form",
                           {
                             on: {
                               submit: function($event) {
                                 $event.preventDefault()
-                                return _vm.submit(_vm.playSubmitPath)
+                                return _vm.submit(_vm.gameStartSubmitPath)
                               }
                             }
                           },
@@ -44452,14 +44327,241 @@ var render = function() {
                               "button",
                               {
                                 staticClass: "btn btn-primary",
-                                attrs: { type: "submit" }
+                                attrs: {
+                                  type: "submit",
+                                  disabled: _vm.disabled
+                                }
                               },
-                              [_vm._v("登録")]
+                              [_vm._v("試合開始")]
                             )
                           ]
                         )
                       ]),
                       _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-5" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "game.view",
+                                  params: { gameId: _vm.gameId.toString() }
+                                }
+                              }
+                            },
+                            [
+                              _c("button", { staticClass: "btn btn-success" }, [
+                                _vm._v("試合TOPに戻る")
+                              ])
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  ])
+                : _vm.gameData.board_status ==
+                  _vm.enums.GameBoardStatus.STATUS_GAME.value
+                ? _c("div", [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-3" },
+                        [
+                          _c("select-component", {
+                            attrs: {
+                              label: "",
+                              options: _vm.enums.ResultOut,
+                              empty: false
+                            },
+                            model: {
+                              value: _vm.data.out,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "out", $$v)
+                              },
+                              expression: "data.out"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-3" },
+                        [
+                          _c("select-component", {
+                            attrs: {
+                              label: "",
+                              options: _vm.enums.ResultPoint,
+                              empty: false
+                            },
+                            model: {
+                              value: _vm.data.point,
+                              callback: function($$v) {
+                                _vm.$set(_vm.data, "point", $$v)
+                              },
+                              expression: "data.point"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-3" }, [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(_vm.gameData.out) +
+                            "アウト\n                    "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "clearfix" },
+                      _vm._l(10, function(button_position) {
+                        return _c(
+                          "table",
+                          { staticClass: "board_table" },
+                          _vm._l(_vm.resultData, function(result) {
+                            return result.button_position == button_position - 1
+                              ? _c(
+                                  "tr",
+                                  {
+                                    class: "result_button_" + result.button_type
+                                  },
+                                  [
+                                    _c(
+                                      "td",
+                                      {
+                                        class: {
+                                          result_selected:
+                                            result.id == _vm.data.selectedResult
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.resultButtonClick(
+                                              result.id
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(result.name))]
+                                    )
+                                  ]
+                                )
+                              : _vm._e()
+                          }),
+                          0
+                        )
+                      }),
+                      0
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "row",
+                        staticStyle: { "margin-top": "20px" }
+                      },
+                      [
+                        _c("div", { staticClass: "col-sm-1" }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-sm-2" }, [
+                          _c(
+                            "form",
+                            {
+                              on: {
+                                submit: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.submit(_vm.playSubmitPath)
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-primary",
+                                  attrs: {
+                                    type: "submit",
+                                    disabled: _vm.disabled
+                                  }
+                                },
+                                [_vm._v("登録")]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-sm-4" }, [
+                          _c(
+                            "form",
+                            {
+                              on: {
+                                submit: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.submit(_vm.pointOnlySubmitPath)
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-primary",
+                                  attrs: {
+                                    type: "submit",
+                                    disabled: _vm.disabled
+                                  }
+                                },
+                                [_vm._v("点数のみ")]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-sm-2" }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-sm-2" }, [
+                          _c(
+                            "form",
+                            {
+                              on: {
+                                submit: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.submit(_vm.backSubmitPath)
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-primary",
+                                  attrs: {
+                                    type: "submit",
+                                    disabled: _vm.disabled
+                                  }
+                                },
+                                [_vm._v("戻る")]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-sm-1" })
+                      ]
+                    )
+                  ])
+                : _vm.gameData.board_status ==
+                  _vm.enums.GameBoardStatus.STATUS_INNING_END.value
+                ? _c("div", [
+                    _c("div", { staticClass: "row" }, [
                       _c("div", { staticClass: "col-sm-4" }, [
                         _c(
                           "form",
@@ -44467,7 +44569,7 @@ var render = function() {
                             on: {
                               submit: function($event) {
                                 $event.preventDefault()
-                                return _vm.submit(_vm.pointOnlySubmitPath)
+                                return _vm.submit(_vm.nextInningSubmitPath)
                               }
                             }
                           },
@@ -44476,17 +44578,18 @@ var render = function() {
                               "button",
                               {
                                 staticClass: "btn btn-primary",
-                                attrs: { type: "submit" }
+                                attrs: {
+                                  type: "submit",
+                                  disabled: _vm.disabled
+                                }
                               },
-                              [_vm._v("点数のみ")]
+                              [_vm._v("次のイニングへ")]
                             )
                           ]
                         )
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-2" }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-2" }, [
+                      _c("div", { staticClass: "col-sm-3" }, [
                         _c(
                           "form",
                           {
@@ -44502,445 +44605,400 @@ var render = function() {
                               "button",
                               {
                                 staticClass: "btn btn-primary",
-                                attrs: { type: "submit" }
+                                attrs: {
+                                  type: "submit",
+                                  disabled: _vm.disabled
+                                }
                               },
                               [_vm._v("戻る")]
                             )
                           ]
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-1" })
-                    ]
-                  )
-                ])
-              : _vm.gameData.board_status ==
-                _vm.enums.GameBoardStatus.STATUS_INNING_END.value
-              ? _c("div", [
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-sm-4" }, [
-                      _c(
-                        "form",
-                        {
-                          on: {
-                            submit: function($event) {
-                              $event.preventDefault()
-                              return _vm.submit(_vm.nextInningSubmitPath)
-                            }
-                          }
-                        },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-primary",
-                              attrs: { type: "submit" }
-                            },
-                            [_vm._v("次のイニングへ")]
-                          )
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-sm-3" }, [
-                      _c(
-                        "form",
-                        {
-                          on: {
-                            submit: function($event) {
-                              $event.preventDefault()
-                              return _vm.submit(_vm.backSubmitPath)
-                            }
-                          }
-                        },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-primary",
-                              attrs: { type: "submit" }
-                            },
-                            [_vm._v("戻る")]
-                          )
-                        ]
-                      )
+                      ])
                     ])
                   ])
-                ])
-              : _vm.gameData.board_status ==
-                _vm.enums.GameBoardStatus.STATUS_GAMEEND.value
-              ? _c("div", [
-                  _c(
-                    "table",
-                    { staticClass: "table table-hover" },
-                    [
-                      _c("tr", [
-                        _c("th", { attrs: { colspan: "6" } }, [
-                          _vm._v(_vm._s(_vm.gameData.visitor_team.name))
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(0),
-                      _vm._v(" "),
-                      _vm._l(_vm.playData.pithcer_info.visitor_team, function(
-                        pitcher
-                      ) {
-                        return _c("tr", [
-                          _c("td", [_vm._v(_vm._s(pitcher.player.name))]),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            [
-                              _vm.gameData.home_point <
-                              _vm.gameData.visitor_point
-                                ? _c("radio-component", {
-                                    attrs: {
-                                      label: "",
-                                      errors: _vm.errors.regular_flag,
-                                      name: "win",
-                                      radio_value: pitcher.player.id
-                                    },
-                                    model: {
-                                      value: _vm.data.pitcherResult.win,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.data.pitcherResult,
-                                          "win",
-                                          $$v
-                                        )
+                : _vm.gameData.board_status ==
+                  _vm.enums.GameBoardStatus.STATUS_GAMEEND.value
+                ? _c("div", [
+                    _c(
+                      "table",
+                      { staticClass: "table table-hover" },
+                      [
+                        _c("tr", [
+                          _c("th", { attrs: { colspan: "6" } }, [
+                            _vm._v(_vm._s(_vm.gameData.visitor_team.name))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(0),
+                        _vm._v(" "),
+                        _vm._l(_vm.playData.pithcer_info.visitor_team, function(
+                          pitcher
+                        ) {
+                          return _c("tr", [
+                            _c("td", [_vm._v(_vm._s(pitcher.player.name))]),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              [
+                                _vm.gameData.home_point <
+                                _vm.gameData.visitor_point
+                                  ? _c("radio-component", {
+                                      attrs: {
+                                        label: "",
+                                        errors: _vm.errors.regular_flag,
+                                        name: "win",
+                                        radio_value: pitcher.player.id
                                       },
-                                      expression: "data.pitcherResult.win"
-                                    }
-                                  })
-                                : _vm._e()
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            [
-                              _vm.gameData.home_point >
-                              _vm.gameData.visitor_point
-                                ? _c("radio-component", {
-                                    attrs: {
-                                      label: "",
-                                      errors: _vm.errors.regular_flag,
-                                      name: "lose",
-                                      radio_value: pitcher.player.id
-                                    },
-                                    model: {
-                                      value: _vm.data.pitcherResult.lose,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.data.pitcherResult,
-                                          "lose",
-                                          $$v
-                                        )
+                                      model: {
+                                        value: _vm.data.pitcherResult.win,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.data.pitcherResult,
+                                            "win",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "data.pitcherResult.win"
+                                      }
+                                    })
+                                  : _vm._e()
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              [
+                                _vm.gameData.home_point >
+                                _vm.gameData.visitor_point
+                                  ? _c("radio-component", {
+                                      attrs: {
+                                        label: "",
+                                        errors: _vm.errors.regular_flag,
+                                        name: "lose",
+                                        radio_value: pitcher.player.id
                                       },
-                                      expression: "data.pitcherResult.lose"
-                                    }
-                                  })
-                                : _vm._e()
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            [
-                              _c("checkbox-component", {
-                                attrs: {
-                                  label: "",
-                                  errors: _vm.errors.regular_flag
-                                },
-                                model: {
-                                  value:
-                                    _vm.data.pitcherResult.hold[
-                                      pitcher.player.id
-                                    ],
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.data.pitcherResult.hold,
-                                      pitcher.player.id,
-                                      $$v
-                                    )
+                                      model: {
+                                        value: _vm.data.pitcherResult.lose,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.data.pitcherResult,
+                                            "lose",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "data.pitcherResult.lose"
+                                      }
+                                    })
+                                  : _vm._e()
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              [
+                                _c("checkbox-component", {
+                                  attrs: {
+                                    label: "",
+                                    errors: _vm.errors.regular_flag
                                   },
-                                  expression:
-                                    "data.pitcherResult.hold[pitcher.player.id]"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            [
-                              _vm.gameData.home_point <
-                              _vm.gameData.visitor_point
-                                ? _c("radio-component", {
-                                    attrs: {
-                                      label: "",
-                                      errors: _vm.errors.regular_flag,
-                                      name: "save",
-                                      radio_value: pitcher.player.id
+                                  model: {
+                                    value:
+                                      _vm.data.pitcherResult.hold[
+                                        pitcher.player.id
+                                      ],
+                                    callback: function($$v) {
+                                      _vm.$set(
+                                        _vm.data.pitcherResult.hold,
+                                        pitcher.player.id,
+                                        $$v
+                                      )
                                     },
-                                    model: {
-                                      value: _vm.data.pitcherResult.save,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.data.pitcherResult,
-                                          "save",
-                                          $$v
-                                        )
+                                    expression:
+                                      "data.pitcherResult.hold[pitcher.player.id]"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              [
+                                _vm.gameData.home_point <
+                                _vm.gameData.visitor_point
+                                  ? _c("radio-component", {
+                                      attrs: {
+                                        label: "",
+                                        errors: _vm.errors.regular_flag,
+                                        name: "save",
+                                        radio_value: pitcher.player.id
                                       },
-                                      expression: "data.pitcherResult.save"
-                                    }
-                                  })
-                                : _vm._e()
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            [
-                              _c("input-component", {
-                                attrs: { label: "", errors: _vm.errors.name },
-                                model: {
-                                  value:
-                                    _vm.data.pitcherResult.jiseki[
-                                      pitcher.player.id
-                                    ],
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.data.pitcherResult.jiseki,
-                                      pitcher.player.id,
-                                      $$v
-                                    )
+                                      model: {
+                                        value: _vm.data.pitcherResult.save,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.data.pitcherResult,
+                                            "save",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "data.pitcherResult.save"
+                                      }
+                                    })
+                                  : _vm._e()
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              [
+                                _c("input-component", {
+                                  attrs: { label: "", errors: _vm.errors.name },
+                                  model: {
+                                    value:
+                                      _vm.data.pitcherResult.jiseki[
+                                        pitcher.player.id
+                                      ],
+                                    callback: function($$v) {
+                                      _vm.$set(
+                                        _vm.data.pitcherResult.jiseki,
+                                        pitcher.player.id,
+                                        $$v
+                                      )
+                                    },
+                                    expression:
+                                      "data.pitcherResult.jiseki[pitcher.player.id]"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ])
+                        }),
+                        _vm._v(" "),
+                        _c("tr", [
+                          _c("th", { attrs: { colspan: "6" } }, [
+                            _vm._v(_vm._s(_vm.gameData.home_team.name))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _vm._l(_vm.playData.pithcer_info.home_team, function(
+                          pitcher
+                        ) {
+                          return _c("tr", [
+                            _c("td", [_vm._v(_vm._s(pitcher.player.name))]),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              [
+                                _vm.gameData.home_point >
+                                _vm.gameData.visitor_point
+                                  ? _c("radio-component", {
+                                      attrs: {
+                                        label: "",
+                                        errors: _vm.errors.regular_flag,
+                                        name: "win",
+                                        radio_value: pitcher.player.id
+                                      },
+                                      model: {
+                                        value: _vm.data.pitcherResult.win,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.data.pitcherResult,
+                                            "win",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "data.pitcherResult.win"
+                                      }
+                                    })
+                                  : _vm._e()
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              [
+                                _vm.gameData.home_point <
+                                _vm.gameData.visitor_point
+                                  ? _c("radio-component", {
+                                      attrs: {
+                                        label: "",
+                                        errors: _vm.errors.regular_flag,
+                                        name: "lose",
+                                        radio_value: pitcher.player.id
+                                      },
+                                      model: {
+                                        value: _vm.data.pitcherResult.lose,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.data.pitcherResult,
+                                            "lose",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "data.pitcherResult.lose"
+                                      }
+                                    })
+                                  : _vm._e()
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              [
+                                _c("checkbox-component", {
+                                  attrs: {
+                                    label: "",
+                                    errors: _vm.errors.regular_flag
                                   },
-                                  expression:
-                                    "data.pitcherResult.jiseki[pitcher.player.id]"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ])
-                      }),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c("th", { attrs: { colspan: "6" } }, [
-                          _vm._v(_vm._s(_vm.gameData.home_team.name))
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(1),
-                      _vm._v(" "),
-                      _vm._l(_vm.playData.pithcer_info.home_team, function(
-                        pitcher
-                      ) {
-                        return _c("tr", [
-                          _c("td", [_vm._v(_vm._s(pitcher.player.name))]),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            [
-                              _vm.gameData.home_point >
-                              _vm.gameData.visitor_point
-                                ? _c("radio-component", {
-                                    attrs: {
-                                      label: "",
-                                      errors: _vm.errors.regular_flag,
-                                      name: "win",
-                                      radio_value: pitcher.player.id
+                                  model: {
+                                    value:
+                                      _vm.data.pitcherResult.hold[
+                                        pitcher.player.id
+                                      ],
+                                    callback: function($$v) {
+                                      _vm.$set(
+                                        _vm.data.pitcherResult.hold,
+                                        pitcher.player.id,
+                                        $$v
+                                      )
                                     },
-                                    model: {
-                                      value: _vm.data.pitcherResult.win,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.data.pitcherResult,
-                                          "win",
-                                          $$v
-                                        )
+                                    expression:
+                                      "data.pitcherResult.hold[pitcher.player.id]"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              [
+                                _vm.gameData.home_point >
+                                _vm.gameData.visitor_point
+                                  ? _c("radio-component", {
+                                      attrs: {
+                                        label: "",
+                                        errors: _vm.errors.regular_flag,
+                                        name: "save",
+                                        radio_value: pitcher.player.id
                                       },
-                                      expression: "data.pitcherResult.win"
-                                    }
-                                  })
-                                : _vm._e()
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            [
-                              _vm.gameData.home_point <
-                              _vm.gameData.visitor_point
-                                ? _c("radio-component", {
-                                    attrs: {
-                                      label: "",
-                                      errors: _vm.errors.regular_flag,
-                                      name: "lose",
-                                      radio_value: pitcher.player.id
+                                      model: {
+                                        value: _vm.data.pitcherResult.save,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.data.pitcherResult,
+                                            "save",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "data.pitcherResult.save"
+                                      }
+                                    })
+                                  : _vm._e()
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              [
+                                _c("input-component", {
+                                  attrs: { label: "", errors: _vm.errors.name },
+                                  model: {
+                                    value:
+                                      _vm.data.pitcherResult.jiseki[
+                                        pitcher.player.id
+                                      ],
+                                    callback: function($$v) {
+                                      _vm.$set(
+                                        _vm.data.pitcherResult.jiseki,
+                                        pitcher.player.id,
+                                        $$v
+                                      )
                                     },
-                                    model: {
-                                      value: _vm.data.pitcherResult.lose,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.data.pitcherResult,
-                                          "lose",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "data.pitcherResult.lose"
-                                    }
-                                  })
-                                : _vm._e()
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            [
-                              _c("checkbox-component", {
-                                attrs: {
-                                  label: "",
-                                  errors: _vm.errors.regular_flag
-                                },
-                                model: {
-                                  value:
-                                    _vm.data.pitcherResult.hold[
-                                      pitcher.player.id
-                                    ],
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.data.pitcherResult.hold,
-                                      pitcher.player.id,
-                                      $$v
-                                    )
-                                  },
-                                  expression:
-                                    "data.pitcherResult.hold[pitcher.player.id]"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            [
-                              _vm.gameData.home_point >
-                              _vm.gameData.visitor_point
-                                ? _c("radio-component", {
-                                    attrs: {
-                                      label: "",
-                                      errors: _vm.errors.regular_flag,
-                                      name: "save",
-                                      radio_value: pitcher.player.id
-                                    },
-                                    model: {
-                                      value: _vm.data.pitcherResult.save,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.data.pitcherResult,
-                                          "save",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "data.pitcherResult.save"
-                                    }
-                                  })
-                                : _vm._e()
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            [
-                              _c("input-component", {
-                                attrs: { label: "", errors: _vm.errors.name },
-                                model: {
-                                  value:
-                                    _vm.data.pitcherResult.jiseki[
-                                      pitcher.player.id
-                                    ],
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.data.pitcherResult.jiseki,
-                                      pitcher.player.id,
-                                      $$v
-                                    )
-                                  },
-                                  expression:
-                                    "data.pitcherResult.jiseki[pitcher.player.id]"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ])
-                      })
-                    ],
-                    2
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-sm-4" }, [
-                      _c(
-                        "form",
-                        {
-                          on: {
-                            submit: function($event) {
-                              $event.preventDefault()
-                              return _vm.submit(_vm.gameEndSubmitPath)
-                            }
-                          }
-                        },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-primary",
-                              attrs: { type: "submit" }
-                            },
-                            [_vm._v("試合終了")]
-                          )
-                        ]
-                      )
-                    ]),
+                                    expression:
+                                      "data.pitcherResult.jiseki[pitcher.player.id]"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ])
+                        })
+                      ],
+                      2
+                    ),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-sm-3" }, [
-                      _c(
-                        "form",
-                        {
-                          on: {
-                            submit: function($event) {
-                              $event.preventDefault()
-                              return _vm.submit(_vm.backSubmitPath)
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-sm-4" }, [
+                        _c(
+                          "form",
+                          {
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                return _vm.submit(_vm.gameEndSubmitPath)
+                              }
                             }
-                          }
-                        },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-primary",
-                              attrs: { type: "submit" }
-                            },
-                            [_vm._v("戻る")]
-                          )
-                        ]
-                      )
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary",
+                                attrs: {
+                                  type: "submit",
+                                  disabled: _vm.disabled
+                                }
+                              },
+                              [_vm._v("試合終了")]
+                            )
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-3" }, [
+                        _c(
+                          "form",
+                          {
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                return _vm.submit(_vm.backSubmitPath)
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary",
+                                attrs: {
+                                  type: "submit",
+                                  disabled: _vm.disabled
+                                }
+                              },
+                              [_vm._v("戻る")]
+                            )
+                          ]
+                        )
+                      ])
                     ])
                   ])
-                ])
-              : _vm._e()
-          ]),
+                : _vm._e()
+            ],
+            2
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-3 clearfix" }, [
             _c(
