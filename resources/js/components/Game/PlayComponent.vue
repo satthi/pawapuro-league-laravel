@@ -55,12 +55,12 @@
                 <div v-if="gameData.board_status == enums.GameBoardStatus.STATUS_START.value">
                     <div class="row">
                         <div class="col-sm-3">
-                            <form v-on:submit.prevent="submit(playSubmitPath, {name: 'game.play', params: {gameId: gameId.toString() }})">
+                            <form v-on:submit.prevent="submit(gameStartSubmitPath)">
                                 <button type="submit" class="btn btn-primary">試合開始</button>
                             </form>
                         </div>
                         <div class="col-sm-3">
-                            <form v-on:submit.prevent="submit(backSubmitPath, {name: 'game.play', params: {gameId: gameId.toString() }})">
+                            <form v-on:submit.prevent="submit(backSubmitPath)">
                                 <button type="submit" class="btn btn-primary">戻る</button>
                             </form>
                         </div>
@@ -92,14 +92,19 @@
                         <div class="col-sm-1">
                         </div>
                         <div class="col-sm-2">
-                            <form v-on:submit.prevent="submit(playSubmitPath, {name: 'game.play', params: {gameId: gameId.toString() }})">
+                            <form v-on:submit.prevent="submit(playSubmitPath)">
                                 <button type="submit" class="btn btn-primary">登録</button>
                             </form>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
+                            <form v-on:submit.prevent="submit(pointOnlySubmitPath)">
+                                <button type="submit" class="btn btn-primary">点数のみ</button>
+                            </form>
                         </div>
                         <div class="col-sm-2">
-                            <form v-on:submit.prevent="submit(backSubmitPath, {name: 'game.play', params: {gameId: gameId.toString() }})">
+                        </div>
+                        <div class="col-sm-2">
+                            <form v-on:submit.prevent="submit(backSubmitPath)">
                                 <button type="submit" class="btn btn-primary">戻る</button>
                             </form>
                         </div>
@@ -111,12 +116,12 @@
                     <!-- イニング終了 -->
                     <div class="row">
                         <div class="col-sm-4">
-                            <form v-on:submit.prevent="submit(nextInningSubmitPath, {name: 'game.play', params: {gameId: gameId.toString() }})">
+                            <form v-on:submit.prevent="submit(nextInningSubmitPath)">
                                 <button type="submit" class="btn btn-primary">次のイニングへ</button>
                             </form>
                         </div>
                         <div class="col-sm-3">
-                            <form v-on:submit.prevent="submit(backSubmitPath, {name: 'game.play', params: {gameId: gameId.toString() }})">
+                            <form v-on:submit.prevent="submit(backSubmitPath)">
                                 <button type="submit" class="btn btn-primary">戻る</button>
                             </form>
                         </div>
@@ -186,12 +191,12 @@
                     </table>
                     <div class="row">
                         <div class="col-sm-4">
-                            <form v-on:submit.prevent="submit(gameEndSubmitPath, {name: 'game.play', params: {gameId: gameId.toString() }})">
+                            <form v-on:submit.prevent="submit(gameEndSubmitPath)">
                                 <button type="submit" class="btn btn-primary">試合終了</button>
                             </form>
                         </div>
                         <div class="col-sm-3">
-                            <form v-on:submit.prevent="submit(backSubmitPath, {name: 'game.play', params: {gameId: gameId.toString() }})">
+                            <form v-on:submit.prevent="submit(backSubmitPath)">
                                 <button type="submit" class="btn btn-primary">戻る</button>
                             </form>
                         </div>
@@ -216,7 +221,7 @@
                         <button class="btn btn-success">代走</button>
                     </router-link>
 
-                    <router-link v-bind:to="{name: 'game.steal', params: {gameId: gameId.toString(), teamType: 'home' }}" v-if="gameData.is_visitor_team_phpr">
+                    <router-link v-bind:to="{name: 'game.steal', params: {gameId: gameId.toString(), teamType: 'home' }}" v-if="gameData.is_home_team_phpr">
                         <button class="btn btn-success">盗塁</button>
                     </router-link>
 
@@ -242,8 +247,14 @@
         },
         mixins : [EnumsMixin],
         computed: {
+          gameStartSubmitPath() {
+            return '/api/games/save-game-start/' + this.gameId;
+          },
           playSubmitPath() {
             return '/api/games/save-play/' + this.gameId;
+          },
+          pointOnlySubmitPath() {
+            return '/api/games/save-point-only/' + this.gameId;
           },
           backSubmitPath() {
             return '/api/games/back-play/' + this.gameId;
@@ -321,7 +332,7 @@
 
                 this.data.out = this.resultData[resultId].out_count;
             },
-            submit(postPath, redirectRoute) {
+            submit(postPath) {
                 var postData = this.data;
                 postData['now_player_id'] = this.playData.now_player_id;
                 postData['now_pitcher_id'] = this.playData.now_pitcher_id;

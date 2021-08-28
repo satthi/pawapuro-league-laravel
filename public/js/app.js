@@ -3134,6 +3134,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -3151,8 +3156,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   mixins: [_mixins_enums_js__WEBPACK_IMPORTED_MODULE_4__.default],
   computed: {
+    gameStartSubmitPath: function gameStartSubmitPath() {
+      return '/api/games/save-game-start/' + this.gameId;
+    },
     playSubmitPath: function playSubmitPath() {
       return '/api/games/save-play/' + this.gameId;
+    },
+    pointOnlySubmitPath: function pointOnlySubmitPath() {
+      return '/api/games/save-point-only/' + this.gameId;
     },
     backSubmitPath: function backSubmitPath() {
       return '/api/games/back-play/' + this.gameId;
@@ -3235,7 +3246,7 @@ __webpack_require__.r(__webpack_exports__);
       this.data.selectedResult = resultId;
       this.data.out = this.resultData[resultId].out_count;
     },
-    submit: function submit(postPath, redirectRoute) {
+    submit: function submit(postPath) {
       var _this2 = this;
 
       var postData = this.data;
@@ -44274,10 +44285,7 @@ var render = function() {
                           on: {
                             submit: function($event) {
                               $event.preventDefault()
-                              _vm.submit(_vm.playSubmitPath, {
-                                name: "game.play",
-                                params: { gameId: _vm.gameId.toString() }
-                              })
+                              return _vm.submit(_vm.gameStartSubmitPath)
                             }
                           }
                         },
@@ -44301,10 +44309,7 @@ var render = function() {
                           on: {
                             submit: function($event) {
                               $event.preventDefault()
-                              _vm.submit(_vm.backSubmitPath, {
-                                name: "game.play",
-                                params: { gameId: _vm.gameId.toString() }
-                              })
+                              return _vm.submit(_vm.backSubmitPath)
                             }
                           }
                         },
@@ -44437,10 +44442,7 @@ var render = function() {
                             on: {
                               submit: function($event) {
                                 $event.preventDefault()
-                                _vm.submit(_vm.playSubmitPath, {
-                                  name: "game.play",
-                                  params: { gameId: _vm.gameId.toString() }
-                                })
+                                return _vm.submit(_vm.playSubmitPath)
                               }
                             }
                           },
@@ -44457,7 +44459,31 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-6" }),
+                      _c("div", { staticClass: "col-sm-4" }, [
+                        _c(
+                          "form",
+                          {
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                return _vm.submit(_vm.pointOnlySubmitPath)
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary",
+                                attrs: { type: "submit" }
+                              },
+                              [_vm._v("点数のみ")]
+                            )
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-2" }),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-sm-2" }, [
                         _c(
@@ -44466,10 +44492,7 @@ var render = function() {
                             on: {
                               submit: function($event) {
                                 $event.preventDefault()
-                                _vm.submit(_vm.backSubmitPath, {
-                                  name: "game.play",
-                                  params: { gameId: _vm.gameId.toString() }
-                                })
+                                return _vm.submit(_vm.backSubmitPath)
                               }
                             }
                           },
@@ -44501,10 +44524,7 @@ var render = function() {
                           on: {
                             submit: function($event) {
                               $event.preventDefault()
-                              _vm.submit(_vm.nextInningSubmitPath, {
-                                name: "game.play",
-                                params: { gameId: _vm.gameId.toString() }
-                              })
+                              return _vm.submit(_vm.nextInningSubmitPath)
                             }
                           }
                         },
@@ -44528,10 +44548,7 @@ var render = function() {
                           on: {
                             submit: function($event) {
                               $event.preventDefault()
-                              _vm.submit(_vm.backSubmitPath, {
-                                name: "game.play",
-                                params: { gameId: _vm.gameId.toString() }
-                              })
+                              return _vm.submit(_vm.backSubmitPath)
                             }
                           }
                         },
@@ -44879,10 +44896,7 @@ var render = function() {
                           on: {
                             submit: function($event) {
                               $event.preventDefault()
-                              _vm.submit(_vm.gameEndSubmitPath, {
-                                name: "game.play",
-                                params: { gameId: _vm.gameId.toString() }
-                              })
+                              return _vm.submit(_vm.gameEndSubmitPath)
                             }
                           }
                         },
@@ -44906,10 +44920,7 @@ var render = function() {
                           on: {
                             submit: function($event) {
                               $event.preventDefault()
-                              _vm.submit(_vm.backSubmitPath, {
-                                name: "game.play",
-                                params: { gameId: _vm.gameId.toString() }
-                              })
+                              return _vm.submit(_vm.backSubmitPath)
                             }
                           }
                         },
@@ -45001,7 +45012,7 @@ var render = function() {
                     )
                   : _vm._e(),
                 _vm._v(" "),
-                _vm.gameData.is_visitor_team_phpr
+                _vm.gameData.is_home_team_phpr
                   ? _c(
                       "router-link",
                       {

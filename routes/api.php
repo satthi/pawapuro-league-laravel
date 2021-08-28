@@ -58,7 +58,9 @@ Route::get('/games/get-stamen-initial-data/{game}/{stamenType}', 'App\Http\Contr
 Route::post('/games/stamen-edit/{game}/{stamenType}', 'App\Http\Controllers\GameController@stamenEdit');
 Route::get('/games/get-stamen/{game}', 'App\Http\Controllers\GameController@getStamen');
 Route::get('/games/get-play/{game}', 'App\Http\Controllers\GameController@getPlay');
+Route::post('/games/save-game-start/{game}', 'App\Http\Controllers\GameController@saveGameStart');
 Route::post('/games/save-play/{game}', 'App\Http\Controllers\GameController@savePlay');
+Route::post('/games/save-point-only/{game}', 'App\Http\Controllers\GameController@savePointOnly');
 Route::post('/games/back-play/{game}', 'App\Http\Controllers\GameController@backPlay');
 Route::post('/games/next-inning-play/{game}', 'App\Http\Controllers\GameController@nextInningPlay');
 Route::post('/games/game-end-play/{game}', 'App\Http\Controllers\GameController@gameEndPlay');

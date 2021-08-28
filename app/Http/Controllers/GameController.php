@@ -144,19 +144,55 @@ class GameController extends Controller
             ->keyBy('id');
     }
 
+   public function saveGameStart(Request $request, Game $game)
+   {
+        // スタメンデータのコピー
+        (new Play())->setStamen($game);
+        $game->gameUpdate($game);
+   }
 
    public function savePlay(Request $request, Game $game)
     {
         $requestData = $request->all();
 
-        // requestは後で調整するかも
-        if (is_null($game->inning)) {
-            // スタメンデータのコピー
-            (new Play())->setStamen($game);
-        } elseif (!is_null($requestData['selectedResult'])) {
-            // 打撃成績の保存
-            (new Play())->saveDageki($requestData, $game);
+        // 打撃成績の保存
+        (new Play())->saveDageki($requestData, $game);
+        $game->gameUpdate($game);
+    }
+
+    public function savePointOnly(Request $request, Game $game)
+    {
+        $omoteura = $game->inning % 10;
+        if ($omoteura == 1) {
+            // 表
+            $teamType = 'visitor_team';
+            $teamId = $game->visitor_team_id;
+        } elseif ($omoteura == 2) {
+            $teamType = 'home_team';
+            $teamId = $game->home_team_id;
+        } else {
+            // エラー
         }
+
+        $requestData = $request->all();
+        $playModel = new Play();
+        $member = $playModel->getMember($game);
+        $nowPitcherId = $playModel->getNowPitcherId($member, $game);
+
+        Play::create([
+            'game_id' => $game->id,
+            'team_id' => $teamId,
+            'inning' => $game->inning,
+            'type' => PlayType::TYPE_POINT_ONLY,
+            'result_id' => null,
+            'out_count' => $requestData['out'],
+            'point_count' => $requestData['point'],
+            'player_id' => null,
+            'pitcher_id' => $nowPitcherId,
+            'dajun' => null,
+            'position' => null,
+        ]);
+
         $game->gameUpdate($game);
     }
 
@@ -230,9 +266,12 @@ class GameController extends Controller
 
     public function saveStealSuccess(Request $request, Game $game)
     {
+        $playModel = new Play();
         $requestData = $request->all();
         $stealPlayerId = $requestData['steal_player_id'];
         $stealPlayer = Player::find($stealPlayerId);
+        $member = $playModel->getMember($game);
+        $nowPitcherId = $playModel->getNowPitcherId($member, $game);
 
         // 盗塁成功
         Play::create([
@@ -244,7 +283,7 @@ class GameController extends Controller
             'out_count' => 0,
             'point_count' => null,
             'player_id' => $stealPlayer->id,
-            'pitcher_id' => null,
+            'pitcher_id' => $nowPitcherId,
             'dajun' => null,
             'position' => null,
         ]);
@@ -253,9 +292,12 @@ class GameController extends Controller
 
     public function saveStealFail(Request $request, Game $game)
     {
+        $playModel = new Play();
         $requestData = $request->all();
         $stealPlayerId = $requestData['steal_player_id'];
         $stealPlayer = Player::find($stealPlayerId);
+        $member = $playModel->getMember($game);
+        $nowPitcherId = $playModel->getNowPitcherId($member, $game);
 
         // 盗塁失敗
         Play::create([
@@ -267,7 +309,7 @@ class GameController extends Controller
             'out_count' => 1,
             'point_count' => null,
             'player_id' => $stealPlayer->id,
-            'pitcher_id' => null,
+            'pitcher_id' => $nowPitcherId,
             'dajun' => null,
             'position' => null,
         ]);
