@@ -1,7 +1,7 @@
 <template>
     <div class="container" id="play_wrap" v-if="Object.keys(enums).length">
         <h2>{{ gameData.date }} {{ gameData.home_team.name }} VS {{ gameData.visitor_team.name }}</h2>
-{{ data.pitcherResult }}
+
         <div class="row">
             <div class="col-sm-3">
                 <table class="table table-hover stamen">
@@ -10,6 +10,20 @@
                         <td>{{ member.player.name_short }}</td>
                     </tr>
                 </table>
+                <div class="clearfix">
+                    <router-link v-bind:to="{name: 'game.ph', params: {gameId: gameId.toString(), teamType: 'visitor' }}" v-if="gameData.is_visitor_team_phpr">
+                        <button class="btn btn-success">代打</button>
+                    </router-link>
+
+                    <router-link v-bind:to="{name: 'game.pr', params: {gameId: gameId.toString(), teamType: 'visitor' }}" v-if="gameData.is_visitor_team_phpr">
+                        <button class="btn btn-success">代走</button>
+                    </router-link>
+
+                    <router-link v-bind:to="{name: 'game.position', params: {gameId: gameId.toString(), teamType: 'visitor' }}" v-if="gameData.is_visitor_team_position">
+                        <button class="btn btn-success">守備</button>
+                    </router-link>
+                </div>
+
             </div>
             <div class="col-sm-6">
                 <!-- スコアボード -->
@@ -188,6 +202,20 @@
                         <td>{{ member.player.name_short }}</td>
                     </tr>
                 </table>
+
+                <div class="clearfix">
+                    <router-link v-bind:to="{name: 'game.ph', params: {gameId: gameId.toString(), teamType: 'home' }}" v-if="gameData.is_home_team_phpr">
+                        <button class="btn btn-success">代打</button>
+                    </router-link>
+
+                    <router-link v-bind:to="{name: 'game.pr', params: {gameId: gameId.toString(), teamType: 'home' }}" v-if="gameData.is_home_team_phpr">
+                        <button class="btn btn-success">代走</button>
+                    </router-link>
+
+                    <router-link v-bind:to="{name: 'game.position', params: {gameId: gameId.toString(), teamType: 'home' }}" v-if="gameData.is_home_team_position">
+                        <button class="btn btn-success">守備</button>
+                    </router-link>
+                </div>
             </div>
         </div>
     </div>
@@ -265,6 +293,7 @@
                             // 試合終了済み
                             this.$router.push({name: 'game.result', params: {gameId: this.gameId.toString() }});
                         } else {
+                            this.gameData = res.data;
                             axios.get('/api/games/get-play/' + this.gameId)
                                 .then((res) => {
                                     this.playData = res.data;

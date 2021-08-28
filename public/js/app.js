@@ -2622,6 +2622,136 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PinchHitterComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PinchHitterComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/enums.js */ "./resources/js/mixins/enums.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    gameId: String,
+    teamType: String
+  },
+  mixins: [_mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__.default],
+  computed: {
+    submitPath: function submitPath() {
+      return '/api/games/save-pinch-hitter/' + this.gameId + '/' + this.teamType;
+    }
+  },
+  data: function data() {
+    return {
+      gameData: {
+        'home_team': {},
+        'visitor_team': {}
+      },
+      playData: {
+        'member': {
+          'home_team': {},
+          'visitor_team': {}
+        },
+        'now_player_id': null,
+        'now_pitcher_id': null,
+        'inning_info': {
+          inning: {}
+        },
+        'pithcer_info': {
+          'home_team': {},
+          'visitor_team': {}
+        }
+      },
+      data: {},
+      playerClicked: null
+    };
+  },
+  methods: {
+    initial: function initial() {
+      var _this = this;
+
+      axios.get('/api/games/view/' + this.gameId).then(function (res) {
+        _this.gameData = res.data;
+        console.log(_this.gameData);
+      });
+      axios.get('/api/games/get-play/' + this.gameId).then(function (res) {
+        _this.playData = res.data;
+      });
+    },
+    // playerClick
+    playerClick: function playerClick(event) {
+      // player選択中を外す
+      var clickKey = event.target.dataset.key;
+      this.playerClicked = clickKey;
+      this.data.pinch_hitter_id = clickKey;
+    },
+    submit: function submit(postPath, redirectRoute) {
+      var _this2 = this;
+
+      var postData = this.data;
+      axios.post(postPath, this.data).then(function (res) {
+        _this2.$router.push(redirectRoute);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.initial();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PlayComponent.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PlayComponent.vue?vue&type=script&lang=js& ***!
@@ -2638,6 +2768,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_form_SelectComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/form/SelectComponent */ "./resources/js/components/common/form/SelectComponent.vue");
 /* harmony import */ var _common_form_RadioComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/form/RadioComponent */ "./resources/js/components/common/form/RadioComponent.vue");
 /* harmony import */ var _mixins_enums_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../mixins/enums.js */ "./resources/js/mixins/enums.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2917,6 +3075,7 @@ __webpack_require__.r(__webpack_exports__);
             }
           });
         } else {
+          _this.gameData = res.data;
           axios.get('/api/games/get-play/' + _this.gameId).then(function (res) {
             _this.playData = res.data;
           });
@@ -3860,7 +4019,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _components_HeaderComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/HeaderComponent */ "./resources/js/components/HeaderComponent.vue");
 /* harmony import */ var _components_BaseTeam_IndexComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/BaseTeam/IndexComponent */ "./resources/js/components/BaseTeam/IndexComponent.vue");
 /* harmony import */ var _components_BaseTeam_AddComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/BaseTeam/AddComponent */ "./resources/js/components/BaseTeam/AddComponent.vue");
@@ -3880,11 +4039,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Game_StamenEditComponent__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Game/StamenEditComponent */ "./resources/js/components/Game/StamenEditComponent.vue");
 /* harmony import */ var _components_Game_PlayComponent__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Game/PlayComponent */ "./resources/js/components/Game/PlayComponent.vue");
 /* harmony import */ var _components_Game_ResultComponent__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Game/ResultComponent */ "./resources/js/components/Game/ResultComponent.vue");
+/* harmony import */ var _components_Game_PinchHitterComponent__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/Game/PinchHitterComponent */ "./resources/js/components/Game/PinchHitterComponent.vue");
+/* harmony import */ var _components_Game_PinchRunnerComponent__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/Game/PinchRunnerComponent */ "./resources/js/components/Game/PinchRunnerComponent.vue");
+/* harmony import */ var _components_Game_PositionChangeComponent__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/Game/PositionChangeComponent */ "./resources/js/components/Game/PositionChangeComponent.vue");
 
  // import TaskListComponent from "./components/TaskListComponent";
 // import TaskShowComponent from "./components/TaskShowComponent";
 // import TaskCreateComponent from "./components/TaskCreateComponent";
 // import TaskEditComponent from "./components/TaskEditComponent";
+
+
+
 
 
 
@@ -3913,8 +4078,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default;
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_19__.default);
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_19__.default({
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_22__.default);
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_22__.default({
   mode: 'history',
   routes: [// {
   //     path: '/tasks',
@@ -4030,6 +4195,21 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_19__.default({
     path: '/games/:gameId/result',
     name: 'game.result',
     component: _components_Game_ResultComponent__WEBPACK_IMPORTED_MODULE_18__.default,
+    props: true
+  }, {
+    path: '/games/:gameId/:teamType/ph',
+    name: 'game.ph',
+    component: _components_Game_PinchHitterComponent__WEBPACK_IMPORTED_MODULE_19__.default,
+    props: true
+  }, {
+    path: '/games/:gameId/:teamType/pr',
+    name: 'game.pr',
+    component: _components_Game_PinchRunnerComponent__WEBPACK_IMPORTED_MODULE_20__.default,
+    props: true
+  }, {
+    path: '/games/:gameId/:teamType/position',
+    name: 'game.position',
+    component: _components_Game_PositionChangeComponent__WEBPACK_IMPORTED_MODULE_21__.default,
     props: true
   }]
 });
@@ -39970,6 +40150,82 @@ component.options.__file = "resources/js/components/Game/IndexComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Game/PinchHitterComponent.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/Game/PinchHitterComponent.vue ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _PinchHitterComponent_vue_vue_type_template_id_c4bbe3d2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PinchHitterComponent.vue?vue&type=template&id=c4bbe3d2& */ "./resources/js/components/Game/PinchHitterComponent.vue?vue&type=template&id=c4bbe3d2&");
+/* harmony import */ var _PinchHitterComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PinchHitterComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Game/PinchHitterComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _PinchHitterComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _PinchHitterComponent_vue_vue_type_template_id_c4bbe3d2___WEBPACK_IMPORTED_MODULE_0__.render,
+  _PinchHitterComponent_vue_vue_type_template_id_c4bbe3d2___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Game/PinchHitterComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Game/PinchRunnerComponent.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/Game/PinchRunnerComponent.vue ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _PinchRunnerComponent_vue_vue_type_template_id_a08bdc56___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PinchRunnerComponent.vue?vue&type=template&id=a08bdc56& */ "./resources/js/components/Game/PinchRunnerComponent.vue?vue&type=template&id=a08bdc56&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__.default)(
+  script,
+  _PinchRunnerComponent_vue_vue_type_template_id_a08bdc56___WEBPACK_IMPORTED_MODULE_0__.render,
+  _PinchRunnerComponent_vue_vue_type_template_id_a08bdc56___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Game/PinchRunnerComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Game/PlayComponent.vue":
 /*!********************************************************!*\
   !*** ./resources/js/components/Game/PlayComponent.vue ***!
@@ -40005,6 +40261,43 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/js/components/Game/PlayComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Game/PositionChangeComponent.vue":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/Game/PositionChangeComponent.vue ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _PositionChangeComponent_vue_vue_type_template_id_315e51f2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PositionChangeComponent.vue?vue&type=template&id=315e51f2& */ "./resources/js/components/Game/PositionChangeComponent.vue?vue&type=template&id=315e51f2&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__.default)(
+  script,
+  _PositionChangeComponent_vue_vue_type_template_id_315e51f2___WEBPACK_IMPORTED_MODULE_0__.render,
+  _PositionChangeComponent_vue_vue_type_template_id_315e51f2___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Game/PositionChangeComponent.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -40713,6 +41006,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Game/PinchHitterComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/Game/PinchHitterComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PinchHitterComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PinchHitterComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PinchHitterComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PinchHitterComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Game/PlayComponent.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************!*\
   !*** ./resources/js/components/Game/PlayComponent.vue?vue&type=script&lang=js& ***!
@@ -41107,6 +41416,40 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Game/PinchHitterComponent.vue?vue&type=template&id=c4bbe3d2&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/Game/PinchHitterComponent.vue?vue&type=template&id=c4bbe3d2& ***!
+  \**********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PinchHitterComponent_vue_vue_type_template_id_c4bbe3d2___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PinchHitterComponent_vue_vue_type_template_id_c4bbe3d2___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PinchHitterComponent_vue_vue_type_template_id_c4bbe3d2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PinchHitterComponent.vue?vue&type=template&id=c4bbe3d2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PinchHitterComponent.vue?vue&type=template&id=c4bbe3d2&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Game/PinchRunnerComponent.vue?vue&type=template&id=a08bdc56&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/Game/PinchRunnerComponent.vue?vue&type=template&id=a08bdc56& ***!
+  \**********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PinchRunnerComponent_vue_vue_type_template_id_a08bdc56___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PinchRunnerComponent_vue_vue_type_template_id_a08bdc56___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PinchRunnerComponent_vue_vue_type_template_id_a08bdc56___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PinchRunnerComponent.vue?vue&type=template&id=a08bdc56& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PinchRunnerComponent.vue?vue&type=template&id=a08bdc56&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Game/PlayComponent.vue?vue&type=template&id=11b47057&":
 /*!***************************************************************************************!*\
   !*** ./resources/js/components/Game/PlayComponent.vue?vue&type=template&id=11b47057& ***!
@@ -41120,6 +41463,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayComponent_vue_vue_type_template_id_11b47057___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayComponent_vue_vue_type_template_id_11b47057___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PlayComponent.vue?vue&type=template&id=11b47057& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PlayComponent.vue?vue&type=template&id=11b47057&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Game/PositionChangeComponent.vue?vue&type=template&id=315e51f2&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/Game/PositionChangeComponent.vue?vue&type=template&id=315e51f2& ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PositionChangeComponent_vue_vue_type_template_id_315e51f2___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PositionChangeComponent_vue_vue_type_template_id_315e51f2___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PositionChangeComponent_vue_vue_type_template_id_315e51f2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PositionChangeComponent.vue?vue&type=template&id=315e51f2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PositionChangeComponent.vue?vue&type=template&id=315e51f2&");
 
 
 /***/ }),
@@ -42793,6 +43153,230 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PinchHitterComponent.vue?vue&type=template&id=c4bbe3d2&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PinchHitterComponent.vue?vue&type=template&id=c4bbe3d2& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return Object.keys(_vm.enums).length
+    ? _c("div", { staticClass: "container", attrs: { id: "play_wrap" } }, [
+        _c("h2", [
+          _vm._v(
+            _vm._s(_vm.gameData.date) +
+              " " +
+              _vm._s(_vm.gameData.home_team.name) +
+              " VS " +
+              _vm._s(_vm.gameData.visitor_team.name)
+          )
+        ]),
+        _vm._v(" "),
+        _c("h3", [
+          _vm._v(
+            _vm._s(
+              _vm.teamType == "home"
+                ? _vm.gameData.home_team.name
+                : _vm.gameData.visitor_team.name
+            ) + " 代打設定"
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-3" }, [
+            _vm.teamType == "visitor"
+              ? _c(
+                  "table",
+                  { staticClass: "table table-hover stamen" },
+                  _vm._l(this.playData.member.visitor_team, function(
+                    member,
+                    dajun
+                  ) {
+                    return _c("tr", [
+                      _c(
+                        "td",
+                        {
+                          class: {
+                            member_selected:
+                              member.player.id == _vm.playData.now_player_id
+                          }
+                        },
+                        [_vm._v(_vm._s(member.position.text))]
+                      ),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(member.player.name_short))])
+                    ])
+                  }),
+                  0
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.teamType == "home"
+              ? _c(
+                  "table",
+                  { staticClass: "table table-hover stamen" },
+                  _vm._l(this.playData.member.visitor_team, function(
+                    member,
+                    dajun
+                  ) {
+                    return _c("tr", [
+                      _c(
+                        "td",
+                        {
+                          class: {
+                            member_selected:
+                              member.player.id == _vm.playData.now_player_id
+                          }
+                        },
+                        [_vm._v(_vm._s(member.position.text))]
+                      ),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(member.player.name_short))])
+                    ])
+                  }),
+                  0
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    _vm.submit(_vm.submitPath, {
+                      name: "game.play",
+                      params: { gameId: _vm.gameId.toString() }
+                    })
+                  }
+                }
+              },
+              [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+                  [_vm._v("代打登録")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: {
+                        name: "game.play",
+                        params: { gameId: _vm.gameId.toString() }
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "button",
+                      { staticClass: "btn btn-success float-right" },
+                      [_vm._v("一覧に戻る")]
+                    )
+                  ]
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-1" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3 hikae_waku" }, [
+            _vm.teamType == "visitor"
+              ? _c(
+                  "table",
+                  { staticClass: "table table-hover" },
+                  _vm._l(this.playData.member.visitor_team_hikae, function(
+                    hikae,
+                    playerKey
+                  ) {
+                    return _c("tr", [
+                      _c(
+                        "td",
+                        {
+                          class: { selected: _vm.playerClicked == hikae.id },
+                          attrs: { "data-key": hikae.id },
+                          on: { click: _vm.playerClick }
+                        },
+                        [_vm._v(_vm._s(hikae.name))]
+                      )
+                    ])
+                  }),
+                  0
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.teamType == "home"
+              ? _c(
+                  "table",
+                  { staticClass: "table table-hover" },
+                  _vm._l(this.playData.member.home_team_hikae, function(
+                    hikae,
+                    playerKey
+                  ) {
+                    return _c("tr", [
+                      _c(
+                        "td",
+                        {
+                          class: { selected: _vm.playerClicked == hikae.id },
+                          attrs: { "data-key": hikae.id },
+                          on: { click: _vm.playerClick }
+                        },
+                        [_vm._v(_vm._s(hikae.name))]
+                      )
+                    ])
+                  }),
+                  0
+                )
+              : _vm._e()
+          ])
+        ])
+      ])
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PinchRunnerComponent.vue?vue&type=template&id=a08bdc56&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PinchRunnerComponent.vue?vue&type=template&id=a08bdc56& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("代走")])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PlayComponent.vue?vue&type=template&id=11b47057&":
 /*!******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PlayComponent.vue?vue&type=template&id=11b47057& ***!
@@ -42820,7 +43404,7 @@ var render = function() {
               _vm._s(_vm.gameData.visitor_team.name)
           )
         ]),
-        _vm._v("\n" + _vm._s(_vm.data.pitcherResult) + "\n        "),
+        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-sm-3" }, [
             _c(
@@ -42846,6 +43430,79 @@ var render = function() {
                 ])
               }),
               0
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "clearfix" },
+              [
+                _vm.gameData.is_visitor_team_phpr
+                  ? _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "game.ph",
+                            params: {
+                              gameId: _vm.gameId.toString(),
+                              teamType: "visitor"
+                            }
+                          }
+                        }
+                      },
+                      [
+                        _c("button", { staticClass: "btn btn-success" }, [
+                          _vm._v("代打")
+                        ])
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.gameData.is_visitor_team_phpr
+                  ? _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "game.pr",
+                            params: {
+                              gameId: _vm.gameId.toString(),
+                              teamType: "visitor"
+                            }
+                          }
+                        }
+                      },
+                      [
+                        _c("button", { staticClass: "btn btn-success" }, [
+                          _vm._v("代走")
+                        ])
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.gameData.is_visitor_team_position
+                  ? _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "game.position",
+                            params: {
+                              gameId: _vm.gameId.toString(),
+                              teamType: "visitor"
+                            }
+                          }
+                        }
+                      },
+                      [
+                        _c("button", { staticClass: "btn btn-success" }, [
+                          _vm._v("守備")
+                        ])
+                      ]
+                    )
+                  : _vm._e()
+              ],
+              1
             )
           ]),
           _vm._v(" "),
@@ -43058,9 +43715,9 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "col-sm-3" }, [
                       _vm._v(
-                        "\n                            " +
+                        "\n                        " +
                           _vm._s(_vm.gameData.out) +
-                          "アウト\n                        "
+                          "アウト\n                    "
                       )
                     ])
                   ]),
@@ -43637,6 +44294,79 @@ var render = function() {
                 ])
               }),
               0
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "clearfix" },
+              [
+                _vm.gameData.is_home_team_phpr
+                  ? _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "game.ph",
+                            params: {
+                              gameId: _vm.gameId.toString(),
+                              teamType: "home"
+                            }
+                          }
+                        }
+                      },
+                      [
+                        _c("button", { staticClass: "btn btn-success" }, [
+                          _vm._v("代打")
+                        ])
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.gameData.is_home_team_phpr
+                  ? _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "game.pr",
+                            params: {
+                              gameId: _vm.gameId.toString(),
+                              teamType: "home"
+                            }
+                          }
+                        }
+                      },
+                      [
+                        _c("button", { staticClass: "btn btn-success" }, [
+                          _vm._v("代走")
+                        ])
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.gameData.is_home_team_position
+                  ? _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "game.position",
+                            params: {
+                              gameId: _vm.gameId.toString(),
+                              teamType: "home"
+                            }
+                          }
+                        }
+                      },
+                      [
+                        _c("button", { staticClass: "btn btn-success" }, [
+                          _vm._v("守備")
+                        ])
+                      ]
+                    )
+                  : _vm._e()
+              ],
+              1
             )
           ])
         ])
@@ -43681,6 +44411,31 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PositionChangeComponent.vue?vue&type=template&id=315e51f2&":
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PositionChangeComponent.vue?vue&type=template&id=315e51f2& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("守備変更")])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

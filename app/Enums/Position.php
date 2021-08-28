@@ -16,6 +16,7 @@ final class Position extends Enum
     const POSITION_CF = 8;
     const POSITION_RF = 9;
     const POSITION_DH = 10;
+    const POSITION_PH = 21;
 
     /**
      * Get the description for an enum value
@@ -46,6 +47,8 @@ final class Position extends Enum
                 return '右';
             case self::POSITION_DH:
                 return 'DH';
+            case self::POSITION_PH:
+                return 'H';
             default:
                 return self::getKey($value);
         }

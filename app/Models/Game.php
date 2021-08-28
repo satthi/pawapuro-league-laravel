@@ -27,6 +27,10 @@ class Game extends Model
 
     protected $appends = [
         'board_status',
+        'is_home_team_phpr',
+        'is_home_team_position',
+        'is_visitor_team_phpr',
+        'is_visitor_team_position',
     ];
 
     ### relation
@@ -61,7 +65,6 @@ class Game extends Model
     }
 
     ## attribute
-
     /**
      * playのボードステータス
      *
@@ -85,6 +88,52 @@ class Game extends Model
             // 試合中
             return GameBoardStatus::STATUS_GAME;
         }
+    }
+        // 'is_home_team_phpr',
+        // 'is_home_team_position',
+        // 'is_visitor_team_phpr',
+        // 'is_visitor_team_position',
+
+    public function getIsHomeTeamPhprAttribute($value)
+    {
+        // 試合中以外はない
+        if ($this->getBoardStatusAttribute($value) !== GameBoardStatus::STATUS_GAME) {
+            return false;
+        }
+        // 裏で3アウト以外
+        return $this->inning % 10 == 2 && $this->out < 3;
+    }
+    public function getIsHomeTeamPositionAttribute($value)
+    {
+        // 試合中/イニング終了時以外はない
+        if ($this->getBoardStatusAttribute($value) !== GameBoardStatus::STATUS_GAME && $this->getBoardStatusAttribute($value) !== GameBoardStatus::STATUS_INNING_END) {
+            return false;
+        }
+        // 表で3アウト以外
+        // 裏で3アウト
+        return
+            ($this->inning % 10 == 1 && $this->out < 3) ||
+            ($this->inning % 10 == 2 && $this->out === 3);
+
+    }
+    public function getIsVisitorTeamPhprAttribute($value)
+    {
+        // 試合中以外はない
+        if ($this->getBoardStatusAttribute($value) !== GameBoardStatus::STATUS_GAME) {
+            return false;
+        }
+        // 表で3アウト以内
+        return $this->inning % 10 == 1 && $this->out < 3;
+    }
+    public function getIsVisitorTeamPositionAttribute($value)
+    {
+        // 試合中/イニング終了時以外はない
+        if ($this->getBoardStatusAttribute($value) !== GameBoardStatus::STATUS_GAME && $this->getBoardStatusAttribute($value) !== GameBoardStatus::STATUS_INNING_END) {
+            return false;
+        }
+        return
+            ($this->inning % 10 == 2 && $this->out < 3) ||
+            ($this->inning % 10 == 1 && $this->out === 3);
     }
 
     private function isGameEnd()

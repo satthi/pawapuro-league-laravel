@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Enums\GameBoardStatus;
+use App\Enums\PlayType;
+use App\Enums\Position;
 use App\Http\Requests\GameAutoRequest;
 use App\Http\Requests\GameProbablePitcherRequest;
 use App\Http\Requests\GameRequest;
@@ -91,10 +93,12 @@ class GameController extends Controller
                 'member' => [
                     'home_team' => $stamen['home_team']['stamen'],
                     'visitor_team' => $stamen['visitor_team']['stamen'],
+                    'home_team_hikae' => $stamen['home_team']['hikae'],
+                    'visitor_team_hikae' => $stamen['visitor_team']['hikae'],
                 ],
                 'now_player_id' => null,
                 'now_pitcher_id' => null,
-                'inning_info' => [],
+                'inning_info' => $playModel->getInningInfo($game),
                 'pithcer_info' => [],
             ];
         } elseif ($game->board_status == GameBoardStatus::STATUS_GAME) {
@@ -154,6 +158,40 @@ class GameController extends Controller
             (new Play())->saveDageki($requestData, $game);
         }
         $game->gameUpdate($game);
+    }
+
+    public function savePinchHitter(Request $request, Game $game, string $teamType)
+    {
+        $requestData = $request->all();
+        $playModel = new Play();
+        $member = $playModel->getMember($game);
+        $nowPlayerId = $playModel->getNowPlayerId($member, $game);
+        $pinchHitterInfo = Player::find($requestData['pinch_hitter_id']);
+        $inningInfo = $playModel->getInningInfo($game);
+
+        $memberLists = $teamType == 'home' ? $member['home_team'] : $member['visitor_team'];
+        foreach ($memberLists as $memberList) {
+            if ($memberList['player']['id'] == $nowPlayerId) {
+                // 代打処理
+                Play::create([
+                    'game_id' => $game->id,
+                    'team_id' => $pinchHitterInfo->team_id,
+                    'inning' => $game->inning,
+                    'type' => PlayType::TYPE_MEMBER_CHANGE,
+                    'result_id' => null,
+                    'out_count' => null,
+                    'point_count' => null,
+                    'player_id' => $pinchHitterInfo->id,
+                    'pitcher_id' => null,
+                    'dajun' => $memberList['dajun'],
+                    'position' => Position::POSITION_PH,
+                ]);
+
+                return;
+            }
+        }
+
+        // error
     }
 
    public function backPlay(Request $request, Game $game)

@@ -22,6 +22,9 @@ import GameProbablePitcherUpdateComponent from "./components/Game/ProbablePitche
 import GameStamenEditComponent from "./components/Game/StamenEditComponent";
 import GamePlayComponent from "./components/Game/PlayComponent";
 import GameResultComponent from "./components/Game/ResultComponent";
+import GamePinchHitterComponent from "./components/Game/PinchHitterComponent";
+import GamePinchRunnerComponent from "./components/Game/PinchRunnerComponent";
+import GamePositionChangeComponent from "./components/Game/PositionChangeComponent";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -169,6 +172,24 @@ const router = new VueRouter({
             path: '/games/:gameId/result',
             name: 'game.result',
             component: GameResultComponent,
+            props: true
+        },
+        {
+            path: '/games/:gameId/:teamType/ph',
+            name: 'game.ph',
+            component: GamePinchHitterComponent,
+            props: true
+        },
+        {
+            path: '/games/:gameId/:teamType/pr',
+            name: 'game.pr',
+            component: GamePinchRunnerComponent,
+            props: true
+        },
+        {
+            path: '/games/:gameId/:teamType/position',
+            name: 'game.position',
+            component: GamePositionChangeComponent,
             props: true
         },
 

@@ -89,8 +89,11 @@ class Play extends Model
             ];
         }
 
+        $memberIds = [];
         $member = [];
         foreach ($playForMembers as $playForMember) {
+            $memberIds[] = $playForMember->player->id;// 一度でも登場したことがある人をセットする
+
             $teamType = $playForMember->team_id == $game->home_team_id ? 'home_team' : 'visitor_team';
             // 上書きしていくことで最新のメンバーを設定
             $member[$teamType][$playForMember->dajun] = [
@@ -99,6 +102,13 @@ class Play extends Model
                 'player' => $playForMember->player->toArray(),
             ];
         }
+
+        $member['home_team_hikae'] = Player::where('team_id', $game->home_team_id)
+            ->whereNotIn('id', $memberIds)
+            ->get();
+        $member['visitor_team_hikae'] = Player::where('team_id', $game->visitor_team_id)
+            ->whereNotIn('id', $memberIds)
+            ->get();
 
         return $member;
     }
