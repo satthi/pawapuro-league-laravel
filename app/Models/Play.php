@@ -95,11 +95,13 @@ class Play extends Model
             $memberIds[] = $playForMember->player->id;// 一度でも登場したことがある人をセットする
 
             $teamType = $playForMember->team_id == $game->home_team_id ? 'home_team' : 'visitor_team';
+            $beforeBasePosition = $member[$teamType][$playForMember->dajun]['base_position'] ?? null;
             // 上書きしていくことで最新のメンバーを設定
             $member[$teamType][$playForMember->dajun] = [
                 'dajun' => $playForMember->dajun == 10 ? 'P' : (string)$playForMember->dajun,
                 'position' => $positionOptions[$playForMember->position],
                 'player' => $playForMember->player->toArray(),
+                'base_position' => $beforeBasePosition,
             ];
 
             // 代打/代走を除いてセットする
@@ -176,11 +178,9 @@ class Play extends Model
         $omoteura = $game->inning % 10;
         if ($omoteura == 1) {
             // 表
-            $teamType = 'visitor_team';
-            $teamId = $game->visitor_team_id;
-        } elseif ($omoteura == 2) {
             $teamType = 'home_team';
-            $teamId = $game->home_team_id;
+        } elseif ($omoteura == 2) {
+            $teamType = 'visitor_team';
         } else {
             // エラー
         }
@@ -358,6 +358,74 @@ class Play extends Model
         }
 
         return $pitcherInfo;
+    }
+
+    ## summary
+    public function getFielderSummary(Game $game, int $teamId)
+    {
+        $plays = $this->where('game_id', $game->id)
+            ->where('team_id', $teamId)
+            ->with('player')
+            ->with('result')
+            ->whereNotNull('player_id')
+            ->orderBy('dajun', 'ASC')
+            ->orderBy('id', 'ASC')
+            ->get();
+
+        // 試合のmaxの打席数で枠を確保しておく
+        $initialWaku = [];
+        $wakuCount = 0;
+        foreach ($plays as $play) {
+            if ($play->dajun != 1) {
+                break;
+            }
+            if ($play->type == PlayType::TYPE_DAGEKI_KEKKA) {
+                $wakuCount++;
+                $initialWaku[$wakuCount] = null;
+            }
+        }
+
+        $summary = [];
+        $nowDajun = 0;
+        $dasekiCount = 0;
+        foreach ($plays as $play) {
+
+            // if (!array_key_exists($play->dajun, $summary)) {
+            //     $summary[$play->dajun] = [];
+            // }
+            if (!array_key_exists($play->player_id, $summary)) {
+                $summary[$play->player_id] = [
+                    // positionをテキストで書く ⑤45みたいな感じで
+                    'position' => '',
+                    'player' => $play->player,
+                    'dageki' => $initialWaku
+                ];
+            }
+            if ($play->type == PlayType::TYPE_STAMEN) {
+                $summary[$play->player_id]['position'] .= Position::getNumberStamen($play->position);
+            } elseif ($play->type == PlayType::TYPE_MEMBER_CHANGE) {
+                $summary[$play->player_id]['position'] .= Position::getNumberChange($play->position);
+            } elseif ($play->type == PlayType::TYPE_DAGEKI_KEKKA) {
+                // 打撃結果の表示
+                if ($nowDajun != $play->dajun) {
+                    $nowDajun = $play->dajun;
+                    $dasekiCount = 0;
+                }
+                $dasekiCount++;
+                $summary[$play->player_id]['dageki'][$dasekiCount] = [
+                    'result' => $play->result,
+                    'result_text' => $play->result->name . ($play->point_count > 0 ? '(' . $play->point_count . ')' : '')
+                ];
+
+
+            }
+        }
+
+        $summary = array_merge($summary);
+        // dump($summary);
+        // exit;
+        return $summary;
+
     }
 
 

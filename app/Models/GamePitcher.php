@@ -26,4 +26,13 @@ class GamePitcher extends Model
         'walk',
         'dead',
     ];
+
+
+    /**
+     * player
+     */
+    public function player()
+    {
+        return $this->belongsTo(Player::class, 'player_id');
+    }
 }

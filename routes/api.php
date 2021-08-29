@@ -69,6 +69,9 @@ Route::post('/games/save-pinch-runner/{game}/{teamType}', 'App\Http\Controllers\
 Route::post('/games/save-position-change/{game}/{teamType}', 'App\Http\Controllers\GameController@savePositionChange');
 Route::post('/games/save-steal-success/{game}', 'App\Http\Controllers\GameController@saveStealSuccess');
 Route::post('/games/save-steal-fail/{game}', 'App\Http\Controllers\GameController@saveStealFail');
+Route::get('/games/summary/{game}', 'App\Http\Controllers\GameController@summary');
+Route::get('/games/fielder-summary/{game}/{type}', 'App\Http\Controllers\GameController@fielderSummary');
+Route::get('/games/pitcher-summary/{game}/{type}', 'App\Http\Controllers\GameController@pitcherSummary');
 
 
 Route::get('/teams/get-options/{season}', 'App\Http\Controllers\TeamController@getOptions');

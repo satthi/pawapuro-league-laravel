@@ -222,7 +222,7 @@ class ResultsTableSeeder extends Seeder
                  'bant_flag' => false,
                  'sac_fly_flag' => true,
                  'out_count' => 1,
-                 'point_require_flag' => false,
+                 'point_require_flag' => true,
                  'dasu_count_flag' => false,
                 'button_position' => $buttonPositionKey,
                  'button_type' => 2,

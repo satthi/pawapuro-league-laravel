@@ -21,11 +21,14 @@ import GameViewComponent from "./components/Game/ViewComponent";
 import GameProbablePitcherUpdateComponent from "./components/Game/ProbablePitcherUpdateComponent";
 import GameStamenEditComponent from "./components/Game/StamenEditComponent";
 import GamePlayComponent from "./components/Game/PlayComponent";
-import GameResultComponent from "./components/Game/ResultComponent";
 import GamePinchHitterComponent from "./components/Game/PinchHitterComponent";
 import GamePinchRunnerComponent from "./components/Game/PinchRunnerComponent";
 import GamePositionChangeComponent from "./components/Game/PositionChangeComponent";
 import GameStealComponent from "./components/Game/StealComponent";
+import GameSummaryComponent from "./components/Game/SummaryComponent";
+import GameFielderSummaryComponent from "./components/Game/FielderSummaryComponent";
+import GamePitcherSummaryComponent from "./components/Game/PitcherSummaryComponent";
+
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -170,12 +173,6 @@ const router = new VueRouter({
             props: true
         },
         {
-            path: '/games/:gameId/result',
-            name: 'game.result',
-            component: GameResultComponent,
-            props: true
-        },
-        {
             path: '/games/:gameId/:teamType/ph',
             name: 'game.ph',
             component: GamePinchHitterComponent,
@@ -197,6 +194,24 @@ const router = new VueRouter({
             path: '/games/:gameId/:teamType/steal',
             name: 'game.steal',
             component: GameStealComponent,
+            props: true
+        },
+        {
+            path: '/games/:gameId/summary',
+            name: 'game.summary',
+            component: GameSummaryComponent,
+            props: true
+        },
+        {
+            path: '/games/:gameId/:type/fielder_summary',
+            name: 'game.fielder_summary',
+            component: GameFielderSummaryComponent,
+            props: true
+        },
+        {
+            path: '/games/:gameId/:type/pitcher_summary',
+            name: 'game.pitcher_summary',
+            component: GamePitcherSummaryComponent,
             props: true
         },
 

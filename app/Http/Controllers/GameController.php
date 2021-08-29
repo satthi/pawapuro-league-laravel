@@ -6,13 +6,15 @@ use App\Enums\GameBoardStatus;
 use App\Enums\PlayType;
 use App\Enums\Position;
 use App\Http\Requests\GameAutoRequest;
-use App\Http\Requests\GameProbablePitcherRequest;
-use App\Http\Requests\GameRequest;
-use App\Http\Requests\GamePlayRequest;
+use App\Http\Requests\GameEndRequest;
 use App\Http\Requests\GamePinchHitterRequest;
 use App\Http\Requests\GamePinchRunnerRequest;
+use App\Http\Requests\GamePlayRequest;
+use App\Http\Requests\GameProbablePitcherRequest;
+use App\Http\Requests\GameRequest;
 use App\Http\Requests\GameStealRequest;
 use App\Models\Game;
+use App\Models\GamePitcher;
 use App\Models\Play;
 use App\Models\Player;
 use App\Models\Result;
@@ -128,6 +130,16 @@ class GameController extends Controller
                 'pithcer_info' => [],
             ];
         } elseif ($game->board_status == GameBoardStatus::STATUS_GAMEEND) {
+            // 試合終了
+            $member = $playModel->getMember($game);
+            return [
+                'member' => $member,
+                'now_player_id' => null,
+                'now_pitcher_id' => null,
+                'inning_info' => $playModel->getInningInfo($game),
+                'pithcer_info' => $playModel->getPitcherInfo($game),
+            ];
+        } elseif ($game->board_status == GameBoardStatus::STATUS_GAMEENDED) {
             // 試合終了
             $member = $playModel->getMember($game);
             return [
@@ -366,9 +378,60 @@ class GameController extends Controller
         $game->nextInningUpdate($game);
     }
 
-    public function gameEndPlay(Request $request, Game $game)
+    public function gameEndPlay(GameEndRequest $request, Game $game)
     {
         $requestData = $request->all();
         $game->gameEndPlay($requestData, $game);
     }
+
+    ### ゲーム結果表示
+    public function summary(Game $game)
+    {
+        // ピッチャー情報を取得して勝ち投手/負け投手/セーブ投手を取得
+        $winPitcher = GamePitcher::where('game_id', $game->id)
+            ->where('win_flag', true)
+            ->with('player')
+            ->first();
+        $losePitcher = GamePitcher::where('game_id', $game->id)
+            ->where('lose_flag', true)
+            ->with('player')
+            ->first();
+        $savePitcher = GamePitcher::where('game_id', $game->id)
+            ->where('save_flag', true)
+            ->with('player')
+            ->first();
+
+        $hrPlayers = Play::where('game_id', $game->id)
+            ->with('player')
+            ->with('pitcher')
+            ->join('results', 'results.id', '=', 'plays.result_id')
+            ->where('results.hr_flag', true)
+            ->get();
+
+        return [
+            'winPitcher' => $winPitcher,
+            'losePitcher' => $losePitcher,
+            'savePitcher' => $savePitcher,
+            'hrPlayers' => $hrPlayers,
+        ];
+    }
+
+    public function fielderSummary(Game $game, string $type)
+    {
+        if ($type == 'home') {
+            $teamId = $game->home_team_id;
+        } else {
+            $teamId = $game->visitor_team_id;
+        }
+
+        $playModel = new Play();
+        return $playModel->getFielderSummary($game, $teamId);
+    }
+
+    public function pitcherSummary(Game $game, string $type)
+    {
+    }
+
+
+
 }

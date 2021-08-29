@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\Game;
+use App\Models\Result;
 use Illuminate\Foundation\Http\FormRequest;
 
 class GamePlayRequest extends FormRequest
@@ -19,6 +20,14 @@ class GamePlayRequest extends FormRequest
             'selectedResult' => [
                 'required'
             ],
+            'now_player_id' => [
+                'required',
+                'integer',
+            ],
+            'now_pitcher_id' => [
+                'required',
+                'integer',
+            ],
             'out' => [
                 'required',
                 'integer',
@@ -26,6 +35,16 @@ class GamePlayRequest extends FormRequest
                     $gameInfo = Game::find($this->game_id);
                     if ($gameInfo->out + $value > 3) {
                         $fail('3アウトを超えています');
+                    }
+                },
+            ],
+            'point' => [
+                'required',
+                'integer',
+                function ($attribute, $value, $fail) {
+                    $result = Result::find($this->selectedResult);
+                    if (!is_null($result) && $result->point_require_flag && $value == 0) {
+                        $fail('得点の入力が必要です');
                     }
                 },
             ]

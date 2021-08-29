@@ -56,4 +56,76 @@ final class Position extends Enum
                 return self::getKey($value);
         }
     }
+
+    /**
+     * Get the description for an enum value
+     *
+     * @param $value
+     * @return string
+     */
+    public static function getNumberStamen($value): string
+    {
+        switch ($value){
+            case self::POSITION_P:
+                return '①';
+            case self::POSITION_C:
+                return '②';
+            case self::POSITION_1B:
+                return '③';
+            case self::POSITION_2B:
+                return '④';
+            case self::POSITION_3B:
+                return '⑤';
+            case self::POSITION_SS:
+                return '⑥';
+            case self::POSITION_LF:
+                return '⑦';
+            case self::POSITION_CF:
+                return '⑧';
+            case self::POSITION_RF:
+                return '⑨';
+            case self::POSITION_DH:
+                return 'D';
+            default:
+                return self::getKey($value);
+        }
+    }
+
+    /**
+     * Get the description for an enum value
+     *
+     * @param $value
+     * @return string
+     */
+    public static function getNumberChange($value): string
+    {
+        switch ($value){
+            case self::POSITION_P:
+                return '1';
+            case self::POSITION_C:
+                return '2';
+            case self::POSITION_1B:
+                return '3';
+            case self::POSITION_2B:
+                return '4';
+            case self::POSITION_3B:
+                return '5';
+            case self::POSITION_SS:
+                return '6';
+            case self::POSITION_LF:
+                return '7';
+            case self::POSITION_CF:
+                return '8';
+            case self::POSITION_RF:
+                return '9';
+            case self::POSITION_DH:
+                return 'D';
+            case self::POSITION_PH:
+                return 'H';
+            case self::POSITION_PR:
+                return 'R';
+            default:
+                return self::getKey($value);
+        }
+    }
 }

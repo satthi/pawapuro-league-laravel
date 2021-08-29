@@ -31,6 +31,7 @@ class Game extends Model
         'is_home_team_position',
         'is_visitor_team_phpr',
         'is_visitor_team_position',
+        'is_next_inning',
     ];
 
     ### relation
@@ -62,6 +63,30 @@ class Game extends Model
     public function visitor_probable_pitcher()
     {
         return $this->belongsTo(Player::class, 'visitor_probable_pitcher_id');
+    }
+
+    /**
+     * win_game_pitcher
+     */
+    public function win_game_pitcher()
+    {
+        return $this->hasOne(GamePitcher::class, 'game_id')->where('win_flag', true);
+    }
+
+    /**
+     * lose_game_pitcher
+     */
+    public function lose_game_pitcher()
+    {
+        return $this->hasOne(GamePitcher::class, 'game_id')->where('lose_flag', true);
+    }
+
+    /**
+     * save_game_pitcher
+     */
+    public function save_game_pitcher()
+    {
+        return $this->hasOne(GamePitcher::class, 'game_id')->where('save_flag', true);
     }
 
     ## attribute
@@ -99,6 +124,30 @@ class Game extends Model
             // 試合中
             return GameBoardStatus::STATUS_GAME;
         }
+    }
+
+    public function getIsNextInningAttribute($value)
+    {
+        // 次のイニング以外はfalse
+        if ($this->getBoardStatusAttribute($value) !== GameBoardStatus::STATUS_INNING_END) {
+            return false;
+        }
+        $member = (new Play())->getMember($this);
+        // dump($member);
+        // exit;
+        $positionCheck = true;
+        foreach ($member['home_team'] as $p) {
+            if ($p['position']['value'] > 10) {
+                $positionCheck = false;
+            }
+        }
+        foreach ($member['visitor_team'] as $p) {
+            if ($p['position']['value'] > 10) {
+                $positionCheck = false;
+            }
+        }
+
+        return $positionCheck;
     }
         // 'is_home_team_phpr',
         // 'is_home_team_position',
@@ -521,6 +570,9 @@ class Game extends Model
             ->with('visitor_team')
             ->with('home_probable_pitcher')
             ->with('visitor_probable_pitcher')
+            ->with('win_game_pitcher.player')
+            ->with('lose_game_pitcher.player')
+            ->with('save_game_pitcher.player')
             ->first()
             ;
     }
@@ -638,6 +690,10 @@ class Game extends Model
                 }
                 if (!empty($requestData['pitcherResult']['save']) && $requestData['pitcherResult']['save'] == $playForPitcher->pitcher_id) {
                     $pitcherShukei[$playForPitcher->pitcher_id]['save_flag'] = true;
+                }
+                if (!$playForPitcher->pitcher_id) {
+                    dump($playForPitcher);
+                    exit;
                 }
                 $pitcherShukei[$playForPitcher->pitcher_id]['jiseki'] = $requestData['pitcherResult']['jiseki'][$playForPitcher->pitcher_id];
                 $pitcherShukei[$playForPitcher->pitcher_id]['player_id'] = $playForPitcher->pitcher_id;

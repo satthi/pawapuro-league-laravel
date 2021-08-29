@@ -93,7 +93,6 @@
                         } else {
                             // error/
                         }
-
                     });
             },
             // playerClick

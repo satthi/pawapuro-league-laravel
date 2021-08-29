@@ -121,7 +121,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <form v-on:submit.prevent="submit(nextInningSubmitPath)">
-                                <button type="submit" class="btn btn-primary" v-bind:disabled="disabled">次のイニングへ</button>
+                                <button type="submit" class="btn btn-primary" v-bind:disabled="disabled || !gameData.is_next_inning">次のイニングへ</button>
                             </form>
                         </div>
                         <div class="col-sm-3">
@@ -139,11 +139,11 @@
                         </tr>
                         <tr>
                             <th></th>
-                            <th>勝</th>
-                            <th>負</th>
-                            <th>ホールド</th>
-                            <th>セーブ</th>
-                            <th>自責点</th>
+                            <th style="width: 20px;">勝</th>
+                            <th style="width: 20px;">負</th>
+                            <th style="width: 20px;">HP</th>
+                            <th style="width: 20px;">SP</th>
+                            <th style="width: 85px;">自責点</th>
                         </tr>
                         <tr v-for="pitcher in playData.pithcer_info.visitor_team">
                             <td>{{ pitcher.player.name }}</td>
@@ -168,11 +168,11 @@
                         </tr>
                         <tr>
                             <th></th>
-                            <th>勝</th>
-                            <th>負</th>
-                            <th>ホールド</th>
-                            <th>セーブ</th>
-                            <th>自責点</th>
+                            <th style="width: 20px;">勝</th>
+                            <th style="width: 20px;">負</th>
+                            <th style="width: 20px;">HP</th>
+                            <th style="width: 20px;">SP</th>
+                            <th style="width: 85px;">自責点</th>
                         </tr>
                         <tr v-for="pitcher in playData.pithcer_info.home_team">
                             <td>{{ pitcher.player.name }}</td>
@@ -314,7 +314,7 @@
                     .then((res) => {
                         if (res.data.board_status == 6) { // GameBoardStatus::STATUS_GAMEENDED enumを読み切れてないパターンがあるので
                             // 試合終了済み
-                            this.$router.push({name: 'game.result', params: {gameId: this.gameId.toString() }});
+                            this.$router.push({name: 'game.summary', params: {gameId: this.gameId.toString() }});
                         } else {
                             this.gameData = res.data;
                             axios.get('/api/games/get-play/' + this.gameId)
