@@ -53,24 +53,24 @@
 
                     <table class="table table-hover">
                         <tr v-if="summary.winPitcher">
-                            <td>勝ち投手</td>
-                            <td>{{ summary.winPitcher.player.name }}</td>
-                            <td>12試合 6勝3敗</td>
+                            <td style="width: 100px;">勝ち投手</td>
+                            <td style="width: 200px;">{{ summary.winPitcher.player.name }}</td>
+                            <td>{{ summary.winPitcher.seiseki_text }}</td>
                         </tr>
                         <tr v-if="summary.losePitcher">
                             <td>負け投手</td>
                             <td>{{ summary.losePitcher.player.name }}</td>
-                            <td>12試合 6勝3敗</td>
+                            <td>{{ summary.losePitcher.seiseki_text }}</td>
                         </tr>
                         <tr v-if="summary.savePitcher">
                             <td>セーブ</td>
                             <td>{{ summary.savePitcher.player.name }}</td>
-                            <td>12試合 6勝3敗3H 2S</td>
+                            <td>{{ summary.savePitcher.seiseki_text }}</td>
                         </tr>
                         <tr>
                             <td>本塁打</td>
                             <td colspan="2">
-                                <div v-for="hrPlayer in summary.hrPlayers">{{ hrPlayer.player.name }} 〇号 ({{ hrPlayer.pitcher.name }})</div>
+                                <div v-for="hrPlayer in summary.hrPlayers">{{ hrPlayer.player.name }} {{ hrPlayer.hr_count }}号 ({{ hrPlayer.pitcher.name }})</div>
                             </td>
                         </tr>
                     </table>

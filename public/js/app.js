@@ -47491,13 +47491,17 @@ var render = function() {
                 _c("table", { staticClass: "table table-hover" }, [
                   _vm.summary.winPitcher
                     ? _c("tr", [
-                        _c("td", [_vm._v("勝ち投手")]),
+                        _c("td", { staticStyle: { width: "100px" } }, [
+                          _vm._v("勝ち投手")
+                        ]),
                         _vm._v(" "),
-                        _c("td", [
+                        _c("td", { staticStyle: { width: "200px" } }, [
                           _vm._v(_vm._s(_vm.summary.winPitcher.player.name))
                         ]),
                         _vm._v(" "),
-                        _c("td", [_vm._v("12試合 6勝3敗")])
+                        _c("td", [
+                          _vm._v(_vm._s(_vm.summary.winPitcher.seiseki_text))
+                        ])
                       ])
                     : _vm._e(),
                   _vm._v(" "),
@@ -47509,7 +47513,9 @@ var render = function() {
                           _vm._v(_vm._s(_vm.summary.losePitcher.player.name))
                         ]),
                         _vm._v(" "),
-                        _c("td", [_vm._v("12試合 6勝3敗")])
+                        _c("td", [
+                          _vm._v(_vm._s(_vm.summary.losePitcher.seiseki_text))
+                        ])
                       ])
                     : _vm._e(),
                   _vm._v(" "),
@@ -47521,7 +47527,9 @@ var render = function() {
                           _vm._v(_vm._s(_vm.summary.savePitcher.player.name))
                         ]),
                         _vm._v(" "),
-                        _c("td", [_vm._v("12試合 6勝3敗3H 2S")])
+                        _c("td", [
+                          _vm._v(_vm._s(_vm.summary.savePitcher.seiseki_text))
+                        ])
                       ])
                     : _vm._e(),
                   _vm._v(" "),
@@ -47535,7 +47543,9 @@ var render = function() {
                         return _c("div", [
                           _vm._v(
                             _vm._s(hrPlayer.player.name) +
-                              " 〇号 (" +
+                              " " +
+                              _vm._s(hrPlayer.hr_count) +
+                              "号 (" +
                               _vm._s(hrPlayer.pitcher.name) +
                               ")"
                           )

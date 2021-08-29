@@ -440,5 +440,26 @@ class Play extends Model
         return preg_replace('/^0/', '' , $avg);
     }
 
+    public function getTopSummaryHr($game)
+    {
+        $hrPlayers = Play::where('game_id', $game->id)
+            ->with('player')
+            ->with('pitcher')
+            ->join('results', 'results.id', '=', 'plays.result_id')
+            ->where('results.hr_flag', true)
+            ->get()
+            ->toArray();
+        foreach ($hrPlayers as $hrPlayerKey => $hrPlayer) {
+            $hrPlayers[$hrPlayerKey]['hr_count'] = $this::where('player_id', $hrPlayer['player_id'])
+                ->join('results', 'results.id', '=', 'plays.result_id')
+                ->where('results.hr_flag', true)
+                ->where('plays.id', '<=', $hrPlayer['id'])
+                ->count();
+        }
+
+        return $hrPlayers;
+
+    }
+
 
 }

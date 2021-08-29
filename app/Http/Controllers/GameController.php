@@ -387,31 +387,14 @@ class GameController extends Controller
     ### ゲーム結果表示
     public function summary(Game $game)
     {
-        // ピッチャー情報を取得して勝ち投手/負け投手/セーブ投手を取得
-        $winPitcher = GamePitcher::where('game_id', $game->id)
-            ->where('win_flag', true)
-            ->with('player')
-            ->first();
-        $losePitcher = GamePitcher::where('game_id', $game->id)
-            ->where('lose_flag', true)
-            ->with('player')
-            ->first();
-        $savePitcher = GamePitcher::where('game_id', $game->id)
-            ->where('save_flag', true)
-            ->with('player')
-            ->first();
+        $pitcherInfo = (new GamePitcher())->topPitcherSeisekiInfo($game);
 
-        $hrPlayers = Play::where('game_id', $game->id)
-            ->with('player')
-            ->with('pitcher')
-            ->join('results', 'results.id', '=', 'plays.result_id')
-            ->where('results.hr_flag', true)
-            ->get();
+        $hrPlayers = (new Play())->getTopSummaryHr($game);
 
         return [
-            'winPitcher' => $winPitcher,
-            'losePitcher' => $losePitcher,
-            'savePitcher' => $savePitcher,
+            'winPitcher' => $pitcherInfo['winPitcher'],
+            'losePitcher' => $pitcherInfo['losePitcher'],
+            'savePitcher' => $pitcherInfo['savePitcher'],
             'hrPlayers' => $hrPlayers,
         ];
     }
