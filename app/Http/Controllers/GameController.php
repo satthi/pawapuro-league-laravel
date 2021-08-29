@@ -437,11 +437,8 @@ class GameController extends Controller
         }
 
         $gamePitcherModel = new GamePitcher();
-        return $gamePitcherModel->where('game_id', $game->id)
-            ->where('team_id', $teamId)
-            ->with('player')
-            ->orderBy('id', 'ASC')
-            ->get();
+
+        return $gamePitcherModel->getPitcherInfo($game->id, $teamId);
     }
 
 

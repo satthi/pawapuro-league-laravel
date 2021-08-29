@@ -2621,18 +2621,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -3076,6 +3064,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/enums.js */ "./resources/js/mixins/enums.js");
+//
+//
 //
 //
 //
@@ -44349,7 +44339,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return Object.keys(_vm.enums).length
+  return Object.keys(_vm.enums).length && _vm.summary.length
     ? _c("div", { staticClass: "container", attrs: { id: "play_wrap" } }, [
         _c("h2", [
           _vm._v(
@@ -44362,34 +44352,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-3" }, [
-            _c(
-              "table",
-              { staticClass: "table table-hover stamen" },
-              _vm._l(this.playData.member.visitor_team, function(
-                member,
-                dajun
-              ) {
-                return _c("tr", [
-                  _c(
-                    "td",
-                    {
-                      class: {
-                        member_selected:
-                          member.player.id == _vm.playData.now_player_id
-                      }
-                    },
-                    [_vm._v(_vm._s(member.position.text))]
-                  ),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(member.player.name_short))])
-                ])
-              }),
-              0
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-6" }, [
+          _c("div", { staticClass: "col-sm-12" }, [
             _c(
               "table",
               {
@@ -44620,7 +44583,10 @@ var render = function() {
                 _c(
                   "table",
                   {
-                    staticClass: "table table-hover",
+                    staticClass: "table-hover",
+                    style: {
+                      width: 230 + 90 * _vm.summary[0].dageki.length + "px"
+                    },
                     attrs: { id: "fielder-summary" }
                   },
                   _vm._l(_vm.summary, function(playerBlock) {
@@ -44641,7 +44607,8 @@ var render = function() {
                             {
                               class:
                                 "result_button_" +
-                                (dageki ? dageki.result.button_type : "")
+                                (dageki ? dageki.result.button_type : ""),
+                              staticStyle: { width: "90px" }
                             },
                             [
                               dageki
@@ -44651,7 +44618,34 @@ var render = function() {
                                 : _vm._e()
                             ]
                           )
-                        })
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          {
+                            staticStyle: {
+                              "text-align": "right",
+                              width: "90px"
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(
+                                  playerBlock.seiseki != null
+                                    ? playerBlock.seiseki.target_avg
+                                    : "-"
+                                ) +
+                                "\n                            (" +
+                                _vm._s(
+                                  playerBlock.seiseki != null
+                                    ? playerBlock.seiseki.hr
+                                    : "0"
+                                ) +
+                                ")\n                        "
+                            )
+                          ]
+                        )
                       ],
                       2
                     )
@@ -44660,30 +44654,6 @@ var render = function() {
                 )
               ],
               1
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-3 clearfix" }, [
-            _c(
-              "table",
-              { staticClass: "table table-hover stamen" },
-              _vm._l(this.playData.member.home_team, function(member, dajun) {
-                return _c("tr", [
-                  _c(
-                    "td",
-                    {
-                      class: {
-                        member_selected:
-                          member.player.id == _vm.playData.now_player_id
-                      }
-                    },
-                    [_vm._v(_vm._s(member.position.text))]
-                  ),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(member.player.name_short))])
-                ])
-              }),
-              0
             )
           ])
         ])
@@ -45486,7 +45456,9 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(pitcher.dead))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(pitcher.jiseki))])
+                        _c("td", [_vm._v(_vm._s(pitcher.jiseki))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(pitcher.seiseki.era))])
                       ])
                     })
                   ],
@@ -45544,7 +45516,9 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("死")]),
       _vm._v(" "),
-      _c("th", [_vm._v("自")])
+      _c("th", [_vm._v("自")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("防")])
     ])
   }
 ]

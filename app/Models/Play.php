@@ -398,7 +398,8 @@ class Play extends Model
                     // positionをテキストで書く ⑤45みたいな感じで
                     'position' => '',
                     'player' => $play->player,
-                    'dageki' => $initialWaku
+                    'dageki' => $initialWaku,
+                    'seiseki' => $play->player->getTargetDateSeisekiInfo($game->date),
                 ];
             }
             if ($play->type == PlayType::TYPE_STAMEN) {
@@ -422,10 +423,21 @@ class Play extends Model
         }
 
         $summary = array_merge($summary);
-        // dump($summary);
-        // exit;
+
         return $summary;
 
+    }
+
+    ## 画面表示用
+    public function getTargetAvgAttribute($value)
+    {
+        if (!$this->dasu) {
+            return '-';
+        }
+
+        $avg = sprintf("%.3f", round($this->hit / $this->dasu, 3));
+
+        return preg_replace('/^0/', '' , $avg);
     }
 
 

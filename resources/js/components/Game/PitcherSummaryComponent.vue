@@ -64,6 +64,7 @@
                             <th>四</th>
                             <th>死</th>
                             <th>自</th>
+                            <th>防</th>
                         </tr>
                         <tr v-for="pitcher in summary">
                             <td>
@@ -79,6 +80,7 @@
                             <td>{{ pitcher.walk }}</td>
                             <td>{{ pitcher.dead }}</td>
                             <td>{{ pitcher.jiseki }}</td>
+                            <td>{{ pitcher.seiseki.era }}</td>
                         </tr>
                     </table>
 
