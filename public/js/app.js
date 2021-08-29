@@ -3064,6 +3064,190 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PitcherSummaryComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PitcherSummaryComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/enums.js */ "./resources/js/mixins/enums.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    gameId: String,
+    type: String
+  },
+  mixins: [_mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__.default],
+  data: function data() {
+    return {
+      gameData: {
+        'home_team': {},
+        'visitor_team': {}
+      },
+      playData: {
+        'member': {
+          'home_team': {},
+          'visitor_team': {}
+        },
+        'now_player_id': null,
+        'now_pitcher_id': null,
+        'inning_info': {
+          inning: {}
+        },
+        'pithcer_info': {
+          'home_team': {},
+          'visitor_team': {}
+        }
+      },
+      resultData: {},
+      summary: {},
+      errors: {},
+      data: {
+        'out': 0,
+        'point': 0,
+        selectedResult: null,
+        'pitcherResult': {
+          'win': null,
+          'lose': null,
+          'save': null,
+          'hold': {},
+          'jiseki': {}
+        }
+      },
+      disabled: false
+    };
+  },
+  methods: {
+    initial: function initial() {
+      var _this = this;
+
+      axios.get('/api/games/view/' + this.gameId).then(function (res) {
+        _this.gameData = res.data;
+        axios.get('/api/games/get-play/' + _this.gameId).then(function (res) {
+          _this.playData = res.data;
+          _this.disabled = false;
+        });
+        axios.get('/api/games/get-result').then(function (res) {
+          _this.resultData = res.data;
+        });
+        axios.get('/api/games/pitcher-summary/' + _this.gameId + '/' + _this.type).then(function (res) {
+          _this.summary = res.data;
+          console.log(_this.summary);
+        });
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.initial();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PlayComponent.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PlayComponent.vue?vue&type=script&lang=js& ***!
@@ -41147,17 +41331,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-var render, staticRenderFns
-var script = {}
+/* harmony import */ var _PitcherSummaryComponent_vue_vue_type_template_id_85a7159c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PitcherSummaryComponent.vue?vue&type=template&id=85a7159c& */ "./resources/js/components/Game/PitcherSummaryComponent.vue?vue&type=template&id=85a7159c&");
+/* harmony import */ var _PitcherSummaryComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PitcherSummaryComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Game/PitcherSummaryComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
 
 
 /* normalize component */
 ;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__.default)(
-  script,
-  render,
-  staticRenderFns,
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _PitcherSummaryComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _PitcherSummaryComponent_vue_vue_type_template_id_85a7159c___WEBPACK_IMPORTED_MODULE_0__.render,
+  _PitcherSummaryComponent_vue_vue_type_template_id_85a7159c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
   null,
@@ -41165,6 +41352,8 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   
 )
 
+/* hot reload */
+if (false) { var api; }
 component.options.__file = "resources/js/components/Game/PitcherSummaryComponent.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
@@ -42041,6 +42230,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Game/PitcherSummaryComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/Game/PitcherSummaryComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PitcherSummaryComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PitcherSummaryComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PitcherSummaryComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PitcherSummaryComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Game/PlayComponent.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************!*\
   !*** ./resources/js/components/Game/PlayComponent.vue?vue&type=script&lang=js& ***!
@@ -42530,6 +42735,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PinchRunnerComponent_vue_vue_type_template_id_a08bdc56___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PinchRunnerComponent_vue_vue_type_template_id_a08bdc56___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PinchRunnerComponent.vue?vue&type=template&id=a08bdc56& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PinchRunnerComponent.vue?vue&type=template&id=a08bdc56&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Game/PitcherSummaryComponent.vue?vue&type=template&id=85a7159c&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/Game/PitcherSummaryComponent.vue?vue&type=template&id=85a7159c& ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PitcherSummaryComponent_vue_vue_type_template_id_85a7159c___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PitcherSummaryComponent_vue_vue_type_template_id_85a7159c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PitcherSummaryComponent_vue_vue_type_template_id_85a7159c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PitcherSummaryComponent.vue?vue&type=template&id=85a7159c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PitcherSummaryComponent.vue?vue&type=template&id=85a7159c&");
 
 
 /***/ }),
@@ -44939,6 +45161,393 @@ var render = function() {
     : _vm._e()
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PitcherSummaryComponent.vue?vue&type=template&id=85a7159c&":
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Game/PitcherSummaryComponent.vue?vue&type=template&id=85a7159c& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return Object.keys(_vm.enums).length
+    ? _c("div", { staticClass: "container", attrs: { id: "play_wrap" } }, [
+        _c("h2", [
+          _vm._v(
+            _vm._s(_vm.gameData.date) +
+              " " +
+              _vm._s(_vm.gameData.home_team.name) +
+              " VS " +
+              _vm._s(_vm.gameData.visitor_team.name)
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c(
+              "table",
+              { staticClass: "table table-hover stamen" },
+              _vm._l(this.playData.member.visitor_team, function(
+                member,
+                dajun
+              ) {
+                return _c("tr", [
+                  _c(
+                    "td",
+                    {
+                      class: {
+                        member_selected:
+                          member.player.id == _vm.playData.now_player_id
+                      }
+                    },
+                    [_vm._v(_vm._s(member.position.text))]
+                  ),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(member.player.name_short))])
+                ])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c(
+              "table",
+              {
+                staticClass: "table table-hover",
+                attrs: { id: "score_board" }
+              },
+              [
+                _c(
+                  "tr",
+                  [
+                    _c("td"),
+                    _vm._v(" "),
+                    _vm._l(12, function(inning) {
+                      return _c("td", [_vm._v(_vm._s(inning))])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("R")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("H")])
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "tr",
+                  [
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.gameData.visitor_team.ryaku_name))
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(12, function(inning) {
+                      return _c(
+                        "td",
+                        {
+                          class: {
+                            inning_selected:
+                              _vm.gameData.inning == inning * 10 + 1
+                          }
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(
+                              _vm.playData.inning_info.inning[inning * 10 + 1]
+                            )
+                          )
+                        ]
+                      )
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.playData.inning_info.visitor_point))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.playData.inning_info.visitor_hit))
+                    ])
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "tr",
+                  [
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.gameData.home_team.ryaku_name))
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(12, function(inning) {
+                      return _c(
+                        "td",
+                        {
+                          class: {
+                            inning_selected:
+                              _vm.gameData.inning == inning * 10 + 2
+                          }
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(
+                              _vm.playData.inning_info.inning[inning * 10 + 2]
+                            )
+                          )
+                        ]
+                      )
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.playData.inning_info.home_point))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.playData.inning_info.home_hit))
+                    ])
+                  ],
+                  2
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              [
+                _c("h5", [_vm._v("試合結果")]),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: {
+                        name: "game.summary",
+                        params: { gameId: _vm.gameId.toString() }
+                      }
+                    }
+                  },
+                  [
+                    _c("button", { staticClass: "btn btn-success" }, [
+                      _vm._v("TOP")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: {
+                        name: "game.fielder_summary",
+                        params: {
+                          gameId: _vm.gameId.toString(),
+                          type: "visitor"
+                        }
+                      }
+                    }
+                  },
+                  [
+                    _c("button", { staticClass: "btn btn-success" }, [
+                      _vm._v(
+                        "野手(" +
+                          _vm._s(_vm.gameData.visitor_team.ryaku_name) +
+                          " )"
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: {
+                        name: "game.fielder_summary",
+                        params: { gameId: _vm.gameId.toString(), type: "home" }
+                      }
+                    }
+                  },
+                  [
+                    _c("button", { staticClass: "btn btn-success" }, [
+                      _vm._v(
+                        "野手(" +
+                          _vm._s(_vm.gameData.home_team.ryaku_name) +
+                          ")"
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: {
+                        name: "game.pitcher_summary",
+                        params: {
+                          gameId: _vm.gameId.toString(),
+                          type: "visitor"
+                        }
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { disabled: _vm.type == "visitor" },
+                        on: { click: _vm.initial }
+                      },
+                      [
+                        _vm._v(
+                          "投手(" +
+                            _vm._s(_vm.gameData.visitor_team.ryaku_name) +
+                            ")"
+                        )
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: {
+                        name: "game.pitcher_summary",
+                        params: { gameId: _vm.gameId.toString(), type: "home" }
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { disabled: _vm.type == "home" },
+                        on: { click: _vm.initial }
+                      },
+                      [
+                        _vm._v(
+                          "投手(" +
+                            _vm._s(_vm.gameData.home_team.ryaku_name) +
+                            ")"
+                        )
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "table",
+                  {
+                    staticClass: "table table-hover",
+                    attrs: { id: "pitcher-summary" }
+                  },
+                  [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _vm._l(_vm.summary, function(pitcher) {
+                      return _c("tr", [
+                        _c("td", [
+                          pitcher.win_flag
+                            ? _c("span", [_vm._v("〇")])
+                            : pitcher.lose_flag
+                            ? _c("span", [_vm._v("●")])
+                            : pitcher.hold_flag
+                            ? _c("span", [_vm._v("H")])
+                            : pitcher.save_flag
+                            ? _c("span", [_vm._v("S")])
+                            : _vm._e()
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(pitcher.player.name))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(pitcher.string_inning))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(pitcher.hit))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(pitcher.hr))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(pitcher.walk))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(pitcher.dead))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(pitcher.jiseki))])
+                      ])
+                    })
+                  ],
+                  2
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3 clearfix" }, [
+            _c(
+              "table",
+              { staticClass: "table table-hover stamen" },
+              _vm._l(this.playData.member.home_team, function(member, dajun) {
+                return _c("tr", [
+                  _c(
+                    "td",
+                    {
+                      class: {
+                        member_selected:
+                          member.player.id == _vm.playData.now_player_id
+                      }
+                    },
+                    [_vm._v(_vm._s(member.position.text))]
+                  ),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(member.player.name_short))])
+                ])
+              }),
+              0
+            )
+          ])
+        ])
+      ])
+    : _vm._e()
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th"),
+      _vm._v(" "),
+      _c("th"),
+      _vm._v(" "),
+      _c("th", [_vm._v("回")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("安")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("本")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("四")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("死")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("自")])
+    ])
+  }
+]
 render._withStripped = true
 
 

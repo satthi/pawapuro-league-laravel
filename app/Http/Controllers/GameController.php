@@ -430,6 +430,18 @@ class GameController extends Controller
 
     public function pitcherSummary(Game $game, string $type)
     {
+        if ($type == 'home') {
+            $teamId = $game->home_team_id;
+        } else {
+            $teamId = $game->visitor_team_id;
+        }
+
+        $gamePitcherModel = new GamePitcher();
+        return $gamePitcherModel->where('game_id', $game->id)
+            ->where('team_id', $teamId)
+            ->with('player')
+            ->orderBy('id', 'ASC')
+            ->get();
     }
 
 
