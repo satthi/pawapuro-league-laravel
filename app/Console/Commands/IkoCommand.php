@@ -306,7 +306,7 @@ class IkoCommand extends Command
     {
         $this->output->writeln(__FUNCTION__ . ' start');
         // base_playerの移行
-        $ikoMotoGames = $this->ikoConnection->select('select * FROM games order by id asc');
+        $ikoMotoGames = $this->ikoConnection->select('select * FROM games order by season_id ASC, date ASC, id asc');
 
 
         foreach ($ikoMotoGames as $ikoMotoGame) {
