@@ -7,6 +7,7 @@ use App\Enums\PlayerPosition;
 use App\Enums\PlayType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Player extends Model
 {
@@ -90,7 +91,24 @@ class Player extends Model
         $player = $this->fielderSeisekiSelect($player)
             ->first();
         if (is_null($player)) {
-            return null;
+            return [
+                'dageki' => 0,
+                'dasu' => 0,
+                'hit' => 0,
+                'hit_2' => 0,
+                'hit_3' => 0,
+                'hr' => 0,
+                'sansin' => 0,
+                'heisatsu' => 0,
+                'walk' => 0,
+                'dead' => 0,
+                'bant' => 0,
+                'sac_fly' => 0,
+                'daten' => 0,
+                'steal_success' => 0,
+                'steal_miss' => 0,
+                'target_avg' => '-',
+            ];
         }
 
         return $player->append('target_avg');
@@ -120,5 +138,29 @@ class Player extends Model
     private function fielderSeisekiSelectParts($checkField, $asField)
     {
         return \DB::raw('sum(CASE WHEN results.' . $checkField . ' THEN 1 ELSE 0 END) AS ' . $asField);
+    }
+
+    public function getProbablePitcherOptions(Game $game, $teamId)
+    {
+        $gamePitcherModel = new GamePitcher();
+        $gameSubDay = (new Carbon($game->date))->subDay()->format('Y/m/d');
+
+        $pitchers = $this->where('team_id', $teamId)
+            // 並び順の調整
+            ->orderBy(\DB::raw('position_main = 1'), 'DESC')
+            ->orderBy(\DB::raw('number::integer'), 'ASC')
+            ->orderBy('id', 'ASC')
+            ->get()
+            ;
+        $pitcherOptions = [];
+        foreach ($pitchers as $pitcher) {
+            $seiseki = $gamePitcherModel->getSeiseki($pitcher->id, $gameSubDay);
+            $pitcherOptions[] = [
+                'value' => $pitcher->id,
+                'text' => $pitcher->number . '. ' . $pitcher->name . ' ' .$seiseki['game_sum'] . '試' . $seiseki['win_count'] . '勝' . $seiseki['lose_count'] . '敗 ' . $seiseki['era'],
+            ];
+        }
+
+        return $pitcherOptions;
     }
 }

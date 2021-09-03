@@ -62,12 +62,8 @@ class GameController extends Controller
     {
         $playerModel = new Player();
         return [
-            'home' => $playerModel->select('id as value', \DB::raw('number || \'. \' || name as "text"'))
-                ->where(['team_id' => $game->home_team_id])
-                ->get(),
-            'visitor' => $playerModel->select('id as value', \DB::raw('number || \'. \' || name as "text"'))
-                ->where(['team_id' => $game->visitor_team_id])
-                ->get(),
+            'home' => $playerModel->getProbablePitcherOptions($game, $game->home_team_id),
+            'visitor' => $playerModel->getProbablePitcherOptions($game, $game->visitor_team_id),
         ];
     }
 

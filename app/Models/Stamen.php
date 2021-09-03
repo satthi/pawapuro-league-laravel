@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\Position;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Stamen extends Model
 {
@@ -16,6 +17,7 @@ class Stamen extends Model
         'position',
         'player_id',
     ];
+    protected $appends = [];
 
     /**
      * home team
@@ -32,7 +34,59 @@ class Stamen extends Model
         return $this->belongsTo(Player::class, 'game_id');
     }
 
+    public function getStartSeisekiAttribute($value)
+    {
+        $playerModel = new Player();
+        $gameModel = new Game();
+        $gamePitcherModel = new GamePitcher();
+        // 試合前の成績取得
+        // 該当のplayer_idでかつgame_idより前の日程の合算をする
+        $player = $playerModel::find($this->player_id);
+        $game = $gameModel::find($this->game_id);
+
+        $gameSubDay = (new Carbon($game->date))->subDay()->format('Y/m/d');
+
+        $dagekiSeiseki = $player->getTargetDateSeisekiInfo($gameSubDay);
+        $pitcherSeiseki = $gamePitcherModel->getSeiseki($this->player_id, $gameSubDay);
+        return [
+            'dageki' => $dagekiSeiseki['target_avg'] . ' ' . $dagekiSeiseki['hr'] . '本 ' . $dagekiSeiseki['daten'] . '点 ',
+            'pitcher' => $pitcherSeiseki['game_sum'] . '試' . $pitcherSeiseki['win_count'] . '勝' . $pitcherSeiseki['lose_count'] . '敗 ' . $pitcherSeiseki['era'],
+        ];
+    }
+
     public function getStamenInitialData(Game $game, string $stamenType)
+    {
+        $playerModel = new Player();
+        $gamePitcherModel = new GamePitcher();
+
+        $stamenInitialData = $this->getStamenInitialDataBase($game, $stamenType);
+        $gameSubDay = (new Carbon($game->date))->subDay()->format('Y/m/d');
+
+        foreach ($stamenInitialData['stamen'] as $stamenKey => $stamen) {
+            $player = $playerModel::find($stamen['player']['id']);
+            $dagekiSeiseki = $player->getTargetDateSeisekiInfo($gameSubDay);
+            $pitcherSeiseki = $gamePitcherModel->getSeiseki($stamen['player']['id'], $gameSubDay);
+
+            $stamenInitialData['stamen'][$stamenKey]['player']['start_seiseki'] = [
+                'dageki' => $dagekiSeiseki['target_avg'] . ' ' . $dagekiSeiseki['hr'] . '本 ' . $dagekiSeiseki['daten'] . '点 ',
+                'pitcher' => $pitcherSeiseki['game_sum'] . '試' . $pitcherSeiseki['win_count'] . '勝' . $pitcherSeiseki['lose_count'] . '敗 ' . $pitcherSeiseki['era'],
+            ];
+        }
+        foreach ($stamenInitialData['hikae'] as $hikaeKey => $hikae) {
+            $player = $playerModel::find($hikae['id']);
+            $dagekiSeiseki = $player->getTargetDateSeisekiInfo($gameSubDay);
+            $pitcherSeiseki = $gamePitcherModel->getSeiseki($hikae['id'], $gameSubDay);
+
+            $stamenInitialData['hikae'][$hikaeKey]['start_seiseki'] = [
+                'dageki' => $dagekiSeiseki['target_avg'] . ' ' . $dagekiSeiseki['hr'] . '本 ' . $dagekiSeiseki['daten'] . '点 ',
+                'pitcher' => $pitcherSeiseki['game_sum'] . '試' . $pitcherSeiseki['win_count'] . '勝' . $pitcherSeiseki['lose_count'] . '敗 ' . $pitcherSeiseki['era'],
+            ];
+        }
+
+        return $stamenInitialData;
+    }
+
+    public function getStamenInitialDataBase(Game $game, string $stamenType)
     {
         if ($stamenType == 'visitor') {
             $teamId = $game->visitor_team_id;
@@ -96,12 +150,15 @@ class Stamen extends Model
                 'dajun' => $stamen->dajun == 10 ? 'P' : (string)$stamen->dajun,
                 'position' => $positionOptions[$stamen->position],
                 'player' => $stamen->player->toArray(),
+                'start_seiseki' => $stamen->start_seiseki,
             ];
         }
 
         // 残りのデータをセットする(予告先発以外)
         $players = Player::where('team_id', $teamId)
             ->whereNotIn('id', $stamePlayerIds)
+            ->orderBy('position_main', 'ASC')
+            ->orderBy('number', 'ASC')
             ->get()
             ->toArray();
 
@@ -267,6 +324,8 @@ class Stamen extends Model
 
         // 残りのデータをセットする(予告先発以外)
         $players = Player::where('team_id', $teamId)
+            ->orderBy('position_main', 'ASC')
+            ->orderBy('number', 'ASC')
             ->whereNotIn('id', $stamenPlayerIds)
             ->get()
             ->toArray();
@@ -346,6 +405,8 @@ class Stamen extends Model
 
         // 残りのデータをセットする(予告先発以外)
         $players = Player::where('team_id', $teamId)
+            ->orderBy('position_main', 'ASC')
+            ->orderBy('number', 'ASC')
             ->whereNotIn('id', [$probablePitcherId])
             ->get()
             ->toArray();
@@ -403,11 +464,15 @@ class Stamen extends Model
         // home
         $homeTeamId = $game->home_team_id;
         // 現在のスタメンの編集ということで現在情報を取得
-        $homeStamens = $this::where('game_id', $game->id)
+        $homeStamens = $this->where('game_id', $game->id)
             ->where('team_id', $homeTeamId)
             ->with('player')
             ->orderBy('dajun', 'ASC')
             ->get();
+
+        foreach ($homeStamens as $homeStamen) {
+            $homeStamen->append('start_seiseki');
+        }
 
         // visitor
         $visitorTeamId = $game->visitor_team_id;
@@ -417,6 +482,10 @@ class Stamen extends Model
             ->with('player')
             ->orderBy('dajun', 'ASC')
             ->get();
+
+        foreach ($visitorStamens as $visitorStamen) {
+            $visitorStamen->append('start_seiseki');
+        }
 
         return [
             'home_team' => $this->showStamenData($homeStamens, $homeTeamId),

@@ -3855,8 +3855,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3909,6 +3907,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/enums.js */ "./resources/js/mixins/enums.js");
 //
 //
 //
@@ -3945,11 +3944,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     gameId: String,
     stamenType: String
   },
+  mixins: [_mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__.default],
   computed: {
     submitPath: function submitPath() {
       return '/api/games/stamen-edit/' + this.gameId + '/' + this.stamenType;
@@ -4462,6 +4479,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -4476,7 +4509,8 @@ __webpack_require__.r(__webpack_exports__);
         },
         'visitor_team': {
           'name': ''
-        }
+        },
+        'season_id': ''
       },
       'stamen': {
         'home_team': {},
@@ -46830,7 +46864,6 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-sm-6" }, [
-        _vm._v("\n                " + _vm._s(_vm.data) + "\n\n            "),
         _c(
           "form",
           {
@@ -46931,127 +46964,178 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("h2", [
-      _vm._v(
-        _vm._s(_vm.gameData.date) +
-          " " +
-          _vm._s(_vm.gameData.home_team.name) +
-          " VS " +
-          _vm._s(_vm.gameData.visitor_team.name)
-      )
-    ]),
-    _vm._v(" "),
-    _vm.stamenType == "visitor"
-      ? _c("h3", [
-          _vm._v(_vm._s(_vm.gameData.visitor_team.name) + " スタメン設定")
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.stamenType == "home"
-      ? _c("h3", [
-          _vm._v(_vm._s(_vm.gameData.home_team.name) + " スタメン設定")
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-sm-4" }, [
-        _c(
-          "table",
-          { staticClass: "table table-hover" },
-          _vm._l(this.stamenData.stamen, function(stamen, dajun) {
-            return _c("tr", [
-              _c("td", [_vm._v(_vm._s(stamen.dajun))]),
-              _vm._v(" "),
-              _c(
-                "td",
-                {
-                  class: { selected: _vm.positionClicked == dajun },
-                  attrs: { "data-key": dajun },
-                  on: { click: _vm.positionClick }
-                },
-                [_vm._v(_vm._s(stamen.position.text))]
-              ),
-              _vm._v(" "),
-              _c(
-                "td",
-                {
-                  class: { selected: _vm.playerClicked == dajun },
-                  attrs: { "data-key": dajun },
-                  on: { click: _vm.playerClick }
-                },
-                [_vm._v(_vm._s(stamen.player.name_short))]
-              )
-            ])
-          }),
-          0
-        ),
+  return Object.keys(_vm.enums).length
+    ? _c("div", { staticClass: "container" }, [
+        _c("h2", [
+          _vm._v(
+            _vm._s(_vm.gameData.date) +
+              " " +
+              _vm._s(_vm.gameData.home_team.name) +
+              " VS " +
+              _vm._s(_vm.gameData.visitor_team.name)
+          )
+        ]),
         _vm._v(" "),
-        _c(
-          "form",
-          {
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                _vm.submit(_vm.submitPath, {
-                  name: "game.view",
-                  params: { gameId: _vm.gameId.toString() }
-                })
-              }
-            }
-          },
-          [
+        _vm.stamenType == "visitor"
+          ? _c("h3", [
+              _vm._v(_vm._s(_vm.gameData.visitor_team.name) + " スタメン設定")
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.stamenType == "home"
+          ? _c("h3", [
+              _vm._v(_vm._s(_vm.gameData.home_team.name) + " スタメン設定")
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-6" }, [
             _c(
-              "button",
-              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-              [_vm._v("Submit")]
+              "table",
+              { staticClass: "table table-hover" },
+              _vm._l(this.stamenData.stamen, function(stamen, dajun) {
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(stamen.dajun))]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    {
+                      class: { selected: _vm.positionClicked == dajun },
+                      attrs: { "data-key": dajun },
+                      on: { click: _vm.positionClick }
+                    },
+                    [_vm._v(_vm._s(stamen.position.text))]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    {
+                      class: { selected: _vm.playerClicked == dajun },
+                      attrs: { "data-key": dajun },
+                      on: { click: _vm.playerClick }
+                    },
+                    [
+                      _vm._v(
+                        _vm._s(stamen.player.number) +
+                          ". " +
+                          _vm._s(stamen.player.name_short)
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("td", [
+                    stamen.player.position_main ==
+                    _vm.enums.Position.POSITION_P.value
+                      ? _c("div", [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(stamen.player.start_seiseki.pitcher) +
+                              "\n                        "
+                          )
+                        ])
+                      : _c("div", [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(stamen.player.start_seiseki.dageki) +
+                              "\n                        "
+                          )
+                        ])
+                  ])
+                ])
+              }),
+              0
             ),
             _vm._v(" "),
             _c(
-              "router-link",
+              "form",
               {
-                attrs: {
-                  to: {
-                    name: "game.view",
-                    params: { gameId: _vm.gameId.toString() }
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    _vm.submit(_vm.submitPath, {
+                      name: "game.view",
+                      params: { gameId: _vm.gameId.toString() }
+                    })
                   }
                 }
               },
               [
-                _c("button", { staticClass: "btn btn-success float-right" }, [
-                  _vm._v("一覧に戻る")
-                ])
-              ]
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+                  [_vm._v("Submit")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: {
+                        name: "game.view",
+                        params: { gameId: _vm.gameId.toString() }
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "button",
+                      { staticClass: "btn btn-success float-right" },
+                      [_vm._v("一覧に戻る")]
+                    )
+                  ]
+                )
+              ],
+              1
             )
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-1" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3 hikae_waku" }, [
-        _c(
-          "table",
-          { staticClass: "table table-hover" },
-          _vm._l(this.stamenData.hikae, function(hikae, playerKey) {
-            return _c("tr", [
-              _c(
-                "td",
-                {
-                  class: { selected: _vm.playerClicked == playerKey },
-                  attrs: { "data-key": playerKey },
-                  on: { click: _vm.playerClick }
-                },
-                [_vm._v(_vm._s(hikae.name_short))]
-              )
-            ])
-          }),
-          0
-        )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-1" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-5 hikae_waku" }, [
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              _vm._l(this.stamenData.hikae, function(hikae, playerKey) {
+                return _c("tr", [
+                  _c(
+                    "td",
+                    {
+                      class: { selected: _vm.playerClicked == playerKey },
+                      attrs: { "data-key": playerKey },
+                      on: { click: _vm.playerClick }
+                    },
+                    [
+                      _vm._v(
+                        _vm._s(hikae.number) + ". " + _vm._s(hikae.name_short)
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("td", [
+                    hikae.position_main == _vm.enums.Position.POSITION_P.value
+                      ? _c("div", [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(hikae.start_seiseki.pitcher) +
+                              "\n                        "
+                          )
+                        ])
+                      : _c("div", [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(hikae.start_seiseki.dageki) +
+                              "\n                        "
+                          )
+                        ])
+                  ])
+                ])
+              }),
+              0
+            )
+          ])
+        ])
       ])
-    ])
-  ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -47783,7 +47867,26 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(stamen.position.text))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(stamen.player.name))])
+                      _c("td", [_vm._v(_vm._s(stamen.player.name))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        stamen.position.value ==
+                        _vm.enums.Position.POSITION_P.value
+                          ? _c("div", [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(stamen.start_seiseki.pitcher) +
+                                  "\n                        "
+                              )
+                            ])
+                          : _c("div", [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(stamen.start_seiseki.dageki) +
+                                  "\n                        "
+                              )
+                            ])
+                      ])
                     ])
                   }),
                   0
@@ -47834,7 +47937,26 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(stamen.position.text))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(stamen.player.name))])
+                      _c("td", [_vm._v(_vm._s(stamen.player.name))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        stamen.position.value ==
+                        _vm.enums.Position.POSITION_P.value
+                          ? _c("div", [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(stamen.start_seiseki.pitcher) +
+                                  "\n                        "
+                              )
+                            ])
+                          : _c("div", [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(stamen.start_seiseki.dageki) +
+                                  "\n                        "
+                              )
+                            ])
+                      ])
                     ])
                   }),
                   0

@@ -80,19 +80,19 @@ class GamePitcher extends Model
             ->where('games.date' , '<=', $gameDate)
             ->select([
                 \DB::raw('count(game_pitchers.id) as game_sum'),
-                \DB::raw('sum(game_pitchers.inning) as inning_sum'),
-                \DB::raw('sum(game_pitchers.jiseki) as jiseki_sum'),
-                \DB::raw('sum(game_pitchers.daseki) as daseki_sum'),
-                \DB::raw('sum(game_pitchers.dasu) as dasu_sum'),
-                \DB::raw('sum(game_pitchers.hit) as hit_sum'),
-                \DB::raw('sum(game_pitchers.hr) as hr_sum'),
-                \DB::raw('sum(game_pitchers.sansin) as sansin_sum'),
-                \DB::raw('sum(game_pitchers.walk) as walk_sum'),
-                \DB::raw('sum(game_pitchers.dead) as dead_sum'),
-                \DB::raw('sum(game_pitchers.win_flag::integer) as win_count'),
-                \DB::raw('sum(game_pitchers.lose_flag::integer) as lose_count'),
-                \DB::raw('sum(game_pitchers.hold_flag::integer) as hold_count'),
-                \DB::raw('sum(game_pitchers.save_flag::integer) as save_count'),
+                \DB::raw('coalesce(sum(game_pitchers.inning), 0) as inning_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.jiseki), 0) as jiseki_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.daseki), 0) as daseki_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.dasu), 0) as dasu_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.hit), 0) as hit_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.hr), 0) as hr_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.sansin), 0) as sansin_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.walk), 0) as walk_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.dead), 0) as dead_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.win_flag::integer), 0) as win_count'),
+                \DB::raw('coalesce(sum(game_pitchers.lose_flag::integer), 0) as lose_count'),
+                \DB::raw('coalesce(sum(game_pitchers.hold_flag::integer), 0) as hold_count'),
+                \DB::raw('coalesce(sum(game_pitchers.save_flag::integer), 0) as save_count'),
             ])
             ->first()
             ->toArray();

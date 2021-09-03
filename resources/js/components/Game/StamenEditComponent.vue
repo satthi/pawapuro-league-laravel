@@ -1,16 +1,24 @@
 <template>
-    <div class="container">
+    <div class="container" v-if="Object.keys(enums).length">
         <h2>{{ gameData.date }} {{ gameData.home_team.name }} VS {{ gameData.visitor_team.name }}</h2>
         <h3 v-if="stamenType=='visitor'">{{ gameData.visitor_team.name }} スタメン設定</h3>
         <h3 v-if="stamenType=='home'">{{ gameData.home_team.name }} スタメン設定</h3>
 
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <table class="table table-hover">
                     <tr v-for="(stamen, dajun) in this.stamenData.stamen">
                         <td>{{ stamen.dajun }}</td>
                         <td v-on:click="positionClick" :data-key="dajun" v-bind:class="{'selected' : positionClicked==dajun}">{{ stamen.position.text }}</td>
-                        <td v-on:click="playerClick" :data-key="dajun" v-bind:class="{'selected' : playerClicked==dajun}">{{ stamen.player.name_short }}</td>
+                        <td v-on:click="playerClick" :data-key="dajun" v-bind:class="{'selected' : playerClicked==dajun}">{{ stamen.player.number }}. {{ stamen.player.name_short }}</td>
+                        <td>
+                            <div v-if="stamen.player.position_main == enums.Position.POSITION_P.value">
+                                {{ stamen.player.start_seiseki.pitcher }}
+                            </div>
+                            <div v-else>
+                                {{ stamen.player.start_seiseki.dageki }}
+                            </div>
+                        </td>
                     </tr>
                 </table>
                 <form v-on:submit.prevent="submit(submitPath, {name: 'game.view', params: {gameId: gameId.toString() }})">
@@ -24,10 +32,18 @@
             </div>
             <div class="col-sm-1">
             </div>
-            <div class="col-sm-3 hikae_waku">
+            <div class="col-sm-5 hikae_waku">
                 <table class="table table-hover">
                     <tr v-for="(hikae, playerKey) in this.stamenData.hikae">
-                        <td v-on:click="playerClick" :data-key="playerKey" v-bind:class="{'selected' : playerClicked==playerKey}">{{ hikae.name_short }}</td>
+                        <td v-on:click="playerClick" :data-key="playerKey" v-bind:class="{'selected' : playerClicked==playerKey}">{{ hikae.number }}. {{ hikae.name_short }}</td>
+                        <td>
+                            <div v-if="hikae.position_main == enums.Position.POSITION_P.value">
+                                {{ hikae.start_seiseki.pitcher }}
+                            </div>
+                            <div v-else>
+                                {{ hikae.start_seiseki.dageki }}
+                            </div>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -35,11 +51,13 @@
     </div>
 </template>
 <script>
+    import EnumsMixin from '../../mixins/enums.js';
     export default {
         props: {
             gameId: String,
             stamenType: String
         },
+        mixins : [EnumsMixin],
         computed: {
           submitPath() {
             return '/api/games/stamen-edit/' + this.gameId + '/' + this.stamenType;

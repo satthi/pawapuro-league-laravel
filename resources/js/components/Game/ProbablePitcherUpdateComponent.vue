@@ -2,8 +2,6 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-sm-6">
-                    {{ data }}
-
                 <form v-on:submit.prevent="submit(submitPath, {name: 'game.view', params: {gameId: gameId.toString() }})">
                     <select-component label="先行 予告先発" :errors="errors.visitor_probable_pitcher_id" :options="visitorPlayerOptions" :empty=true :value="data.visitor_probable_pitcher_id" v-model="data.visitor_probable_pitcher_id"/>
                     <select-component label="後攻 予告先発" :errors="errors.home_probable_pitcher_id" :options="homePlayerOptions" :empty=true :value="data.home_probable_pitcher_id" v-model="data.home_probable_pitcher_id"/>

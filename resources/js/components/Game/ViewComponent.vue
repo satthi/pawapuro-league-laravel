@@ -39,6 +39,14 @@
                         <td>{{ stamen.dajun }}</td>
                         <td>{{ stamen.position.text }}</td>
                         <td>{{ stamen.player.name }}</td>
+                        <td>
+                            <div v-if="stamen.position.value == enums.Position.POSITION_P.value">
+                                {{ stamen.start_seiseki.pitcher }}
+                            </div>
+                            <div v-else>
+                                {{ stamen.start_seiseki.dageki }}
+                            </div>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -53,6 +61,14 @@
                         <td>{{ stamen.dajun }}</td>
                         <td>{{ stamen.position.text }}</td>
                         <td>{{ stamen.player.name }}</td>
+                        <td>
+                            <div v-if="stamen.position.value == enums.Position.POSITION_P.value">
+                                {{ stamen.start_seiseki.pitcher }}
+                            </div>
+                            <div v-else>
+                                {{ stamen.start_seiseki.dageki }}
+                            </div>
+                        </td>
                     </tr>
                 </table>
 
@@ -78,6 +94,7 @@
                     'visitor_team' : {
                         'name' : ''
                     },
+                    'season_id' : '',
                 },
                 'stamen' : {
                     'home_team' : {},
