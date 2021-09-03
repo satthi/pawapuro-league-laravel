@@ -101,6 +101,24 @@ class ResultsTableSeeder extends Seeder
 
              ]);
              Result::create([
+                 'name' => $position . '併',
+                 'hit_flag' => false,
+                 'hit_2_flag' => false,
+                 'hit_3_flag' => false,
+                 'hr_flag' => false,
+                 'sansin_flag' => false,
+                 'heisatsu_flag' => false,
+                 'walk_flag' => false,
+                 'dead_flag' => false,
+                 'bant_flag' => false,
+                 'sac_fly_flag' => false,
+                 'out_count' => 2,
+                 'point_require_flag' => false,
+                 'dasu_count_flag' => true,
+                'button_position' => $buttonPositionKey,
+                 'button_type' => 1,
+             ]);
+             Result::create([
                  'name' => $position . '直',
                  'hit_flag' => false,
                  'hit_2_flag' => false,
@@ -136,8 +154,9 @@ class ResultsTableSeeder extends Seeder
                 'button_position' => $buttonPositionKey,
                  'button_type' => 1,
              ]);
+
              Result::create([
-                 'name' => $position . '併',
+                 'name' => $position . '失',
                  'hit_flag' => false,
                  'hit_2_flag' => false,
                  'hit_3_flag' => false,
@@ -146,25 +165,7 @@ class ResultsTableSeeder extends Seeder
                  'heisatsu_flag' => false,
                  'walk_flag' => false,
                  'dead_flag' => false,
-                 'bant_flag' => false,
-                 'sac_fly_flag' => false,
-                 'out_count' => 2,
-                 'point_require_flag' => false,
-                 'dasu_count_flag' => true,
-                'button_position' => $buttonPositionKey,
-                 'button_type' => 1,
-             ]);
-             Result::create([
-                 'name' => $position . 'FC',
-                 'hit_flag' => false,
-                 'hit_2_flag' => false,
-                 'hit_3_flag' => false,
-                 'hr_flag' => false,
-                 'sansin_flag' => false,
-                 'heisatsu_flag' => false,
-                 'walk_flag' => false,
-                 'dead_flag' => false,
-                 'bant_flag' => false,
+                 'bant_flag' => true,
                  'sac_fly_flag' => false,
                  'out_count' => 0,
                  'point_require_flag' => false,
@@ -172,7 +173,6 @@ class ResultsTableSeeder extends Seeder
                 'button_position' => $buttonPositionKey,
                  'button_type' => 3,
              ]);
-
              Result::create([
                  'name' => $position . 'バ',
                  'hit_flag' => false,
@@ -246,7 +246,7 @@ class ResultsTableSeeder extends Seeder
                  'button_type' => 2,
              ]);
              Result::create([
-                 'name' => $position . '失',
+                 'name' => $position . 'FC',
                  'hit_flag' => false,
                  'hit_2_flag' => false,
                  'hit_3_flag' => false,
@@ -255,7 +255,7 @@ class ResultsTableSeeder extends Seeder
                  'heisatsu_flag' => false,
                  'walk_flag' => false,
                  'dead_flag' => false,
-                 'bant_flag' => true,
+                 'bant_flag' => false,
                  'sac_fly_flag' => false,
                  'out_count' => 0,
                  'point_require_flag' => false,
@@ -263,6 +263,7 @@ class ResultsTableSeeder extends Seeder
                 'button_position' => $buttonPositionKey,
                  'button_type' => 3,
              ]);
+
              Result::create([
                  'name' => $position . '安',
                  'hit_flag' => true,
@@ -282,7 +283,7 @@ class ResultsTableSeeder extends Seeder
                  'button_type' => 4,
              ]);
              Result::create([
-                 'name' => $position . '二',
+                 'name' => $position . '２',
                  'hit_flag' => true,
                  'hit_2_flag' => true,
                  'hit_3_flag' => false,
@@ -300,7 +301,7 @@ class ResultsTableSeeder extends Seeder
                  'button_type' => 4,
              ]);
              Result::create([
-                 'name' => $position . '三',
+                 'name' => $position . '３',
                  'hit_flag' => true,
                  'hit_2_flag' => false,
                  'hit_3_flag' => true,
@@ -313,6 +314,24 @@ class ResultsTableSeeder extends Seeder
                  'sac_fly_flag' => false,
                  'out_count' => 0,
                  'point_require_flag' => false,
+                 'dasu_count_flag' => true,
+                'button_position' => $buttonPositionKey,
+                 'button_type' => 4,
+             ]);
+             Result::create([
+                 'name' => $position . '走',
+                 'hit_flag' => true,
+                 'hit_2_flag' => false,
+                 'hit_3_flag' => false,
+                 'hr_flag' => true,
+                 'sansin_flag' => false,
+                 'heisatsu_flag' => false,
+                 'walk_flag' => false,
+                 'dead_flag' => false,
+                 'bant_flag' => false,
+                 'sac_fly_flag' => false,
+                 'out_count' => 0,
+                 'point_require_flag' => true,
                  'dasu_count_flag' => true,
                 'button_position' => $buttonPositionKey,
                  'button_type' => 4,

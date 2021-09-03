@@ -48,7 +48,7 @@
 
                     <table class="table-hover" id="fielder-summary" v-bind:style="{'width': ( 230 + 90 * summary[0].dageki.length ) + 'px'   }">
                         <tr v-for="playerBlock in summary">
-                            <td style="width: 20px;">{{ playerBlock.position }}</td>
+                            <td style="width: 20px;" v-html="playerBlock.position"></td>
                             <td style="width: 120px;">{{ playerBlock.player.name_short }}</td>
                             <td v-for="dageki in playerBlock.dageki" :class='`result_button_${dageki ? dageki.result.button_type : ``}`' style="width: 90px;">
                                 <span v-if="dageki">{{ dageki.result_text }}</span>

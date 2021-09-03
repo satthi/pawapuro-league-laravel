@@ -3165,6 +3165,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -44593,9 +44595,10 @@ var render = function() {
                     return _c(
                       "tr",
                       [
-                        _c("td", { staticStyle: { width: "20px" } }, [
-                          _vm._v(_vm._s(playerBlock.position))
-                        ]),
+                        _c("td", {
+                          staticStyle: { width: "20px" },
+                          domProps: { innerHTML: _vm._s(playerBlock.position) }
+                        }),
                         _vm._v(" "),
                         _c("td", { staticStyle: { width: "120px" } }, [
                           _vm._v(_vm._s(playerBlock.player.name_short))
@@ -45452,6 +45455,8 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(pitcher.hr))]),
                         _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(pitcher.sansin))]),
+                        _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(pitcher.walk))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(pitcher.dead))]),
@@ -45511,6 +45516,8 @@ var staticRenderFns = [
       _c("th", [_vm._v("安")]),
       _vm._v(" "),
       _c("th", [_vm._v("本")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("振")]),
       _vm._v(" "),
       _c("th", [_vm._v("四")]),
       _vm._v(" "),

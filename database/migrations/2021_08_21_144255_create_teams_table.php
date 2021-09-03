@@ -15,8 +15,8 @@ class CreateTeamsTable extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('base_team_id');
-            $table->integer('season_id');
+            $table->integer('base_team_id')->index();
+            $table->integer('season_id')->index();
             $table->string('name', 100);
             $table->string('ryaku_name', 100);
             $table->timestamps();

@@ -25,15 +25,6 @@ class Game extends Model
         'visitor_point',
     ];
 
-    protected $appends = [
-        'board_status',
-        'is_home_team_phpr',
-        'is_home_team_position',
-        'is_visitor_team_phpr',
-        'is_visitor_team_position',
-        'is_next_inning',
-    ];
-
     ### relation
 
     /**
@@ -269,6 +260,7 @@ class Game extends Model
                 $gameLists[$gameDate]['game'][] = [];
             }
         }
+
 
         return $gameLists;
     }
@@ -565,7 +557,7 @@ class Game extends Model
     ### game view
     public function getViewInfo($gameId)
     {
-        return $this->where('id', $gameId)
+        $game = $this->where('id', $gameId)
             ->with('home_team')
             ->with('visitor_team')
             ->with('home_probable_pitcher')
@@ -573,8 +565,18 @@ class Game extends Model
             ->with('win_game_pitcher.player')
             ->with('lose_game_pitcher.player')
             ->with('save_game_pitcher.player')
-            ->first()
-            ;
+            ->first();
+
+        if (!is_null($game)) {
+            $game = $game->append('board_status')
+                ->append('is_home_team_phpr')
+                ->append('is_home_team_position')
+                ->append('is_visitor_team_phpr')
+                ->append('is_visitor_team_position')
+                ->append('is_next_inning');
+        }
+
+        return $game;
     }
 
     ### game update

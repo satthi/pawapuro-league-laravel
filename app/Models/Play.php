@@ -403,7 +403,7 @@ class Play extends Model
                 ];
             }
             if ($play->type == PlayType::TYPE_STAMEN) {
-                $summary[$play->player_id]['position'] .= Position::getNumberStamen($play->position);
+                $summary[$play->player_id]['position'] .= '<span style="font-size:1.5em;">' . Position::getNumberStamen($play->position) .'</span>';
             } elseif ($play->type == PlayType::TYPE_MEMBER_CHANGE) {
                 $summary[$play->player_id]['position'] .= Position::getNumberChange($play->position);
             } elseif ($play->type == PlayType::TYPE_DAGEKI_KEKKA) {
@@ -443,6 +443,11 @@ class Play extends Model
     public function getTopSummaryHr($game)
     {
         $hrPlayers = Play::where('game_id', $game->id)
+            ->select([
+                'plays.id as id',
+                'plays.player_id as player_id',
+                'plays.pitcher_id as pitcher_id',
+            ])
             ->with('player')
             ->with('pitcher')
             ->join('results', 'results.id', '=', 'plays.result_id')
@@ -454,6 +459,7 @@ class Play extends Model
                 ->join('results', 'results.id', '=', 'plays.result_id')
                 ->where('results.hr_flag', true)
                 ->where('plays.id', '<=', $hrPlayer['id'])
+                ->get()
                 ->count();
         }
 

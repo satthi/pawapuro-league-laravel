@@ -122,8 +122,13 @@ class GamePitcher extends Model
         $pitcher = GamePitcher::where('game_id', $game->id)
             ->where($field, true)
             ->with('player')
-            ->firstOrFail()
-            ->toArray();
+            ->first();
+
+        if (is_null($pitcher)) {
+            return null;
+        }
+
+        $pitcher = $pitcher->toArray();
 
         // 成績情報(試合/勝ち/負け/ホールド/セーブ)
         $seiseki = $this::where('player_id', $pitcher['player_id'])

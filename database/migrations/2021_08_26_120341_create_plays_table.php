@@ -15,15 +15,15 @@ class CreatePlaysTable extends Migration
     {
         Schema::create('plays', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('game_id');
-            $table->integer('team_id');
+            $table->integer('game_id')->index();
+            $table->integer('team_id')->index();
             $table->integer('inning');
             $table->integer('type'); // 1: stamen/2:member_charnge/3:dageki_kekka/4:tourui/5: point only
-            $table->integer('result_id')->nullable();
+            $table->integer('result_id')->nullable()->index();
             $table->integer('out_count')->nullable();
             $table->integer('point_count')->nullable();
-            $table->integer('player_id')->nullable();
-            $table->integer('pitcher_id')->nullable();
+            $table->integer('player_id')->nullable()->index();
+            $table->integer('pitcher_id')->nullable()->index();
             $table->integer('dajun')->nullable(); // stamen/member_change
             $table->integer('position')->nullable(); // stamen/member_change
             $table->timestamps();

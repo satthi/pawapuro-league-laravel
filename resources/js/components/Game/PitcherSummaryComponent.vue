@@ -61,6 +61,7 @@
                             <th>回</th>
                             <th>安</th>
                             <th>本</th>
+                            <th>振</th>
                             <th>四</th>
                             <th>死</th>
                             <th>自</th>
@@ -77,6 +78,7 @@
                             <td>{{ pitcher.string_inning }}</td>
                             <td>{{ pitcher.hit }}</td>
                             <td>{{ pitcher.hr }}</td>
+                            <td>{{ pitcher.sansin }}</td>
                             <td>{{ pitcher.walk }}</td>
                             <td>{{ pitcher.dead }}</td>
                             <td>{{ pitcher.jiseki }}</td>

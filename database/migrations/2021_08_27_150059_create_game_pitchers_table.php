@@ -15,9 +15,9 @@ class CreateGamePitchersTable extends Migration
     {
         Schema::create('game_pitchers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('game_id');
-            $table->integer('team_id');
-            $table->integer('player_id');
+            $table->integer('game_id')->index();
+            $table->integer('team_id')->index();
+            $table->integer('player_id')->index();
             $table->boolean('win_flag');
             $table->boolean('lose_flag');
             $table->boolean('hold_flag');
