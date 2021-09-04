@@ -6,7 +6,7 @@
             <div class="col-sm-3">
                 <table class="table table-hover stamen">
                     <tr v-for="(member, dajun) in this.playData.member.visitor_team">
-                        <td v-bind:class="{'member_selected' : member.player.id == playData.now_player_id}" style="width: 15px;">{{ member.position.text }}</td>
+                        <td v-bind:class="{'member_selected' : playData.now_player != null && member.player.id == playData.now_player.player.id}" style="width: 15px;">{{ member.position.text }}</td>
                         <td>{{ member.player.name_short }}</td>
                         <td class="seiseki">
                             {{ member.seiseki.dageki }}
@@ -29,6 +29,58 @@
                     <router-link v-bind:to="{name: 'game.position', params: {gameId: gameId.toString(), teamType: 'visitor' }}" v-if="gameData.is_visitor_team_position">
                         <button class="btn btn-success">守備</button>
                     </router-link>
+                </div>
+                <div  v-if="gameData.is_visitor_team_phpr && playData.now_player != null">
+                    <div>
+                        [{{ playData.now_player.player.number }}] {{ playData.now_player.player.name }}
+                    </div>
+                    <div>
+                        {{ playData.now_player.seiseki.dageki }}
+                    </div>
+                    <table class="table table-hover now_player_detail">
+                        <tr v-for="playInfo in playData.now_player.playInfo" :class='`result_button_${playInfo.result.button_type}`'>
+                            <td>
+                                {{ playInfo.result.name }}
+                                <span v-if="playInfo.point_count > 0">({{ playInfo.point_count }})</span>
+                                [{{ playInfo.pitcher.name }}]
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div  v-if="gameData.is_home_team_phpr && playData.now_pitcher != null">
+                    <div>
+                        [{{ playData.now_pitcher.player.number }}] {{ playData.now_pitcher.player.name }}
+                    </div>
+                    <div>
+                        {{ playData.now_pitcher.seiseki.pitcher }}
+                    </div>
+                    <table class="table table-hover now_pitcher_detail">
+                        <tr>
+                            <td>投球回</td>
+                            <td>{{ playData.now_pitcher.playInfo.inning_text }}</td>
+                        </tr>
+                        <tr>
+                            <td>被安打</td>
+                            <td>{{ playData.now_pitcher.playInfo.hit }}</td>
+                        </tr>
+                        <tr>
+                            <td>被本塁打</td>
+                            <td>{{ playData.now_pitcher.playInfo.hr }}</td>
+                        </tr>
+                        <tr>
+                            <td>与四球</td>
+                            <td>{{ playData.now_pitcher.playInfo.walk }}</td>
+                        </tr>
+                        <tr>
+                            <td>与死球</td>
+                            <td>{{ playData.now_pitcher.playInfo.dead }}</td>
+                        </tr>
+                        <tr>
+                            <td>失点(参考)</td>
+                            <td>{{ playData.now_pitcher.playInfo.point }}</td>
+                        </tr>
+                    </table>
                 </div>
 
             </div>
@@ -214,7 +266,7 @@
             <div class="col-sm-3 clearfix">
                 <table class="table table-hover stamen">
                     <tr v-for="(member, dajun) in this.playData.member.home_team">
-                        <td v-bind:class="{'member_selected' : member.player.id == playData.now_player_id}" style="width: 15px;">{{ member.position.text }}</td>
+                        <td v-bind:class="{'member_selected' : playData.now_player != null && member.player.id == playData.now_player.player.id}" style="width: 15px;">{{ member.position.text }}</td>
                         <td>{{ member.player.name_short }}</td>
                         <td class="seiseki">
                             {{ member.seiseki.dageki }}
@@ -238,6 +290,59 @@
                     <router-link v-bind:to="{name: 'game.position', params: {gameId: gameId.toString(), teamType: 'home' }}" v-if="gameData.is_home_team_position">
                         <button class="btn btn-success">守備</button>
                     </router-link>
+                </div>
+
+                <div  v-if="gameData.is_home_team_phpr && playData.now_player != null">
+                    <div>
+                        [{{ playData.now_player.player.number }}] {{ playData.now_player.player.name }}
+                    </div>
+                    <div>
+                        {{ playData.now_player.seiseki.dageki }}
+                    </div>
+                    <table class="table table-hover now_player_detail">
+                        <tr v-for="playInfo in playData.now_player.playInfo" :class='`result_button_${playInfo.result.button_type}`'>
+                            <td>
+                                {{ playInfo.result.name }}
+                                <span v-if="playInfo.point_count > 0">({{ playInfo.point_count }})</span>
+                                [{{ playInfo.pitcher.name }}]
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div  v-if="gameData.is_visitor_team_phpr && playData.now_pitcher != null">
+                    <div>
+                        [{{ playData.now_pitcher.player.number }}] {{ playData.now_pitcher.player.name }}
+                    </div>
+                    <div>
+                        {{ playData.now_pitcher.seiseki.pitcher }}
+                    </div>
+                    <table class="table table-hover now_pitcher_detail">
+                        <tr>
+                            <td>投球回</td>
+                            <td>{{ playData.now_pitcher.playInfo.inning_text }}</td>
+                        </tr>
+                        <tr>
+                            <td>被安打</td>
+                            <td>{{ playData.now_pitcher.playInfo.hit }}</td>
+                        </tr>
+                        <tr>
+                            <td>被本塁打</td>
+                            <td>{{ playData.now_pitcher.playInfo.hr }}</td>
+                        </tr>
+                        <tr>
+                            <td>与四球</td>
+                            <td>{{ playData.now_pitcher.playInfo.walk }}</td>
+                        </tr>
+                        <tr>
+                            <td>与死球</td>
+                            <td>{{ playData.now_pitcher.playInfo.dead }}</td>
+                        </tr>
+                        <tr>
+                            <td>失点(参考)</td>
+                            <td>{{ playData.now_pitcher.playInfo.point }}</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
@@ -274,7 +379,7 @@
           },
           gameEndSubmitPath() {
             return '/api/games/game-end-play/' + this.gameId;
-          },
+          }
         },
         data: function () {
             return {
@@ -287,8 +392,8 @@
                         'home_team' : {},
                         'visitor_team' : {},
                     },
-                    'now_player_id' : null,
-                    'now_pitcher_id' : null,
+                    'now_player' : null,
+                    'now_pitcher' : null,
                     'inning_info': {
                         inning: {}
                     },
@@ -312,6 +417,7 @@
                     },
                 },
                 disabled: false,
+                nowPlayer: {},
             }
         },
         methods: {
@@ -348,8 +454,8 @@
                 this.disabled = true;
                 var postData = this.data;
                 postData['game_id'] = this.gameId;
-                postData['now_player_id'] = this.playData.now_player_id;
-                postData['now_pitcher_id'] = this.playData.now_pitcher_id;
+                postData['now_player_id'] = this.playData.now_player != null ? this.playData.now_player.player.id : null;
+                postData['now_pitcher_id'] = this.playData.now_pitcher != null ? this.playData.now_pitcher.player.id : null;
                 axios.post(postPath, this.data)
                     .then((res) => {
                         this.initial();

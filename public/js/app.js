@@ -3502,6 +3502,111 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3549,8 +3654,8 @@ __webpack_require__.r(__webpack_exports__);
           'home_team': {},
           'visitor_team': {}
         },
-        'now_player_id': null,
-        'now_pitcher_id': null,
+        'now_player': null,
+        'now_pitcher': null,
         'inning_info': {
           inning: {}
         },
@@ -3573,7 +3678,8 @@ __webpack_require__.r(__webpack_exports__);
           'jiseki': {}
         }
       },
-      disabled: false
+      disabled: false,
+      nowPlayer: {}
     };
   },
   methods: {
@@ -3616,8 +3722,8 @@ __webpack_require__.r(__webpack_exports__);
       this.disabled = true;
       var postData = this.data;
       postData['game_id'] = this.gameId;
-      postData['now_player_id'] = this.playData.now_player_id;
-      postData['now_pitcher_id'] = this.playData.now_pitcher_id;
+      postData['now_player_id'] = this.playData.now_player != null ? this.playData.now_player.player.id : null;
+      postData['now_pitcher_id'] = this.playData.now_pitcher != null ? this.playData.now_pitcher.player.id : null;
       axios.post(postPath, this.data).then(function (res) {
         _this2.initial();
       })["catch"](function (error) {
@@ -45618,7 +45724,8 @@ var render = function() {
                     {
                       class: {
                         member_selected:
-                          member.player.id == _vm.playData.now_player_id
+                          _vm.playData.now_player != null &&
+                          member.player.id == _vm.playData.now_player.player.id
                       },
                       staticStyle: { width: "15px" }
                     },
@@ -45732,7 +45839,148 @@ var render = function() {
                   : _vm._e()
               ],
               1
-            )
+            ),
+            _vm._v(" "),
+            _vm.gameData.is_visitor_team_phpr && _vm.playData.now_player != null
+              ? _c("div", [
+                  _c("div", [
+                    _vm._v(
+                      "\n                    [" +
+                        _vm._s(_vm.playData.now_player.player.number) +
+                        "] " +
+                        _vm._s(_vm.playData.now_player.player.name) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.playData.now_player.seiseki.dageki) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "table",
+                    { staticClass: "table table-hover now_player_detail" },
+                    _vm._l(_vm.playData.now_player.playInfo, function(
+                      playInfo
+                    ) {
+                      return _c(
+                        "tr",
+                        {
+                          class: "result_button_" + playInfo.result.button_type
+                        },
+                        [
+                          _c("td", [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(playInfo.result.name) +
+                                "\n                            "
+                            ),
+                            playInfo.point_count > 0
+                              ? _c("span", [
+                                  _vm._v(
+                                    "(" + _vm._s(playInfo.point_count) + ")"
+                                  )
+                                ])
+                              : _vm._e(),
+                            _vm._v(
+                              "\n                            [" +
+                                _vm._s(playInfo.pitcher.name) +
+                                "]\n                        "
+                            )
+                          ])
+                        ]
+                      )
+                    }),
+                    0
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.gameData.is_home_team_phpr && _vm.playData.now_pitcher != null
+              ? _c("div", [
+                  _c("div", [
+                    _vm._v(
+                      "\n                    [" +
+                        _vm._s(_vm.playData.now_pitcher.player.number) +
+                        "] " +
+                        _vm._s(_vm.playData.now_pitcher.player.name) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.playData.now_pitcher.seiseki.pitcher) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "table",
+                    { staticClass: "table table-hover now_pitcher_detail" },
+                    [
+                      _c("tr", [
+                        _c("td", [_vm._v("投球回")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(
+                              _vm.playData.now_pitcher.playInfo.inning_text
+                            )
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("被安打")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(_vm.playData.now_pitcher.playInfo.hit))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("被本塁打")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(_vm.playData.now_pitcher.playInfo.hr))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("与四球")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(_vm.playData.now_pitcher.playInfo.walk))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("与死球")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(_vm.playData.now_pitcher.playInfo.dead))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("失点(参考)")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(_vm.playData.now_pitcher.playInfo.point)
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                ])
+              : _vm._e()
           ]),
           _vm._v(" "),
           _c(
@@ -46560,7 +46808,8 @@ var render = function() {
                     {
                       class: {
                         member_selected:
-                          member.player.id == _vm.playData.now_player_id
+                          _vm.playData.now_player != null &&
+                          member.player.id == _vm.playData.now_player.player.id
                       },
                       staticStyle: { width: "15px" }
                     },
@@ -46674,7 +46923,149 @@ var render = function() {
                   : _vm._e()
               ],
               1
-            )
+            ),
+            _vm._v(" "),
+            _vm.gameData.is_home_team_phpr && _vm.playData.now_player != null
+              ? _c("div", [
+                  _c("div", [
+                    _vm._v(
+                      "\n                    [" +
+                        _vm._s(_vm.playData.now_player.player.number) +
+                        "] " +
+                        _vm._s(_vm.playData.now_player.player.name) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.playData.now_player.seiseki.dageki) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "table",
+                    { staticClass: "table table-hover now_player_detail" },
+                    _vm._l(_vm.playData.now_player.playInfo, function(
+                      playInfo
+                    ) {
+                      return _c(
+                        "tr",
+                        {
+                          class: "result_button_" + playInfo.result.button_type
+                        },
+                        [
+                          _c("td", [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(playInfo.result.name) +
+                                "\n                            "
+                            ),
+                            playInfo.point_count > 0
+                              ? _c("span", [
+                                  _vm._v(
+                                    "(" + _vm._s(playInfo.point_count) + ")"
+                                  )
+                                ])
+                              : _vm._e(),
+                            _vm._v(
+                              "\n                            [" +
+                                _vm._s(playInfo.pitcher.name) +
+                                "]\n                        "
+                            )
+                          ])
+                        ]
+                      )
+                    }),
+                    0
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.gameData.is_visitor_team_phpr &&
+            _vm.playData.now_pitcher != null
+              ? _c("div", [
+                  _c("div", [
+                    _vm._v(
+                      "\n                    [" +
+                        _vm._s(_vm.playData.now_pitcher.player.number) +
+                        "] " +
+                        _vm._s(_vm.playData.now_pitcher.player.name) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.playData.now_pitcher.seiseki.pitcher) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "table",
+                    { staticClass: "table table-hover now_pitcher_detail" },
+                    [
+                      _c("tr", [
+                        _c("td", [_vm._v("投球回")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(
+                              _vm.playData.now_pitcher.playInfo.inning_text
+                            )
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("被安打")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(_vm.playData.now_pitcher.playInfo.hit))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("被本塁打")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(_vm.playData.now_pitcher.playInfo.hr))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("与四球")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(_vm.playData.now_pitcher.playInfo.walk))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("与死球")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(_vm.playData.now_pitcher.playInfo.dead))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("失点(参考)")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(_vm.playData.now_pitcher.playInfo.point)
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                ])
+              : _vm._e()
           ])
         ])
       ])

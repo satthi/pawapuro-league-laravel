@@ -185,11 +185,9 @@ class Player extends Model
             'dageki' => $dagekiSeiseki['target_avg'] . ' ' . $dagekiSeiseki['hr'] . '本 ' . $dagekiSeiseki['daten'] . '点 ',
             'pitcher' => $pitcherSeiseki['game_sum'] . '試' . $pitcherSeiseki['win_count'] . '勝' . $pitcherSeiseki['lose_count'] . '敗 ' . $pitcherSeiseki['era'],
         ];
-        dump($beforeDagekiSeiseki);
-        exit;
     }
 
-    private function fielderSeisekiSelectParts($checkField, $asField)
+    public function fielderSeisekiSelectParts($checkField, $asField)
     {
         return \DB::raw('sum(CASE WHEN results.' . $checkField . ' THEN 1 ELSE 0 END) AS ' . $asField);
     }

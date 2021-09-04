@@ -98,20 +98,20 @@ class GameController extends Controller
                     'home_team_hikae' => $stamen['home_team']['hikae'],
                     'visitor_team_hikae' => $stamen['visitor_team']['hikae'],
                 ],
-                'now_player_id' => null,
-                'now_pitcher_id' => null,
+                'now_player' => null,
+                'now_pitcher' => null,
                 'inning_info' => $playModel->getInningInfo($game),
                 'pithcer_info' => [],
             ];
         } elseif ($game->board_status == GameBoardStatus::STATUS_GAME) {
             // 試合中
             $member = $playModel->getMember($game);
-            $nowPlayerId = $playModel->getNowPlayerId($member, $game);
-            $nowPithcerId = $playModel->getNowPitcherId($member, $game);
+            $nowPlayer = $playModel->getNowPlayerInfo($member, $game);
+            $nowPithcer = $playModel->getNowPitcherInfo($member, $game);
             return [
                 'member' => $member,
-                'now_player_id' => $nowPlayerId,
-                'now_pitcher_id' => $nowPithcerId,
+                'now_player' => $nowPlayer,
+                'now_pitcher' => $nowPithcer,
                 'inning_info' => $playModel->getInningInfo($game),
                 'pithcer_info' => [],
             ];
@@ -120,8 +120,8 @@ class GameController extends Controller
             $member = $playModel->getMember($game);
             return [
                 'member' => $member,
-                'now_player_id' => null,
-                'now_pitcher_id' => null,
+                'now_player' => null,
+                'now_pitcher' => null,
                 'inning_info' => $playModel->getInningInfo($game),
                 'pithcer_info' => [],
             ];
@@ -130,8 +130,8 @@ class GameController extends Controller
             $member = $playModel->getMember($game);
             return [
                 'member' => $member,
-                'now_player_id' => null,
-                'now_pitcher_id' => null,
+                'now_player' => null,
+                'now_pitcher' => null,
                 'inning_info' => $playModel->getInningInfo($game),
                 'pithcer_info' => $playModel->getPitcherInfo($game),
             ];
@@ -140,7 +140,7 @@ class GameController extends Controller
             $member = $playModel->getMember($game);
             return [
                 'member' => $member,
-                'now_player_id' => null,
+                'now_player' => null,
                 'now_pitcher_id' => null,
                 'inning_info' => $playModel->getInningInfo($game),
                 'pithcer_info' => $playModel->getPitcherInfo($game),

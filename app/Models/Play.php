@@ -141,7 +141,7 @@ class Play extends Model
         return $member;
     }
 
-    public function getNowPlayerId($member, Game $game)
+    public function getNowPlayerInfo($member, Game $game)
     {
         // イニングから表か裏かを取得
         $omoteura = $game->inning % 10;
@@ -170,16 +170,34 @@ class Play extends Model
             }
         }
 
+        $nowPlayerId = null;
         foreach ($member[$teamType] as $dajun => $teamMember) {
             if ($dajun == $targetDajun) {
-                return $teamMember['player']['id'];
+                $nowPlayerId = $teamMember['player']['id'];
+                break;
             }
         }
-
         // 抜けることはないはず。あったらエラー
+
+        $nowPlayer = Player::find($nowPlayerId);
+        $seiseki = $nowPlayer->getRecentSeisekiInfo($game);
+        $playInfo = Play::where('game_id', $game->id)
+            ->with('result')
+            ->with('pitcher')
+            ->where('type', PlayType::TYPE_DAGEKI_KEKKA)
+            ->where('player_id', $nowPlayer->id)
+            ->orderBy('id', 'ASC')
+            ->get();
+
+        return [
+            'player' => $nowPlayer,
+            'seiseki' => $seiseki,
+            'playInfo' => $playInfo,
+        ];
+
     }
 
-    public function getNowPitcherId($member, Game $game)
+    public function getNowPitcherInfo($member, Game $game)
     {
 
         $omoteura = $game->inning % 10;
@@ -192,11 +210,52 @@ class Play extends Model
             // エラー
         }
 
+        $pitcherId = null;
         foreach ($member[$teamType] as $teamMember) {
             if ($teamMember['position']['value'] == Position::POSITION_P) {
-                return $teamMember['player']['id'];
+                $pitcherId = $teamMember['player']['id'];
             }
         }
+
+        $newPlayersModel = new Player();
+
+        $nowPitcher = $newPlayersModel::find($pitcherId);
+        $seiseki = $nowPitcher->getRecentSeisekiInfo($game);
+        $playInfo = Play::where('game_id', $game->id)
+            ->join('results', 'results.id', '=', 'plays.result_id')
+            ->where('pitcher_id', $nowPitcher->id)
+            ->select([
+                \DB::raw('sum(plays.out_count) as inning'),
+                $newPlayersModel->fielderSeisekiSelectParts('hit_flag', 'hit'),
+                $newPlayersModel->fielderSeisekiSelectParts('hr_flag', 'hr'),
+                $newPlayersModel->fielderSeisekiSelectParts('sansin_flag', 'sansin'),
+                $newPlayersModel->fielderSeisekiSelectParts('walk_flag', 'walk'),
+                $newPlayersModel->fielderSeisekiSelectParts('dead_flag', 'dead'),
+                \DB::raw('sum(plays.point_count) as point'),
+            ])
+            ->first();
+        if (is_null($playInfo)) {
+            $playInfo = [
+                'inning' => 0,
+                'hit' => 0,
+                'hr' => 0,
+                'sansin' => 0,
+                'walk' => 0,
+                'dead' => 0,
+                'point' => 0,
+            ];
+        } else {
+            $playInfo = $playInfo->toArray();
+        }
+
+        $playInfo['inning_text'] = floor($playInfo['inning'] / 3) . (($playInfo['inning'] % 3) != 0 ? ' ' .  $playInfo['inning'] % 3 . '/3': '');
+
+        return [
+            'player' => $nowPitcher,
+            'seiseki' => $seiseki,
+            'playInfo' => $playInfo,
+        ];
+
         // 抜けることはないはず。あったらエラー
     }
 

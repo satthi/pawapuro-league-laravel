@@ -10,7 +10,7 @@ final class ResultPoint extends Enum
     const POINT_1 = 1;
     const POINT_2 = 2;
     const POINT_3 = 3;
-    const POINT_4 = 3;
+    const POINT_4 = 4;
 
     /**
      * Get the description for an enum value

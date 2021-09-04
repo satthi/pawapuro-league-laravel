@@ -10092,3 +10092,13 @@ td.selected {
   padding-top: 5px;
   padding-bottom: 5px;
 }
+
+.now_player_detail td {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.now_pitcher_detail td {
+  padding-top: 0;
+  padding-bottom: 0;
+}
