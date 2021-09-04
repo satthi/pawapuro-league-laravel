@@ -7,6 +7,12 @@
                 <router-link v-bind:to="{name: 'game.index', params: {seasonId: seasonId.toString() }}">
                     <button class="btn btn-success">日程一覧</button>
                 </router-link>
+                <router-link v-bind:to="{name: 'season.fielder-rank', params: {seasonId: seasonId.toString() }}">
+                    <button class="btn btn-success">野手成績</button>
+                </router-link>
+                <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString() }}">
+                    <button class="btn btn-success">投手成績</button>
+                </router-link>
             </form>
         </div>
         <table class="table table-hover">
@@ -65,6 +71,7 @@
                 axios.post(postPath, this.data)
                     .then((res) => {
                         this.initial();
+                        alert('再集計完了');
                     });
             }
         },

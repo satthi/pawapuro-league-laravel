@@ -29,8 +29,6 @@ class TeamController extends Controller
             ->orderBy(\DB::raw('number::numeric'), 'ASC')
             ->get();
 
-        // dump($fielder->toArray());
-        // exit;
          return [
             'team' => $team,
             'fielders' => $fielders,

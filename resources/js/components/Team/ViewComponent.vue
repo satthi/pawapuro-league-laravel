@@ -3,14 +3,14 @@
         <h2>{{  data.team.season.name }} {{  data.team.name }}</h2>
         <div class="clearfix">
             <router-link v-bind:to="{name: 'season.view', params: {seasonId: data.team.season_id.toString() }}">
-                <button class="btn btn-success">日程一覧</button>
+                <button class="btn btn-success">シーズン詳細</button>
             </router-link>
         </div>
         <h3>野手</h3>
         <table class="table table-hover seiseki_table">
             <tr>
-                <th>選手名</th>
                 <th>No</th>
+                <th>選手名</th>
                 <th>試<br />合</th>
                 <th>打<br />率</th>
                 <th>本<br />塁<br />打</th>
@@ -29,11 +29,12 @@
                 <th>盗<br />塁</th>
                 <th>盗<br />塁<br />失</th>
                 <th>出<br />塁<br />率</th>
+                <th>長<br />打<br />率</th>
                 <th>O<br />P<br />S</th>
             </tr>
             <tr v-for="fielder in data.fielders">
-                <td>{{ fielder.name_short }}</td>
                 <td>{{ fielder.number }}</td>
+                <td>{{ fielder.name_short }}</td>
                 <td>{{ fielder.game }}</td>
                 <td>{{ fielder.display_avg }}</td>
                 <td>{{ fielder.hr }}</td>
@@ -52,6 +53,7 @@
                 <td>{{ fielder.steal_success }}</td>
                 <td>{{ fielder.steal_miss }}</td>
                 <td>{{ fielder.display_obp }}</td>
+                <td>{{ fielder.display_slg }}</td>
                 <td>{{ fielder.display_ops }}</td>
             </tr>
         </table>
@@ -59,8 +61,8 @@
         <h3>投手</h3>
         <table class="table table-hover seiseki_table">
             <tr>
-                <th>選手名</th>
                 <th>No</th>
+                <th>選手名</th>
                 <th>試<br />合</th>
                 <th>防<br />御<br />率</th>
                 <th>勝<br />利</th>
@@ -79,8 +81,8 @@
                 <th>死<br />球</th>
             </tr>
             <tr v-for="pitcher in data.pitchers">
-                <td>{{ pitcher.name_short }}</td>
                 <td>{{ pitcher.number }}</td>
+                <td>{{ pitcher.name_short }}</td>
                 <td>{{ pitcher.p_game }}</td>
                 <td>{{ pitcher.display_p_era }}</td>
                 <td>{{ pitcher.p_win }}</td>

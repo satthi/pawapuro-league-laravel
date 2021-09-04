@@ -14,6 +14,9 @@ import SeasonIndexComponent from "./components/Season/IndexComponent";
 import SeasonAddComponent from "./components/Season/AddComponent";
 import SeasonEditComponent from "./components/Season/EditComponent";
 import SeasonViewComponent from "./components/Season/ViewComponent";
+import SeasonFielderRankComponent from "./components/Season/FielderRankComponent";
+import SeasonPitcherRankComponent from "./components/Season/PitcherRankComponent";
+
 import GameIndexComponent from "./components/Game/IndexComponent";
 import GameAddComponent from "./components/Game/AddComponent";
 import GameAutoAddComponent from "./components/Game/AutoAddComponent";
@@ -129,6 +132,18 @@ const router = new VueRouter({
             path: '/season/:seasonId/view',
             name: 'season.view',
             component: SeasonViewComponent,
+            props: true
+        },
+        {
+            path: '/season/:seasonId/fielder-rank',
+            name: 'season.fielder-rank',
+            component: SeasonFielderRankComponent,
+            props: true
+        },
+        {
+            path: '/season/:seasonId/pitcher-rank',
+            name: 'season.pitcher-rank',
+            component: SeasonPitcherRankComponent,
             props: true
         },
         {

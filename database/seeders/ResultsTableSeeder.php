@@ -107,7 +107,7 @@ class ResultsTableSeeder extends Seeder
                  'hit_3_flag' => false,
                  'hr_flag' => false,
                  'sansin_flag' => false,
-                 'heisatsu_flag' => false,
+                 'heisatsu_flag' => true,
                  'walk_flag' => false,
                  'dead_flag' => false,
                  'bant_flag' => false,

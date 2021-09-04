@@ -45,6 +45,7 @@ class CreatePlayersTable extends Migration
             $table->integer('steal_miss')->nullable();
             $table->decimal('avg', 11, 8)->nullable();
             $table->decimal('obp', 11, 8)->nullable();
+            $table->decimal('slg', 11, 8)->nullable();
             $table->decimal('ops', 11, 8)->nullable();
             // 投手情報
             $table->integer('p_game')->nullable();

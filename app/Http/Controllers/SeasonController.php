@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SeasonRequest;
 use App\Models\Season;
 use App\Models\Team;
+use App\Models\Player;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -49,5 +50,10 @@ class SeasonController extends Controller
     {
         // 集計処理
         $season->shukei();
+    }
+
+    public function fielderRank(Season $season, string $sortType)
+    {
+        return (new Player())->getFielderRank($season, $sortType);
     }
 }

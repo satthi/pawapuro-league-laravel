@@ -43,6 +43,7 @@ class Player extends Model
         'avg',
         'obp',
         'ops',
+        'slg',
         'p_game',
         'p_win',
         'p_lose',
@@ -71,6 +72,7 @@ class Player extends Model
         'display_avg',
         'display_obp',
         'display_ops',
+        'display_slg',
         'display_p_era',
         'display_p_win_ratio',
         'display_p_sansin_ratio',
@@ -145,6 +147,14 @@ class Player extends Model
         }
 
         return preg_replace('/^0/', '', sprintf('%.3f', round($this->ops, 3)));
+    }
+    public function getDisplaySlgAttribute($value)
+    {
+        if ($this->dasu == 0) {
+            return '-';
+        }
+
+        return preg_replace('/^0/', '', sprintf('%.3f', round($this->slg, 3)));
     }
     public function getDisplayPEraAttribute($value)
     {
@@ -430,9 +440,11 @@ class Player extends Model
 
             $shukei['avg'] = 0;
             $shukei['obp'] = 0;
+            $shukei['slg'] = 0;
             // avg
             if ($shukei['dasu']) {
                 $shukei['avg'] = $shukei['hit'] / $shukei['dasu'];
+                $shukei['slg'] = ($shukei['hit'] +  $shukei['hit_2'] + $shukei['hit_3'] * 2 + $shukei['hr'] * 3) / $shukei['dasu'];
             }
 
             //obp
@@ -441,10 +453,44 @@ class Player extends Model
             if ($obpBunbo) {
                 $shukei['obp'] = $obpBunshi / $obpBunbo;
             }
-            $shukei['ops'] = $shukei['avg'] + $shukei['obp'];
+
+            // 出塁率+長打率
+            $shukei['ops'] = $shukei['obp'] + $shukei['slg'];
 
             unset($shukei['player_id']);
             $player->update($shukei);
         }
+    }
+
+    public function getFielderRank(Season $season, string $sortType)
+    {
+        $players = $this::join('teams', 'teams.id', '=', 'players.team_id')
+            ->select([
+                'players.*',
+                'teams.ryaku_name as team_ryaku_name'
+            ])
+            ->where('teams.season_id', $season->id)
+            // 一応30件まで
+            ->limit(30);
+
+        switch ($sortType) {
+            case 'avg':
+            case 'obp':
+            case 'ops':
+            case 'slg':
+                // 打率/出塁率/OPSのランキングは降順/規定打席到達のみ
+                $players->orderBy($sortType, 'DESC')
+                    ->whereRaw(\DB::raw('players.daseki::numeric >= teams.game::numeric * 3.1'));
+                break;
+            
+            default:
+                $players->orderBy($sortType, 'DESC');
+        }
+
+        // dump($players->toSql());
+        // exit;
+
+        return $players->get();
+
     }
 }
