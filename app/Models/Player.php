@@ -92,7 +92,7 @@ class Player extends Model
             ->first();
         if (is_null($player)) {
             return [
-                'dageki' => 0,
+                'daseki' => 0,
                 'dasu' => 0,
                 'hit' => 0,
                 'hit_2' => 0,
@@ -133,6 +133,60 @@ class Player extends Model
             \DB::raw('sum(CASE WHEN plays.type = ' . PlayType::TYPE_STEAL . ' AND plays.out_count = 0 THEN 1 ELSE 0 END) AS steal_success'),
             \DB::raw('sum(CASE WHEN plays.type = ' . PlayType::TYPE_STEAL . ' AND plays.out_count = 1 THEN 1 ELSE 0 END) AS steal_miss'),
         ]);
+    }
+
+    public function getRecentSeisekiInfo($game)
+    {
+        $lastPlayId = Play::where('game_id', $game->id)
+            ->orderBy('id', 'DESC')
+            ->firstOrFail();
+
+        return $this->getTargetSeisekiInfo($game, $lastPlayId->id);
+    }
+
+    public function getTargetSeisekiInfo($game, $lastPlayId)
+    {
+        $gamePitcherModel = new GamePitcher();
+        $gameSubDay = (new Carbon($game->date))->subDay()->format('Y/m/d');
+
+        // 試合前情報
+        $dagekiSeiseki = $this->getTargetDateSeisekiInfo($gameSubDay);
+        $pitcherSeiseki = $gamePitcherModel->getSeiseki($this->id, $gameSubDay);
+
+        // リアルタイム情報
+        $checkPlayInfo = Play::where('game_id', $game->id)
+            ->where('plays.id', '<=', $lastPlayId)
+            ->where('player_id', $this->id)
+            ->where('type', PlayType::TYPE_DAGEKI_KEKKA)
+            ->join('results', 'results.id', '=', 'plays.result_id')
+            ->whereIn('type', [PlayType::TYPE_DAGEKI_KEKKA, PlayType::TYPE_STEAL])
+            ->groupBy('player_id');
+        
+        $checkPlayInfo = $this->fielderSeisekiSelect($checkPlayInfo)
+            ->first();
+
+        if (!is_null($checkPlayInfo)) {
+            foreach ($checkPlayInfo->toArray() as $fieldKey => $playVal) {
+                $dagekiSeiseki[$fieldKey] = $dagekiSeiseki[$fieldKey] + $playVal;
+            }
+
+            if (!$dagekiSeiseki['dasu']) {
+                $dagekiSeiseki['target_avg'] = '-';
+            } else {
+                $avg = sprintf("%.3f", round($dagekiSeiseki['hit'] / $dagekiSeiseki['dasu'], 3));
+
+                $avg = preg_replace('/^0/', '' , $avg);
+
+                $dagekiSeiseki['target_avg'] = $avg;
+            }
+        }
+
+        return [
+            'dageki' => $dagekiSeiseki['target_avg'] . ' ' . $dagekiSeiseki['hr'] . '本 ' . $dagekiSeiseki['daten'] . '点 ',
+            'pitcher' => $pitcherSeiseki['game_sum'] . '試' . $pitcherSeiseki['win_count'] . '勝' . $pitcherSeiseki['lose_count'] . '敗 ' . $pitcherSeiseki['era'],
+        ];
+        dump($beforeDagekiSeiseki);
+        exit;
     }
 
     private function fielderSeisekiSelectParts($checkField, $asField)

@@ -67,7 +67,7 @@ class Stamen extends Model
             $dagekiSeiseki = $player->getTargetDateSeisekiInfo($gameSubDay);
             $pitcherSeiseki = $gamePitcherModel->getSeiseki($stamen['player']['id'], $gameSubDay);
 
-            $stamenInitialData['stamen'][$stamenKey]['player']['start_seiseki'] = [
+            $stamenInitialData['stamen'][$stamenKey]['player']['seiseki'] = [
                 'dageki' => $dagekiSeiseki['target_avg'] . ' ' . $dagekiSeiseki['hr'] . '本 ' . $dagekiSeiseki['daten'] . '点 ',
                 'pitcher' => $pitcherSeiseki['game_sum'] . '試' . $pitcherSeiseki['win_count'] . '勝' . $pitcherSeiseki['lose_count'] . '敗 ' . $pitcherSeiseki['era'],
             ];
@@ -77,7 +77,7 @@ class Stamen extends Model
             $dagekiSeiseki = $player->getTargetDateSeisekiInfo($gameSubDay);
             $pitcherSeiseki = $gamePitcherModel->getSeiseki($hikae['id'], $gameSubDay);
 
-            $stamenInitialData['hikae'][$hikaeKey]['start_seiseki'] = [
+            $stamenInitialData['hikae'][$hikaeKey]['seiseki'] = [
                 'dageki' => $dagekiSeiseki['target_avg'] . ' ' . $dagekiSeiseki['hr'] . '本 ' . $dagekiSeiseki['daten'] . '点 ',
                 'pitcher' => $pitcherSeiseki['game_sum'] . '試' . $pitcherSeiseki['win_count'] . '勝' . $pitcherSeiseki['lose_count'] . '敗 ' . $pitcherSeiseki['era'],
             ];
@@ -150,7 +150,7 @@ class Stamen extends Model
                 'dajun' => $stamen->dajun == 10 ? 'P' : (string)$stamen->dajun,
                 'position' => $positionOptions[$stamen->position],
                 'player' => $stamen->player->toArray(),
-                'start_seiseki' => $stamen->start_seiseki,
+                'seiseki' => $stamen->start_seiseki,
             ];
         }
 
@@ -471,7 +471,7 @@ class Stamen extends Model
             ->get();
 
         foreach ($homeStamens as $homeStamen) {
-            $homeStamen->append('start_seiseki');
+            $homeStamen->append('seiseki');
         }
 
         // visitor
@@ -484,7 +484,7 @@ class Stamen extends Model
             ->get();
 
         foreach ($visitorStamens as $visitorStamen) {
-            $visitorStamen->append('start_seiseki');
+            $visitorStamen->append('seiseki');
         }
 
         return [

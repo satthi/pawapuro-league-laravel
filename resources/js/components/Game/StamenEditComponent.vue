@@ -13,10 +13,10 @@
                         <td v-on:click="playerClick" :data-key="dajun" v-bind:class="{'selected' : playerClicked==dajun}">{{ stamen.player.number }}. {{ stamen.player.name_short }}</td>
                         <td>
                             <div v-if="stamen.player.position_main == enums.Position.POSITION_P.value">
-                                {{ stamen.player.start_seiseki.pitcher }}
+                                {{ stamen.player.seiseki.pitcher }}
                             </div>
                             <div v-else>
-                                {{ stamen.player.start_seiseki.dageki }}
+                                {{ stamen.player.seiseki.dageki }}
                             </div>
                         </td>
                     </tr>
@@ -38,10 +38,10 @@
                         <td v-on:click="playerClick" :data-key="playerKey" v-bind:class="{'selected' : playerClicked==playerKey}">{{ hikae.number }}. {{ hikae.name_short }}</td>
                         <td>
                             <div v-if="hikae.position_main == enums.Position.POSITION_P.value">
-                                {{ hikae.start_seiseki.pitcher }}
+                                {{ hikae.seiseki.pitcher }}
                             </div>
                             <div v-else>
-                                {{ hikae.start_seiseki.dageki }}
+                                {{ hikae.seiseki.dageki }}
                             </div>
                         </td>
                     </tr>

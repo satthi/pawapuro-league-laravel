@@ -3496,6 +3496,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -45613,12 +45619,21 @@ var render = function() {
                       class: {
                         member_selected:
                           member.player.id == _vm.playData.now_player_id
-                      }
+                      },
+                      staticStyle: { width: "15px" }
                     },
                     [_vm._v(_vm._s(member.position.text))]
                   ),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(member.player.name_short))])
+                  _c("td", [_vm._v(_vm._s(member.player.name_short))]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "seiseki" }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(member.seiseki.dageki) +
+                        "\n                    "
+                    )
+                  ])
                 ])
               }),
               0
@@ -46546,12 +46561,21 @@ var render = function() {
                       class: {
                         member_selected:
                           member.player.id == _vm.playData.now_player_id
-                      }
+                      },
+                      staticStyle: { width: "15px" }
                     },
                     [_vm._v(_vm._s(member.position.text))]
                   ),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(member.player.name_short))])
+                  _c("td", [_vm._v(_vm._s(member.player.name_short))]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "seiseki" }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(member.seiseki.dageki) +
+                        "\n                    "
+                    )
+                  ])
                 ])
               }),
               0
@@ -47029,14 +47053,14 @@ var render = function() {
                       ? _c("div", [
                           _vm._v(
                             "\n                            " +
-                              _vm._s(stamen.player.start_seiseki.pitcher) +
+                              _vm._s(stamen.player.seiseki.pitcher) +
                               "\n                        "
                           )
                         ])
                       : _c("div", [
                           _vm._v(
                             "\n                            " +
-                              _vm._s(stamen.player.start_seiseki.dageki) +
+                              _vm._s(stamen.player.seiseki.dageki) +
                               "\n                        "
                           )
                         ])
@@ -47116,14 +47140,14 @@ var render = function() {
                       ? _c("div", [
                           _vm._v(
                             "\n                            " +
-                              _vm._s(hikae.start_seiseki.pitcher) +
+                              _vm._s(hikae.seiseki.pitcher) +
                               "\n                        "
                           )
                         ])
                       : _c("div", [
                           _vm._v(
                             "\n                            " +
-                              _vm._s(hikae.start_seiseki.dageki) +
+                              _vm._s(hikae.seiseki.dageki) +
                               "\n                        "
                           )
                         ])
@@ -47875,14 +47899,14 @@ var render = function() {
                           ? _c("div", [
                               _vm._v(
                                 "\n                            " +
-                                  _vm._s(stamen.start_seiseki.pitcher) +
+                                  _vm._s(stamen.seiseki.pitcher) +
                                   "\n                        "
                               )
                             ])
                           : _c("div", [
                               _vm._v(
                                 "\n                            " +
-                                  _vm._s(stamen.start_seiseki.dageki) +
+                                  _vm._s(stamen.seiseki.dageki) +
                                   "\n                        "
                               )
                             ])
@@ -47945,14 +47969,14 @@ var render = function() {
                           ? _c("div", [
                               _vm._v(
                                 "\n                            " +
-                                  _vm._s(stamen.start_seiseki.pitcher) +
+                                  _vm._s(stamen.seiseki.pitcher) +
                                   "\n                        "
                               )
                             ])
                           : _c("div", [
                               _vm._v(
                                 "\n                            " +
-                                  _vm._s(stamen.start_seiseki.dageki) +
+                                  _vm._s(stamen.seiseki.dageki) +
                                   "\n                        "
                               )
                             ])

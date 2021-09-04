@@ -41,10 +41,10 @@
                         <td>{{ stamen.player.name }}</td>
                         <td>
                             <div v-if="stamen.position.value == enums.Position.POSITION_P.value">
-                                {{ stamen.start_seiseki.pitcher }}
+                                {{ stamen.seiseki.pitcher }}
                             </div>
                             <div v-else>
-                                {{ stamen.start_seiseki.dageki }}
+                                {{ stamen.seiseki.dageki }}
                             </div>
                         </td>
                     </tr>
@@ -63,10 +63,10 @@
                         <td>{{ stamen.player.name }}</td>
                         <td>
                             <div v-if="stamen.position.value == enums.Position.POSITION_P.value">
-                                {{ stamen.start_seiseki.pitcher }}
+                                {{ stamen.seiseki.pitcher }}
                             </div>
                             <div v-else>
-                                {{ stamen.start_seiseki.dageki }}
+                                {{ stamen.seiseki.dageki }}
                             </div>
                         </td>
                     </tr>

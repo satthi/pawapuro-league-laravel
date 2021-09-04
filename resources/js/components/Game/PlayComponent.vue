@@ -6,8 +6,11 @@
             <div class="col-sm-3">
                 <table class="table table-hover stamen">
                     <tr v-for="(member, dajun) in this.playData.member.visitor_team">
-                        <td v-bind:class="{'member_selected' : member.player.id == playData.now_player_id}">{{ member.position.text }}</td>
+                        <td v-bind:class="{'member_selected' : member.player.id == playData.now_player_id}" style="width: 15px;">{{ member.position.text }}</td>
                         <td>{{ member.player.name_short }}</td>
+                        <td class="seiseki">
+                            {{ member.seiseki.dageki }}
+                        </td>
                     </tr>
                 </table>
                 <div class="clearfix">
@@ -211,8 +214,11 @@
             <div class="col-sm-3 clearfix">
                 <table class="table table-hover stamen">
                     <tr v-for="(member, dajun) in this.playData.member.home_team">
-                        <td v-bind:class="{'member_selected' : member.player.id == playData.now_player_id}">{{ member.position.text }}</td>
+                        <td v-bind:class="{'member_selected' : member.player.id == playData.now_player_id}" style="width: 15px;">{{ member.position.text }}</td>
                         <td>{{ member.player.name_short }}</td>
+                        <td class="seiseki">
+                            {{ member.seiseki.dageki }}
+                        </td>
                     </tr>
                 </table>
 

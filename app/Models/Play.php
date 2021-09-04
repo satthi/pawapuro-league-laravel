@@ -6,6 +6,7 @@ use App\Enums\PlayType;
 use App\Enums\Position;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Play extends Model
 {
@@ -73,6 +74,10 @@ class Play extends Model
 
     public function getMember(Game $game)
     {
+        $gameSubDay = (new Carbon($game->date))->subDay()->format('Y/m/d');
+
+        // @todo: リアルタイムに成績を設定
+
         // memberにカラム処理のみ
         $playForMembers = $this::whereIn('type', [PlayType::TYPE_STAMEN, PlayType::TYPE_MEMBER_CHANGE])
             ->where('game_id', $game->id)
@@ -101,6 +106,7 @@ class Play extends Model
                 'dajun' => $playForMember->dajun == 10 ? 'P' : (string)$playForMember->dajun,
                 'position' => $positionOptions[$playForMember->position],
                 'player' => $playForMember->player->toArray(),
+                'seiseki' => $playForMember->player->getRecentSeisekiInfo($game),
                 'base_position' => $beforeBasePosition,
             ];
 
@@ -117,9 +123,9 @@ class Play extends Model
         $member['home_team_hikae'] = [];
         foreach ($hikaePlayers as $hikaePlayer) {
             $key++;
-            $member['home_team_hikae'][$key] = $hikaePlayer;
+            $member['home_team_hikae'][$key] = $hikaePlayer->toArray();
+            $member['home_team_hikae'][$key]['seiseki'] = $hikaePlayer->getRecentSeisekiInfo($game);
         }
-
 
         $hikaePlayers = Player::where('team_id', $game->visitor_team_id)
             ->whereNotIn('id', $memberIds)
@@ -129,6 +135,7 @@ class Play extends Model
         foreach ($hikaePlayers as $hikaePlayer) {
             $key++;
             $member['visitor_team_hikae'][$key] = $hikaePlayer;
+            $member['visitor_team_hikae'][$key]['seiseki'] = $hikaePlayer->getRecentSeisekiInfo($game);
         }
 
         return $member;
