@@ -57,16 +57,16 @@ td.selected {
     text-align: center;
 }
 
-.result_button_1{
+tr.result_button_1 td, td.result_button_1{
   background-color:#03F9F9;
 }
-.result_button_4{
+tr.result_button_4 td, td.result_button_4{
   background-color:#FF8A8A;
 }
-.result_button_2{
+tr.result_button_2 td, td.result_button_2{
   background-color:#F6DE2A;
 }
-.result_button_3{
+tr.result_button_3 td, td.result_button_3{
   background-color:#BBBBBB;
 }
 
@@ -74,7 +74,7 @@ td.selected {
   background-color:red;
 }
 
-.stamen td {
+table.stamen > tr > td {
     background-color: #000;
     color: #FFF;
     border: 2px solid #FFF;
@@ -106,4 +106,37 @@ td.selected {
 .now_pitcher_detail td{
     padding-top: 0;
     padding-bottom: 0;
+}
+
+.member_player_wrap {
+    position:relative;
+}
+
+.player_detail {
+    position: absolute;
+    text-align: left;
+    background-color: #DFF;
+    color: black;
+    padding: 10px;
+    top: 0;
+    z-index: 100;
+    min-width: 200px;
+}
+
+.visitor_stamen .player_detail {
+    left: 100px;
+}
+.home_stamen .player_detail {
+    right: 100px;
+}
+
+.play_info_detail td {
+    white-space: nowrap; 
+    padding: 0;
+    width: 70px;
+    text-align: center;
+}
+
+.player_detail_name {
+    white-space: nowrap; 
 }

@@ -4,10 +4,28 @@
 
         <div class="row">
             <div class="col-sm-3">
-                <table class="table table-hover stamen">
-                    <tr v-for="(member, dajun) in this.playData.member.visitor_team">
+                <table class="table table-hover stamen visitor_stamen">
+                    <tr v-for="(member, dajun) in this.playData.member.visitor_team" v-on:mouseover="stamenMouseover(member.player.id)" v-on:mouseleave="stamenLeave(member.player.id)">
                         <td v-bind:class="{'member_selected' : playData.now_player != null && member.player.id == playData.now_player.player.id}" style="width: 15px;">{{ member.position.text }}</td>
-                        <td>{{ member.player.name_short }}</td>
+                        <td>
+                            <div class="member_player_wrap">
+                                {{ member.player.name_short }}
+                                <div class="player_detail" v-bind:style="{'width': ( 70 * member.play_info.length + 20 ) + 'px' }" v-if="focusPlayer == member.player.id">
+                                    <div class="player_detail_name">
+                                        [{{ member.player.number }}] {{ member.player.name }}
+                                    </div>
+                                    <table class="table table-hover play_info_detail" v-bind:style="{'width': ( 70 * member.play_info.length ) + 'px' }">
+                                        <tr>
+                                            <td v-for="playInfo in member.play_info" :class='`result_button_${playInfo.result.button_type}`'>
+                                                {{ playInfo.result.name }}
+                                                <span v-if="playInfo.point_count > 0">({{ playInfo.point_count }})</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </td>
                         <td class="seiseki">
                             {{ member.seiseki.dageki }}
                         </td>
@@ -264,10 +282,28 @@
 
             </div>
             <div class="col-sm-3 clearfix">
-                <table class="table table-hover stamen">
-                    <tr v-for="(member, dajun) in this.playData.member.home_team">
+                <table class="table table-hover stamen home_stamen">
+                    <tr v-for="(member, dajun) in this.playData.member.home_team" v-on:mouseover="stamenMouseover(member.player.id)" v-on:mouseleave="stamenLeave(member.player.id)">
                         <td v-bind:class="{'member_selected' : playData.now_player != null && member.player.id == playData.now_player.player.id}" style="width: 15px;">{{ member.position.text }}</td>
-                        <td>{{ member.player.name_short }}</td>
+                        <td>
+                            <div class="member_player_wrap">
+                                {{ member.player.name_short }}
+                                <div class="player_detail" v-bind:style="{'width': ( 70 * member.play_info.length + 20 ) + 'px' }" v-if="focusPlayer == member.player.id">
+                                    <div class="player_detail_name">
+                                        [{{ member.player.number }}] {{ member.player.name }}
+                                    </div>
+                                    <table class="table table-hover play_info_detail" v-bind:style="{'width': ( 70 * member.play_info.length ) + 'px' }">
+                                        <tr>
+                                            <td v-for="playInfo in member.play_info" :class='`result_button_${playInfo.result.button_type}`'>
+                                                {{ playInfo.result.name }}
+                                                <span v-if="playInfo.point_count > 0">({{ playInfo.point_count }})</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </td>
                         <td class="seiseki">
                             {{ member.seiseki.dageki }}
                         </td>
@@ -418,6 +454,7 @@
                 },
                 disabled: false,
                 nowPlayer: {},
+                focusPlayer: null,
             }
         },
         methods: {
@@ -449,6 +486,14 @@
                 this.data.selectedResult = resultId
 
                 this.data.out = this.resultData[resultId].out_count;
+            },
+            stamenMouseover(playerId) {
+                this.focusPlayer = playerId
+            },
+            stamenLeave(playerId) {
+                if (this.focusPlayer == playerId) {
+                    this.focusPlayer = null
+                }
             },
             submit(postPath) {
                 this.disabled = true;

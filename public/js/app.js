@@ -3607,6 +3607,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3679,7 +3715,8 @@ __webpack_require__.r(__webpack_exports__);
         }
       },
       disabled: false,
-      nowPlayer: {}
+      nowPlayer: {},
+      focusPlayer: null
     };
   },
   methods: {
@@ -3715,6 +3752,14 @@ __webpack_require__.r(__webpack_exports__);
     resultButtonClick: function resultButtonClick(resultId) {
       this.data.selectedResult = resultId;
       this.data.out = this.resultData[resultId].out_count;
+    },
+    stamenMouseover: function stamenMouseover(playerId) {
+      this.focusPlayer = playerId;
+    },
+    stamenLeave: function stamenLeave(playerId) {
+      if (this.focusPlayer == playerId) {
+        this.focusPlayer = null;
+      }
     },
     submit: function submit(postPath) {
       var _this2 = this;
@@ -45713,35 +45758,131 @@ var render = function() {
           _c("div", { staticClass: "col-sm-3" }, [
             _c(
               "table",
-              { staticClass: "table table-hover stamen" },
+              { staticClass: "table table-hover stamen visitor_stamen" },
               _vm._l(this.playData.member.visitor_team, function(
                 member,
                 dajun
               ) {
-                return _c("tr", [
-                  _c(
-                    "td",
-                    {
-                      class: {
-                        member_selected:
-                          _vm.playData.now_player != null &&
-                          member.player.id == _vm.playData.now_player.player.id
+                return _c(
+                  "tr",
+                  {
+                    on: {
+                      mouseover: function($event) {
+                        return _vm.stamenMouseover(member.player.id)
                       },
-                      staticStyle: { width: "15px" }
-                    },
-                    [_vm._v(_vm._s(member.position.text))]
-                  ),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(member.player.name_short))]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "seiseki" }, [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(member.seiseki.dageki) +
-                        "\n                    "
-                    )
-                  ])
-                ])
+                      mouseleave: function($event) {
+                        return _vm.stamenLeave(member.player.id)
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "td",
+                      {
+                        class: {
+                          member_selected:
+                            _vm.playData.now_player != null &&
+                            member.player.id ==
+                              _vm.playData.now_player.player.id
+                        },
+                        staticStyle: { width: "15px" }
+                      },
+                      [_vm._v(_vm._s(member.position.text))]
+                    ),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("div", { staticClass: "member_player_wrap" }, [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(member.player.name_short) +
+                            "\n                            "
+                        ),
+                        _vm.focusPlayer == member.player.id
+                          ? _c(
+                              "div",
+                              {
+                                staticClass: "player_detail",
+                                style: {
+                                  width:
+                                    70 * member.play_info.length + 20 + "px"
+                                }
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "player_detail_name" },
+                                  [
+                                    _vm._v(
+                                      "\n                                    [" +
+                                        _vm._s(member.player.number) +
+                                        "] " +
+                                        _vm._s(member.player.name) +
+                                        "\n                                "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "table",
+                                  {
+                                    staticClass:
+                                      "table table-hover play_info_detail",
+                                    style: {
+                                      width: 70 * member.play_info.length + "px"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "tr",
+                                      _vm._l(member.play_info, function(
+                                        playInfo
+                                      ) {
+                                        return _c(
+                                          "td",
+                                          {
+                                            class:
+                                              "result_button_" +
+                                              playInfo.result.button_type
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                            " +
+                                                _vm._s(playInfo.result.name) +
+                                                "\n                                            "
+                                            ),
+                                            playInfo.point_count > 0
+                                              ? _c("span", [
+                                                  _vm._v(
+                                                    "(" +
+                                                      _vm._s(
+                                                        playInfo.point_count
+                                                      ) +
+                                                      ")"
+                                                  )
+                                                ])
+                                              : _vm._e()
+                                          ]
+                                        )
+                                      }),
+                                      0
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          : _vm._e()
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "seiseki" }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(member.seiseki.dageki) +
+                          "\n                    "
+                      )
+                    ])
+                  ]
+                )
               }),
               0
             ),
@@ -46800,32 +46941,128 @@ var render = function() {
           _c("div", { staticClass: "col-sm-3 clearfix" }, [
             _c(
               "table",
-              { staticClass: "table table-hover stamen" },
+              { staticClass: "table table-hover stamen home_stamen" },
               _vm._l(this.playData.member.home_team, function(member, dajun) {
-                return _c("tr", [
-                  _c(
-                    "td",
-                    {
-                      class: {
-                        member_selected:
-                          _vm.playData.now_player != null &&
-                          member.player.id == _vm.playData.now_player.player.id
+                return _c(
+                  "tr",
+                  {
+                    on: {
+                      mouseover: function($event) {
+                        return _vm.stamenMouseover(member.player.id)
                       },
-                      staticStyle: { width: "15px" }
-                    },
-                    [_vm._v(_vm._s(member.position.text))]
-                  ),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(member.player.name_short))]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "seiseki" }, [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(member.seiseki.dageki) +
-                        "\n                    "
-                    )
-                  ])
-                ])
+                      mouseleave: function($event) {
+                        return _vm.stamenLeave(member.player.id)
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "td",
+                      {
+                        class: {
+                          member_selected:
+                            _vm.playData.now_player != null &&
+                            member.player.id ==
+                              _vm.playData.now_player.player.id
+                        },
+                        staticStyle: { width: "15px" }
+                      },
+                      [_vm._v(_vm._s(member.position.text))]
+                    ),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("div", { staticClass: "member_player_wrap" }, [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(member.player.name_short) +
+                            "\n                            "
+                        ),
+                        _vm.focusPlayer == member.player.id
+                          ? _c(
+                              "div",
+                              {
+                                staticClass: "player_detail",
+                                style: {
+                                  width:
+                                    70 * member.play_info.length + 20 + "px"
+                                }
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "player_detail_name" },
+                                  [
+                                    _vm._v(
+                                      "\n                                    [" +
+                                        _vm._s(member.player.number) +
+                                        "] " +
+                                        _vm._s(member.player.name) +
+                                        "\n                                "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "table",
+                                  {
+                                    staticClass:
+                                      "table table-hover play_info_detail",
+                                    style: {
+                                      width: 70 * member.play_info.length + "px"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "tr",
+                                      _vm._l(member.play_info, function(
+                                        playInfo
+                                      ) {
+                                        return _c(
+                                          "td",
+                                          {
+                                            class:
+                                              "result_button_" +
+                                              playInfo.result.button_type
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                            " +
+                                                _vm._s(playInfo.result.name) +
+                                                "\n                                            "
+                                            ),
+                                            playInfo.point_count > 0
+                                              ? _c("span", [
+                                                  _vm._v(
+                                                    "(" +
+                                                      _vm._s(
+                                                        playInfo.point_count
+                                                      ) +
+                                                      ")"
+                                                  )
+                                                ])
+                                              : _vm._e()
+                                          ]
+                                        )
+                                      }),
+                                      0
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          : _vm._e()
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "seiseki" }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(member.seiseki.dageki) +
+                          "\n                    "
+                      )
+                    ])
+                  ]
+                )
               }),
               0
             ),

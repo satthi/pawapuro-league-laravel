@@ -101,6 +101,16 @@ class Play extends Model
 
             $teamType = $playForMember->team_id == $game->home_team_id ? 'home_team' : 'visitor_team';
             $beforeBasePosition = $member[$teamType][$playForMember->dajun]['base_position'] ?? null;
+
+            $playInfo = Play::where('game_id', $game->id)
+                ->with('result')
+                ->with('pitcher')
+                ->where('type', PlayType::TYPE_DAGEKI_KEKKA)
+                ->where('player_id', $playForMember->player->id)
+                ->orderBy('id', 'ASC')
+                ->get();
+
+
             // 上書きしていくことで最新のメンバーを設定
             $member[$teamType][$playForMember->dajun] = [
                 'dajun' => $playForMember->dajun == 10 ? 'P' : (string)$playForMember->dajun,
@@ -108,6 +118,7 @@ class Play extends Model
                 'player' => $playForMember->player->toArray(),
                 'seiseki' => $playForMember->player->getRecentSeisekiInfo($game),
                 'base_position' => $beforeBasePosition,
+                'play_info' => $playInfo,
             ];
 
             // 代打/代走を除いてセットする
