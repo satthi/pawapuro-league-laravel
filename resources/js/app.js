@@ -28,6 +28,7 @@ import GameStealComponent from "./components/Game/StealComponent";
 import GameSummaryComponent from "./components/Game/SummaryComponent";
 import GameFielderSummaryComponent from "./components/Game/FielderSummaryComponent";
 import GamePitcherSummaryComponent from "./components/Game/PitcherSummaryComponent";
+import TeamViewComponent from "./components/Team/ViewComponent";
 
 
 /**
@@ -212,6 +213,12 @@ const router = new VueRouter({
             path: '/games/:gameId/:type/pitcher_summary',
             name: 'game.pitcher_summary',
             component: GamePitcherSummaryComponent,
+            props: true
+        },
+        {
+            path: '/teams/:teamId',
+            name: 'team.view',
+            component: TeamViewComponent,
             props: true
         },
 

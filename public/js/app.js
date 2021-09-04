@@ -5076,6 +5076,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     initial: function initial() {
@@ -5105,6 +5109,150 @@ __webpack_require__.r(__webpack_exports__);
       data: {
         season: {}
       }
+    };
+  },
+  mounted: function mounted() {
+    this.initial();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Team/ViewComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Team/ViewComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  methods: {
+    initial: function initial() {
+      // チーム情報など込みで詳細画面表示に必要な情報をまとめて取得（したい）
+      this.getData('/api/teams/view/' + this.teamId);
+    },
+    getData: function getData(getPath) {
+      var _this = this;
+
+      axios.get(getPath).then(function (res) {
+        _this.data = res.data;
+        console.log(_this.data);
+      });
+    }
+  },
+  props: {
+    teamId: String
+  },
+  data: function data() {
+    return {
+      data: {}
     };
   },
   mounted: function mounted() {
@@ -5336,7 +5484,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _components_HeaderComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/HeaderComponent */ "./resources/js/components/HeaderComponent.vue");
 /* harmony import */ var _components_BaseTeam_IndexComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/BaseTeam/IndexComponent */ "./resources/js/components/BaseTeam/IndexComponent.vue");
 /* harmony import */ var _components_BaseTeam_AddComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/BaseTeam/AddComponent */ "./resources/js/components/BaseTeam/AddComponent.vue");
@@ -5362,11 +5510,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Game_SummaryComponent__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/Game/SummaryComponent */ "./resources/js/components/Game/SummaryComponent.vue");
 /* harmony import */ var _components_Game_FielderSummaryComponent__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/Game/FielderSummaryComponent */ "./resources/js/components/Game/FielderSummaryComponent.vue");
 /* harmony import */ var _components_Game_PitcherSummaryComponent__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/Game/PitcherSummaryComponent */ "./resources/js/components/Game/PitcherSummaryComponent.vue");
+/* harmony import */ var _components_Team_ViewComponent__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/Team/ViewComponent */ "./resources/js/components/Team/ViewComponent.vue");
 
  // import TaskListComponent from "./components/TaskListComponent";
 // import TaskShowComponent from "./components/TaskShowComponent";
 // import TaskCreateComponent from "./components/TaskCreateComponent";
 // import TaskEditComponent from "./components/TaskEditComponent";
+
 
 
 
@@ -5401,8 +5551,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default;
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_25__.default);
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_25__.default({
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_26__.default);
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_26__.default({
   mode: 'history',
   routes: [// {
   //     path: '/tasks',
@@ -5548,6 +5698,11 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_25__.default({
     path: '/games/:gameId/:type/pitcher_summary',
     name: 'game.pitcher_summary',
     component: _components_Game_PitcherSummaryComponent__WEBPACK_IMPORTED_MODULE_24__.default,
+    props: true
+  }, {
+    path: '/teams/:teamId',
+    name: 'team.view',
+    component: _components_Team_ViewComponent__WEBPACK_IMPORTED_MODULE_25__.default,
     props: true
   }]
 });
@@ -42112,6 +42267,45 @@ component.options.__file = "resources/js/components/Season/ViewComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Team/ViewComponent.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/Team/ViewComponent.vue ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ViewComponent_vue_vue_type_template_id_e4d11b9e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ViewComponent.vue?vue&type=template&id=e4d11b9e& */ "./resources/js/components/Team/ViewComponent.vue?vue&type=template&id=e4d11b9e&");
+/* harmony import */ var _ViewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ViewComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Team/ViewComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _ViewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _ViewComponent_vue_vue_type_template_id_e4d11b9e___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ViewComponent_vue_vue_type_template_id_e4d11b9e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Team/ViewComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/common/form/CheckboxComponent.vue":
 /*!*******************************************************************!*\
   !*** ./resources/js/components/common/form/CheckboxComponent.vue ***!
@@ -42723,6 +42917,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Team/ViewComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/Team/ViewComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ViewComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Team/ViewComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/common/form/CheckboxComponent.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************!*\
   !*** ./resources/js/components/common/form/CheckboxComponent.vue?vue&type=script&lang=js& ***!
@@ -43241,6 +43451,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_template_id_1e5f4c77___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_template_id_1e5f4c77___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ViewComponent.vue?vue&type=template&id=1e5f4c77& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/ViewComponent.vue?vue&type=template&id=1e5f4c77&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Team/ViewComponent.vue?vue&type=template&id=e4d11b9e&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/Team/ViewComponent.vue?vue&type=template&id=e4d11b9e& ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_template_id_e4d11b9e___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_template_id_e4d11b9e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_template_id_e4d11b9e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ViewComponent.vue?vue&type=template&id=e4d11b9e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Team/ViewComponent.vue?vue&type=template&id=e4d11b9e&");
 
 
 /***/ }),
@@ -49347,7 +49574,30 @@ var render = function() {
           return _c("tr", [
             _c("td", [_vm._v(_vm._s(team.rank))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(team.name))]),
+            _c(
+              "td",
+              [
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: {
+                        name: "team.view",
+                        params: { teamId: team.id.toString() }
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(team.name) +
+                        "\n                "
+                    )
+                  ]
+                )
+              ],
+              1
+            ),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(team.game))]),
             _vm._v(" "),
@@ -49408,6 +49658,286 @@ var staticRenderFns = [
       _c("th", [_vm._v("得点")]),
       _vm._v(" "),
       _c("th", [_vm._v("失点")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Team/ViewComponent.vue?vue&type=template&id=e4d11b9e&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Team/ViewComponent.vue?vue&type=template&id=e4d11b9e& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return Object.keys(_vm.data).length
+    ? _c("div", { staticClass: "container" }, [
+        _c("h2", [
+          _vm._v(
+            _vm._s(_vm.data.team.season.name) + " " + _vm._s(_vm.data.team.name)
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "clearfix" },
+          [
+            _c(
+              "router-link",
+              {
+                attrs: {
+                  to: {
+                    name: "season.view",
+                    params: { seasonId: _vm.data.team.season_id.toString() }
+                  }
+                }
+              },
+              [
+                _c("button", { staticClass: "btn btn-success" }, [
+                  _vm._v("日程一覧")
+                ])
+              ]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("h3", [_vm._v("野手")]),
+        _vm._v(" "),
+        _c(
+          "table",
+          { staticClass: "table table-hover seiseki_table" },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._l(_vm.data.fielders, function(fielder) {
+              return _c("tr", [
+                _c("td", [_vm._v(_vm._s(fielder.name_short))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.number))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.game))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.display_avg))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.hr))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.daten))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.daseki))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.dasu))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.hit))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.hit_2))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.hit_3))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.sansin))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.heisatsu))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.walk))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.dead))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.bant))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.sac_fly))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.steal_success))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.steal_miss))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.display_obp))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.display_ops))])
+              ])
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c("h3", [_vm._v("投手")]),
+        _vm._v(" "),
+        _c(
+          "table",
+          { staticClass: "table table-hover seiseki_table" },
+          [
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._l(_vm.data.pitchers, function(pitcher) {
+              return _c("tr", [
+                _c("td", [_vm._v(_vm._s(pitcher.name_short))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.number))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_game))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.display_p_era))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_win))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_lose))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_hold))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_save))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.display_p_win_ratio))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_sansin))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.display_p_sansin_ratio))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_hit))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.display_p_avg))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_hr))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_jiseki))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.display_p_inning))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_walk))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_dead))])
+              ])
+            })
+          ],
+          2
+        )
+      ])
+    : _vm._e()
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("選手名")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("No")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("試"), _c("br"), _vm._v("合")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("打"), _c("br"), _vm._v("率")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("本"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("打"), _c("br"), _vm._v("点")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("打"), _c("br"), _vm._v("席")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("打"), _c("br"), _vm._v("数")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("安"), _c("br"), _vm._v("打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("二"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("三"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("三"), _c("br"), _vm._v("振")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("併"), _c("br"), _vm._v("殺")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("四"), _c("br"), _vm._v("球")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("死"), _c("br"), _vm._v("球")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("犠"), _c("br"), _vm._v("打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("犠"), _c("br"), _vm._v("飛")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("盗"), _c("br"), _vm._v("塁")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("盗"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("失")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("出"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("率")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("O"), _c("br"), _vm._v("P"), _c("br"), _vm._v("S")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("選手名")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("No")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("試"), _c("br"), _vm._v("合")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("防"), _c("br"), _vm._v("御"), _c("br"), _vm._v("率")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("勝"), _c("br"), _vm._v("利")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("敗"), _c("br"), _vm._v("北")]),
+      _vm._v(" "),
+      _c("th", [
+        _vm._v("ホ"),
+        _c("br"),
+        _vm._v("ー"),
+        _c("br"),
+        _vm._v("ル"),
+        _c("br"),
+        _vm._v("ド")
+      ]),
+      _vm._v(" "),
+      _c("th", [_vm._v("セ"), _c("br"), _vm._v("ー"), _c("br"), _vm._v("ブ")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("勝"), _c("br"), _vm._v("率")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("奪"), _c("br"), _vm._v("三"), _c("br"), _vm._v("振")]),
+      _vm._v(" "),
+      _c("th", [
+        _vm._v("奪"),
+        _c("br"),
+        _vm._v("三"),
+        _c("br"),
+        _vm._v("振"),
+        _c("br"),
+        _vm._v("率")
+      ]),
+      _vm._v(" "),
+      _c("th", [_vm._v("被"), _c("br"), _vm._v("安"), _c("br"), _vm._v("打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("被"), _c("br"), _vm._v("打"), _c("br"), _vm._v("率")]),
+      _vm._v(" "),
+      _c("th", [
+        _vm._v("被"),
+        _c("br"),
+        _vm._v("本"),
+        _c("br"),
+        _vm._v("塁"),
+        _c("br"),
+        _vm._v("打")
+      ]),
+      _vm._v(" "),
+      _c("th", [_vm._v("自"), _c("br"), _vm._v("責"), _c("br"), _vm._v("点")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("回"), _c("br"), _vm._v("数")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("四"), _c("br"), _vm._v("球")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("死"), _c("br"), _vm._v("球")])
     ])
   }
 ]

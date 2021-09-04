@@ -59,6 +59,7 @@ class Player extends Model
         'p_dead',
         'p_avg',
         'p_inning',
+        'p_jiseki',
         'p_era',
     ];
 
@@ -67,6 +68,14 @@ class Player extends Model
         'hand_b_text',
         'hand_full_text',
         'position_main_text',
+        'display_avg',
+        'display_obp',
+        'display_ops',
+        'display_p_era',
+        'display_p_win_ratio',
+        'display_p_sansin_ratio',
+        'display_p_avg',
+        'display_p_inning',
     ];
 
     /**
@@ -112,6 +121,74 @@ class Player extends Model
     {
         return PlayerPosition::getDescription($this->position_main);
     }
+
+    public function getDisplayAvgAttribute($value)
+    {
+        if ($this->dasu == 0) {
+            return '-';
+        }
+
+        return preg_replace('/^0/', '', sprintf('%.3f', round($this->avg, 3)));
+    }
+    public function getDisplayObpAttribute($value)
+    {
+        if ($this->dasu == 0 && $this->walk == 0 && $this->dead == 0 && $this->sac_fly == 0) {
+            return '-';
+        }
+
+        return preg_replace('/^0/', '', sprintf('%.3f', round($this->obp, 3)));
+    }
+    public function getDisplayOpsAttribute($value)
+    {
+        if ($this->display_obp == '-') {
+            return '-';
+        }
+
+        return preg_replace('/^0/', '', sprintf('%.3f', round($this->ops, 3)));
+    }
+    public function getDisplayPEraAttribute($value)
+    {
+        if (!$this->p_inning) {
+            return '-';
+        }
+
+        return sprintf('%.2f', round($this->p_era, 2));
+    }
+
+    public function getDisplayPWinRatioAttribute($value)
+    {
+        if ($this->p_win == 0 && $this->p_lose == 0) {
+            return '-';
+        }
+
+        return preg_replace('/^0/', '', sprintf('%.3f', round($this->p_win_ratio, 3)));
+    }
+    public function getDisplayPSansinRatioAttribute($value)
+    {
+        if (!$this->p_inning) {
+            return '-';
+        }
+
+        return sprintf('%.2f', round($this->p_sansin_ratio, 2));
+    }
+    public function getDisplayPAvgAttribute($value)
+    {
+        if ($this->p_dasu == 0) {
+            return '-';
+        }
+
+        return preg_replace('/^0/', '', sprintf('%.3f', round($this->p_avg, 3)));
+    }
+    public function getDisplayPInningAttribute($value)
+    {
+        $text = floor($this->p_inning / 3);
+        if ($this->p_inning % 3 != 0) {
+            $text .= ' ' . ($this->p_inning % 3) . '/3';
+        }
+
+        return $text;
+    }
+
 
     ## 対象日時点の個人の成績
     public function getTargetDateSeisekiInfo($date)

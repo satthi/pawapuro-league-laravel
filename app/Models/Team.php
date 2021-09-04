@@ -32,6 +32,13 @@ class Team extends Model
         'display_avg',
         'display_era',
     ];
+    /**
+     * home team
+     */
+    public function season()
+    {
+        return $this->belongsTo(Season::class, 'season_id');
+    }
 
     ## attribute
     public function getDisplayWinRatioAttribute($value)

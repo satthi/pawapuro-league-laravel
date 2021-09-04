@@ -27,7 +27,11 @@
             </tr>
             <tr v-for="team in data.teams">
                 <td>{{ team.rank }}</td>
-                <td>{{ team.name }}</td>
+                <td>
+                    <router-link v-bind:to="{name: 'team.view', params: {teamId: team.id.toString() }}">
+                        {{ team.name }}
+                    </router-link>
+                </td>
                 <td>{{ team.game }}</td>
                 <td>{{ team.win }}</td>
                 <td>{{ team.lose }}</td>
