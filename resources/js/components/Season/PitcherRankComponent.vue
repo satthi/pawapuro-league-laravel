@@ -10,26 +10,94 @@
             <tr>
                 <th>No</th>
                 <th>選手名</th>
-                <th v-on:click="updateRanking('p_game')">試<br />合</th>
-                <th v-on:click="updateRanking('p_era')">防<br />御<br />率</th>
-                <th v-on:click="updateRanking('p_win')">勝<br />利</th>
-                <th v-on:click="updateRanking('p_lose')">敗<br />北</th>
-                <th v-on:click="updateRanking('p_hold')">ホ<br />ー<br />ル<br />ド</th>
-                <th v-on:click="updateRanking('p_save')">セ<br />ー<br />ブ</th>
-                <th v-on:click="updateRanking('p_win_ratio')">勝<br />率</th>
-                <th v-on:click="updateRanking('p_sansin')">奪<br />三<br />振</th>
-                <th v-on:click="updateRanking('p_sansin_ratio')">奪<br />三<br />振<br />率</th>
-                <th v-on:click="updateRanking('p_hit')">被<br />安<br />打</th>
-                <th v-on:click="updateRanking('p_avg')">被<br />打<br />率</th>
-                <th v-on:click="updateRanking('p_hr')">被<br />本<br />塁<br />打</th>
-                <th v-on:click="updateRanking('p_jiseki')">自<br />責<br />点</th>
-                <th v-on:click="updateRanking('p_inning')">回<br />数</th>
-                <th v-on:click="updateRanking('p_walk')">四<br />球</th>
-                <th v-on:click="updateRanking('p_dead')">死<br />球</th>
+                <th>
+                    <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString(), sortType: 'p_game' }}">
+                        試<br />合
+                    </router-link>
+                </th>
+                <th>
+                    <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString(), sortType: 'p_era' }}">
+                        防<br />御<br />率
+                    </router-link>
+                </th>
+                <th>
+                    <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString(), sortType: 'p_win' }}">
+                        勝<br />利
+                    </router-link>
+                </th>
+                <th>
+                    <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString(), sortType: 'p_lose' }}">
+                        敗<br />北
+                    </router-link>
+                </th>
+                <th>
+                    <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString(), sortType: 'p_hold' }}">
+                        ホ<br />ー<br />ル<br />ド
+                    </router-link>
+                </th>
+                <th>
+                    <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString(), sortType: 'p_save' }}">
+                        セ<br />ー<br />ブ
+                    </router-link>
+                </th>
+                <th>
+                    <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString(), sortType: 'p_win_ratio' }}">
+                        勝<br />率
+                    </router-link>
+                </th>
+                <th>
+                    <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString(), sortType: 'p_sansin' }}">
+                        奪<br />三<br />振
+                    </router-link>
+                </th>
+                <th>
+                    <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString(), sortType: 'p_sansin_ratio' }}">
+                        奪<br />三<br />振<br />率
+                    </router-link>
+                </th>
+                <th>
+                    <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString(), sortType: 'p_hit' }}">
+                        被<br />安<br />打
+                    </router-link>
+                </th>
+                <th>
+                    <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString(), sortType: 'p_avg' }}">
+                        被<br />打<br />率
+                    </router-link>
+                </th>
+                <th>
+                    <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString(), sortType: 'p_hr' }}">
+                        被<br />本<br />塁<br />打
+                    </router-link>
+                </th>
+                <th>
+                    <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString(), sortType: 'p_jiseki' }}">
+                        自<br />責<br />点
+                    </router-link>
+                </th>
+                <th>
+                    <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString(), sortType: 'p_inning' }}">
+                        回<br />数
+                    </router-link>
+                </th>
+                <th>
+                    <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString(), sortType: 'p_walk' }}">
+                        四<br />球
+                    </router-link>
+                </th>
+                <th>
+                    <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString(), sortType: 'p_dead' }}">
+                        死<br />球
+                    </router-link>
+                </th>
             </tr>
             <tr v-for="pitcher in rankingData">
                 <td>{{ pitcher.number }}</td>
-                <td>{{ pitcher.name_short }}</td>
+                <td>
+                    <router-link v-bind:to="{name: 'player.view', params: {playerId: pitcher.id.toString() }}">
+                        {{ pitcher.name_short }}
+                    </router-link>
+                </td>
                 <td>{{ pitcher.p_game }}</td>
                 <td>{{ pitcher.display_p_era }}</td>
                 <td>{{ pitcher.p_win }}</td>
@@ -52,6 +120,11 @@
 </template>
 <script>
     export default {
+        watch: {
+            '$route' (to, from) {
+                this.initial();
+            }
+        },
         methods: {
             initial() {
                 // チーム情報など込みで詳細画面表示に必要な情報をまとめて取得（したい）
@@ -70,19 +143,15 @@
                         this.rankingData = res.data;
                     });
             },
-            updateRanking(sortType) {
-                this.sortType = sortType;
-                this.initial();
-            }
         },
         props: {
-            seasonId: String
+            seasonId: String,
+            sortType: String,
         },
         data: function () {
             return {
                 data: {},
                 rankingData : {},
-                'sortType' : 'p_era' // 初期は打率
             }
         },
         mounted() {

@@ -4797,6 +4797,149 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Player/ViewComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Player/ViewComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/enums.js */ "./resources/js/mixins/enums.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  mixins: [_mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__.default],
+  methods: {
+    initial: function initial() {
+      this.getData('/api/players/view/' + this.playerId);
+    },
+    getData: function getData(getPath) {
+      var _this = this;
+
+      axios.get(getPath).then(function (res) {
+        _this.data = res.data;
+      });
+    }
+  },
+  props: {
+    playerId: String
+  },
+  data: function data() {
+    return {
+      data: {}
+    };
+  },
+  mounted: function mounted() {
+    this.initial();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/AddComponent.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/AddComponent.vue?vue&type=script&lang=js& ***!
@@ -5017,12 +5160,100 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  watch: {
+    '$route': function $route(to, from) {
+      this.initial();
+    }
+  },
   methods: {
     initial: function initial() {
       // チーム情報など込みで詳細画面表示に必要な情報をまとめて取得（したい）
       this.getData('/api/seasons/detail/' + this.seasonId);
-      this.getRankingData('/api/seasons/fielder-rank/' + this.seasonId + '/' + this.sortType);
+      this.getRankingData(this.sortType);
     },
     getData: function getData(getPath) {
       var _this = this;
@@ -5031,27 +5262,22 @@ __webpack_require__.r(__webpack_exports__);
         _this.data = res.data;
       });
     },
-    getRankingData: function getRankingData(getPath) {
+    getRankingData: function getRankingData(sortType) {
       var _this2 = this;
 
-      axios.get(getPath).then(function (res) {
+      axios.get('/api/seasons/fielder-rank/' + this.seasonId + '/' + sortType).then(function (res) {
         _this2.rankingData = res.data;
       });
-    },
-    updateRanking: function updateRanking(sortType) {
-      this.sortType = sortType;
-      this.initial();
     }
   },
   props: {
-    seasonId: String
+    seasonId: String,
+    sortType: String
   },
   data: function data() {
     return {
       data: {},
-      rankingData: {},
-      'sortType': 'avg' // 初期は打率
-
+      rankingData: {}
     };
   },
   mounted: function mounted() {
@@ -5198,7 +5424,80 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  watch: {
+    '$route': function $route(to, from) {
+      this.initial();
+    }
+  },
   methods: {
     initial: function initial() {
       // チーム情報など込みで詳細画面表示に必要な情報をまとめて取得（したい）
@@ -5218,21 +5517,16 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(getPath).then(function (res) {
         _this2.rankingData = res.data;
       });
-    },
-    updateRanking: function updateRanking(sortType) {
-      this.sortType = sortType;
-      this.initial();
     }
   },
   props: {
-    seasonId: String
+    seasonId: String,
+    sortType: String
   },
   data: function data() {
     return {
       data: {},
-      rankingData: {},
-      'sortType': 'p_era' // 初期は打率
-
+      rankingData: {}
     };
   },
   mounted: function mounted() {
@@ -5360,6 +5654,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5717,7 +6019,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _components_HeaderComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/HeaderComponent */ "./resources/js/components/HeaderComponent.vue");
 /* harmony import */ var _components_BaseTeam_IndexComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/BaseTeam/IndexComponent */ "./resources/js/components/BaseTeam/IndexComponent.vue");
 /* harmony import */ var _components_BaseTeam_AddComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/BaseTeam/AddComponent */ "./resources/js/components/BaseTeam/AddComponent.vue");
@@ -5746,11 +6048,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Game_FielderSummaryComponent__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/Game/FielderSummaryComponent */ "./resources/js/components/Game/FielderSummaryComponent.vue");
 /* harmony import */ var _components_Game_PitcherSummaryComponent__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/Game/PitcherSummaryComponent */ "./resources/js/components/Game/PitcherSummaryComponent.vue");
 /* harmony import */ var _components_Team_ViewComponent__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/Team/ViewComponent */ "./resources/js/components/Team/ViewComponent.vue");
+/* harmony import */ var _components_Player_ViewComponent__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/Player/ViewComponent */ "./resources/js/components/Player/ViewComponent.vue");
 
  // import TaskListComponent from "./components/TaskListComponent";
 // import TaskShowComponent from "./components/TaskShowComponent";
 // import TaskCreateComponent from "./components/TaskCreateComponent";
 // import TaskEditComponent from "./components/TaskEditComponent";
+
 
 
 
@@ -5788,8 +6092,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default;
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_28__.default);
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_28__.default({
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_29__.default);
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_29__.default({
   mode: 'history',
   routes: [// {
   //     path: '/tasks',
@@ -5867,12 +6171,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_28__.default({
     component: _components_Season_ViewComponent__WEBPACK_IMPORTED_MODULE_10__.default,
     props: true
   }, {
-    path: '/season/:seasonId/fielder-rank',
+    path: '/season/:seasonId/:sortType/fielder-rank',
     name: 'season.fielder-rank',
     component: _components_Season_FielderRankComponent__WEBPACK_IMPORTED_MODULE_11__.default,
     props: true
   }, {
-    path: '/season/:seasonId/pitcher-rank',
+    path: '/season/:seasonId/:sortType/pitcher-rank',
     name: 'season.pitcher-rank',
     component: _components_Season_PitcherRankComponent__WEBPACK_IMPORTED_MODULE_12__.default,
     props: true
@@ -5950,6 +6254,11 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_28__.default({
     path: '/teams/:teamId',
     name: 'team.view',
     component: _components_Team_ViewComponent__WEBPACK_IMPORTED_MODULE_27__.default,
+    props: true
+  }, {
+    path: '/players/:playerId',
+    name: 'player.view',
+    component: _components_Player_ViewComponent__WEBPACK_IMPORTED_MODULE_28__.default,
     props: true
   }]
 });
@@ -42358,6 +42667,45 @@ component.options.__file = "resources/js/components/HeaderComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Player/ViewComponent.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/Player/ViewComponent.vue ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ViewComponent_vue_vue_type_template_id_b0ba8e16___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ViewComponent.vue?vue&type=template&id=b0ba8e16& */ "./resources/js/components/Player/ViewComponent.vue?vue&type=template&id=b0ba8e16&");
+/* harmony import */ var _ViewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ViewComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Player/ViewComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _ViewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _ViewComponent_vue_vue_type_template_id_b0ba8e16___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ViewComponent_vue_vue_type_template_id_b0ba8e16___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Player/ViewComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Season/AddComponent.vue":
 /*!*********************************************************!*\
   !*** ./resources/js/components/Season/AddComponent.vue ***!
@@ -43178,6 +43526,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Player/ViewComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/Player/ViewComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ViewComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Player/ViewComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Season/AddComponent.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************!*\
   !*** ./resources/js/components/Season/AddComponent.vue?vue&type=script&lang=js& ***!
@@ -43740,6 +44104,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HeaderComponent_vue_vue_type_template_id_153bfd55___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HeaderComponent_vue_vue_type_template_id_153bfd55___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HeaderComponent.vue?vue&type=template&id=153bfd55& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HeaderComponent.vue?vue&type=template&id=153bfd55&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Player/ViewComponent.vue?vue&type=template&id=b0ba8e16&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/Player/ViewComponent.vue?vue&type=template&id=b0ba8e16& ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_template_id_b0ba8e16___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_template_id_b0ba8e16___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_template_id_b0ba8e16___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ViewComponent.vue?vue&type=template&id=b0ba8e16& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Player/ViewComponent.vue?vue&type=template&id=b0ba8e16&");
 
 
 /***/ }),
@@ -49547,6 +49928,273 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Player/ViewComponent.vue?vue&type=template&id=b0ba8e16&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Player/ViewComponent.vue?vue&type=template&id=b0ba8e16& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return Object.keys(_vm.enums).length && Object.keys(_vm.data).length
+    ? _c("div", { staticClass: "container" }, [
+        _c("h2", [
+          _vm._v(
+            _vm._s(_vm.data.player.team.season.name) +
+              " " +
+              _vm._s(_vm.data.player.team.name)
+          )
+        ]),
+        _vm._v(" "),
+        _c("h3", [_vm._v(_vm._s(_vm.data.player.name))]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "clearfix" },
+          [
+            _c(
+              "router-link",
+              {
+                attrs: {
+                  to: {
+                    name: "team.view",
+                    params: { teamId: _vm.data.player.team_id.toString() }
+                  }
+                }
+              },
+              [
+                _c("button", { staticClass: "btn btn-success" }, [
+                  _vm._v("チーム詳細")
+                ])
+              ]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("h4", [_vm._v("野手成績")]),
+        _vm._v(" "),
+        _c("table", { staticClass: "table table-hover seiseki_table" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [_vm._v(_vm._s(_vm.data.player.game))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.display_avg))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.hr))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.daten))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.daseki))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.dasu))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.hit))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.hit_2))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.hit_3))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.sansin))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.heisatsu))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.walk))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.dead))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.bant))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.sac_fly))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.steal_success))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.steal_miss))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.display_obp))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.display_slg))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.display_ops))])
+          ])
+        ]),
+        _vm._v(" "),
+        _vm.data.player.position_main == _vm.enums.Position.POSITION_P.value ||
+        _vm.data.player.p_inning > 0
+          ? _c("div", [
+              _c("h4", [_vm._v("投手成績成績")]),
+              _vm._v(" "),
+              _c("table", { staticClass: "table table-hover seiseki_table" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_game))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.data.player.display_p_era))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_win))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_lose))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_hold))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_save))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.data.player.display_p_win_ratio))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_sansin))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.data.player.display_p_sansin_ratio))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_hit))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.data.player.display_p_avg))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_hr))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_jiseki))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.data.player.display_p_inning))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_walk))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_dead))])
+                ])
+              ])
+            ])
+          : _vm._e()
+      ])
+    : _vm._e()
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("試"), _c("br"), _vm._v("合")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("打"), _c("br"), _vm._v("率")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("本"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("打"), _c("br"), _vm._v("点")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("打"), _c("br"), _vm._v("席")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("打"), _c("br"), _vm._v("数")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("安"), _c("br"), _vm._v("打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("二"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("三"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("三"), _c("br"), _vm._v("振")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("併"), _c("br"), _vm._v("殺")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("四"), _c("br"), _vm._v("球")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("死"), _c("br"), _vm._v("球")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("犠"), _c("br"), _vm._v("打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("犠"), _c("br"), _vm._v("飛")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("盗"), _c("br"), _vm._v("塁")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("盗"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("失")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("出"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("率")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("長"), _c("br"), _vm._v("打"), _c("br"), _vm._v("率")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("O"), _c("br"), _vm._v("P"), _c("br"), _vm._v("S")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("試"), _c("br"), _vm._v("合")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("防"), _c("br"), _vm._v("御"), _c("br"), _vm._v("率")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("勝"), _c("br"), _vm._v("利")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("敗"), _c("br"), _vm._v("北")]),
+      _vm._v(" "),
+      _c("th", [
+        _vm._v("ホ"),
+        _c("br"),
+        _vm._v("ー"),
+        _c("br"),
+        _vm._v("ル"),
+        _c("br"),
+        _vm._v("ド")
+      ]),
+      _vm._v(" "),
+      _c("th", [_vm._v("セ"), _c("br"), _vm._v("ー"), _c("br"), _vm._v("ブ")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("勝"), _c("br"), _vm._v("率")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("奪"), _c("br"), _vm._v("三"), _c("br"), _vm._v("振")]),
+      _vm._v(" "),
+      _c("th", [
+        _vm._v("奪"),
+        _c("br"),
+        _vm._v("三"),
+        _c("br"),
+        _vm._v("振"),
+        _c("br"),
+        _vm._v("率")
+      ]),
+      _vm._v(" "),
+      _c("th", [_vm._v("被"), _c("br"), _vm._v("安"), _c("br"), _vm._v("打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("被"), _c("br"), _vm._v("打"), _c("br"), _vm._v("率")]),
+      _vm._v(" "),
+      _c("th", [
+        _vm._v("被"),
+        _c("br"),
+        _vm._v("本"),
+        _c("br"),
+        _vm._v("塁"),
+        _c("br"),
+        _vm._v("打")
+      ]),
+      _vm._v(" "),
+      _c("th", [_vm._v("自"), _c("br"), _vm._v("責"), _c("br"), _vm._v("点")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("回"), _c("br"), _vm._v("数")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("四"), _c("br"), _vm._v("球")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("死"), _c("br"), _vm._v("球")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/AddComponent.vue?vue&type=template&id=3391970d&":
 /*!*******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/AddComponent.vue?vue&type=template&id=3391970d& ***!
@@ -49823,257 +50471,542 @@ var render = function() {
           { staticClass: "table table-hover seiseki_table" },
           [
             _c("tr", [
-              _c("th"),
-              _vm._v(" "),
               _c("th", [_vm._v("No")]),
               _vm._v(" "),
               _c("th", [_vm._v("選手名")]),
               _vm._v(" "),
               _c(
                 "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("game")
-                    }
-                  }
-                },
-                [_vm._v("試"), _c("br"), _vm._v("合")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("avg")
-                    }
-                  }
-                },
-                [_vm._v("打"), _c("br"), _vm._v("率")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("hr")
-                    }
-                  }
-                },
-                [_vm._v("本"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("打")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("daten")
-                    }
-                  }
-                },
-                [_vm._v("打"), _c("br"), _vm._v("点")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("daseki")
-                    }
-                  }
-                },
-                [_vm._v("打"), _c("br"), _vm._v("席")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("dasu")
-                    }
-                  }
-                },
-                [_vm._v("打"), _c("br"), _vm._v("数")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("hit")
-                    }
-                  }
-                },
-                [_vm._v("安"), _c("br"), _vm._v("打")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("hit_2")
-                    }
-                  }
-                },
-                [_vm._v("二"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("打")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("hit_3")
-                    }
-                  }
-                },
-                [_vm._v("三"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("打")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("sansin")
-                    }
-                  }
-                },
-                [_vm._v("三"), _c("br"), _vm._v("振")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("heisatsu")
-                    }
-                  }
-                },
-                [_vm._v("併"), _c("br"), _vm._v("殺")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("walk")
-                    }
-                  }
-                },
-                [_vm._v("四"), _c("br"), _vm._v("球")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("dead")
-                    }
-                  }
-                },
-                [_vm._v("死"), _c("br"), _vm._v("球")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("bant")
-                    }
-                  }
-                },
-                [_vm._v("犠"), _c("br"), _vm._v("打")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("sac_fly")
-                    }
-                  }
-                },
-                [_vm._v("犠"), _c("br"), _vm._v("飛")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("steal_success")
-                    }
-                  }
-                },
-                [_vm._v("盗"), _c("br"), _vm._v("塁")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("steal_miss")
-                    }
-                  }
-                },
-                [_vm._v("盗"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("失")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("obp")
-                    }
-                  }
-                },
-                [_vm._v("出"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("率")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("slg")
-                    }
-                  }
-                },
                 [
-                  _vm._v("長"),
-                  _c("br"),
-                  _vm._v("打"),
-                  _c("br"),
-                  _vm._v("率"),
-                  _c("br")
-                ]
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.fielder-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "game"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    試"),
+                      _c("br"),
+                      _vm._v("合\n                ")
+                    ]
+                  )
+                ],
+                1
               ),
               _vm._v(" "),
               _c(
                 "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("ops")
-                    }
-                  }
-                },
-                [_vm._v("O"), _c("br"), _vm._v("P"), _c("br"), _vm._v("S")]
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.fielder-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "avg"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    打"),
+                      _c("br"),
+                      _vm._v("率\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.fielder-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "hr"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    本"),
+                      _c("br"),
+                      _vm._v("塁"),
+                      _c("br"),
+                      _vm._v("打\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.fielder-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "daten"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    打"),
+                      _c("br"),
+                      _vm._v("点\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.fielder-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "daseki"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    打"),
+                      _c("br"),
+                      _vm._v("席\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.fielder-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "dasu"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    打"),
+                      _c("br"),
+                      _vm._v("数\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.fielder-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "hit"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    安"),
+                      _c("br"),
+                      _vm._v("打\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.fielder-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "hit_2"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    二"),
+                      _c("br"),
+                      _vm._v("塁"),
+                      _c("br"),
+                      _vm._v("打\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.fielder-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "hit_3"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    三"),
+                      _c("br"),
+                      _vm._v("塁"),
+                      _c("br"),
+                      _vm._v("打\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.fielder-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "sansin"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    三"),
+                      _c("br"),
+                      _vm._v("振\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.fielder-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "heisatsu"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    併"),
+                      _c("br"),
+                      _vm._v("殺\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.fielder-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "walk"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    四"),
+                      _c("br"),
+                      _vm._v("球\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.fielder-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "dead"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    死"),
+                      _c("br"),
+                      _vm._v("球\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.fielder-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "bant"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    犠"),
+                      _c("br"),
+                      _vm._v("打\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.fielder-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "sac_fly"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    犠"),
+                      _c("br"),
+                      _vm._v("飛\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.fielder-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "steal_success"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    盗"),
+                      _c("br"),
+                      _vm._v("塁\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.fielder-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "steal_miss"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    盗"),
+                      _c("br"),
+                      _vm._v("塁"),
+                      _c("br"),
+                      _vm._v("失\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.fielder-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "obp"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    出"),
+                      _c("br"),
+                      _vm._v("塁"),
+                      _c("br"),
+                      _vm._v("率\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.fielder-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "slg"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    長"),
+                      _c("br"),
+                      _vm._v("打"),
+                      _c("br"),
+                      _vm._v("率\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.fielder-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "ops"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    O"),
+                      _c("br"),
+                      _vm._v("P"),
+                      _c("br"),
+                      _vm._v("S\n                ")
+                    ]
+                  )
+                ],
+                1
               )
             ]),
             _vm._v(" "),
@@ -50081,9 +51014,30 @@ var render = function() {
               return _c("tr", [
                 _c("td", [_vm._v(_vm._s(fielder.team_ryaku_name))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(fielder.number))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(fielder.name_short))]),
+                _c(
+                  "td",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "player.view",
+                            params: { playerId: fielder.id.toString() }
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(fielder.name_short) +
+                            "\n                "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                ),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(fielder.game))]),
                 _vm._v(" "),
@@ -50317,218 +51271,442 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("p_game")
-                    }
-                  }
-                },
-                [_vm._v("試"), _c("br"), _vm._v("合")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("p_era")
-                    }
-                  }
-                },
-                [_vm._v("防"), _c("br"), _vm._v("御"), _c("br"), _vm._v("率")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("p_win")
-                    }
-                  }
-                },
-                [_vm._v("勝"), _c("br"), _vm._v("利")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("p_lose")
-                    }
-                  }
-                },
-                [_vm._v("敗"), _c("br"), _vm._v("北")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("p_hold")
-                    }
-                  }
-                },
                 [
-                  _vm._v("ホ"),
-                  _c("br"),
-                  _vm._v("ー"),
-                  _c("br"),
-                  _vm._v("ル"),
-                  _c("br"),
-                  _vm._v("ド")
-                ]
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.pitcher-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "p_game"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    試"),
+                      _c("br"),
+                      _vm._v("合\n                ")
+                    ]
+                  )
+                ],
+                1
               ),
               _vm._v(" "),
               _c(
                 "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("p_save")
-                    }
-                  }
-                },
-                [_vm._v("セ"), _c("br"), _vm._v("ー"), _c("br"), _vm._v("ブ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("p_win_ratio")
-                    }
-                  }
-                },
-                [_vm._v("勝"), _c("br"), _vm._v("率")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("p_sansin")
-                    }
-                  }
-                },
-                [_vm._v("奪"), _c("br"), _vm._v("三"), _c("br"), _vm._v("振")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("p_sansin_ratio")
-                    }
-                  }
-                },
                 [
-                  _vm._v("奪"),
-                  _c("br"),
-                  _vm._v("三"),
-                  _c("br"),
-                  _vm._v("振"),
-                  _c("br"),
-                  _vm._v("率")
-                ]
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.pitcher-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "p_era"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    防"),
+                      _c("br"),
+                      _vm._v("御"),
+                      _c("br"),
+                      _vm._v("率\n                ")
+                    ]
+                  )
+                ],
+                1
               ),
               _vm._v(" "),
               _c(
                 "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("p_hit")
-                    }
-                  }
-                },
-                [_vm._v("被"), _c("br"), _vm._v("安"), _c("br"), _vm._v("打")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("p_avg")
-                    }
-                  }
-                },
-                [_vm._v("被"), _c("br"), _vm._v("打"), _c("br"), _vm._v("率")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("p_hr")
-                    }
-                  }
-                },
                 [
-                  _vm._v("被"),
-                  _c("br"),
-                  _vm._v("本"),
-                  _c("br"),
-                  _vm._v("塁"),
-                  _c("br"),
-                  _vm._v("打")
-                ]
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.pitcher-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "p_win"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    勝"),
+                      _c("br"),
+                      _vm._v("利\n                ")
+                    ]
+                  )
+                ],
+                1
               ),
               _vm._v(" "),
               _c(
                 "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("p_jiseki")
-                    }
-                  }
-                },
-                [_vm._v("自"), _c("br"), _vm._v("責"), _c("br"), _vm._v("点")]
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.pitcher-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "p_lose"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    敗"),
+                      _c("br"),
+                      _vm._v("北\n                ")
+                    ]
+                  )
+                ],
+                1
               ),
               _vm._v(" "),
               _c(
                 "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("p_inning")
-                    }
-                  }
-                },
-                [_vm._v("回"), _c("br"), _vm._v("数")]
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.pitcher-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "p_hold"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    ホ"),
+                      _c("br"),
+                      _vm._v("ー"),
+                      _c("br"),
+                      _vm._v("ル"),
+                      _c("br"),
+                      _vm._v("ド\n                ")
+                    ]
+                  )
+                ],
+                1
               ),
               _vm._v(" "),
               _c(
                 "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("p_walk")
-                    }
-                  }
-                },
-                [_vm._v("四"), _c("br"), _vm._v("球")]
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.pitcher-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "p_save"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    セ"),
+                      _c("br"),
+                      _vm._v("ー"),
+                      _c("br"),
+                      _vm._v("ブ\n                ")
+                    ]
+                  )
+                ],
+                1
               ),
               _vm._v(" "),
               _c(
                 "th",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.updateRanking("p_dead")
-                    }
-                  }
-                },
-                [_vm._v("死"), _c("br"), _vm._v("球")]
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.pitcher-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "p_win_ratio"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    勝"),
+                      _c("br"),
+                      _vm._v("率\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.pitcher-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "p_sansin"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    奪"),
+                      _c("br"),
+                      _vm._v("三"),
+                      _c("br"),
+                      _vm._v("振\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.pitcher-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "p_sansin_ratio"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    奪"),
+                      _c("br"),
+                      _vm._v("三"),
+                      _c("br"),
+                      _vm._v("振"),
+                      _c("br"),
+                      _vm._v("率\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.pitcher-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "p_hit"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    被"),
+                      _c("br"),
+                      _vm._v("安"),
+                      _c("br"),
+                      _vm._v("打\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.pitcher-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "p_avg"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    被"),
+                      _c("br"),
+                      _vm._v("打"),
+                      _c("br"),
+                      _vm._v("率\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.pitcher-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "p_hr"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    被"),
+                      _c("br"),
+                      _vm._v("本"),
+                      _c("br"),
+                      _vm._v("塁"),
+                      _c("br"),
+                      _vm._v("打\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.pitcher-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "p_jiseki"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    自"),
+                      _c("br"),
+                      _vm._v("責"),
+                      _c("br"),
+                      _vm._v("点\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.pitcher-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "p_inning"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    回"),
+                      _c("br"),
+                      _vm._v("数\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.pitcher-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "p_walk"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    四"),
+                      _c("br"),
+                      _vm._v("球\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.pitcher-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "p_dead"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    死"),
+                      _c("br"),
+                      _vm._v("球\n                ")
+                    ]
+                  )
+                ],
+                1
               )
             ]),
             _vm._v(" "),
@@ -50536,7 +51714,30 @@ var render = function() {
               return _c("tr", [
                 _c("td", [_vm._v(_vm._s(pitcher.number))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(pitcher.name_short))]),
+                _c(
+                  "td",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "player.view",
+                            params: { playerId: pitcher.id.toString() }
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(pitcher.name_short) +
+                            "\n                "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                ),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(pitcher.p_game))]),
                 _vm._v(" "),
@@ -50644,7 +51845,7 @@ var render = function() {
               attrs: {
                 to: {
                   name: "season.fielder-rank",
-                  params: { seasonId: _vm.seasonId.toString() }
+                  params: { seasonId: _vm.seasonId.toString(), sortType: "avg" }
                 }
               }
             },
@@ -50661,7 +51862,10 @@ var render = function() {
               attrs: {
                 to: {
                   name: "season.pitcher-rank",
-                  params: { seasonId: _vm.seasonId.toString() }
+                  params: {
+                    seasonId: _vm.seasonId.toString(),
+                    sortType: "p_era"
+                  }
                 }
               }
             },
@@ -50839,7 +52043,30 @@ var render = function() {
               return _c("tr", [
                 _c("td", [_vm._v(_vm._s(fielder.number))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(fielder.name_short))]),
+                _c(
+                  "td",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "player.view",
+                            params: { playerId: fielder.id.toString() }
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(fielder.name_short) +
+                            "\n                "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                ),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(fielder.game))]),
                 _vm._v(" "),
@@ -50898,7 +52125,30 @@ var render = function() {
               return _c("tr", [
                 _c("td", [_vm._v(_vm._s(pitcher.number))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(pitcher.name_short))]),
+                _c(
+                  "td",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "player.view",
+                            params: { playerId: pitcher.id.toString() }
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(pitcher.name_short) +
+                            "\n                "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                ),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(pitcher.p_game))]),
                 _vm._v(" "),

@@ -79,6 +79,13 @@ class Player extends Model
         'display_p_avg',
         'display_p_inning',
     ];
+    /**
+     * home team
+     */
+    public function team()
+    {
+        return $this->belongsTo(Team::class, 'team_id');
+    }
 
     /**
      * 利き(投げ) テキスト表示
@@ -478,6 +485,10 @@ class Player extends Model
             case 'obp':
             case 'ops':
             case 'slg':
+                // 打率/出塁率/OPSのランキングは降順/規定打席到達のみ
+                $players->orderBy($sortType, 'DESC')
+                    ->whereRaw(\DB::raw('players.daseki::numeric >= teams.game::numeric * 3.1'));
+                break;
             case 'p_sansin_ratio':
                 // 打率/出塁率/OPSのランキングは降順/規定打席到達のみ
                 $players->orderBy($sortType, 'DESC')

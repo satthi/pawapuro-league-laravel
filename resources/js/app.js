@@ -32,7 +32,7 @@ import GameSummaryComponent from "./components/Game/SummaryComponent";
 import GameFielderSummaryComponent from "./components/Game/FielderSummaryComponent";
 import GamePitcherSummaryComponent from "./components/Game/PitcherSummaryComponent";
 import TeamViewComponent from "./components/Team/ViewComponent";
-
+import PlayerViewComponent from "./components/Player/ViewComponent";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -135,13 +135,13 @@ const router = new VueRouter({
             props: true
         },
         {
-            path: '/season/:seasonId/fielder-rank',
+            path: '/season/:seasonId/:sortType/fielder-rank',
             name: 'season.fielder-rank',
             component: SeasonFielderRankComponent,
             props: true
         },
         {
-            path: '/season/:seasonId/pitcher-rank',
+            path: '/season/:seasonId/:sortType/pitcher-rank',
             name: 'season.pitcher-rank',
             component: SeasonPitcherRankComponent,
             props: true
@@ -234,6 +234,12 @@ const router = new VueRouter({
             path: '/teams/:teamId',
             name: 'team.view',
             component: TeamViewComponent,
+            props: true
+        },
+        {
+            path: '/players/:playerId',
+            name: 'player.view',
+            component: PlayerViewComponent,
             props: true
         },
 

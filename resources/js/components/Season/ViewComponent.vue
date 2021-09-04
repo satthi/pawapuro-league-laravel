@@ -7,10 +7,10 @@
                 <router-link v-bind:to="{name: 'game.index', params: {seasonId: seasonId.toString() }}">
                     <button class="btn btn-success">日程一覧</button>
                 </router-link>
-                <router-link v-bind:to="{name: 'season.fielder-rank', params: {seasonId: seasonId.toString() }}">
+                <router-link v-bind:to="{name: 'season.fielder-rank', params: {seasonId: seasonId.toString(), sortType: 'avg' }}">
                     <button class="btn btn-success">野手成績</button>
                 </router-link>
-                <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString() }}">
+                <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString(), sortType: 'p_era' }}">
                     <button class="btn btn-success">投手成績</button>
                 </router-link>
             </form>

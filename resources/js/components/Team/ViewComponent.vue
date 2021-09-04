@@ -34,7 +34,11 @@
             </tr>
             <tr v-for="fielder in data.fielders">
                 <td>{{ fielder.number }}</td>
-                <td>{{ fielder.name_short }}</td>
+                <td>
+                    <router-link v-bind:to="{name: 'player.view', params: {playerId: fielder.id.toString() }}">
+                        {{ fielder.name_short }}
+                    </router-link>
+                </td>
                 <td>{{ fielder.game }}</td>
                 <td>{{ fielder.display_avg }}</td>
                 <td>{{ fielder.hr }}</td>
@@ -82,7 +86,11 @@
             </tr>
             <tr v-for="pitcher in data.pitchers">
                 <td>{{ pitcher.number }}</td>
-                <td>{{ pitcher.name_short }}</td>
+                <td>
+                    <router-link v-bind:to="{name: 'player.view', params: {playerId: pitcher.id.toString() }}">
+                        {{ pitcher.name_short }}
+                    </router-link>
+                </td>
                 <td>{{ pitcher.p_game }}</td>
                 <td>{{ pitcher.display_p_era }}</td>
                 <td>{{ pitcher.p_win }}</td>

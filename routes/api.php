@@ -79,3 +79,5 @@ Route::get('/games/pitcher-summary/{game}/{type}', 'App\Http\Controllers\GameCon
 
 Route::get('/teams/view/{team}', 'App\Http\Controllers\TeamController@view');
 Route::get('/teams/get-options/{season}', 'App\Http\Controllers\TeamController@getOptions');
+
+Route::get('/players/view/{player}', 'App\Http\Controllers\PlayerController@view');
