@@ -138,16 +138,14 @@
                 <tr>
                     <th>日付</th>
                     <th>対戦</th>
-                    <th>出場</th>
-                    <th>打席</th>
-                    <th>打数</th>
-                    <th>安打</th>
-                    <th>本塁打</th>
-                    <th>打点</th>
+                    <th></th>
+                    <th>イニング</th>
+                    <th>被安打</th>
+                    <th>被本塁打</th>
                     <th>四球</th>
                     <th>死球</th>
-                    <th>盗塁</th>
-                    <th></th>
+                    <th>奪三振</th>
+                    <th>自責点</th>
                 </tr>
                 <tr v-for="pitcher_history in data.pitcher_histories">
                     <td>{{ pitcher_history.date }}</td>

@@ -4974,8 +4974,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mixins: [_mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__.default],
@@ -50377,25 +50375,21 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("対戦")]),
       _vm._v(" "),
-      _c("th", [_vm._v("出場")]),
+      _c("th"),
       _vm._v(" "),
-      _c("th", [_vm._v("打席")]),
+      _c("th", [_vm._v("イニング")]),
       _vm._v(" "),
-      _c("th", [_vm._v("打数")]),
+      _c("th", [_vm._v("被安打")]),
       _vm._v(" "),
-      _c("th", [_vm._v("安打")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("本塁打")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("打点")]),
+      _c("th", [_vm._v("被本塁打")]),
       _vm._v(" "),
       _c("th", [_vm._v("四球")]),
       _vm._v(" "),
       _c("th", [_vm._v("死球")]),
       _vm._v(" "),
-      _c("th", [_vm._v("盗塁")]),
+      _c("th", [_vm._v("奪三振")]),
       _vm._v(" "),
-      _c("th")
+      _c("th", [_vm._v("自責点")])
     ])
   }
 ]

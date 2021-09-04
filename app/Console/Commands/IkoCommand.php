@@ -473,6 +473,8 @@ class IkoCommand extends Command
             game_pitcher_results.game_id = game_members.game_id
         AND
             game_members.player_id = game_pitcher_results.pitcher_id
+        AND
+            game_members.position = 1
             order by game_members.id asc');
 
         $ikoMotoGamePitcherResultsCount = count($ikoMotoGamePitcherResults);
