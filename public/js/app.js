@@ -5040,13 +5040,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
+    initial: function initial() {
+      // チーム情報など込みで詳細画面表示に必要な情報をまとめて取得（したい）
+      this.getData('/api/seasons/detail/' + this.seasonId);
+    },
     getData: function getData(getPath) {
       var _this = this;
 
       axios.get(getPath).then(function (res) {
         _this.data = res.data;
+      });
+    },
+    reShukei: function reShukei(postPath) {
+      axios.post(postPath, this.data).then(function (res) {
+        initial();
       });
     }
   },
@@ -5061,8 +5096,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    // チーム情報など込みで詳細画面表示に必要な情報をまとめて取得（したい）
-    this.getData('/api/seasons/detail/' + this.seasonId);
+    this.initial();
   }
 });
 
@@ -49252,32 +49286,99 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("h2", [_vm._v(_vm._s(_vm.data.season.name))]),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "clearfix" },
-      [
-        _c(
-          "router-link",
-          {
-            attrs: {
-              to: {
-                name: "game.index",
-                params: { seasonId: _vm.seasonId.toString() }
-              }
+    _c("div", { staticClass: "clearfix" }, [
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              _vm.reShukei("/api/seasons/re-shukei/" + _vm.seasonId.toString())
             }
-          },
-          [
-            _c("button", { staticClass: "btn btn-success float-right" }, [
-              _vm._v("日程一覧")
-            ])
-          ]
-        )
+          }
+        },
+        [
+          _c(
+            "button",
+            { staticClass: "btn btn-success", attrs: { type: "submit" } },
+            [_vm._v("再集計")]
+          ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              attrs: {
+                to: {
+                  name: "game.index",
+                  params: { seasonId: _vm.seasonId.toString() }
+                }
+              }
+            },
+            [
+              _c("button", { staticClass: "btn btn-success" }, [
+                _vm._v("日程一覧")
+              ])
+            ]
+          )
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "table",
+      { staticClass: "table table-hover" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._l(_vm.data.teams, function(team) {
+          return _c("tr", [
+            _c("td"),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(team.name))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(team.game))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(team.win))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(team.lose))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(team.draw))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(team.win_ratio))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(team.remain))])
+          ])
+        })
       ],
-      1
+      2
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th"),
+      _vm._v(" "),
+      _c("th", [_vm._v("チーム名")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("試合")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("勝")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("負")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("分")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("勝率")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("残")])
+    ])
+  }
+]
 render._withStripped = true
 
 

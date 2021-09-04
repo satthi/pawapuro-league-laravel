@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SeasonRequest;
 use App\Models\Season;
+use App\Models\Team;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -37,10 +39,15 @@ class SeasonController extends Controller
 
     public function detail(Season $season)
     {
-
+        $teamModel = new Team();
         return [
-            'season' => $season
+            'season' => $season,
+            'teams' => $teamModel->getSeasonTeam($season),
         ];
     }
-
+    public function reShukei(Request $request, Season $season)
+    {
+        // 集計処理
+        $season->shukei();
+    }
 }

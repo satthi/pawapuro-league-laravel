@@ -24,6 +24,42 @@ class Player extends Model
         'position_sub1',
         'position_sub2',
         'position_sub3',
+        'game',
+        'daseki',
+        'dasu',
+        'hit',
+        'hit_2',
+        'hit_3',
+        'hr',
+        'sansin',
+        'heisatsu',
+        'walk',
+        'dead',
+        'bant',
+        'sac_fly',
+        'daten',
+        'steal_success',
+        'steal_miss',
+        'avg',
+        'obp',
+        'ops',
+        'p_game',
+        'p_win',
+        'p_lose',
+        'p_hold',
+        'p_save',
+        'p_daseki',
+        'p_dasu',
+        'p_win_ratio',
+        'p_sansin',
+        'p_sansin_ratio',
+        'p_hit',
+        'p_hr',
+        'p_walk',
+        'p_dead',
+        'p_avg',
+        'p_inning',
+        'p_era',
     ];
 
     protected $appends = [
@@ -157,7 +193,6 @@ class Player extends Model
         $checkPlayInfo = Play::where('game_id', $game->id)
             ->where('plays.id', '<=', $lastPlayId)
             ->where('player_id', $this->id)
-            ->where('type', PlayType::TYPE_DAGEKI_KEKKA)
             ->join('results', 'results.id', '=', 'plays.result_id')
             ->whereIn('type', [PlayType::TYPE_DAGEKI_KEKKA, PlayType::TYPE_STEAL])
             ->groupBy('player_id');
@@ -214,5 +249,125 @@ class Player extends Model
         }
 
         return $pitcherOptions;
+    }
+
+    public function shukei($seasonId)
+    {
+        $shukeis =  $this->leftjoin('plays', 'players.id', '=', 'plays.player_id')
+            ->leftjoin('games', 'games.id', '=', 'plays.game_id')
+            ->leftjoin('results', 'results.id', '=', 'plays.result_id')
+            ->join('teams', 'teams.id', '=', 'players.team_id')
+            ->where('teams.season_id', $seasonId)
+            ->where(function($q){
+                $q->where('plays.type', PlayType::TYPE_DAGEKI_KEKKA)
+                    ->orWhere('plays.type', PlayType::TYPE_STEAL)
+                    ->orWhere('plays.type', PlayType::TYPE_STAMEN)
+                    ->orWhere('plays.type', PlayType::TYPE_MEMBER_CHANGE)
+                    ->orWhere('plays.type');
+            })
+            ->groupBy('players.id')
+            ->select([
+                'players.id as player_id',
+                \DB::raw('count(DISTINCT(games.id)) AS game'),
+                \DB::raw('count(results.id) AS daseki'),
+                $this->fielderSeisekiSelectParts('dasu_count_flag', 'dasu'),
+                $this->fielderSeisekiSelectParts('hit_flag', 'hit'),
+                $this->fielderSeisekiSelectParts('hit_2_flag', 'hit_2'),
+                $this->fielderSeisekiSelectParts('hit_3_flag', 'hit_3'),
+                $this->fielderSeisekiSelectParts('hr_flag', 'hr'),
+                $this->fielderSeisekiSelectParts('sansin_flag', 'sansin'),
+                $this->fielderSeisekiSelectParts('heisatsu_flag', 'heisatsu'),
+                $this->fielderSeisekiSelectParts('walk_flag', 'walk'),
+                $this->fielderSeisekiSelectParts('dead_flag', 'dead'),
+                $this->fielderSeisekiSelectParts('bant_flag', 'bant'),
+                $this->fielderSeisekiSelectParts('sac_fly_flag', 'sac_fly'),
+                \DB::raw('coalesce(sum(plays.point_count), 0) AS daten'),
+                \DB::raw('sum(CASE WHEN plays.type = ' . PlayType::TYPE_STEAL . ' AND plays.out_count = 0 THEN 1 ELSE 0 END) AS steal_success'),
+                \DB::raw('sum(CASE WHEN plays.type = ' . PlayType::TYPE_STEAL . ' AND plays.out_count = 1 THEN 1 ELSE 0 END) AS steal_miss'),
+            ])
+            ->get()
+            ->keyBy('player_id')
+            ->toArray()
+            ;
+
+        $pitcherShukeis = $this::join('teams', 'teams.id', '=', 'players.team_id')
+            ->leftjoin('game_pitchers', 'game_pitchers.player_id', '=', 'players.id')
+            ->where('teams.season_id', $seasonId)
+            ->select([
+                'players.id as player_id',
+                \DB::raw('count(game_pitchers.id) as game_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.inning), 0) as inning_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.jiseki), 0) as jiseki_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.daseki), 0) as daseki_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.dasu), 0) as dasu_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.hit), 0) as hit_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.hr), 0) as hr_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.sansin), 0) as sansin_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.walk), 0) as walk_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.dead), 0) as dead_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.win_flag::integer), 0) as win_count'),
+                \DB::raw('coalesce(sum(game_pitchers.lose_flag::integer), 0) as lose_count'),
+                \DB::raw('coalesce(sum(game_pitchers.hold_flag::integer), 0) as hold_count'),
+                \DB::raw('coalesce(sum(game_pitchers.save_flag::integer), 0) as save_count'),
+            ])
+            ->groupBy('players.id')
+            ->get()
+            ;
+
+        foreach ($pitcherShukeis as $pitcherShukei) {
+            $shukeis[$pitcherShukei->player_id]['p_game'] = $pitcherShukei->game_sum;
+            $shukeis[$pitcherShukei->player_id]['p_inning'] = $pitcherShukei->inning_sum;
+            $shukeis[$pitcherShukei->player_id]['p_jiseki'] = $pitcherShukei->jiseki_sum;
+            $shukeis[$pitcherShukei->player_id]['p_daseki'] = $pitcherShukei->daseki_sum;
+            $shukeis[$pitcherShukei->player_id]['p_dasu'] = $pitcherShukei->dasu_sum;
+            $shukeis[$pitcherShukei->player_id]['p_hit'] = $pitcherShukei->hit_sum;
+            $shukeis[$pitcherShukei->player_id]['p_hr'] = $pitcherShukei->hr_sum;
+            $shukeis[$pitcherShukei->player_id]['p_sansin'] = $pitcherShukei->sansin_sum;
+            $shukeis[$pitcherShukei->player_id]['p_walk'] = $pitcherShukei->walk_sum;
+            $shukeis[$pitcherShukei->player_id]['p_dead'] = $pitcherShukei->dead_sum;
+            $shukeis[$pitcherShukei->player_id]['p_win'] = $pitcherShukei->win_count;
+            $shukeis[$pitcherShukei->player_id]['p_lose'] = $pitcherShukei->lose_count;
+            $shukeis[$pitcherShukei->player_id]['p_hold'] = $pitcherShukei->hold_count;
+            $shukeis[$pitcherShukei->player_id]['p_save'] = $pitcherShukei->save_count;
+            $shukeis[$pitcherShukei->player_id]['p_avg'] = 0;
+            if ($pitcherShukei->dasu_sum) {
+                $shukeis[$pitcherShukei->player_id]['p_avg'] = $pitcherShukei->hit_sum / $pitcherShukei->dasu_sum;
+            }
+            $shukeis[$pitcherShukei->player_id]['p_era'] = 0;
+            if ($pitcherShukei->inning_sum) {
+                $shukeis[$pitcherShukei->player_id]['p_era'] = $pitcherShukei->jiseki_sum / $pitcherShukei->inning_sum * 27;
+            }
+            $shukeis[$pitcherShukei->player_id]['p_win_ratio'] = 0;
+            if ($pitcherShukei->win_count + $pitcherShukei->lose_count) {
+                $shukeis[$pitcherShukei->player_id]['p_win_ratio'] = $pitcherShukei->win_count / ($pitcherShukei->win_count + $pitcherShukei->lose_count);
+            }
+            $shukeis[$pitcherShukei->player_id]['p_sansin_ratio'] = 0;
+            if ($pitcherShukei->inning_sum) {
+                $shukeis[$pitcherShukei->player_id]['p_sansin_ratio'] = $pitcherShukei->sansin_sum / $pitcherShukei->inning_sum * 27;
+            }
+
+        }
+
+        foreach ($shukeis as $shukei) {
+            $player = Player::find($shukei['player_id']);
+
+            $shukei['avg'] = 0;
+            $shukei['obp'] = 0;
+            // avg
+            if ($shukei['dasu']) {
+                $shukei['avg'] = $shukei['hit'] / $shukei['dasu'];
+            }
+
+            //obp
+            $obpBunbo = $shukei['dasu'] + $shukei['walk'] + $shukei['dead'] + $shukei['sac_fly'];
+            $obpBunshi = $shukei['hit'] + $shukei['walk'] + $shukei['dead'];
+            if ($obpBunbo) {
+                $shukei['obp'] = $obpBunshi / $obpBunbo;
+            }
+            $shukei['ops'] = $shukei['avg'] + $shukei['obp'];
+
+            unset($shukei['player_id']);
+            $player->update($shukei);
+        }
     }
 }

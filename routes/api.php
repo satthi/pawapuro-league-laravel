@@ -44,6 +44,7 @@ Route::post('/seasons/add', 'App\Http\Controllers\SeasonController@add');
 Route::get('/seasons/view/{season}', 'App\Http\Controllers\SeasonController@show');
 Route::get('/seasons/detail/{season}', 'App\Http\Controllers\SeasonController@detail');
 Route::put('/seasons/edit/{season}', 'App\Http\Controllers\SeasonController@update');
+Route::post('/seasons/re-shukei/{season}', 'App\Http\Controllers\SeasonController@reShukei');
 Route::delete('/seasons/delete/{season}', 'App\Http\Controllers\SeasonController@destroy');
 
 Route::get('/games/get-result', 'App\Http\Controllers\GameController@getResult');

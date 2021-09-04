@@ -136,6 +136,9 @@ class IkoCommand extends Command
         // game_pitchersの移行
         $this->gamePitcherIko();
 
+        // 集計
+        $this->shukei();
+
         $this->output->writeln('end: ' . date('Y/m/d H:i:s'));
 
         return 0;
@@ -520,5 +523,14 @@ class IkoCommand extends Command
     private function fielderSeisekiSelectParts($checkField, $asField)
     {
         return \DB::raw('sum(CASE WHEN results.' . $checkField . ' THEN 1 ELSE 0 END) AS ' . $asField);
+    }
+
+    public function shukei()
+    {
+        $seasons = Season::all();
+
+        foreach ($seasons as $season) {
+            $season->shukei();
+        }
     }
 }

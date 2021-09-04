@@ -19,6 +19,19 @@ class CreateTeamsTable extends Migration
             $table->integer('season_id')->index();
             $table->string('name', 100);
             $table->string('ryaku_name', 100);
+            $table->integer('game')->nullable()->index();
+            $table->integer('remain')->nullable()->index();
+            $table->integer('win')->nullable()->index();
+            $table->integer('lose')->nullable()->index();
+            $table->integer('draw')->nullable()->index();
+            $table->decimal('win_ratio', 11, 8)->nullable();
+            $table->integer('hr')->nullable();
+            $table->decimal('avg', 11, 8)->nullable();
+            $table->decimal('era', 11, 8)->nullable();
+            $table->integer('point')->nullable();
+            $table->integer('p_point')->nullable();
+
+
             $table->timestamps();
         });
     }

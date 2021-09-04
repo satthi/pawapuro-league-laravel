@@ -66,6 +66,16 @@ class Season extends Model
 
     }
 
+    public function shukei()
+    {
+        $teamModel = new Team();
+        $playerModel = new Player();
+        // チームの集計
+        // $teamModel->shukei($this->id);
+        // 個人の集計
+        $playerModel->shukei($this->id);
+    }
+
     ####  attirbute
     /**
      * 削除可能か
