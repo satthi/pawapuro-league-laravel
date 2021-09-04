@@ -2621,6 +2621,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -2705,6 +2730,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3064,6 +3108,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/enums.js */ "./resources/js/mixins/enums.js");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4398,6 +4448,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/enums.js */ "./resources/js/mixins/enums.js");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -44545,7 +44601,42 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-12" }, [
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c(
+              "table",
+              { staticClass: "table table-hover stamen" },
+              _vm._l(this.playData.member.visitor_team, function(
+                member,
+                dajun
+              ) {
+                return _c("tr", [
+                  _c(
+                    "td",
+                    {
+                      class: {
+                        member_selected:
+                          member.player.id == _vm.playData.now_player_id
+                      }
+                    },
+                    [_vm._v(_vm._s(member.position.text))]
+                  ),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(member.player.name_short))]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "seiseki" }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(member.seiseki.dageki) +
+                        "\n                    "
+                    )
+                  ])
+                ])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-6" }, [
             _c(
               "table",
               {
@@ -44773,81 +44864,117 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c(
-                  "table",
-                  {
-                    staticClass: "table-hover",
-                    style: {
-                      width: 230 + 90 * _vm.summary[0].dageki.length + "px"
+                _c("div", [
+                  _c(
+                    "table",
+                    {
+                      staticClass: "table-hover",
+                      style: {
+                        width: 230 + 90 * _vm.summary[0].dageki.length + "px"
+                      },
+                      attrs: { id: "fielder-summary" }
                     },
-                    attrs: { id: "fielder-summary" }
-                  },
-                  _vm._l(_vm.summary, function(playerBlock) {
-                    return _c(
-                      "tr",
-                      [
-                        _c("td", {
-                          staticStyle: { width: "20px" },
-                          domProps: { innerHTML: _vm._s(playerBlock.position) }
-                        }),
-                        _vm._v(" "),
-                        _c("td", { staticStyle: { width: "120px" } }, [
-                          _vm._v(_vm._s(playerBlock.player.name_short))
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(playerBlock.dageki, function(dageki) {
-                          return _c(
+                    _vm._l(_vm.summary, function(playerBlock) {
+                      return _c(
+                        "tr",
+                        [
+                          _c("td", {
+                            staticStyle: { width: "20px" },
+                            domProps: {
+                              innerHTML: _vm._s(playerBlock.position)
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("td", { staticStyle: { width: "120px" } }, [
+                            _vm._v(_vm._s(playerBlock.player.name_short))
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(playerBlock.dageki, function(dageki) {
+                            return _c(
+                              "td",
+                              {
+                                class:
+                                  "result_button_" +
+                                  (dageki ? dageki.result.button_type : ""),
+                                staticStyle: { width: "90px" }
+                              },
+                              [
+                                dageki
+                                  ? _c("span", [
+                                      _vm._v(_vm._s(dageki.result_text))
+                                    ])
+                                  : _vm._e()
+                              ]
+                            )
+                          }),
+                          _vm._v(" "),
+                          _c(
                             "td",
                             {
-                              class:
-                                "result_button_" +
-                                (dageki ? dageki.result.button_type : ""),
-                              staticStyle: { width: "90px" }
+                              staticStyle: {
+                                "text-align": "left",
+                                width: "90px"
+                              }
                             },
                             [
-                              dageki
-                                ? _c("span", [
-                                    _vm._v(_vm._s(dageki.result_text))
-                                  ])
-                                : _vm._e()
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(
+                                    playerBlock.seiseki != null
+                                      ? playerBlock.seiseki.target_avg
+                                      : "-"
+                                  ) +
+                                  "\n                                (" +
+                                  _vm._s(
+                                    playerBlock.seiseki != null
+                                      ? playerBlock.seiseki.hr
+                                      : "0"
+                                  ) +
+                                  ")\n                            "
+                              )
                             ]
                           )
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          {
-                            staticStyle: {
-                              "text-align": "right",
-                              width: "90px"
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(
-                                  playerBlock.seiseki != null
-                                    ? playerBlock.seiseki.target_avg
-                                    : "-"
-                                ) +
-                                "\n                            (" +
-                                _vm._s(
-                                  playerBlock.seiseki != null
-                                    ? playerBlock.seiseki.hr
-                                    : "0"
-                                ) +
-                                ")\n                        "
-                            )
-                          ]
-                        )
-                      ],
-                      2
-                    )
-                  }),
-                  0
-                )
+                        ],
+                        2
+                      )
+                    }),
+                    0
+                  )
+                ])
               ],
               1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3 clearfix" }, [
+            _c(
+              "table",
+              { staticClass: "table table-hover stamen" },
+              _vm._l(this.playData.member.home_team, function(member, dajun) {
+                return _c("tr", [
+                  _c(
+                    "td",
+                    {
+                      class: {
+                        member_selected:
+                          member.player.id == _vm.playData.now_player_id
+                      }
+                    },
+                    [_vm._v(_vm._s(member.position.text))]
+                  ),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(member.player.name_short))]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "seiseki" }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(member.seiseki.dageki) +
+                        "\n                    "
+                    )
+                  ])
+                ])
+              }),
+              0
             )
           ])
         ])
@@ -44950,41 +45077,83 @@ var render = function() {
               _vm._l(game.game, function(gameDetail) {
                 return _c("td", [
                   gameDetail.id
-                    ? _c(
-                        "div",
-                        [
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(gameDetail.home_team.ryaku_name) +
-                              " VS " +
-                              _vm._s(gameDetail.visitor_team.ryaku_name)
-                          ),
-                          _c("br"),
-                          _vm._v(
-                            "\n                        DH: " +
-                              _vm._s(gameDetail.dh_flag ? "有" : "無")
-                          ),
-                          _c("br"),
-                          _vm._v(" "),
-                          _c(
-                            "router-link",
-                            {
-                              attrs: {
-                                to: {
-                                  name: "game.view",
-                                  params: { gameId: gameDetail.id.toString() }
-                                }
-                              }
-                            },
-                            [
-                              _c("button", { staticClass: "btn btn-success" }, [
-                                _vm._v("ゲーム")
+                    ? _c("div", [
+                        _c(
+                          "table",
+                          {
+                            staticClass: "table table-hover season_game_table"
+                          },
+                          [
+                            _c("tr", [
+                              _c("td", [
+                                _vm._v(_vm._s(gameDetail.home_team.ryaku_name))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v("VS")]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(
+                                  _vm._s(gameDetail.visitor_team.ryaku_name)
+                                )
                               ])
-                            ]
-                          )
-                        ],
-                        1
-                      )
+                            ]),
+                            _vm._v(" "),
+                            _c("tr", [
+                              _c("td", [_vm._v(_vm._s(gameDetail.home_point))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v("-")]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(_vm._s(gameDetail.visitor_point))
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("tr", [
+                              _c("td", { attrs: { colspan: "3" } }, [
+                                _vm._v(
+                                  "\n                                    DH: " +
+                                    _vm._s(gameDetail.dh_flag ? "有" : "無") +
+                                    "\n                                "
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("tr", [
+                              _c(
+                                "td",
+                                { attrs: { colspan: "3" } },
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      attrs: {
+                                        to: {
+                                          name: "game.view",
+                                          params: {
+                                            gameId: gameDetail.id.toString()
+                                          }
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "button",
+                                        { staticClass: "btn btn-success" },
+                                        [
+                                          _vm._v(
+                                            _vm._s(gameDetail.display_inning)
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            ])
+                          ]
+                        )
+                      ])
                     : _c("div", [_vm._v(" - ")])
                 ])
               })
@@ -45380,7 +45549,15 @@ var render = function() {
                     [_vm._v(_vm._s(member.position.text))]
                   ),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(member.player.name_short))])
+                  _c("td", [_vm._v(_vm._s(member.player.name_short))]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "seiseki" }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(member.seiseki.dageki) +
+                        "\n                    "
+                    )
+                  ])
                 ])
               }),
               0
@@ -45682,7 +45859,15 @@ var render = function() {
                     [_vm._v(_vm._s(member.position.text))]
                   ),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(member.player.name_short))])
+                  _c("td", [_vm._v(_vm._s(member.player.name_short))]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "seiseki" }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(member.seiseki.dageki) +
+                        "\n                    "
+                    )
+                  ])
                 ])
               }),
               0
@@ -48023,7 +48208,15 @@ var render = function() {
                     [_vm._v(_vm._s(member.position.text))]
                   ),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(member.player.name_short))])
+                  _c("td", [_vm._v(_vm._s(member.player.name_short))]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "seiseki" }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(member.seiseki.dageki) +
+                        "\n                    "
+                    )
+                  ])
                 ])
               }),
               0
@@ -48320,7 +48513,15 @@ var render = function() {
                     [_vm._v(_vm._s(member.position.text))]
                   ),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(member.player.name_short))])
+                  _c("td", [_vm._v(_vm._s(member.player.name_short))]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "seiseki" }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(member.seiseki.dageki) +
+                        "\n                    "
+                    )
+                  ])
                 ])
               }),
               0

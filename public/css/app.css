@@ -10089,8 +10089,7 @@ table.stamen > tr > td {
 }
 
 #fielder-summary td {
-  padding-top: 5px;
-  padding-bottom: 5px;
+  height: 30px;
 }
 
 .now_player_detail td {
@@ -10135,4 +10134,9 @@ table.stamen > tr > td {
 
 .player_detail_name {
   white-space: nowrap;
+}
+
+.season_game_table td {
+  padding: 0;
+  text-align: center;
 }

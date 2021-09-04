@@ -18,11 +18,30 @@
                     <th>{{ game.date }}</th>
                     <td v-for="gameDetail in game.game">
                         <div v-if="gameDetail.id">
-                            {{ gameDetail.home_team.ryaku_name }} VS {{ gameDetail.visitor_team.ryaku_name }}<br />
-                            DH: {{ gameDetail.dh_flag ? '有' : '無' }}<br />
-                            <router-link v-bind:to="{name: 'game.view', params: {gameId: gameDetail.id.toString() }}">
-                                <button class="btn btn-success">ゲーム</button>
-                            </router-link>
+                            <table class="table table-hover season_game_table">
+                                <tr>
+                                    <td>{{ gameDetail.home_team.ryaku_name }}</td>
+                                    <td>VS</td>
+                                    <td>{{ gameDetail.visitor_team.ryaku_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ gameDetail.home_point }}</td>
+                                    <td>-</td>
+                                    <td>{{ gameDetail.visitor_point }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        DH: {{ gameDetail.dh_flag ? '有' : '無' }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        <router-link v-bind:to="{name: 'game.view', params: {gameId: gameDetail.id.toString() }}">
+                                            <button class="btn btn-success">{{ gameDetail.display_inning }}</button>
+                                        </router-link>
+                                    </td>
+                                </tr>
+                            </table>
 
                         </div>
                         <div v-else> - </div>

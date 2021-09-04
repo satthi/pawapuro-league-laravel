@@ -3,7 +3,18 @@
         <h2>{{ gameData.date }} {{ gameData.home_team.name }} VS {{ gameData.visitor_team.name }}</h2>
 
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-3">
+                <table class="table table-hover stamen">
+                    <tr v-for="(member, dajun) in this.playData.member.visitor_team">
+                        <td v-bind:class="{'member_selected' : member.player.id == playData.now_player_id}">{{ member.position.text }}</td>
+                        <td>{{ member.player.name_short }}</td>
+                        <td class="seiseki">
+                            {{ member.seiseki.dageki }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-6">
                 <!-- スコアボード -->
                 <table class="table table-hover" id="score_board">
                     <tr>
@@ -46,22 +57,36 @@
                         <button class="btn btn-success">投手({{ gameData.home_team.ryaku_name }})</button>
                     </router-link>
 
-                    <table class="table-hover" id="fielder-summary" v-bind:style="{'width': ( 230 + 90 * summary[0].dageki.length ) + 'px'   }">
-                        <tr v-for="playerBlock in summary">
-                            <td style="width: 20px;" v-html="playerBlock.position"></td>
-                            <td style="width: 120px;">{{ playerBlock.player.name_short }}</td>
-                            <td v-for="dageki in playerBlock.dageki" :class='`result_button_${dageki ? dageki.result.button_type : ``}`' style="width: 90px;">
-                                <span v-if="dageki">{{ dageki.result_text }}</span>
-                            </td>
-                            <td style="text-align:right;width: 90px;">
-                                {{ playerBlock.seiseki != null ? playerBlock.seiseki.target_avg : '-' }}
-                                ({{ playerBlock.seiseki != null ? playerBlock.seiseki.hr : '0' }})
-                            </td>
-                        </tr>
-                    </table>
+                    <div>
+                        <table class="table-hover" id="fielder-summary" v-bind:style="{'width': ( 230 + 90 * summary[0].dageki.length ) + 'px'   }">
+                            <tr v-for="playerBlock in summary">
+                                <td style="width: 20px;" v-html="playerBlock.position"></td>
+                                <td style="width: 120px;">{{ playerBlock.player.name_short }}</td>
+                                <td v-for="dageki in playerBlock.dageki" :class='`result_button_${dageki ? dageki.result.button_type : ``}`' style="width: 90px;">
+                                    <span v-if="dageki">{{ dageki.result_text }}</span>
+                                </td>
+                                <td style="text-align:left;width: 90px;">
+                                    {{ playerBlock.seiseki != null ? playerBlock.seiseki.target_avg : '-' }}
+                                    ({{ playerBlock.seiseki != null ? playerBlock.seiseki.hr : '0' }})
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
 
             </div>
+            <div class="col-sm-3 clearfix">
+                <table class="table table-hover stamen">
+                    <tr v-for="(member, dajun) in this.playData.member.home_team">
+                        <td v-bind:class="{'member_selected' : member.player.id == playData.now_player_id}">{{ member.position.text }}</td>
+                        <td>{{ member.player.name_short }}</td>
+                        <td class="seiseki">
+                            {{ member.seiseki.dageki }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
         </div>
     </div>
 </template>

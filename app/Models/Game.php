@@ -25,6 +25,10 @@ class Game extends Model
         'visitor_point',
     ];
 
+    protected $appends = [
+        'display_inning'
+    ];
+
     ### relation
 
     /**
@@ -185,6 +189,24 @@ class Game extends Model
         return
             ($this->inning % 10 == 2 && $this->out < 3) ||
             ($this->inning % 10 == 1 && $this->out === 3);
+    }
+
+    public function getDisplayInningAttribute()
+    {
+        if (is_null($this->inning)) {
+            return '開始前';
+        } elseif ($this->inning == 999) {
+            return '終了';
+        } else {
+            $text = floor($this->inning / 10) . '回';
+            if ($this->inning % 10 == 1) {
+                $text .= '表';
+            } else {
+                $text .= '裏';
+            }
+
+            return $text;
+        }
     }
 
     private function isGameEnd()
