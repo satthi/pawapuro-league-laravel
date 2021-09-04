@@ -4910,6 +4910,72 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mixins: [_mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__.default],
@@ -50075,6 +50141,90 @@ var render = function() {
                 ])
               ])
             ])
+          : _vm._e(),
+        _vm._v(" "),
+        Object.keys(_vm.data.fielder_histories).length
+          ? _c("div", [
+              _c("h4", [_vm._v("野手成績履歴")]),
+              _vm._v(" "),
+              _c(
+                "table",
+                { staticClass: "table table-hover seiseki_table" },
+                [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _vm._l(_vm.data.fielder_histories, function(fielder_history) {
+                    return _c("tr", [
+                      _c("td", [_vm._v(_vm._s(fielder_history.date))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(fielder_history.vs))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(fielder_history.position))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(fielder_history.daseki))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(fielder_history.dasu))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(fielder_history.hit))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(fielder_history.hr))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(fielder_history.daten))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(fielder_history.walk))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(fielder_history.dead))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(fielder_history.steal))]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "text-align": "left" } }, [
+                        _vm._v(_vm._s(fielder_history.seiseki))
+                      ])
+                    ])
+                  })
+                ],
+                2
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        Object.keys(_vm.data.pitcher_histories).length
+          ? _c("div", [
+              _c("h4", [_vm._v("投手成績履歴")]),
+              _vm._v(" "),
+              _c(
+                "table",
+                { staticClass: "table table-hover seiseki_table" },
+                [
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _vm._l(_vm.data.pitcher_histories, function(pitcher_history) {
+                    return _c("tr", [
+                      _c("td", [_vm._v(_vm._s(pitcher_history.date))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(pitcher_history.vs))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(pitcher_history.type))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(pitcher_history.inning))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(pitcher_history.hit))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(pitcher_history.hr))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(pitcher_history.walk))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(pitcher_history.dead))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(pitcher_history.sansin))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(pitcher_history.jiseki))])
+                    ])
+                  })
+                ],
+                2
+              )
+            ])
           : _vm._e()
       ])
     : _vm._e()
@@ -50186,6 +50336,66 @@ var staticRenderFns = [
       _c("th", [_vm._v("四"), _c("br"), _vm._v("球")]),
       _vm._v(" "),
       _c("th", [_vm._v("死"), _c("br"), _vm._v("球")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("日付")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("対戦")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("出場")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("打席")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("打数")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("安打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("本塁打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("打点")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("四球")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("死球")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("盗塁")]),
+      _vm._v(" "),
+      _c("th")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("日付")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("対戦")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("出場")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("打席")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("打数")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("安打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("本塁打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("打点")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("四球")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("死球")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("盗塁")]),
+      _vm._v(" "),
+      _c("th")
     ])
   }
 ]

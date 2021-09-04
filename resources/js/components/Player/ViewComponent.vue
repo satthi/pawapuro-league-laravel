@@ -97,6 +97,72 @@
             </table>
         </div>
 
+        <div v-if="Object.keys(data.fielder_histories).length">
+            <h4>野手成績履歴</h4>
+            <table class="table table-hover seiseki_table">
+                <tr>
+                    <th>日付</th>
+                    <th>対戦</th>
+                    <th>出場</th>
+                    <th>打席</th>
+                    <th>打数</th>
+                    <th>安打</th>
+                    <th>本塁打</th>
+                    <th>打点</th>
+                    <th>四球</th>
+                    <th>死球</th>
+                    <th>盗塁</th>
+                    <th></th>
+                </tr>
+                <tr v-for="fielder_history in data.fielder_histories">
+                    <td>{{ fielder_history.date }}</td>
+                    <td>{{ fielder_history.vs }}</td>
+                    <td>{{ fielder_history.position }}</td>
+                    <td>{{ fielder_history.daseki }}</td>
+                    <td>{{ fielder_history.dasu }}</td>
+                    <td>{{ fielder_history.hit }}</td>
+                    <td>{{ fielder_history.hr }}</td>
+                    <td>{{ fielder_history.daten }}</td>
+                    <td>{{ fielder_history.walk }}</td>
+                    <td>{{ fielder_history.dead }}</td>
+                    <td>{{ fielder_history.steal }}</td>
+                    <td style="text-align:left;">{{ fielder_history.seiseki }}</td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div v-if="Object.keys(data.pitcher_histories).length">
+            <h4>投手成績履歴</h4>
+            <table class="table table-hover seiseki_table">
+                <tr>
+                    <th>日付</th>
+                    <th>対戦</th>
+                    <th>出場</th>
+                    <th>打席</th>
+                    <th>打数</th>
+                    <th>安打</th>
+                    <th>本塁打</th>
+                    <th>打点</th>
+                    <th>四球</th>
+                    <th>死球</th>
+                    <th>盗塁</th>
+                    <th></th>
+                </tr>
+                <tr v-for="pitcher_history in data.pitcher_histories">
+                    <td>{{ pitcher_history.date }}</td>
+                    <td>{{ pitcher_history.vs }}</td>
+                    <td>{{ pitcher_history.type }}</td>
+                    <td>{{ pitcher_history.inning }}</td>
+                    <td>{{ pitcher_history.hit }}</td>
+                    <td>{{ pitcher_history.hr }}</td>
+                    <td>{{ pitcher_history.walk }}</td>
+                    <td>{{ pitcher_history.dead }}</td>
+                    <td>{{ pitcher_history.sansin }}</td>
+                    <td>{{ pitcher_history.jiseki }}</td>
+                </tr>
+            </table>
+        </div>
     </div>
 </template>
 <script>

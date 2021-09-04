@@ -39,6 +39,13 @@ class Play extends Model
     {
         return $this->belongsTo(Player::class, 'pitcher_id');
     }
+    /**
+     * home team
+     */
+    public function game()
+    {
+        return $this->belongsTo(Game::class, 'game_id');
+    }
 
     /**
      * home team
@@ -541,6 +548,89 @@ class Play extends Model
         }
 
         return $hrPlayers;
+    }
+
+    public function getFielderHistory(Player $player)
+    {
+        $plays = $this::where('player_id', $player->id)
+            ->with([
+                'game.home_team',
+                'game.visitor_team',
+                'result',
+            ])
+            ->get();
+
+        $playHistories = [];
+        $initialWaku = [
+            'date' => '',
+            'vs' => '',
+            'daseki' => 0,
+            'dasu' => 0,
+            'hit' => 0,
+            'hr' => 0,
+            'daten' => 0,
+            'walk' => 0,
+            'dead' => 0,
+            'steal' => 0,
+            'seiseki' => '',
+            'position' => '',
+        ];
+
+        foreach ($plays as $play) {
+            if (!array_key_exists($play->game_id, $playHistories)) {
+                $playHistories[$play->game_id] = $initialWaku;
+                $playHistories[$play->game_id]['date'] = $play->game->date; // 表示用調整
+                if ($play->game->home_team->id == $play->team_id) {
+                    $playHistories[$play->game_id]['vs'] = $play->game->visitor_team->ryaku_name;
+                } else {
+                    $playHistories[$play->game_id]['vs'] = $play->game->home_team->ryaku_name;
+                }
+            }
+            switch ($play->type) {
+                case PlayType::TYPE_STAMEN:
+                    if ( $play->dajun < 10) {
+                        $playHistories[$play->game_id]['position'] = $play->dajun . '番' . Position::getTextFull($play->position);
+                    } else {
+                        $playHistories[$play->game_id]['position'] = '先発';
+                    }
+                    break;
+                case PlayType::TYPE_MEMBER_CHANGE:
+                    if (!$playHistories[$play->game_id]['position']) {
+                        $playHistories[$play->game_id]['position'] = '途中交代';
+                    }
+                    break;
+                case PlayType::TYPE_DAGEKI_KEKKA:
+                    $playHistories[$play->game_id]['seiseki'] .= $play->result->name .' '; // 調整
+                    $playHistories[$play->game_id]['daseki']++;
+                    if ($play->result->dasu_flag) {
+                        $playHistories[$play->game_id]['dasu']++;
+                    }
+                    if ($play->result->hit_flag) {
+                        $playHistories[$play->game_id]['hit']++;
+                    }
+                    if ($play->result->hr_flag) {
+                        $playHistories[$play->game_id]['hr']++;
+                    }
+                    $playHistories[$play->game_id]['daten'] += $play->point_count;
+                    if ($play->result->walk_flag) {
+                        $playHistories[$play->game_id]['walk']++;
+                    }
+                    if ($play->result->dead_flag) {
+                        $playHistories[$play->game_id]['dead']++;
+                    }
+                    break;
+                case PlayType::TYPE_DAGEKI_KEKKA:
+                    if ($play->out_count == 0) {
+                        $playHistories[$play->game_id]['steal']++;
+                    }
+                    break;
+            }
+        }
+
+        return $playHistories;
+
+        // dump($playHistories);
+        // exit;
 
     }
 

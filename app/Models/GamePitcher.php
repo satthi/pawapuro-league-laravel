@@ -40,6 +40,13 @@ class GamePitcher extends Model
     }
 
     /**
+     * player
+     */
+    public function game()
+    {
+        return $this->belongsTo(Game::class, 'game_id');
+    }
+    /**
      * 利き(投げ) テキスト表示
      *
      * @param  string  $value
@@ -160,6 +167,60 @@ class GamePitcher extends Model
         $pitcher['seiseki_text'] = $seisekiText;
 
         return $pitcher;
+    }
+
+    public function getPitcherHistory(Player $player)
+    {
+        $gamePitchers =  $this::where('player_id', $player->id)
+            ->select('game_pitchers.*')
+            ->with([
+                'game.home_team',
+                'game.visitor_team',
+            ])
+            ->join('games', 'games.id', '=', 'game_pitchers.game_id')
+            ->orderBy('games.date', 'ASC')
+            ->orderBy('games.id', 'ASC')
+            ->get();
+        // dump($gamePitchers->toArray());
+        // exit;
+
+        $gamePitcherHistories = [];
+        foreach ($gamePitchers as $gamePitcher) {
+            $gamePitcherHistory = [];
+            $gamePitcherHistory['date'] = $gamePitcher->game->date;
+            if ($gamePitcher->game->home_team_id != $player->team_id) {
+                $gamePitcherHistory['vs'] = $gamePitcher->game->visitor_team->ryaku_name;
+            } else {
+                $gamePitcherHistory['vs'] = $gamePitcher->game->home_team->ryaku_name;
+            }
+            $gamePitcherHistory['type'] = '';
+            if ($gamePitcher->win_flag) {
+                $gamePitcherHistory['type'] = '○';
+            }
+            if ($gamePitcher->lose_flag) {
+                $gamePitcherHistory['type'] = '●';
+            }
+            if ($gamePitcher->hold_flag) {
+                $gamePitcherHistory['type'] = 'H';
+            }
+            if ($gamePitcher->save_flag) {
+                $gamePitcherHistory['type'] = 'S';
+            }
+            $gamePitcherHistory['inning'] = $gamePitcher->string_inning;
+            $gamePitcherHistory['hit'] = $gamePitcher->hit;
+            $gamePitcherHistory['hr'] = $gamePitcher->hr;
+            $gamePitcherHistory['jiseki'] = $gamePitcher->jiseki;
+            $gamePitcherHistory['walk'] = $gamePitcher->walk;
+            $gamePitcherHistory['dead'] = $gamePitcher->dead;
+            $gamePitcherHistory['sansin'] = $gamePitcher->sansin;
+
+            $gamePitcherHistories[] = $gamePitcherHistory;
+        }
+
+        // dump($gamePitcherHistories);
+        // exit;
+        return $gamePitcherHistories;
+
     }
 
 }

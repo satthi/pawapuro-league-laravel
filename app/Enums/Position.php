@@ -63,6 +63,40 @@ final class Position extends Enum
      * @param $value
      * @return string
      */
+    public static function getTextFull($value): string
+    {
+        switch ($value){
+            case self::POSITION_P:
+                return '投手';
+            case self::POSITION_C:
+                return '捕手';
+            case self::POSITION_1B:
+                return '一塁手';
+            case self::POSITION_2B:
+                return '二塁手';
+            case self::POSITION_3B:
+                return '三塁手';
+            case self::POSITION_SS:
+                return '遊撃手';
+            case self::POSITION_LF:
+                return '左翼手';
+            case self::POSITION_CF:
+                return '中堅手';
+            case self::POSITION_RF:
+                return '右翼手';
+            case self::POSITION_DH:
+                return '指名打者';
+            default:
+                return self::getKey($value);
+        }
+    }
+
+    /**
+     * Get the description for an enum value
+     *
+     * @param $value
+     * @return string
+     */
     public static function getNumberStamen($value): string
     {
         switch ($value){
