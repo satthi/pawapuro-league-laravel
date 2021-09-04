@@ -71,7 +71,7 @@ class Season extends Model
         $teamModel = new Team();
         $playerModel = new Player();
         // チームの集計
-        // $teamModel->shukei($this->id);
+        $teamModel->shukei($this->id);
         // 個人の集計
         $playerModel->shukei($this->id);
     }
