@@ -19,16 +19,26 @@
                 <th>分</th>
                 <th>勝率</th>
                 <th>残</th>
+                <th>打率</th>
+                <th>HR</th>
+                <th>防御率</th>
+                <th>得点</th>
+                <th>失点</th>
             </tr>
             <tr v-for="team in data.teams">
-                <td></td>
+                <td>{{ team.rank }}</td>
                 <td>{{ team.name }}</td>
                 <td>{{ team.game }}</td>
                 <td>{{ team.win }}</td>
                 <td>{{ team.lose }}</td>
                 <td>{{ team.draw }}</td>
-                <td>{{ team.win_ratio }}</td>
+                <td>{{ team.display_win_ratio }}</td>
                 <td>{{ team.remain }}</td>
+                <td>{{ team.display_avg }}</td>
+                <td>{{ team.hr }}</td>
+                <td>{{ team.display_era }}</td>
+                <td>{{ team.point }}</td>
+                <td>{{ team.p_point }}</td>
             </tr>
         </table>
 
@@ -50,7 +60,7 @@
             reShukei(postPath) {
                 axios.post(postPath, this.data)
                     .then((res) => {
-                        initial();
+                        this.initial();
                     });
             }
         },

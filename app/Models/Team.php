@@ -27,6 +27,38 @@ class Team extends Model
         'p_point',
     ];
 
+    protected $appends = [
+        'display_win_ratio',
+        'display_avg',
+        'display_era',
+    ];
+
+    ## attribute
+    public function getDisplayWinRatioAttribute($value)
+    {
+        if ($this->win + $this->lose == 0) {
+            return '-';
+        }
+
+        return preg_replace('/^0/', '', sprintf('%.3f', round($this->win_ratio, 3)));
+    }
+    public function getDisplayAvgAttribute($value)
+    {
+        if ($this->game == 0) {
+            return '-';
+        }
+
+        return preg_replace('/^0/', '', sprintf('%.3f', round($this->avg, 3)));
+    }
+    public function getDisplayEraAttribute($value)
+    {
+        if ($this->game == 0) {
+            return '-';
+        }
+
+        return sprintf('%.2f', round($this->era, 2));
+    }
+
     public function shukei($seasonId)
     {
         $playerModel = new Player();
@@ -137,7 +169,22 @@ class Team extends Model
         $teams = $this::where('season_id', $season->id)
             ->orderBy('win_ratio', 'DESC')
             ->orderBy('id', 'ASC')
-            ->get();
+            ->get()
+            ->toArray();
+
+        $rank = 0;
+        $beforeRank = null;
+        $beforeWinRatio = null;
+        foreach ($teams as $teamKey => $team) {
+            $rank++;
+            if ($beforeWinRatio !== $team['win_ratio']) {
+                $teams[$teamKey]['rank'] = $rank;
+                $beforeRank = $rank;
+            } else {
+                $teams[$teamKey]['rank'] = $beforeRank;
+            }
+            $beforeWinRatio = $team['win_ratio'];
+        }
 
         return $teams;
     }

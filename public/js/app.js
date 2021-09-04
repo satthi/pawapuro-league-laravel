@@ -5066,6 +5066,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     initial: function initial() {
@@ -5080,8 +5090,10 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     reShukei: function reShukei(postPath) {
+      var _this2 = this;
+
       axios.post(postPath, this.data).then(function (res) {
-        initial();
+        _this2.initial();
       });
     }
   },
@@ -49333,7 +49345,7 @@ var render = function() {
         _vm._v(" "),
         _vm._l(_vm.data.teams, function(team) {
           return _c("tr", [
-            _c("td"),
+            _c("td", [_vm._v(_vm._s(team.rank))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(team.name))]),
             _vm._v(" "),
@@ -49345,9 +49357,19 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(team.draw))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(team.win_ratio))]),
+            _c("td", [_vm._v(_vm._s(team.display_win_ratio))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(team.remain))])
+            _c("td", [_vm._v(_vm._s(team.remain))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(team.display_avg))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(team.hr))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(team.display_era))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(team.point))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(team.p_point))])
           ])
         })
       ],
@@ -49375,7 +49397,17 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("勝率")]),
       _vm._v(" "),
-      _c("th", [_vm._v("残")])
+      _c("th", [_vm._v("残")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("打率")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("HR")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("防御率")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("得点")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("失点")])
     ])
   }
 ]
