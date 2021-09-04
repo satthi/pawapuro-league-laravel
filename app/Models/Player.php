@@ -462,7 +462,7 @@ class Player extends Model
         }
     }
 
-    public function getFielderRank(Season $season, string $sortType)
+    public function getRank(Season $season, string $sortType)
     {
         $players = $this::join('teams', 'teams.id', '=', 'players.team_id')
             ->select([
@@ -478,11 +478,25 @@ class Player extends Model
             case 'obp':
             case 'ops':
             case 'slg':
+            case 'p_sansin_ratio':
                 // 打率/出塁率/OPSのランキングは降順/規定打席到達のみ
                 $players->orderBy($sortType, 'DESC')
-                    ->whereRaw(\DB::raw('players.daseki::numeric >= teams.game::numeric * 3.1'));
+                    ->whereRaw(\DB::raw('players.p_inning >= teams.game * 3'));
                 break;
-            
+            case 'p_era':
+            case 'p_avg':
+                // 防御率は昇順/規定投球回数到達の実
+                $players->orderBy($sortType, 'ASC')
+                    ->whereRaw(\DB::raw('players.p_inning >= teams.game * 3'));
+
+                break;
+
+            case 'p_win_ratio':
+                // 勝率は試合が残っている場合は規定投球回数・試合が残っていない場合は13章
+                $players->orderBy($sortType, 'DESC')
+                    ->whereRaw(\DB::raw('((teams.remain > 0 AND players.p_inning >= teams.game * 3) OR players.p_win >= 13)'));
+
+                break;
             default:
                 $players->orderBy($sortType, 'DESC');
         }

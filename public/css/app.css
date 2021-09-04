@@ -10144,4 +10144,5 @@ table.stamen > tr > td {
 .seiseki_table th, .seiseki_table td {
   font-size: 14px;
   padding: 2px;
+  text-align: center;
 }

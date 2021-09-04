@@ -5039,7 +5039,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     updateRanking: function updateRanking(sortType) {
-      this.getRankingData('/api/seasons/fielder-rank/' + this.seasonId + '/' + sortType);
+      this.sortType = sortType;
+      this.initial();
     }
   },
   props: {
@@ -5047,9 +5048,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      data: {
-        season: {}
-      },
+      data: {},
       rankingData: {},
       'sortType': 'avg' // 初期は打率
 
@@ -5152,11 +5151,59 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     initial: function initial() {
       // チーム情報など込みで詳細画面表示に必要な情報をまとめて取得（したい）
       this.getData('/api/seasons/detail/' + this.seasonId);
+      this.getRankingData('/api/seasons/pitcher-rank/' + this.seasonId + '/' + this.sortType);
     },
     getData: function getData(getPath) {
       var _this = this;
@@ -5164,6 +5211,17 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(getPath).then(function (res) {
         _this.data = res.data;
       });
+    },
+    getRankingData: function getRankingData(getPath) {
+      var _this2 = this;
+
+      axios.get(getPath).then(function (res) {
+        _this2.rankingData = res.data;
+      });
+    },
+    updateRanking: function updateRanking(sortType) {
+      this.sortType = sortType;
+      this.initial();
     }
   },
   props: {
@@ -5171,9 +5229,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      data: {
-        season: {}
-      }
+      data: {},
+      rankingData: {},
+      'sortType': 'p_era' // 初期は打率
+
     };
   },
   mounted: function mounted() {
@@ -49731,345 +49790,347 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("h2", [_vm._v(_vm._s(_vm.data.season.name) + " 投手成績一覧")]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "clearfix" },
-      [
-        _c(
-          "router-link",
-          {
-            attrs: {
-              to: {
-                name: "season.view",
-                params: { seasonId: _vm.data.season.id.toString() }
-              }
-            }
-          },
-          [
-            _c("button", { staticClass: "btn btn-success" }, [
-              _vm._v("シーズン詳細")
-            ])
-          ]
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "table",
-      { staticClass: "table table-hover seiseki_table" },
-      [
-        _c("tr", [
-          _c("th"),
-          _vm._v(" "),
-          _c("th", [_vm._v("No")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("選手名")]),
-          _vm._v(" "),
-          _c(
-            "th",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.updateRanking("game")
-                }
-              }
-            },
-            [_vm._v("試"), _c("br"), _vm._v("合")]
-          ),
-          _vm._v(" "),
-          _c(
-            "th",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.updateRanking("avg")
-                }
-              }
-            },
-            [_vm._v("打"), _c("br"), _vm._v("率")]
-          ),
-          _vm._v(" "),
-          _c(
-            "th",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.updateRanking("hr")
-                }
-              }
-            },
-            [_vm._v("本"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("打")]
-          ),
-          _vm._v(" "),
-          _c(
-            "th",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.updateRanking("daten")
-                }
-              }
-            },
-            [_vm._v("打"), _c("br"), _vm._v("点")]
-          ),
-          _vm._v(" "),
-          _c(
-            "th",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.updateRanking("daseki")
-                }
-              }
-            },
-            [_vm._v("打"), _c("br"), _vm._v("席")]
-          ),
-          _vm._v(" "),
-          _c(
-            "th",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.updateRanking("dasu")
-                }
-              }
-            },
-            [_vm._v("打"), _c("br"), _vm._v("数")]
-          ),
-          _vm._v(" "),
-          _c(
-            "th",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.updateRanking("hit")
-                }
-              }
-            },
-            [_vm._v("安"), _c("br"), _vm._v("打")]
-          ),
-          _vm._v(" "),
-          _c(
-            "th",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.updateRanking("hit_2")
-                }
-              }
-            },
-            [_vm._v("二"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("打")]
-          ),
-          _vm._v(" "),
-          _c(
-            "th",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.updateRanking("hit_3")
-                }
-              }
-            },
-            [_vm._v("三"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("打")]
-          ),
-          _vm._v(" "),
-          _c(
-            "th",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.updateRanking("sansin")
-                }
-              }
-            },
-            [_vm._v("三"), _c("br"), _vm._v("振")]
-          ),
-          _vm._v(" "),
-          _c(
-            "th",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.updateRanking("heisatsu")
-                }
-              }
-            },
-            [_vm._v("併"), _c("br"), _vm._v("殺")]
-          ),
-          _vm._v(" "),
-          _c(
-            "th",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.updateRanking("walk")
-                }
-              }
-            },
-            [_vm._v("四"), _c("br"), _vm._v("球")]
-          ),
-          _vm._v(" "),
-          _c(
-            "th",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.updateRanking("dead")
-                }
-              }
-            },
-            [_vm._v("死"), _c("br"), _vm._v("球")]
-          ),
-          _vm._v(" "),
-          _c(
-            "th",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.updateRanking("bant")
-                }
-              }
-            },
-            [_vm._v("犠"), _c("br"), _vm._v("打")]
-          ),
-          _vm._v(" "),
-          _c(
-            "th",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.updateRanking("sac_fly")
-                }
-              }
-            },
-            [_vm._v("犠"), _c("br"), _vm._v("飛")]
-          ),
-          _vm._v(" "),
-          _c(
-            "th",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.updateRanking("steal_success")
-                }
-              }
-            },
-            [_vm._v("盗"), _c("br"), _vm._v("塁")]
-          ),
-          _vm._v(" "),
-          _c(
-            "th",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.updateRanking("steal_miss")
-                }
-              }
-            },
-            [_vm._v("盗"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("失")]
-          ),
-          _vm._v(" "),
-          _c(
-            "th",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.updateRanking("obp")
-                }
-              }
-            },
-            [_vm._v("出"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("率")]
-          ),
-          _vm._v(" "),
-          _c(
-            "th",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.updateRanking("slg")
-                }
-              }
-            },
-            [
-              _vm._v("長"),
-              _c("br"),
-              _vm._v("打"),
-              _c("br"),
-              _vm._v("率"),
-              _c("br")
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "th",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.updateRanking("ops")
-                }
-              }
-            },
-            [_vm._v("O"), _c("br"), _vm._v("P"), _c("br"), _vm._v("S")]
-          )
-        ]),
+  return Object.keys(_vm.data).length
+    ? _c("div", { staticClass: "container" }, [
+        _c("h2", [_vm._v(_vm._s(_vm.data.season.name) + " 野手成績一覧")]),
         _vm._v(" "),
-        _vm._l(_vm.rankingData, function(fielder) {
-          return _c("tr", [
-            _c("td", [_vm._v(_vm._s(fielder.team_ryaku_name))]),
+        _c(
+          "div",
+          { staticClass: "clearfix" },
+          [
+            _c(
+              "router-link",
+              {
+                attrs: {
+                  to: {
+                    name: "season.view",
+                    params: { seasonId: _vm.data.season.id.toString() }
+                  }
+                }
+              },
+              [
+                _c("button", { staticClass: "btn btn-success" }, [
+                  _vm._v("シーズン詳細")
+                ])
+              ]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "table",
+          { staticClass: "table table-hover seiseki_table" },
+          [
+            _c("tr", [
+              _c("th"),
+              _vm._v(" "),
+              _c("th", [_vm._v("No")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("選手名")]),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("game")
+                    }
+                  }
+                },
+                [_vm._v("試"), _c("br"), _vm._v("合")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("avg")
+                    }
+                  }
+                },
+                [_vm._v("打"), _c("br"), _vm._v("率")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("hr")
+                    }
+                  }
+                },
+                [_vm._v("本"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("打")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("daten")
+                    }
+                  }
+                },
+                [_vm._v("打"), _c("br"), _vm._v("点")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("daseki")
+                    }
+                  }
+                },
+                [_vm._v("打"), _c("br"), _vm._v("席")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("dasu")
+                    }
+                  }
+                },
+                [_vm._v("打"), _c("br"), _vm._v("数")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("hit")
+                    }
+                  }
+                },
+                [_vm._v("安"), _c("br"), _vm._v("打")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("hit_2")
+                    }
+                  }
+                },
+                [_vm._v("二"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("打")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("hit_3")
+                    }
+                  }
+                },
+                [_vm._v("三"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("打")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("sansin")
+                    }
+                  }
+                },
+                [_vm._v("三"), _c("br"), _vm._v("振")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("heisatsu")
+                    }
+                  }
+                },
+                [_vm._v("併"), _c("br"), _vm._v("殺")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("walk")
+                    }
+                  }
+                },
+                [_vm._v("四"), _c("br"), _vm._v("球")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("dead")
+                    }
+                  }
+                },
+                [_vm._v("死"), _c("br"), _vm._v("球")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("bant")
+                    }
+                  }
+                },
+                [_vm._v("犠"), _c("br"), _vm._v("打")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("sac_fly")
+                    }
+                  }
+                },
+                [_vm._v("犠"), _c("br"), _vm._v("飛")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("steal_success")
+                    }
+                  }
+                },
+                [_vm._v("盗"), _c("br"), _vm._v("塁")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("steal_miss")
+                    }
+                  }
+                },
+                [_vm._v("盗"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("失")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("obp")
+                    }
+                  }
+                },
+                [_vm._v("出"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("率")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("slg")
+                    }
+                  }
+                },
+                [
+                  _vm._v("長"),
+                  _c("br"),
+                  _vm._v("打"),
+                  _c("br"),
+                  _vm._v("率"),
+                  _c("br")
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("ops")
+                    }
+                  }
+                },
+                [_vm._v("O"), _c("br"), _vm._v("P"), _c("br"), _vm._v("S")]
+              )
+            ]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.number))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.name_short))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.game))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.display_avg))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.hr))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.daten))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.daseki))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.dasu))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.hit))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.hit_2))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.hit_3))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.sansin))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.heisatsu))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.walk))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.dead))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.bant))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.sac_fly))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.steal_success))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.steal_miss))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.display_obp))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.display_slg))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(fielder.display_ops))])
-          ])
-        })
-      ],
-      2
-    )
-  ])
+            _vm._l(_vm.rankingData, function(fielder) {
+              return _c("tr", [
+                _c("td", [_vm._v(_vm._s(fielder.team_ryaku_name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.number))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.name_short))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.game))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.display_avg))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.hr))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.daten))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.daseki))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.dasu))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.hit))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.hit_2))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.hit_3))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.sansin))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.heisatsu))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.walk))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.dead))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.bant))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.sac_fly))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.steal_success))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.steal_miss))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.display_obp))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.display_slg))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.display_ops))])
+              ])
+            })
+          ],
+          2
+        )
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -50217,9 +50278,304 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("h2", [_vm._v(_vm._s(_vm.data.season.name) + " 投手成績一覧")])
-  ])
+  return Object.keys(_vm.data).length
+    ? _c("div", { staticClass: "container" }, [
+        _c("h2", [_vm._v(_vm._s(_vm.data.season.name) + " 投手成績一覧")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "clearfix" },
+          [
+            _c(
+              "router-link",
+              {
+                attrs: {
+                  to: {
+                    name: "season.view",
+                    params: { seasonId: _vm.data.season.id.toString() }
+                  }
+                }
+              },
+              [
+                _c("button", { staticClass: "btn btn-success" }, [
+                  _vm._v("シーズン詳細")
+                ])
+              ]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "table",
+          { staticClass: "table table-hover seiseki_table" },
+          [
+            _c("tr", [
+              _c("th", [_vm._v("No")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("選手名")]),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("p_game")
+                    }
+                  }
+                },
+                [_vm._v("試"), _c("br"), _vm._v("合")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("p_era")
+                    }
+                  }
+                },
+                [_vm._v("防"), _c("br"), _vm._v("御"), _c("br"), _vm._v("率")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("p_win")
+                    }
+                  }
+                },
+                [_vm._v("勝"), _c("br"), _vm._v("利")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("p_lose")
+                    }
+                  }
+                },
+                [_vm._v("敗"), _c("br"), _vm._v("北")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("p_hold")
+                    }
+                  }
+                },
+                [
+                  _vm._v("ホ"),
+                  _c("br"),
+                  _vm._v("ー"),
+                  _c("br"),
+                  _vm._v("ル"),
+                  _c("br"),
+                  _vm._v("ド")
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("p_save")
+                    }
+                  }
+                },
+                [_vm._v("セ"), _c("br"), _vm._v("ー"), _c("br"), _vm._v("ブ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("p_win_ratio")
+                    }
+                  }
+                },
+                [_vm._v("勝"), _c("br"), _vm._v("率")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("p_sansin")
+                    }
+                  }
+                },
+                [_vm._v("奪"), _c("br"), _vm._v("三"), _c("br"), _vm._v("振")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("p_sansin_ratio")
+                    }
+                  }
+                },
+                [
+                  _vm._v("奪"),
+                  _c("br"),
+                  _vm._v("三"),
+                  _c("br"),
+                  _vm._v("振"),
+                  _c("br"),
+                  _vm._v("率")
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("p_hit")
+                    }
+                  }
+                },
+                [_vm._v("被"), _c("br"), _vm._v("安"), _c("br"), _vm._v("打")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("p_avg")
+                    }
+                  }
+                },
+                [_vm._v("被"), _c("br"), _vm._v("打"), _c("br"), _vm._v("率")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("p_hr")
+                    }
+                  }
+                },
+                [
+                  _vm._v("被"),
+                  _c("br"),
+                  _vm._v("本"),
+                  _c("br"),
+                  _vm._v("塁"),
+                  _c("br"),
+                  _vm._v("打")
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("p_jiseki")
+                    }
+                  }
+                },
+                [_vm._v("自"), _c("br"), _vm._v("責"), _c("br"), _vm._v("点")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("p_inning")
+                    }
+                  }
+                },
+                [_vm._v("回"), _c("br"), _vm._v("数")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("p_walk")
+                    }
+                  }
+                },
+                [_vm._v("四"), _c("br"), _vm._v("球")]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.updateRanking("p_dead")
+                    }
+                  }
+                },
+                [_vm._v("死"), _c("br"), _vm._v("球")]
+              )
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.rankingData, function(pitcher) {
+              return _c("tr", [
+                _c("td", [_vm._v(_vm._s(pitcher.number))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.name_short))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_game))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.display_p_era))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_win))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_lose))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_hold))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_save))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.display_p_win_ratio))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_sansin))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.display_p_sansin_ratio))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_hit))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.display_p_avg))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_hr))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_jiseki))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.display_p_inning))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_walk))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_dead))])
+              ])
+            })
+          ],
+          2
+        )
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

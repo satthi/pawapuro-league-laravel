@@ -54,6 +54,12 @@ class SeasonController extends Controller
 
     public function fielderRank(Season $season, string $sortType)
     {
-        return (new Player())->getFielderRank($season, $sortType);
+        return (new Player())->getRank($season, $sortType);
     }
+    public function pitcherRank(Season $season, string $sortType)
+    {
+        return (new Player())->getRank($season, $sortType);
+    }
+
+
 }

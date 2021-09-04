@@ -1,6 +1,6 @@
 <template>
-    <div class="container">
-        <h2>{{  data.season.name }} 投手成績一覧</h2>
+    <div class="container" v-if="Object.keys(data).length">
+        <h2>{{  data.season.name }} 野手成績一覧</h2>
         <div class="clearfix">
             <router-link v-bind:to="{name: 'season.view', params: {seasonId: data.season.id.toString() }}">
                 <button class="btn btn-success">シーズン詳細</button>
@@ -80,7 +80,8 @@
                     });
             },
             updateRanking(sortType) {
-                this.getRankingData('/api/seasons/fielder-rank/' + this.seasonId + '/' + sortType);
+                this.sortType = sortType;
+                this.initial();
             }
         },
         props: {
@@ -88,9 +89,7 @@
         },
         data: function () {
             return {
-                data: {
-                    season: {}
-                },
+                data: {},
                 rankingData : {},
                 'sortType' : 'avg' // 初期は打率
             }
