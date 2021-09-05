@@ -187,6 +187,7 @@ class GamePitcher extends Model
         $gamePitcherHistories = [];
         foreach ($gamePitchers as $gamePitcher) {
             $gamePitcherHistory = [];
+            $gamePitcherHistory['game_id'] = $gamePitcher->game_id;
             $gamePitcherHistory['date'] = $gamePitcher->game->date;
             if ($gamePitcher->game->home_team_id != $player->team_id) {
                 $gamePitcherHistory['vs'] = $gamePitcher->game->visitor_team->ryaku_name;

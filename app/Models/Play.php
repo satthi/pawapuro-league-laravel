@@ -579,6 +579,7 @@ class Play extends Model
         foreach ($plays as $play) {
             if (!array_key_exists($play->game_id, $playHistories)) {
                 $playHistories[$play->game_id] = $initialWaku;
+                $playHistories[$play->game_id]['game_id'] = $play->game_id;
                 $playHistories[$play->game_id]['date'] = $play->game->date; // 表示用調整
                 if ($play->game->home_team->id == $play->team_id) {
                     $playHistories[$play->game_id]['vs'] = $play->game->visitor_team->ryaku_name;

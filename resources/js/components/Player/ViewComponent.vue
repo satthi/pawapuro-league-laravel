@@ -115,7 +115,11 @@
                     <th></th>
                 </tr>
                 <tr v-for="fielder_history in data.fielder_histories">
-                    <td>{{ fielder_history.date }}</td>
+                    <td>
+                        <router-link v-bind:to="{name: 'game.summary', params: {gameId: fielder_history.game_id.toString() }}">
+                            {{ fielder_history.date }}
+                        </router-link>
+                    </td>
                     <td>{{ fielder_history.vs }}</td>
                     <td>{{ fielder_history.position }}</td>
                     <td>{{ fielder_history.daseki }}</td>
@@ -148,7 +152,11 @@
                     <th>自責点</th>
                 </tr>
                 <tr v-for="pitcher_history in data.pitcher_histories">
-                    <td>{{ pitcher_history.date }}</td>
+                    <td>
+                        <router-link v-bind:to="{name: 'game.summary', params: {gameId: pitcher_history.game_id.toString() }}">
+                            {{ pitcher_history.date }}
+                        </router-link>
+                    </td>
                     <td>{{ pitcher_history.vs }}</td>
                     <td>{{ pitcher_history.type }}</td>
                     <td>{{ pitcher_history.inning }}</td>
@@ -161,11 +169,176 @@
                 </tr>
             </table>
         </div>
+
+
+        <div v-if="Object.keys(data.season_fielder_histories).length > 0">
+            <h4>野手シーズン成績</h4>
+            <table class="table table-hover seiseki_table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>試<br />合</th>
+                    <th>打<br />率</th>
+                    <th>本<br />塁<br />打</th>
+                    <th>打<br />点</th>
+                    <th>打<br />席</th>
+                    <th>打<br />数</th>
+                    <th>安<br />打</th>
+                    <th>二<br />塁<br />打</th>
+                    <th>三<br />塁<br />打</th>
+                    <th>三<br />振</th>
+                    <th>併<br />殺</th>
+                    <th>四<br />球</th>
+                    <th>死<br />球</th>
+                    <th>犠<br />打</th>
+                    <th>犠<br />飛</th>
+                    <th>盗<br />塁</th>
+                    <th>盗<br />塁<br />失</th>
+                    <th>出<br />塁<br />率</th>
+                    <th>長<br />打<br />率</th>
+                    <th>O<br />P<br />S</th>
+                </tr>
+                <tr v-for="season_history in data.season_fielder_histories">
+                    <td>
+                        <router-link v-bind:to="{name: 'player.view', params: {playerId: season_history.id.toString() }}">
+                            {{ season_history.season_name }}
+                        </router-link>
+                    </td>
+                    <td>{{ season_history.team_ryaku_name }}</td>
+                    <td>{{ season_history.number }}</td>
+                    <td>{{ season_history.game }}</td>
+                    <td>{{ season_history.display_avg }}</td>
+                    <td>{{ season_history.hr }}</td>
+                    <td>{{ season_history.daten }}</td>
+                    <td>{{ season_history.daseki }}</td>
+                    <td>{{ season_history.dasu }}</td>
+                    <td>{{ season_history.hit }}</td>
+                    <td>{{ season_history.hit_2 }}</td>
+                    <td>{{ season_history.hit_3 }}</td>
+                    <td>{{ season_history.sansin }}</td>
+                    <td>{{ season_history.heisatsu }}</td>
+                    <td>{{ season_history.walk }}</td>
+                    <td>{{ season_history.dead }}</td>
+                    <td>{{ season_history.bant }}</td>
+                    <td>{{ season_history.sac_fly }}</td>
+                    <td>{{ season_history.steal_success }}</td>
+                    <td>{{ season_history.steal_miss }}</td>
+                    <td>{{ season_history.display_obp }}</td>
+                    <td>{{ season_history.display_slg }}</td>
+                    <td>{{ season_history.display_ops }}</td>
+                </tr>
+                <tr>
+                    <td>合計</td>
+                    <td></td>
+                    <td></td>
+                    <td>{{ data.player.base_player.game }}</td>
+                    <td>{{ data.player.base_player.display_avg }}</td>
+                    <td>{{ data.player.base_player.hr }}</td>
+                    <td>{{ data.player.base_player.daten }}</td>
+                    <td>{{ data.player.base_player.daseki }}</td>
+                    <td>{{ data.player.base_player.dasu }}</td>
+                    <td>{{ data.player.base_player.hit }}</td>
+                    <td>{{ data.player.base_player.hit_2 }}</td>
+                    <td>{{ data.player.base_player.hit_3 }}</td>
+                    <td>{{ data.player.base_player.sansin }}</td>
+                    <td>{{ data.player.base_player.heisatsu }}</td>
+                    <td>{{ data.player.base_player.walk }}</td>
+                    <td>{{ data.player.base_player.dead }}</td>
+                    <td>{{ data.player.base_player.bant }}</td>
+                    <td>{{ data.player.base_player.sac_fly }}</td>
+                    <td>{{ data.player.base_player.steal_success }}</td>
+                    <td>{{ data.player.base_player.steal_miss }}</td>
+                    <td>{{ data.player.base_player.display_obp }}</td>
+                    <td>{{ data.player.base_player.display_slg }}</td>
+                    <td>{{ data.player.base_player.display_ops }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div v-if="Object.keys(data.season_pitcher_histories).length">
+            <h4>投手シーズン成績</h4>
+            <table class="table table-hover seiseki_table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>試<br />合</th>
+                    <th>防<br />御<br />率</th>
+                    <th>勝<br />利</th>
+                    <th>敗<br />北</th>
+                    <th>ホ<br />ー<br />ル<br />ド</th>
+                    <th>セ<br />ー<br />ブ</th>
+                    <th>勝<br />率</th>
+                    <th>奪<br />三<br />振</th>
+                    <th>奪<br />三<br />振<br />率</th>
+                    <th>被<br />安<br />打</th>
+                    <th>被<br />打<br />率</th>
+                    <th>被<br />本<br />塁<br />打</th>
+                    <th>自<br />責<br />点</th>
+                    <th>回<br />数</th>
+                    <th>四<br />球</th>
+                    <th>死<br />球</th>
+                </tr>
+                <tr v-for="season_history in data.season_pitcher_histories">
+                    <td>
+                        <router-link v-bind:to="{name: 'player.view', params: {playerId: season_history.id.toString() }}">
+                            {{ season_history.season_name }}
+                        </router-link>
+                    </td>
+                    <td>{{ season_history.team_ryaku_name }}</td>
+                    <td>{{ season_history.number }}</td>
+                    <td>{{ season_history.p_game }}</td>
+                    <td>{{ season_history.display_p_era }}</td>
+                    <td>{{ season_history.p_win }}</td>
+                    <td>{{ season_history.p_lose }}</td>
+                    <td>{{ season_history.p_hold }}</td>
+                    <td>{{ season_history.p_save }}</td>
+                    <td>{{ season_history.display_p_win_ratio }}</td>
+                    <td>{{ season_history.p_sansin }}</td>
+                    <td>{{ season_history.display_p_sansin_ratio }}</td>
+                    <td>{{ season_history.p_hit }}</td>
+                    <td>{{ season_history.display_p_avg }}</td>
+                    <td>{{ season_history.p_hr }}</td>
+                    <td>{{ season_history.p_jiseki }}</td>
+                    <td>{{ season_history.display_p_inning }}</td>
+                    <td>{{ season_history.p_walk }}</td>
+                    <td>{{ season_history.p_dead }}</td>
+                </tr>
+                <tr>
+                    <td>合計</td>
+                    <td></td>
+                    <td></td>
+                    <td>{{ data.player.base_player.p_game }}</td>
+                    <td>{{ data.player.base_player.display_p_era }}</td>
+                    <td>{{ data.player.base_player.p_win }}</td>
+                    <td>{{ data.player.base_player.p_lose }}</td>
+                    <td>{{ data.player.base_player.p_hold }}</td>
+                    <td>{{ data.player.base_player.p_save }}</td>
+                    <td>{{ data.player.base_player.display_p_win_ratio }}</td>
+                    <td>{{ data.player.base_player.p_sansin }}</td>
+                    <td>{{ data.player.base_player.display_p_sansin_ratio }}</td>
+                    <td>{{ data.player.base_player.p_hit }}</td>
+                    <td>{{ data.player.base_player.display_p_avg }}</td>
+                    <td>{{ data.player.base_player.p_hr }}</td>
+                    <td>{{ data.player.base_player.p_jiseki }}</td>
+                    <td>{{ data.player.base_player.display_p_inning }}</td>
+                    <td>{{ data.player.base_player.p_walk }}</td>
+                    <td>{{ data.player.base_player.p_dead }}</td>
+                </tr>
+            </table>
+        </div>
+
     </div>
 </template>
 <script>
     import EnumsMixin from '../../mixins/enums.js';
     export default {
+        watch: {
+            '$route' (to, from) {
+                this.initial();
+            }
+        },
         mixins : [EnumsMixin],
         methods: {
             initial() {

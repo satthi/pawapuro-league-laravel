@@ -86,6 +86,13 @@ class Player extends Model
     {
         return $this->belongsTo(Team::class, 'team_id');
     }
+    /**
+     * home team
+     */
+    public function base_player()
+    {
+        return $this->belongsTo(BasePlayer::class, 'base_player_id');
+    }
 
     /**
      * 利き(投げ) テキスト表示
@@ -517,5 +524,36 @@ class Player extends Model
 
         return $players->get();
 
+    }
+
+    public function getSeasonFielderHistory(Player $player)
+    {
+        return $this::where('base_player_id', $player->base_player_id)
+            ->select([
+                'players.*',
+                'teams.ryaku_name as team_ryaku_name',
+                'seasons.name as season_name',
+            ])
+            ->leftjoin('teams', 'teams.id', '=', 'players.team_id')
+            ->leftjoin('seasons', 'seasons.id', '=', 'teams.season_id')
+            ->where('seasons.regular_flag', true)
+            ->where('players.daseki', '>', 0)
+            ->orderBy('seasons.id', 'ASC')
+            ->get();
+    }
+    public function getSeasonPitcherHistory(Player $player)
+    {
+        return $this::where('base_player_id', $player->base_player_id)
+            ->select([
+                'players.*',
+                'teams.ryaku_name as team_ryaku_name',
+                'seasons.name as season_name',
+            ])
+            ->leftjoin('teams', 'teams.id', '=', 'players.team_id')
+            ->leftjoin('seasons', 'seasons.id', '=', 'teams.season_id')
+            ->where('seasons.regular_flag', true)
+            ->where('players.p_game', '>', 0)
+            ->orderBy('seasons.id', 'ASC')
+            ->get();
     }
 }

@@ -66,14 +66,19 @@ class Season extends Model
 
     }
 
-    public function shukei()
+    public function shukei($baseShukei = true)
     {
         $teamModel = new Team();
         $playerModel = new Player();
+        $basePlayerModel = new BasePlayer();
         // チームの集計
         $teamModel->shukei($this->id);
-        // 個人の集計
+        // // 個人の集計
         $playerModel->shukei($this->id);
+        // シーズンをまたいだ集計
+        if ($baseShukei) {
+            $basePlayerModel->shukei();
+        }
     }
 
     ####  attirbute

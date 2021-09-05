@@ -4974,8 +4974,181 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  watch: {
+    '$route': function $route(to, from) {
+      this.initial();
+    }
+  },
   mixins: [_mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__.default],
   methods: {
     initial: function initial() {
@@ -50153,7 +50326,32 @@ var render = function() {
                   _vm._v(" "),
                   _vm._l(_vm.data.fielder_histories, function(fielder_history) {
                     return _c("tr", [
-                      _c("td", [_vm._v(_vm._s(fielder_history.date))]),
+                      _c(
+                        "td",
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "game.summary",
+                                  params: {
+                                    gameId: fielder_history.game_id.toString()
+                                  }
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(fielder_history.date) +
+                                  "\n                    "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(fielder_history.vs))]),
                       _vm._v(" "),
@@ -50198,7 +50396,32 @@ var render = function() {
                   _vm._v(" "),
                   _vm._l(_vm.data.pitcher_histories, function(pitcher_history) {
                     return _c("tr", [
-                      _c("td", [_vm._v(_vm._s(pitcher_history.date))]),
+                      _c(
+                        "td",
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "game.summary",
+                                  params: {
+                                    gameId: pitcher_history.game_id.toString()
+                                  }
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(pitcher_history.date) +
+                                  "\n                    "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(pitcher_history.vs))]),
                       _vm._v(" "),
@@ -50219,6 +50442,356 @@ var render = function() {
                       _c("td", [_vm._v(_vm._s(pitcher_history.jiseki))])
                     ])
                   })
+                ],
+                2
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        Object.keys(_vm.data.season_fielder_histories).length > 0
+          ? _c("div", [
+              _c("h4", [_vm._v("野手シーズン成績")]),
+              _vm._v(" "),
+              _c(
+                "table",
+                { staticClass: "table table-hover seiseki_table" },
+                [
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _vm._l(_vm.data.season_fielder_histories, function(
+                    season_history
+                  ) {
+                    return _c("tr", [
+                      _c(
+                        "td",
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "player.view",
+                                  params: {
+                                    playerId: season_history.id.toString()
+                                  }
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(season_history.season_name) +
+                                  "\n                    "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(season_history.team_ryaku_name))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.number))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.game))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.display_avg))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.hr))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.daten))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.daseki))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.dasu))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.hit))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.hit_2))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.hit_3))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.sansin))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.heisatsu))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.walk))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.dead))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.bant))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.sac_fly))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.steal_success))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.steal_miss))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.display_obp))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.display_slg))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.display_ops))])
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("合計")]),
+                    _vm._v(" "),
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.game))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.display_avg))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.player.base_player.hr))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.daten))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.daseki))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.dasu))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.player.base_player.hit))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.hit_2))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.hit_3))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.sansin))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.heisatsu))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.walk))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.dead))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.bant))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.sac_fly))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.steal_success))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.steal_miss))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.display_obp))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.display_slg))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.display_ops))
+                    ])
+                  ])
+                ],
+                2
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        Object.keys(_vm.data.season_pitcher_histories).length
+          ? _c("div", [
+              _c("h4", [_vm._v("投手シーズン成績")]),
+              _vm._v(" "),
+              _c(
+                "table",
+                { staticClass: "table table-hover seiseki_table" },
+                [
+                  _vm._m(5),
+                  _vm._v(" "),
+                  _vm._l(_vm.data.season_pitcher_histories, function(
+                    season_history
+                  ) {
+                    return _c("tr", [
+                      _c(
+                        "td",
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "player.view",
+                                  params: {
+                                    playerId: season_history.id.toString()
+                                  }
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(season_history.season_name) +
+                                  "\n                    "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(season_history.team_ryaku_name))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.number))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.p_game))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.display_p_era))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.p_win))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.p_lose))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.p_hold))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.p_save))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(season_history.display_p_win_ratio))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.p_sansin))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(season_history.display_p_sansin_ratio))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.p_hit))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.display_p_avg))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.p_hr))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.p_jiseki))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(season_history.display_p_inning))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.p_walk))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.p_dead))])
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("合計")]),
+                    _vm._v(" "),
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.p_game))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.display_p_era))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.p_win))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.p_lose))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.p_hold))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.p_save))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(_vm.data.player.base_player.display_p_win_ratio)
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.p_sansin))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(
+                          _vm.data.player.base_player.display_p_sansin_ratio
+                        )
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.p_hit))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.display_p_avg))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.p_hr))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.p_jiseki))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(_vm.data.player.base_player.display_p_inning)
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.p_walk))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.p_dead))
+                    ])
+                  ])
                 ],
                 2
               )
@@ -50390,6 +50963,126 @@ var staticRenderFns = [
       _c("th", [_vm._v("奪三振")]),
       _vm._v(" "),
       _c("th", [_vm._v("自責点")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th"),
+      _vm._v(" "),
+      _c("th"),
+      _vm._v(" "),
+      _c("th"),
+      _vm._v(" "),
+      _c("th", [_vm._v("試"), _c("br"), _vm._v("合")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("打"), _c("br"), _vm._v("率")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("本"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("打"), _c("br"), _vm._v("点")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("打"), _c("br"), _vm._v("席")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("打"), _c("br"), _vm._v("数")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("安"), _c("br"), _vm._v("打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("二"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("三"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("三"), _c("br"), _vm._v("振")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("併"), _c("br"), _vm._v("殺")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("四"), _c("br"), _vm._v("球")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("死"), _c("br"), _vm._v("球")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("犠"), _c("br"), _vm._v("打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("犠"), _c("br"), _vm._v("飛")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("盗"), _c("br"), _vm._v("塁")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("盗"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("失")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("出"), _c("br"), _vm._v("塁"), _c("br"), _vm._v("率")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("長"), _c("br"), _vm._v("打"), _c("br"), _vm._v("率")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("O"), _c("br"), _vm._v("P"), _c("br"), _vm._v("S")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th"),
+      _vm._v(" "),
+      _c("th"),
+      _vm._v(" "),
+      _c("th"),
+      _vm._v(" "),
+      _c("th", [_vm._v("試"), _c("br"), _vm._v("合")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("防"), _c("br"), _vm._v("御"), _c("br"), _vm._v("率")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("勝"), _c("br"), _vm._v("利")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("敗"), _c("br"), _vm._v("北")]),
+      _vm._v(" "),
+      _c("th", [
+        _vm._v("ホ"),
+        _c("br"),
+        _vm._v("ー"),
+        _c("br"),
+        _vm._v("ル"),
+        _c("br"),
+        _vm._v("ド")
+      ]),
+      _vm._v(" "),
+      _c("th", [_vm._v("セ"), _c("br"), _vm._v("ー"), _c("br"), _vm._v("ブ")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("勝"), _c("br"), _vm._v("率")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("奪"), _c("br"), _vm._v("三"), _c("br"), _vm._v("振")]),
+      _vm._v(" "),
+      _c("th", [
+        _vm._v("奪"),
+        _c("br"),
+        _vm._v("三"),
+        _c("br"),
+        _vm._v("振"),
+        _c("br"),
+        _vm._v("率")
+      ]),
+      _vm._v(" "),
+      _c("th", [_vm._v("被"), _c("br"), _vm._v("安"), _c("br"), _vm._v("打")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("被"), _c("br"), _vm._v("打"), _c("br"), _vm._v("率")]),
+      _vm._v(" "),
+      _c("th", [
+        _vm._v("被"),
+        _c("br"),
+        _vm._v("本"),
+        _c("br"),
+        _vm._v("塁"),
+        _c("br"),
+        _vm._v("打")
+      ]),
+      _vm._v(" "),
+      _c("th", [_vm._v("自"), _c("br"), _vm._v("責"), _c("br"), _vm._v("点")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("回"), _c("br"), _vm._v("数")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("四"), _c("br"), _vm._v("球")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("死"), _c("br"), _vm._v("球")])
     ])
   }
 ]

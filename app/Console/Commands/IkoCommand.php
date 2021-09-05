@@ -112,6 +112,12 @@ class IkoCommand extends Command
         $this->output->writeln('start: ' . date('Y/m/d H:i:s'));
 
         $this->ikoConnection = \DB::connection('pgsql_iko');
+
+        // game_membersのデータ調整
+        // とりあえず一回だけ
+        // $this->gameMemberFix();
+        // $this->gameResultFix();
+
         // base playerの移行
         $this->basePlayerIko();
 
@@ -143,6 +149,47 @@ class IkoCommand extends Command
 
         return 0;
     }
+
+    private function gameMemberFix()
+    {
+        $ikoGameMembers = $this->ikoConnection->select('select * FROM game_members order by game_id,id asc');
+        $memberCheck = [];
+        // game_id/position/player_idが連続してくる場合は後のデータを削除する
+        foreach ($ikoGameMembers as $ikoGameMember) {
+            if (!empty($memberCheck[$ikoGameMember->game_id][$ikoGameMember->player_id][$ikoGameMember->position])) {
+                $this->ikoConnection->delete('delete from game_members WHERE id = ' . $ikoGameMember->id);
+                continue;
+            }
+
+            if (!empty($memberCheck[$ikoGameMember->game_id][$ikoGameMember->player_id])) {
+                // positionが違うパターンのデータが来たときは外套のpositionデータは削除
+                unset($memberCheck[$ikoGameMember->game_id][$ikoGameMember->player_id]);
+            }
+            $memberCheck[$ikoGameMember->game_id][$ikoGameMember->player_id][$ikoGameMember->position] = true;
+        }
+    }
+
+    private function gameResultFix()
+    {
+        $ikoGameResults = $this->ikoConnection->select('select * FROM game_results where type = 1 order by game_id,id asc');
+        $memberCheck = [];
+        // game_id/position/player_idが連続してくる場合は後のデータを削除する
+        foreach ($ikoGameResults as $ikoGameResult) {
+            if (!empty($memberCheck[$ikoGameResult->game_id][$ikoGameResult->target_player_id][$ikoGameResult->position])) {
+                $this->ikoConnection->delete('delete from game_results WHERE id = ' . $ikoGameResult->id);
+                continue;
+            }
+
+            if (!empty($memberCheck[$ikoGameResult->game_id][$ikoGameResult->target_player_id])) {
+                // positionが違うパターンのデータが来たときは外套のpositionデータは削除
+                unset($memberCheck[$ikoGameResult->game_id][$ikoGameResult->target_player_id]);
+            }
+            $memberCheck[$ikoGameResult->game_id][$ikoGameResult->target_player_id][$ikoGameResult->position] = true;
+        }
+    }
+
+
+    
 
     private function basePlayerIko()
     {
