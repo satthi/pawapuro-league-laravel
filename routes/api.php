@@ -65,6 +65,7 @@ Route::post('/games/save-game-start/{game}', 'App\Http\Controllers\GameControlle
 Route::post('/games/save-play/{game}', 'App\Http\Controllers\GameController@savePlay');
 Route::post('/games/save-point-only/{game}', 'App\Http\Controllers\GameController@savePointOnly');
 Route::post('/games/back-play/{game}', 'App\Http\Controllers\GameController@backPlay');
+Route::post('/games/back-game/{game}', 'App\Http\Controllers\GameController@backGame');
 Route::post('/games/next-inning-play/{game}', 'App\Http\Controllers\GameController@nextInningPlay');
 Route::post('/games/game-end-play/{game}', 'App\Http\Controllers\GameController@gameEndPlay');
 Route::post('/games/save-pinch-hitter/{game}/{teamType}', 'App\Http\Controllers\GameController@savePinchHitter');

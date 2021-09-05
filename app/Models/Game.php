@@ -34,6 +34,13 @@ class Game extends Model
     /**
      * home team
      */
+    public function season()
+    {
+        return $this->belongsTo(Season::class, 'season_id');
+    }
+    /**
+     * home team
+     */
     public function home_team()
     {
         return $this->belongsTo(Team::class, 'home_team_id');
@@ -755,6 +762,33 @@ class Game extends Model
         // 試合終了登録
         $game->update([
             'inning' => 999, // 終了
+        ]);
+
+        // 集計
+        $game->season->shukei();
+    }
+
+    public function backGame()
+    {
+        // 試合終了データについて終了を解除する
+        if ($this->inning != 999) {
+            // error
+            return;
+        }
+
+        // GamePitcherを削除
+        $deleteGamePitchers = GamePitcher::where('game_id', $this->id)->get();
+        foreach ($deleteGamePitchers as $deleteGamePitcher) {
+            $deleteGamePitcher->delete();
+        }
+
+        // game情報のinningを元に戻す
+        $latestPlay = Play::where('game_id', $this->id)
+            ->orderBy('id', 'desc')
+            ->firstOrFail();
+
+        $this->update([
+            'inning' => $latestPlay->inning,
         ]);
     }
 }

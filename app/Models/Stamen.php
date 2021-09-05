@@ -158,7 +158,7 @@ class Stamen extends Model
         $players = Player::where('team_id', $teamId)
             ->whereNotIn('id', $stamePlayerIds)
             ->orderBy('position_main', 'ASC')
-            ->orderBy('number', 'ASC')
+            ->orderBy(\DB::raw('number::numeric'), 'ASC')
             ->get()
             ->toArray();
 
@@ -325,7 +325,7 @@ class Stamen extends Model
         // 残りのデータをセットする(予告先発以外)
         $players = Player::where('team_id', $teamId)
             ->orderBy('position_main', 'ASC')
-            ->orderBy('number', 'ASC')
+            ->orderBy(\DB::raw('number::numeric'), 'ASC')
             ->whereNotIn('id', $stamenPlayerIds)
             ->get()
             ->toArray();
@@ -406,7 +406,7 @@ class Stamen extends Model
         // 残りのデータをセットする(予告先発以外)
         $players = Player::where('team_id', $teamId)
             ->orderBy('position_main', 'ASC')
-            ->orderBy('number', 'ASC')
+            ->orderBy(\DB::raw('number::numeric'), 'ASC')
             ->whereNotIn('id', [$probablePitcherId])
             ->get()
             ->toArray();

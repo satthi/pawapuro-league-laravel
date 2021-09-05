@@ -42,6 +42,7 @@ class TeamController extends Controller
         return $baseTeamModel
             ->select('id as value', 'name as text')
             ->where('season_id', $season->id)
+            ->orderBy('id', 'ASC')
             ->get();
     }
 }

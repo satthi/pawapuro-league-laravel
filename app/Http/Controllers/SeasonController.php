@@ -24,6 +24,13 @@ class SeasonController extends Controller
     public function add(SeasonRequest $request)
     {
         (new Season())->add($request->all());
+
+        $season = Season::orderBy('id', 'DESC')
+            ->firstOrFail();
+
+        // 集計
+        // baseの集計は不要
+        $season->shukei(false);
     }
 
     public function update(SeasonRequest $request, Season $season)

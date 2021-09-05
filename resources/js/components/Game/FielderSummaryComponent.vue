@@ -1,6 +1,12 @@
 <template>
     <div class="container" id="play_wrap" v-if="Object.keys(enums).length && summary.length">
         <h2>{{ gameData.date }} {{ gameData.home_team.name }} VS {{ gameData.visitor_team.name }}</h2>
+        <router-link v-bind:to="{name: 'season.view', params: {seasonId: gameData.season_id.toString() }}">
+            <button class="btn btn-success">シーズン詳細</button>
+        </router-link>
+        <router-link v-bind:to="{name: 'game.index', params: {seasonId: gameData.season_id.toString() }}">
+            <button class="btn btn-success">日程一覧</button>
+        </router-link>
 
         <div class="row">
             <div class="col-sm-3">
@@ -40,23 +46,27 @@
                 <div>
                     <h5>試合結果</h5>
 
-                    <router-link v-bind:to="{name: 'game.summary', params: {gameId: gameId.toString() }}">
-                        <button class="btn btn-success">TOP</button>
-                    </router-link>
+                    <form v-on:submit.prevent="submit(gameBackSubmitPath)">
 
-                    <router-link v-bind:to="{name: 'game.fielder_summary', params: {gameId: gameId.toString(), type: 'visitor' }}">
-                        <button class="btn btn-success" v-bind:disabled="type == 'visitor'" v-on:click="initial">野手({{ gameData.visitor_team.ryaku_name }} )</button>
-                    </router-link>
-                    <router-link v-bind:to="{name: 'game.fielder_summary', params: {gameId: gameId.toString(), type: 'home' }}">
-                        <button class="btn btn-success" v-bind:disabled="type == 'home'" v-on:click="initial">野手({{ gameData.home_team.ryaku_name }})</button>
-                    </router-link>
-                    <router-link v-bind:to="{name: 'game.pitcher_summary', params: {gameId: gameId.toString(), type: 'visitor' }}">
-                        <button class="btn btn-success">投手({{ gameData.visitor_team.ryaku_name }})</button>
-                    </router-link>
-                    <router-link v-bind:to="{name: 'game.pitcher_summary', params: {gameId: gameId.toString(), type: 'home' }}">
-                        <button class="btn btn-success">投手({{ gameData.home_team.ryaku_name }})</button>
-                    </router-link>
+                        <router-link v-bind:to="{name: 'game.summary', params: {gameId: gameId.toString() }}">
+                            <button class="btn btn-success">TOP</button>
+                        </router-link>
 
+                        <router-link v-bind:to="{name: 'game.fielder_summary', params: {gameId: gameId.toString(), type: 'visitor' }}">
+                            <button class="btn btn-success" v-bind:disabled="type == 'visitor'" v-on:click="initial">野手({{ gameData.visitor_team.ryaku_name }} )</button>
+                        </router-link>
+                        <router-link v-bind:to="{name: 'game.fielder_summary', params: {gameId: gameId.toString(), type: 'home' }}">
+                            <button class="btn btn-success" v-bind:disabled="type == 'home'" v-on:click="initial">野手({{ gameData.home_team.ryaku_name }})</button>
+                        </router-link>
+                        <router-link v-bind:to="{name: 'game.pitcher_summary', params: {gameId: gameId.toString(), type: 'visitor' }}">
+                            <button class="btn btn-success">投手({{ gameData.visitor_team.ryaku_name }})</button>
+                        </router-link>
+                        <router-link v-bind:to="{name: 'game.pitcher_summary', params: {gameId: gameId.toString(), type: 'home' }}">
+                            <button class="btn btn-success">投手({{ gameData.home_team.ryaku_name }})</button>
+                        </router-link>
+
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="disabled">戻る</button>
+                    </form>
                     <div>
                         <table class="table-hover" id="fielder-summary" v-bind:style="{'width': ( 230 + 90 * summary[0].dageki.length ) + 'px'   }">
                             <tr v-for="playerBlock in summary">
@@ -99,11 +109,17 @@
             type: String
         },
         mixins : [EnumsMixin],
+        computed: {
+          gameBackSubmitPath() {
+            return '/api/games/back-game/' + this.gameId;
+          }
+        },
         data: function () {
             return {
                 gameData: {
                     'home_team' : {},
                     'visitor_team' : {},
+                    'season_id' : '',
                 },
                 playData: {
                     'member' : {
@@ -159,6 +175,13 @@
                             });
                     });
             },
+            submit(postPath) {
+                axios.post(postPath)
+                    .then((res) => {
+                        // 戻る
+                        this.$router.push({name: 'game.play', params: {gameId: this.gameId.toString() }});
+                    });
+            }
         },
         mounted() {
             this.initial();

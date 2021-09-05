@@ -39,10 +39,14 @@ class GameController extends Controller
    public function add(GameRequest $request, Season $season)
     {
         Game::create($request->all());
+        // baseの集計は不要
+        $season->shukei(false);
     }
    public function autoAdd(GameAutoRequest $request, Season $season)
     {
         (new Game())->autoAdd($request->all(), $season->id);
+        // baseの集計は不要
+        $season->shukei(false);
     }
 
     public function destroy(Game $game)
@@ -368,6 +372,12 @@ class GameController extends Controller
         (new Play())->backPlay($game);
         $game->gameUpdate($game);
     }
+
+   public function backGame(Request $request, Game $game)
+    {
+        $game->backGame();
+    }
+
 
    public function nextInningPlay(Request $request, Game $game)
     {

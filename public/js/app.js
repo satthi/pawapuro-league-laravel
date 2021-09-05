@@ -2646,6 +2646,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -2653,11 +2663,17 @@ __webpack_require__.r(__webpack_exports__);
     type: String
   },
   mixins: [_mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__.default],
+  computed: {
+    gameBackSubmitPath: function gameBackSubmitPath() {
+      return '/api/games/back-game/' + this.gameId;
+    }
+  },
   data: function data() {
     return {
       gameData: {
         'home_team': {},
-        'visitor_team': {}
+        'visitor_team': {},
+        'season_id': ''
       },
       playData: {
         'member': {
@@ -2708,6 +2724,19 @@ __webpack_require__.r(__webpack_exports__);
         axios.get('/api/games/fielder-summary/' + _this.gameId + '/' + _this.type).then(function (res) {
           _this.summary = res.data;
           console.log(_this.summary);
+        });
+      });
+    },
+    submit: function submit(postPath) {
+      var _this2 = this;
+
+      axios.post(postPath).then(function (res) {
+        // 戻る
+        _this2.$router.push({
+          name: 'game.play',
+          params: {
+            gameId: _this2.gameId.toString()
+          }
         });
       });
     }
@@ -3217,6 +3246,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -3224,11 +3262,17 @@ __webpack_require__.r(__webpack_exports__);
     type: String
   },
   mixins: [_mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__.default],
+  computed: {
+    gameBackSubmitPath: function gameBackSubmitPath() {
+      return '/api/games/back-game/' + this.gameId;
+    }
+  },
   data: function data() {
     return {
       gameData: {
         'home_team': {},
-        'visitor_team': {}
+        'visitor_team': {},
+        'season_id': ''
       },
       playData: {
         'member': {
@@ -3279,6 +3323,19 @@ __webpack_require__.r(__webpack_exports__);
         axios.get('/api/games/pitcher-summary/' + _this.gameId + '/' + _this.type).then(function (res) {
           _this.summary = res.data;
           console.log(_this.summary);
+        });
+      });
+    },
+    submit: function submit(postPath) {
+      var _this2 = this;
+
+      axios.post(postPath).then(function (res) {
+        // 戻る
+        _this2.$router.push({
+          name: 'game.play',
+          params: {
+            gameId: _this2.gameId.toString()
+          }
         });
       });
     }
@@ -4545,17 +4602,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     gameId: String
   },
   mixins: [_mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__.default],
+  computed: {
+    gameBackSubmitPath: function gameBackSubmitPath() {
+      return '/api/games/back-game/' + this.gameId;
+    }
+  },
   data: function data() {
     return {
       gameData: {
         'home_team': {},
-        'visitor_team': {}
+        'visitor_team': {},
+        'season_id': ''
       },
       playData: {
         'member': {
@@ -4605,6 +4677,19 @@ __webpack_require__.r(__webpack_exports__);
         });
         axios.get('/api/games/summary/' + _this.gameId).then(function (res) {
           _this.summary = res.data;
+        });
+      });
+    },
+    submit: function submit(postPath) {
+      var _this2 = this;
+
+      axios.post(postPath).then(function (res) {
+        // 戻る
+        _this2.$router.push({
+          name: 'game.play',
+          params: {
+            gameId: _this2.gameId.toString()
+          }
         });
       });
     }
@@ -45871,279 +45956,343 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return Object.keys(_vm.enums).length && _vm.summary.length
-    ? _c("div", { staticClass: "container", attrs: { id: "play_wrap" } }, [
-        _c("h2", [
-          _vm._v(
-            _vm._s(_vm.gameData.date) +
-              " " +
-              _vm._s(_vm.gameData.home_team.name) +
-              " VS " +
-              _vm._s(_vm.gameData.visitor_team.name)
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-3" }, [
-            _c(
-              "table",
-              { staticClass: "table table-hover stamen" },
-              _vm._l(this.playData.member.visitor_team, function(
-                member,
-                dajun
-              ) {
-                return _c("tr", [
-                  _c(
-                    "td",
-                    {
-                      class: {
-                        member_selected:
-                          member.player.id == _vm.playData.now_player_id
-                      }
-                    },
-                    [_vm._v(_vm._s(member.position.text))]
-                  ),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(member.player.name_short))]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "seiseki" }, [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(member.seiseki.dageki) +
-                        "\n                    "
-                    )
-                  ])
-                ])
-              }),
-              0
+    ? _c(
+        "div",
+        { staticClass: "container", attrs: { id: "play_wrap" } },
+        [
+          _c("h2", [
+            _vm._v(
+              _vm._s(_vm.gameData.date) +
+                " " +
+                _vm._s(_vm.gameData.home_team.name) +
+                " VS " +
+                _vm._s(_vm.gameData.visitor_team.name)
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-sm-6" }, [
-            _c(
-              "table",
-              {
-                staticClass: "table table-hover",
-                attrs: { id: "score_board" }
-              },
-              [
-                _c(
-                  "tr",
-                  [
-                    _c("td"),
+          _c(
+            "router-link",
+            {
+              attrs: {
+                to: {
+                  name: "season.view",
+                  params: { seasonId: _vm.gameData.season_id.toString() }
+                }
+              }
+            },
+            [
+              _c("button", { staticClass: "btn btn-success" }, [
+                _vm._v("シーズン詳細")
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              attrs: {
+                to: {
+                  name: "game.index",
+                  params: { seasonId: _vm.gameData.season_id.toString() }
+                }
+              }
+            },
+            [
+              _c("button", { staticClass: "btn btn-success" }, [
+                _vm._v("日程一覧")
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-sm-3" }, [
+              _c(
+                "table",
+                { staticClass: "table table-hover stamen" },
+                _vm._l(this.playData.member.visitor_team, function(
+                  member,
+                  dajun
+                ) {
+                  return _c("tr", [
+                    _c(
+                      "td",
+                      {
+                        class: {
+                          member_selected:
+                            member.player.id == _vm.playData.now_player_id
+                        }
+                      },
+                      [_vm._v(_vm._s(member.position.text))]
+                    ),
                     _vm._v(" "),
-                    _vm._l(12, function(inning) {
-                      return _c("td", [_vm._v(_vm._s(inning))])
-                    }),
+                    _c("td", [_vm._v(_vm._s(member.player.name_short))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v("R")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("H")])
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c(
-                  "tr",
-                  [
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.gameData.visitor_team.ryaku_name))
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(12, function(inning) {
-                      return _c(
-                        "td",
-                        {
-                          class: {
-                            inning_selected:
-                              _vm.gameData.inning == inning * 10 + 1
-                          }
-                        },
-                        [
-                          _vm._v(
-                            _vm._s(
-                              _vm.playData.inning_info.inning[inning * 10 + 1]
-                            )
-                          )
-                        ]
+                    _c("td", { staticClass: "seiseki" }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(member.seiseki.dageki) +
+                          "\n                    "
                       )
-                    }),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.playData.inning_info.visitor_point))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.playData.inning_info.visitor_hit))
                     ])
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c(
-                  "tr",
-                  [
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.gameData.home_team.ryaku_name))
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(12, function(inning) {
-                      return _c(
-                        "td",
-                        {
-                          class: {
-                            inning_selected:
-                              _vm.gameData.inning == inning * 10 + 2
-                          }
-                        },
-                        [
-                          _vm._v(
-                            _vm._s(
-                              _vm.playData.inning_info.inning[inning * 10 + 2]
-                            )
-                          )
-                        ]
-                      )
-                    }),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.playData.inning_info.home_point))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.playData.inning_info.home_hit))
-                    ])
-                  ],
-                  2
-                )
-              ]
-            ),
+                  ])
+                }),
+                0
+              )
+            ]),
             _vm._v(" "),
-            _c(
-              "div",
-              [
+            _c("div", { staticClass: "col-sm-6" }, [
+              _c(
+                "table",
+                {
+                  staticClass: "table table-hover",
+                  attrs: { id: "score_board" }
+                },
+                [
+                  _c(
+                    "tr",
+                    [
+                      _c("td"),
+                      _vm._v(" "),
+                      _vm._l(12, function(inning) {
+                        return _c("td", [_vm._v(_vm._s(inning))])
+                      }),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("R")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("H")])
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "tr",
+                    [
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.gameData.visitor_team.ryaku_name))
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(12, function(inning) {
+                        return _c(
+                          "td",
+                          {
+                            class: {
+                              inning_selected:
+                                _vm.gameData.inning == inning * 10 + 1
+                            }
+                          },
+                          [
+                            _vm._v(
+                              _vm._s(
+                                _vm.playData.inning_info.inning[inning * 10 + 1]
+                              )
+                            )
+                          ]
+                        )
+                      }),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.playData.inning_info.visitor_point))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.playData.inning_info.visitor_hit))
+                      ])
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "tr",
+                    [
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.gameData.home_team.ryaku_name))
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(12, function(inning) {
+                        return _c(
+                          "td",
+                          {
+                            class: {
+                              inning_selected:
+                                _vm.gameData.inning == inning * 10 + 2
+                            }
+                          },
+                          [
+                            _vm._v(
+                              _vm._s(
+                                _vm.playData.inning_info.inning[inning * 10 + 2]
+                              )
+                            )
+                          ]
+                        )
+                      }),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.playData.inning_info.home_point))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.playData.inning_info.home_hit))
+                      ])
+                    ],
+                    2
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", [
                 _c("h5", [_vm._v("試合結果")]),
                 _vm._v(" "),
                 _c(
-                  "router-link",
+                  "form",
                   {
-                    attrs: {
-                      to: {
-                        name: "game.summary",
-                        params: { gameId: _vm.gameId.toString() }
-                      }
-                    }
-                  },
-                  [
-                    _c("button", { staticClass: "btn btn-success" }, [
-                      _vm._v("TOP")
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      to: {
-                        name: "game.fielder_summary",
-                        params: {
-                          gameId: _vm.gameId.toString(),
-                          type: "visitor"
-                        }
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.submit(_vm.gameBackSubmitPath)
                       }
                     }
                   },
                   [
                     _c(
-                      "button",
+                      "router-link",
                       {
-                        staticClass: "btn btn-success",
-                        attrs: { disabled: _vm.type == "visitor" },
-                        on: { click: _vm.initial }
+                        attrs: {
+                          to: {
+                            name: "game.summary",
+                            params: { gameId: _vm.gameId.toString() }
+                          }
+                        }
                       },
                       [
-                        _vm._v(
-                          "野手(" +
-                            _vm._s(_vm.gameData.visitor_team.ryaku_name) +
-                            " )"
+                        _c("button", { staticClass: "btn btn-success" }, [
+                          _vm._v("TOP")
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "game.fielder_summary",
+                            params: {
+                              gameId: _vm.gameId.toString(),
+                              type: "visitor"
+                            }
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-success",
+                            attrs: { disabled: _vm.type == "visitor" },
+                            on: { click: _vm.initial }
+                          },
+                          [
+                            _vm._v(
+                              "野手(" +
+                                _vm._s(_vm.gameData.visitor_team.ryaku_name) +
+                                " )"
+                            )
+                          ]
                         )
                       ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      to: {
-                        name: "game.fielder_summary",
-                        params: { gameId: _vm.gameId.toString(), type: "home" }
-                      }
-                    }
-                  },
-                  [
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "game.fielder_summary",
+                            params: {
+                              gameId: _vm.gameId.toString(),
+                              type: "home"
+                            }
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-success",
+                            attrs: { disabled: _vm.type == "home" },
+                            on: { click: _vm.initial }
+                          },
+                          [
+                            _vm._v(
+                              "野手(" +
+                                _vm._s(_vm.gameData.home_team.ryaku_name) +
+                                ")"
+                            )
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "game.pitcher_summary",
+                            params: {
+                              gameId: _vm.gameId.toString(),
+                              type: "visitor"
+                            }
+                          }
+                        }
+                      },
+                      [
+                        _c("button", { staticClass: "btn btn-success" }, [
+                          _vm._v(
+                            "投手(" +
+                              _vm._s(_vm.gameData.visitor_team.ryaku_name) +
+                              ")"
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "game.pitcher_summary",
+                            params: {
+                              gameId: _vm.gameId.toString(),
+                              type: "home"
+                            }
+                          }
+                        }
+                      },
+                      [
+                        _c("button", { staticClass: "btn btn-success" }, [
+                          _vm._v(
+                            "投手(" +
+                              _vm._s(_vm.gameData.home_team.ryaku_name) +
+                              ")"
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-success",
-                        attrs: { disabled: _vm.type == "home" },
-                        on: { click: _vm.initial }
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "submit", disabled: _vm.disabled }
                       },
-                      [
-                        _vm._v(
-                          "野手(" +
-                            _vm._s(_vm.gameData.home_team.ryaku_name) +
-                            ")"
-                        )
-                      ]
+                      [_vm._v("戻る")]
                     )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      to: {
-                        name: "game.pitcher_summary",
-                        params: {
-                          gameId: _vm.gameId.toString(),
-                          type: "visitor"
-                        }
-                      }
-                    }
-                  },
-                  [
-                    _c("button", { staticClass: "btn btn-success" }, [
-                      _vm._v(
-                        "投手(" +
-                          _vm._s(_vm.gameData.visitor_team.ryaku_name) +
-                          ")"
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      to: {
-                        name: "game.pitcher_summary",
-                        params: { gameId: _vm.gameId.toString(), type: "home" }
-                      }
-                    }
-                  },
-                  [
-                    _c("button", { staticClass: "btn btn-success" }, [
-                      _vm._v(
-                        "投手(" +
-                          _vm._s(_vm.gameData.home_team.ryaku_name) +
-                          ")"
-                      )
-                    ])
-                  ]
+                  ],
+                  1
                 ),
                 _vm._v(" "),
                 _c("div", [
@@ -46223,44 +46372,44 @@ var render = function() {
                     0
                   )
                 ])
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-3 clearfix" }, [
-            _c(
-              "table",
-              { staticClass: "table table-hover stamen" },
-              _vm._l(this.playData.member.home_team, function(member, dajun) {
-                return _c("tr", [
-                  _c(
-                    "td",
-                    {
-                      class: {
-                        member_selected:
-                          member.player.id == _vm.playData.now_player_id
-                      }
-                    },
-                    [_vm._v(_vm._s(member.position.text))]
-                  ),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(member.player.name_short))]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "seiseki" }, [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(member.seiseki.dageki) +
-                        "\n                    "
-                    )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-3 clearfix" }, [
+              _c(
+                "table",
+                { staticClass: "table table-hover stamen" },
+                _vm._l(this.playData.member.home_team, function(member, dajun) {
+                  return _c("tr", [
+                    _c(
+                      "td",
+                      {
+                        class: {
+                          member_selected:
+                            member.player.id == _vm.playData.now_player_id
+                        }
+                      },
+                      [_vm._v(_vm._s(member.position.text))]
+                    ),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(member.player.name_short))]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "seiseki" }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(member.seiseki.dageki) +
+                          "\n                    "
+                      )
+                    ])
                   ])
-                ])
-              }),
-              0
-            )
+                }),
+                0
+              )
+            ])
           ])
-        ])
-      ])
+        ],
+        1
+      )
     : _vm._e()
 }
 var staticRenderFns = []
@@ -46799,279 +46948,343 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return Object.keys(_vm.enums).length
-    ? _c("div", { staticClass: "container", attrs: { id: "play_wrap" } }, [
-        _c("h2", [
-          _vm._v(
-            _vm._s(_vm.gameData.date) +
-              " " +
-              _vm._s(_vm.gameData.home_team.name) +
-              " VS " +
-              _vm._s(_vm.gameData.visitor_team.name)
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-3" }, [
-            _c(
-              "table",
-              { staticClass: "table table-hover stamen" },
-              _vm._l(this.playData.member.visitor_team, function(
-                member,
-                dajun
-              ) {
-                return _c("tr", [
-                  _c(
-                    "td",
-                    {
-                      class: {
-                        member_selected:
-                          member.player.id == _vm.playData.now_player_id
-                      }
-                    },
-                    [_vm._v(_vm._s(member.position.text))]
-                  ),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(member.player.name_short))]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "seiseki" }, [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(member.seiseki.dageki) +
-                        "\n                    "
-                    )
-                  ])
-                ])
-              }),
-              0
+    ? _c(
+        "div",
+        { staticClass: "container", attrs: { id: "play_wrap" } },
+        [
+          _c("h2", [
+            _vm._v(
+              _vm._s(_vm.gameData.date) +
+                " " +
+                _vm._s(_vm.gameData.home_team.name) +
+                " VS " +
+                _vm._s(_vm.gameData.visitor_team.name)
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-sm-6" }, [
-            _c(
-              "table",
-              {
-                staticClass: "table table-hover",
-                attrs: { id: "score_board" }
-              },
-              [
-                _c(
-                  "tr",
-                  [
-                    _c("td"),
+          _c(
+            "router-link",
+            {
+              attrs: {
+                to: {
+                  name: "season.view",
+                  params: { seasonId: _vm.gameData.season_id.toString() }
+                }
+              }
+            },
+            [
+              _c("button", { staticClass: "btn btn-success" }, [
+                _vm._v("シーズン詳細")
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              attrs: {
+                to: {
+                  name: "game.index",
+                  params: { seasonId: _vm.gameData.season_id.toString() }
+                }
+              }
+            },
+            [
+              _c("button", { staticClass: "btn btn-success" }, [
+                _vm._v("日程一覧")
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-sm-3" }, [
+              _c(
+                "table",
+                { staticClass: "table table-hover stamen" },
+                _vm._l(this.playData.member.visitor_team, function(
+                  member,
+                  dajun
+                ) {
+                  return _c("tr", [
+                    _c(
+                      "td",
+                      {
+                        class: {
+                          member_selected:
+                            member.player.id == _vm.playData.now_player_id
+                        }
+                      },
+                      [_vm._v(_vm._s(member.position.text))]
+                    ),
                     _vm._v(" "),
-                    _vm._l(12, function(inning) {
-                      return _c("td", [_vm._v(_vm._s(inning))])
-                    }),
+                    _c("td", [_vm._v(_vm._s(member.player.name_short))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v("R")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("H")])
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c(
-                  "tr",
-                  [
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.gameData.visitor_team.ryaku_name))
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(12, function(inning) {
-                      return _c(
-                        "td",
-                        {
-                          class: {
-                            inning_selected:
-                              _vm.gameData.inning == inning * 10 + 1
-                          }
-                        },
-                        [
-                          _vm._v(
-                            _vm._s(
-                              _vm.playData.inning_info.inning[inning * 10 + 1]
-                            )
-                          )
-                        ]
+                    _c("td", { staticClass: "seiseki" }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(member.seiseki.dageki) +
+                          "\n                    "
                       )
-                    }),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.playData.inning_info.visitor_point))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.playData.inning_info.visitor_hit))
                     ])
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c(
-                  "tr",
-                  [
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.gameData.home_team.ryaku_name))
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(12, function(inning) {
-                      return _c(
-                        "td",
-                        {
-                          class: {
-                            inning_selected:
-                              _vm.gameData.inning == inning * 10 + 2
-                          }
-                        },
-                        [
-                          _vm._v(
-                            _vm._s(
-                              _vm.playData.inning_info.inning[inning * 10 + 2]
-                            )
-                          )
-                        ]
-                      )
-                    }),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.playData.inning_info.home_point))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.playData.inning_info.home_hit))
-                    ])
-                  ],
-                  2
-                )
-              ]
-            ),
+                  ])
+                }),
+                0
+              )
+            ]),
             _vm._v(" "),
-            _c(
-              "div",
-              [
+            _c("div", { staticClass: "col-sm-6" }, [
+              _c(
+                "table",
+                {
+                  staticClass: "table table-hover",
+                  attrs: { id: "score_board" }
+                },
+                [
+                  _c(
+                    "tr",
+                    [
+                      _c("td"),
+                      _vm._v(" "),
+                      _vm._l(12, function(inning) {
+                        return _c("td", [_vm._v(_vm._s(inning))])
+                      }),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("R")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("H")])
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "tr",
+                    [
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.gameData.visitor_team.ryaku_name))
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(12, function(inning) {
+                        return _c(
+                          "td",
+                          {
+                            class: {
+                              inning_selected:
+                                _vm.gameData.inning == inning * 10 + 1
+                            }
+                          },
+                          [
+                            _vm._v(
+                              _vm._s(
+                                _vm.playData.inning_info.inning[inning * 10 + 1]
+                              )
+                            )
+                          ]
+                        )
+                      }),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.playData.inning_info.visitor_point))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.playData.inning_info.visitor_hit))
+                      ])
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "tr",
+                    [
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.gameData.home_team.ryaku_name))
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(12, function(inning) {
+                        return _c(
+                          "td",
+                          {
+                            class: {
+                              inning_selected:
+                                _vm.gameData.inning == inning * 10 + 2
+                            }
+                          },
+                          [
+                            _vm._v(
+                              _vm._s(
+                                _vm.playData.inning_info.inning[inning * 10 + 2]
+                              )
+                            )
+                          ]
+                        )
+                      }),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.playData.inning_info.home_point))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.playData.inning_info.home_hit))
+                      ])
+                    ],
+                    2
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", [
                 _c("h5", [_vm._v("試合結果")]),
                 _vm._v(" "),
                 _c(
-                  "router-link",
+                  "form",
                   {
-                    attrs: {
-                      to: {
-                        name: "game.summary",
-                        params: { gameId: _vm.gameId.toString() }
-                      }
-                    }
-                  },
-                  [
-                    _c("button", { staticClass: "btn btn-success" }, [
-                      _vm._v("TOP")
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      to: {
-                        name: "game.fielder_summary",
-                        params: {
-                          gameId: _vm.gameId.toString(),
-                          type: "visitor"
-                        }
-                      }
-                    }
-                  },
-                  [
-                    _c("button", { staticClass: "btn btn-success" }, [
-                      _vm._v(
-                        "野手(" +
-                          _vm._s(_vm.gameData.visitor_team.ryaku_name) +
-                          " )"
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      to: {
-                        name: "game.fielder_summary",
-                        params: { gameId: _vm.gameId.toString(), type: "home" }
-                      }
-                    }
-                  },
-                  [
-                    _c("button", { staticClass: "btn btn-success" }, [
-                      _vm._v(
-                        "野手(" +
-                          _vm._s(_vm.gameData.home_team.ryaku_name) +
-                          ")"
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      to: {
-                        name: "game.pitcher_summary",
-                        params: {
-                          gameId: _vm.gameId.toString(),
-                          type: "visitor"
-                        }
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.submit(_vm.gameBackSubmitPath)
                       }
                     }
                   },
                   [
                     _c(
-                      "button",
+                      "router-link",
                       {
-                        staticClass: "btn btn-success",
-                        attrs: { disabled: _vm.type == "visitor" },
-                        on: { click: _vm.initial }
+                        attrs: {
+                          to: {
+                            name: "game.summary",
+                            params: { gameId: _vm.gameId.toString() }
+                          }
+                        }
                       },
                       [
-                        _vm._v(
-                          "投手(" +
-                            _vm._s(_vm.gameData.visitor_team.ryaku_name) +
-                            ")"
+                        _c("button", { staticClass: "btn btn-success" }, [
+                          _vm._v("TOP")
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "game.fielder_summary",
+                            params: {
+                              gameId: _vm.gameId.toString(),
+                              type: "visitor"
+                            }
+                          }
+                        }
+                      },
+                      [
+                        _c("button", { staticClass: "btn btn-success" }, [
+                          _vm._v(
+                            "野手(" +
+                              _vm._s(_vm.gameData.visitor_team.ryaku_name) +
+                              " )"
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "game.fielder_summary",
+                            params: {
+                              gameId: _vm.gameId.toString(),
+                              type: "home"
+                            }
+                          }
+                        }
+                      },
+                      [
+                        _c("button", { staticClass: "btn btn-success" }, [
+                          _vm._v(
+                            "野手(" +
+                              _vm._s(_vm.gameData.home_team.ryaku_name) +
+                              ")"
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "game.pitcher_summary",
+                            params: {
+                              gameId: _vm.gameId.toString(),
+                              type: "visitor"
+                            }
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-success",
+                            attrs: { disabled: _vm.type == "visitor" },
+                            on: { click: _vm.initial }
+                          },
+                          [
+                            _vm._v(
+                              "投手(" +
+                                _vm._s(_vm.gameData.visitor_team.ryaku_name) +
+                                ")"
+                            )
+                          ]
                         )
                       ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      to: {
-                        name: "game.pitcher_summary",
-                        params: { gameId: _vm.gameId.toString(), type: "home" }
-                      }
-                    }
-                  },
-                  [
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "game.pitcher_summary",
+                            params: {
+                              gameId: _vm.gameId.toString(),
+                              type: "home"
+                            }
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-success",
+                            attrs: { disabled: _vm.type == "home" },
+                            on: { click: _vm.initial }
+                          },
+                          [
+                            _vm._v(
+                              "投手(" +
+                                _vm._s(_vm.gameData.home_team.ryaku_name) +
+                                ")"
+                            )
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-success",
-                        attrs: { disabled: _vm.type == "home" },
-                        on: { click: _vm.initial }
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "submit", disabled: _vm.disabled }
                       },
-                      [
-                        _vm._v(
-                          "投手(" +
-                            _vm._s(_vm.gameData.home_team.ryaku_name) +
-                            ")"
-                        )
-                      ]
+                      [_vm._v("戻る")]
                     )
-                  ]
+                  ],
+                  1
                 ),
                 _vm._v(" "),
                 _c(
@@ -47119,44 +47332,44 @@ var render = function() {
                   ],
                   2
                 )
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-3 clearfix" }, [
-            _c(
-              "table",
-              { staticClass: "table table-hover stamen" },
-              _vm._l(this.playData.member.home_team, function(member, dajun) {
-                return _c("tr", [
-                  _c(
-                    "td",
-                    {
-                      class: {
-                        member_selected:
-                          member.player.id == _vm.playData.now_player_id
-                      }
-                    },
-                    [_vm._v(_vm._s(member.position.text))]
-                  ),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(member.player.name_short))]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "seiseki" }, [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(member.seiseki.dageki) +
-                        "\n                    "
-                    )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-3 clearfix" }, [
+              _c(
+                "table",
+                { staticClass: "table table-hover stamen" },
+                _vm._l(this.playData.member.home_team, function(member, dajun) {
+                  return _c("tr", [
+                    _c(
+                      "td",
+                      {
+                        class: {
+                          member_selected:
+                            member.player.id == _vm.playData.now_player_id
+                        }
+                      },
+                      [_vm._v(_vm._s(member.position.text))]
+                    ),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(member.player.name_short))]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "seiseki" }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(member.seiseki.dageki) +
+                          "\n                    "
+                      )
+                    ])
                   ])
-                ])
-              }),
-              0
-            )
+                }),
+                0
+              )
+            ])
           ])
-        ])
-      ])
+        ],
+        1
+      )
     : _vm._e()
 }
 var staticRenderFns = [
@@ -49458,252 +49671,319 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return Object.keys(_vm.enums).length
-    ? _c("div", { staticClass: "container", attrs: { id: "play_wrap" } }, [
-        _c("h2", [
-          _vm._v(
-            _vm._s(_vm.gameData.date) +
-              " " +
-              _vm._s(_vm.gameData.home_team.name) +
-              " VS " +
-              _vm._s(_vm.gameData.visitor_team.name)
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-3" }, [
-            _c(
-              "table",
-              { staticClass: "table table-hover stamen" },
-              _vm._l(this.playData.member.visitor_team, function(
-                member,
-                dajun
-              ) {
-                return _c("tr", [
-                  _c(
-                    "td",
-                    {
-                      class: {
-                        member_selected:
-                          member.player.id == _vm.playData.now_player_id
-                      }
-                    },
-                    [_vm._v(_vm._s(member.position.text))]
-                  ),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(member.player.name_short))]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "seiseki" }, [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(member.seiseki.dageki) +
-                        "\n                    "
-                    )
-                  ])
-                ])
-              }),
-              0
+    ? _c(
+        "div",
+        { staticClass: "container", attrs: { id: "play_wrap" } },
+        [
+          _c("h2", [
+            _vm._v(
+              _vm._s(_vm.gameData.date) +
+                " " +
+                _vm._s(_vm.gameData.home_team.name) +
+                " VS " +
+                _vm._s(_vm.gameData.visitor_team.name)
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-sm-6" }, [
-            _c(
-              "table",
-              {
-                staticClass: "table table-hover",
-                attrs: { id: "score_board" }
-              },
-              [
-                _c(
-                  "tr",
-                  [
-                    _c("td"),
+          _c(
+            "router-link",
+            {
+              attrs: {
+                to: {
+                  name: "season.view",
+                  params: { seasonId: _vm.gameData.season_id.toString() }
+                }
+              }
+            },
+            [
+              _c("button", { staticClass: "btn btn-success" }, [
+                _vm._v("シーズン詳細")
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              attrs: {
+                to: {
+                  name: "game.index",
+                  params: { seasonId: _vm.gameData.season_id.toString() }
+                }
+              }
+            },
+            [
+              _c("button", { staticClass: "btn btn-success" }, [
+                _vm._v("日程一覧")
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-sm-3" }, [
+              _c(
+                "table",
+                { staticClass: "table table-hover stamen" },
+                _vm._l(this.playData.member.visitor_team, function(
+                  member,
+                  dajun
+                ) {
+                  return _c("tr", [
+                    _c(
+                      "td",
+                      {
+                        class: {
+                          member_selected:
+                            member.player.id == _vm.playData.now_player_id
+                        }
+                      },
+                      [_vm._v(_vm._s(member.position.text))]
+                    ),
                     _vm._v(" "),
-                    _vm._l(12, function(inning) {
-                      return _c("td", [_vm._v(_vm._s(inning))])
-                    }),
+                    _c("td", [_vm._v(_vm._s(member.player.name_short))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v("R")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("H")])
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c(
-                  "tr",
-                  [
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.gameData.visitor_team.ryaku_name))
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(12, function(inning) {
-                      return _c(
-                        "td",
-                        {
-                          class: {
-                            inning_selected:
-                              _vm.gameData.inning == inning * 10 + 1
-                          }
-                        },
-                        [
-                          _vm._v(
-                            _vm._s(
-                              _vm.playData.inning_info.inning[inning * 10 + 1]
-                            )
-                          )
-                        ]
+                    _c("td", { staticClass: "seiseki" }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(member.seiseki.dageki) +
+                          "\n                    "
                       )
-                    }),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.playData.inning_info.visitor_point))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.playData.inning_info.visitor_hit))
                     ])
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c(
-                  "tr",
-                  [
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.gameData.home_team.ryaku_name))
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(12, function(inning) {
-                      return _c(
-                        "td",
-                        {
-                          class: {
-                            inning_selected:
-                              _vm.gameData.inning == inning * 10 + 2
-                          }
-                        },
-                        [
-                          _vm._v(
-                            _vm._s(
-                              _vm.playData.inning_info.inning[inning * 10 + 2]
-                            )
-                          )
-                        ]
-                      )
-                    }),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.playData.inning_info.home_point))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.playData.inning_info.home_hit))
-                    ])
-                  ],
-                  2
-                )
-              ]
-            ),
+                  ])
+                }),
+                0
+              )
+            ]),
             _vm._v(" "),
-            _c(
-              "div",
-              [
+            _c("div", { staticClass: "col-sm-6" }, [
+              _c(
+                "table",
+                {
+                  staticClass: "table table-hover",
+                  attrs: { id: "score_board" }
+                },
+                [
+                  _c(
+                    "tr",
+                    [
+                      _c("td"),
+                      _vm._v(" "),
+                      _vm._l(12, function(inning) {
+                        return _c("td", [_vm._v(_vm._s(inning))])
+                      }),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("R")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("H")])
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "tr",
+                    [
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.gameData.visitor_team.ryaku_name))
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(12, function(inning) {
+                        return _c(
+                          "td",
+                          {
+                            class: {
+                              inning_selected:
+                                _vm.gameData.inning == inning * 10 + 1
+                            }
+                          },
+                          [
+                            _vm._v(
+                              _vm._s(
+                                _vm.playData.inning_info.inning[inning * 10 + 1]
+                              )
+                            )
+                          ]
+                        )
+                      }),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.playData.inning_info.visitor_point))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.playData.inning_info.visitor_hit))
+                      ])
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "tr",
+                    [
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.gameData.home_team.ryaku_name))
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(12, function(inning) {
+                        return _c(
+                          "td",
+                          {
+                            class: {
+                              inning_selected:
+                                _vm.gameData.inning == inning * 10 + 2
+                            }
+                          },
+                          [
+                            _vm._v(
+                              _vm._s(
+                                _vm.playData.inning_info.inning[inning * 10 + 2]
+                              )
+                            )
+                          ]
+                        )
+                      }),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.playData.inning_info.home_point))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.playData.inning_info.home_hit))
+                      ])
+                    ],
+                    2
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", [
                 _c("h5", [_vm._v("試合結果")]),
                 _vm._v(" "),
                 _c(
-                  "button",
-                  { staticClass: "btn btn-success", attrs: { disabled: "" } },
-                  [_vm._v("TOP")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
+                  "form",
                   {
-                    attrs: {
-                      to: {
-                        name: "game.fielder_summary",
-                        params: {
-                          gameId: _vm.gameId.toString(),
-                          type: "visitor"
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.submit(_vm.gameBackSubmitPath)
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { disabled: "" }
+                      },
+                      [_vm._v("TOP")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "game.fielder_summary",
+                            params: {
+                              gameId: _vm.gameId.toString(),
+                              type: "visitor"
+                            }
+                          }
                         }
-                      }
-                    }
-                  },
-                  [
-                    _c("button", { staticClass: "btn btn-success" }, [
-                      _vm._v(
-                        "野手(" +
-                          _vm._s(_vm.gameData.visitor_team.ryaku_name) +
-                          ")"
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      to: {
-                        name: "game.fielder_summary",
-                        params: { gameId: _vm.gameId.toString(), type: "home" }
-                      }
-                    }
-                  },
-                  [
-                    _c("button", { staticClass: "btn btn-success" }, [
-                      _vm._v(
-                        "野手(" +
-                          _vm._s(_vm.gameData.home_team.ryaku_name) +
-                          ")"
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      to: {
-                        name: "game.pitcher_summary",
-                        params: {
-                          gameId: _vm.gameId.toString(),
-                          type: "visitor"
+                      },
+                      [
+                        _c("button", { staticClass: "btn btn-success" }, [
+                          _vm._v(
+                            "野手(" +
+                              _vm._s(_vm.gameData.visitor_team.ryaku_name) +
+                              ")"
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "game.fielder_summary",
+                            params: {
+                              gameId: _vm.gameId.toString(),
+                              type: "home"
+                            }
+                          }
                         }
-                      }
-                    }
-                  },
-                  [
-                    _c("button", { staticClass: "btn btn-success" }, [
-                      _vm._v(
-                        "投手(" +
-                          _vm._s(_vm.gameData.visitor_team.ryaku_name) +
-                          ")"
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      to: {
-                        name: "game.pitcher_summary",
-                        params: { gameId: _vm.gameId.toString(), type: "home" }
-                      }
-                    }
-                  },
-                  [
-                    _c("button", { staticClass: "btn btn-success" }, [
-                      _vm._v(
-                        "投手(" +
-                          _vm._s(_vm.gameData.home_team.ryaku_name) +
-                          ")"
-                      )
-                    ])
-                  ]
+                      },
+                      [
+                        _c("button", { staticClass: "btn btn-success" }, [
+                          _vm._v(
+                            "野手(" +
+                              _vm._s(_vm.gameData.home_team.ryaku_name) +
+                              ")"
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "game.pitcher_summary",
+                            params: {
+                              gameId: _vm.gameId.toString(),
+                              type: "visitor"
+                            }
+                          }
+                        }
+                      },
+                      [
+                        _c("button", { staticClass: "btn btn-success" }, [
+                          _vm._v(
+                            "投手(" +
+                              _vm._s(_vm.gameData.visitor_team.ryaku_name) +
+                              ")"
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "game.pitcher_summary",
+                            params: {
+                              gameId: _vm.gameId.toString(),
+                              type: "home"
+                            }
+                          }
+                        }
+                      },
+                      [
+                        _c("button", { staticClass: "btn btn-success" }, [
+                          _vm._v(
+                            "投手(" +
+                              _vm._s(_vm.gameData.home_team.ryaku_name) +
+                              ")"
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "submit", disabled: _vm.disabled }
+                      },
+                      [_vm._v("戻る")]
+                    )
+                  ],
+                  1
                 ),
                 _vm._v(" "),
                 _c("table", { staticClass: "table table-hover" }, [
@@ -49773,44 +50053,44 @@ var render = function() {
                     )
                   ])
                 ])
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-3 clearfix" }, [
-            _c(
-              "table",
-              { staticClass: "table table-hover stamen" },
-              _vm._l(this.playData.member.home_team, function(member, dajun) {
-                return _c("tr", [
-                  _c(
-                    "td",
-                    {
-                      class: {
-                        member_selected:
-                          member.player.id == _vm.playData.now_player_id
-                      }
-                    },
-                    [_vm._v(_vm._s(member.position.text))]
-                  ),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(member.player.name_short))]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "seiseki" }, [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(member.seiseki.dageki) +
-                        "\n                    "
-                    )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-3 clearfix" }, [
+              _c(
+                "table",
+                { staticClass: "table table-hover stamen" },
+                _vm._l(this.playData.member.home_team, function(member, dajun) {
+                  return _c("tr", [
+                    _c(
+                      "td",
+                      {
+                        class: {
+                          member_selected:
+                            member.player.id == _vm.playData.now_player_id
+                        }
+                      },
+                      [_vm._v(_vm._s(member.position.text))]
+                    ),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(member.player.name_short))]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "seiseki" }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(member.seiseki.dageki) +
+                          "\n                    "
+                      )
+                    ])
                   ])
-                ])
-              }),
-              0
-            )
+                }),
+                0
+              )
+            ])
           ])
-        ])
-      ])
+        ],
+        1
+      )
     : _vm._e()
 }
 var staticRenderFns = []
