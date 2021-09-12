@@ -216,6 +216,43 @@ class Game extends Model
         }
     }
 
+    public function getPrevGameIdAttribute()
+    {
+        $prevGame = $this::where('season_id', $this->season_id)
+            ->where(function($q) {
+                $q->where('date' , '<', $this->date)
+                    ->orWhere(function($q) {
+                        $q->where('date', $this->date)
+                            ->where('id', '<', $this->id);
+                    })
+                    ;
+            })
+            ->where('inning', 999)
+            ->orderBy('date', 'DESC')
+            ->orderBy('id', 'DESC')
+            ->first();
+
+        return !is_null($prevGame) ? $prevGame->id : null;
+    }
+
+    public function getNextGameIdAttribute()
+    {
+        $nextGame = $this::where('season_id', $this->season_id)
+            ->where(function($q) {
+                $q->where('date' , '>', $this->date)
+                    ->orWhere(function($q) {
+                        $q->where('date', $this->date)
+                            ->where('id', '>', $this->id);
+                    });
+            })
+            ->where('inning', 999)
+            ->orderBy('date', 'ASC')
+            ->orderBy('id', 'ASC')
+            ->first();
+
+        return !is_null($nextGame) ? $nextGame->id : null;
+    }
+
     private function isGameEnd()
     {
         // 9回までは終了はしない
@@ -602,6 +639,8 @@ class Game extends Model
                 ->append('is_home_team_position')
                 ->append('is_visitor_team_phpr')
                 ->append('is_visitor_team_position')
+                ->append('prev_game_id')
+                ->append('next_game_id')
                 ->append('is_next_inning');
         }
 

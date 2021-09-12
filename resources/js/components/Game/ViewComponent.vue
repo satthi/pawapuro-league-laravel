@@ -8,7 +8,13 @@
             <button class="btn btn-success">日程一覧</button>
         </router-link>
         <router-link v-bind:to="{name: 'game.play', params: {gameId: gameId.toString() }}" v-if="data.board_status > enums.GameBoardStatus.STATUS_STAMEN_SETTING.value">
-            <button class="btn btn-success">試合へ</button>
+            <button class="btn btn-success" style="margin-right:50px;">試合へ</button>
+        </router-link>
+        <router-link v-if="data.prev_game_id" v-bind:to="{name: 'game.view', params: {gameId: data.prev_game_id.toString() }}">
+            <button class="btn btn-success">前のゲーム</button>
+        </router-link>
+        <router-link v-if="data.next_game_id" v-bind:to="{name: 'game.view', params: {gameId: data.next_game_id.toString() }}">
+            <button class="btn btn-success">次のゲーム</button>
         </router-link>
         <h4>
         予告先発
@@ -84,6 +90,11 @@
         props: {
             gameId: String
         },
+        watch: {
+            '$route' (to, from) {
+                this.initial();
+            }
+        },
         mixins : [EnumsMixin],
         data: function () {
             return {
@@ -103,6 +114,10 @@
             }
         },
         methods: {
+            initial() {
+                this.getData('/api/games/view/' + this.gameId);
+                this.getStamenData('/api/games/get-stamen/' + this.gameId);
+            },
             getData(getPath) {
                 axios.get(getPath)
                     .then((res) => {
@@ -118,8 +133,7 @@
             },
         },
         mounted() {
-            this.getData('/api/games/view/' + this.gameId);
-            this.getStamenData('/api/games/get-stamen/' + this.gameId);
+            this.initial();
         }
     }
 </script>

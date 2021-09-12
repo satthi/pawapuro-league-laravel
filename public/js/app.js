@@ -2656,6 +2656,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -3137,6 +3147,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/enums.js */ "./resources/js/mixins/enums.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4611,10 +4631,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     gameId: String
+  },
+  watch: {
+    '$route': function $route(to, from) {
+      this.initial();
+    }
   },
   mixins: [_mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__.default],
   computed: {
@@ -4793,10 +4828,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     gameId: String
+  },
+  watch: {
+    '$route': function $route(to, from) {
+      this.initial();
+    }
   },
   mixins: [_mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__.default],
   data: function data() {
@@ -4817,6 +4863,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    initial: function initial() {
+      this.getData('/api/games/view/' + this.gameId);
+      this.getStamenData('/api/games/get-stamen/' + this.gameId);
+    },
     getData: function getData(getPath) {
       var _this = this;
 
@@ -4834,8 +4884,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.getData('/api/games/view/' + this.gameId);
-    this.getStamenData('/api/games/get-stamen/' + this.gameId);
+    this.initial();
   }
 });
 
@@ -46006,6 +46055,66 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              attrs: {
+                to: {
+                  name: "game.view",
+                  params: { seasonId: _vm.gameData.id.toString() }
+                }
+              }
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success",
+                  staticStyle: { "margin-right": "50px" }
+                },
+                [_vm._v("ゲームTOP")]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _vm.gameData.prev_game_id
+            ? _c(
+                "router-link",
+                {
+                  attrs: {
+                    to: {
+                      name: "game.summary",
+                      params: { gameId: _vm.gameData.prev_game_id.toString() }
+                    }
+                  }
+                },
+                [
+                  _c("button", { staticClass: "btn btn-success" }, [
+                    _vm._v("前のゲーム")
+                  ])
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.gameData.next_game_id
+            ? _c(
+                "router-link",
+                {
+                  attrs: {
+                    to: {
+                      name: "game.summary",
+                      params: { gameId: _vm.gameData.next_game_id.toString() }
+                    }
+                  }
+                },
+                [
+                  _c("button", { staticClass: "btn btn-success" }, [
+                    _vm._v("次のゲーム")
+                  ])
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-sm-3" }, [
               _c(
@@ -46997,6 +47106,66 @@ var render = function() {
               ])
             ]
           ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              attrs: {
+                to: {
+                  name: "game.view",
+                  params: { seasonId: _vm.gameData.id.toString() }
+                }
+              }
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success",
+                  staticStyle: { "margin-right": "50px" }
+                },
+                [_vm._v("ゲームTOP")]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _vm.gameData.prev_game_id
+            ? _c(
+                "router-link",
+                {
+                  attrs: {
+                    to: {
+                      name: "game.summary",
+                      params: { gameId: _vm.gameData.prev_game_id.toString() }
+                    }
+                  }
+                },
+                [
+                  _c("button", { staticClass: "btn btn-success" }, [
+                    _vm._v("前のゲーム")
+                  ])
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.gameData.next_game_id
+            ? _c(
+                "router-link",
+                {
+                  attrs: {
+                    to: {
+                      name: "game.summary",
+                      params: { gameId: _vm.gameData.next_game_id.toString() }
+                    }
+                  }
+                },
+                [
+                  _c("button", { staticClass: "btn btn-success" }, [
+                    _vm._v("次のゲーム")
+                  ])
+                ]
+              )
+            : _vm._e(),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-sm-3" }, [
@@ -49721,6 +49890,66 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              attrs: {
+                to: {
+                  name: "game.view",
+                  params: { seasonId: _vm.gameData.id.toString() }
+                }
+              }
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success",
+                  staticStyle: { "margin-right": "50px" }
+                },
+                [_vm._v("ゲームTOP")]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _vm.gameData.prev_game_id
+            ? _c(
+                "router-link",
+                {
+                  attrs: {
+                    to: {
+                      name: "game.summary",
+                      params: { gameId: _vm.gameData.prev_game_id.toString() }
+                    }
+                  }
+                },
+                [
+                  _c("button", { staticClass: "btn btn-success" }, [
+                    _vm._v("前のゲーム")
+                  ])
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.gameData.next_game_id
+            ? _c(
+                "router-link",
+                {
+                  attrs: {
+                    to: {
+                      name: "game.summary",
+                      params: { gameId: _vm.gameData.next_game_id.toString() }
+                    }
+                  }
+                },
+                [
+                  _c("button", { staticClass: "btn btn-success" }, [
+                    _vm._v("次のゲーム")
+                  ])
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-sm-3" }, [
               _c(
@@ -50180,8 +50409,51 @@ var render = function() {
                   }
                 },
                 [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-success",
+                      staticStyle: { "margin-right": "50px" }
+                    },
+                    [_vm._v("試合へ")]
+                  )
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.data.prev_game_id
+            ? _c(
+                "router-link",
+                {
+                  attrs: {
+                    to: {
+                      name: "game.view",
+                      params: { gameId: _vm.data.prev_game_id.toString() }
+                    }
+                  }
+                },
+                [
                   _c("button", { staticClass: "btn btn-success" }, [
-                    _vm._v("試合へ")
+                    _vm._v("前のゲーム")
+                  ])
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.data.next_game_id
+            ? _c(
+                "router-link",
+                {
+                  attrs: {
+                    to: {
+                      name: "game.view",
+                      params: { gameId: _vm.data.next_game_id.toString() }
+                    }
+                  }
+                },
+                [
+                  _c("button", { staticClass: "btn btn-success" }, [
+                    _vm._v("次のゲーム")
                   ])
                 ]
               )

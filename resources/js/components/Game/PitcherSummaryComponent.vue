@@ -7,6 +7,16 @@
         <router-link v-bind:to="{name: 'game.index', params: {seasonId: gameData.season_id.toString() }}">
             <button class="btn btn-success">日程一覧</button>
         </router-link>
+        <router-link v-bind:to="{name: 'game.view', params: {seasonId: gameData.id.toString() }}">
+            <button style="margin-right:50px;" class="btn btn-success">ゲームTOP</button>
+        </router-link>
+
+        <router-link v-if="gameData.prev_game_id" v-bind:to="{name: 'game.summary', params: {gameId: gameData.prev_game_id.toString() }}">
+            <button class="btn btn-success">前のゲーム</button>
+        </router-link>
+        <router-link v-if="gameData.next_game_id" v-bind:to="{name: 'game.summary', params: {gameId: gameData.next_game_id.toString() }}">
+            <button class="btn btn-success">次のゲーム</button>
+        </router-link>
 
         <div class="row">
             <div class="col-sm-3">
