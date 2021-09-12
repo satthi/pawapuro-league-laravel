@@ -10150,3 +10150,26 @@ table.stamen > tr > td {
   padding: 2px;
   text-align: center;
 }
+
+.stamen_table {
+  table-layout: fixed;
+}
+
+.stamen_dajun {
+  width: 6%;
+}
+
+.stamen_position {
+  width: 6%;
+}
+
+.stamen_name_td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 54%;
+}
+
+.stamen_seiseki_td {
+  width: 34%;
+}

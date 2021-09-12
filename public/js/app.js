@@ -50549,16 +50549,22 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "table",
-                  { staticClass: "table table-hover" },
+                  { staticClass: "table table-hover stamen_table" },
                   _vm._l(this.stamen.home_team.stamen, function(stamen, dajun) {
                     return _c("tr", [
-                      _c("td", [_vm._v(_vm._s(stamen.dajun))]),
+                      _c("td", { staticClass: "stamen_dajun" }, [
+                        _vm._v(_vm._s(stamen.dajun))
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(stamen.position.text))]),
+                      _c("td", { staticClass: "stamen_position" }, [
+                        _vm._v(_vm._s(stamen.position.text))
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(stamen.player.name))]),
+                      _c("td", { staticClass: "stamen_name_td" }, [
+                        _vm._v(_vm._s(stamen.player.name))
+                      ]),
                       _vm._v(" "),
-                      _c("td", [
+                      _c("td", { staticClass: "stamen_seiseki_td" }, [
                         stamen.position.value ==
                         _vm.enums.Position.POSITION_P.value
                           ? _c("div", [
@@ -50616,19 +50622,25 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "table",
-                  { staticClass: "table table-hover" },
+                  { staticClass: "table table-hover stamen_table" },
                   _vm._l(this.stamen.visitor_team.stamen, function(
                     stamen,
                     dajun
                   ) {
                     return _c("tr", [
-                      _c("td", [_vm._v(_vm._s(stamen.dajun))]),
+                      _c("td", { staticClass: "stamen_dajun" }, [
+                        _vm._v(_vm._s(stamen.dajun))
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(stamen.position.text))]),
+                      _c("td", { staticClass: "stamen_position" }, [
+                        _vm._v(_vm._s(stamen.position.text))
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(stamen.player.name))]),
+                      _c("td", { staticClass: "stamen_name_td" }, [
+                        _vm._v(_vm._s(stamen.player.name))
+                      ]),
                       _vm._v(" "),
-                      _c("td", [
+                      _c("td", { staticClass: "stamen_seiseki_td" }, [
                         stamen.position.value ==
                         _vm.enums.Position.POSITION_P.value
                           ? _c("div", [

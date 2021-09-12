@@ -40,12 +40,12 @@
                 <router-link v-bind:to="{name: 'game.stamen-edit', params: {gameId: gameId.toString(), stamenType: 'home' }}" v-if="data.board_status <= enums.GameBoardStatus.STATUS_START.value">
                     <button class="btn btn-success">設定</button>
                 </router-link>
-                <table class="table table-hover">
+                <table class="table table-hover stamen_table">
                     <tr v-for="(stamen, dajun) in this.stamen.home_team.stamen">
-                        <td>{{ stamen.dajun }}</td>
-                        <td>{{ stamen.position.text }}</td>
-                        <td>{{ stamen.player.name }}</td>
-                        <td>
+                        <td class="stamen_dajun">{{ stamen.dajun }}</td>
+                        <td class="stamen_position">{{ stamen.position.text }}</td>
+                        <td class="stamen_name_td">{{ stamen.player.name }}</td>
+                        <td class="stamen_seiseki_td">
                             <div v-if="stamen.position.value == enums.Position.POSITION_P.value">
                                 {{ stamen.seiseki.pitcher }}
                             </div>
@@ -62,12 +62,12 @@
                     <button class="btn btn-success">設定</button>
                 </router-link>
 
-                <table class="table table-hover">
+                <table class="table table-hover stamen_table">
                     <tr v-for="(stamen, dajun) in this.stamen.visitor_team.stamen">
-                        <td>{{ stamen.dajun }}</td>
-                        <td>{{ stamen.position.text }}</td>
-                        <td>{{ stamen.player.name }}</td>
-                        <td>
+                        <td class="stamen_dajun">{{ stamen.dajun }}</td>
+                        <td class="stamen_position">{{ stamen.position.text }}</td>
+                        <td class="stamen_name_td">{{ stamen.player.name }}</td>
+                        <td class="stamen_seiseki_td">
                             <div v-if="stamen.position.value == enums.Position.POSITION_P.value">
                                 {{ stamen.seiseki.pitcher }}
                             </div>
