@@ -24,6 +24,7 @@
                 <th>負</th>
                 <th>分</th>
                 <th>勝率</th>
+                <th>差</th>
                 <th>残</th>
                 <th>打率</th>
                 <th>HR</th>
@@ -43,6 +44,7 @@
                 <td>{{ team.lose }}</td>
                 <td>{{ team.draw }}</td>
                 <td>{{ team.display_win_ratio }}</td>
+                <td>{{ team.diff }}</td>
                 <td>{{ team.remain }}</td>
                 <td>{{ team.display_avg }}</td>
                 <td>{{ team.hr }}</td>

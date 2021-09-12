@@ -5925,6 +5925,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     initial: function initial() {
@@ -53102,6 +53104,8 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(team.display_win_ratio))]),
             _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(team.diff))]),
+            _vm._v(" "),
             _c("td", [_vm._v(_vm._s(team.remain))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(team.display_avg))]),
@@ -53139,6 +53143,8 @@ var staticRenderFns = [
       _c("th", [_vm._v("分")]),
       _vm._v(" "),
       _c("th", [_vm._v("勝率")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("差")]),
       _vm._v(" "),
       _c("th", [_vm._v("残")]),
       _vm._v(" "),

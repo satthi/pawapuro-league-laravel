@@ -182,6 +182,7 @@ class Team extends Model
         $rank = 0;
         $beforeRank = null;
         $beforeWinRatio = null;
+        $beforeChokin = null;
         foreach ($teams as $teamKey => $team) {
             $rank++;
             if ($beforeWinRatio !== $team['win_ratio']) {
@@ -191,6 +192,14 @@ class Team extends Model
                 $teams[$teamKey]['rank'] = $beforeRank;
             }
             $beforeWinRatio = $team['win_ratio'];
+
+            if (is_null($beforeChokin)) {
+                $teams[$teamKey]['diff'] = '-';
+                $beforeChokin = $team['win'] - $team['lose'];
+            } else {
+                $teams[$teamKey]['diff'] = sprintf('%.1f', ($beforeChokin - ($team['win'] - $team['lose'])) / 2);
+                $beforeChokin = $team['win'] - $team['lose'];
+            }
         }
 
         return $teams;
