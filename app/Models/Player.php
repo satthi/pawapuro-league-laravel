@@ -62,6 +62,9 @@ class Player extends Model
         'p_inning',
         'p_jiseki',
         'p_era',
+        'accident_type',
+        'walk_ritsu',
+        'p_walk_ritsu',
     ];
 
     protected $appends = [
@@ -78,6 +81,7 @@ class Player extends Model
         'display_p_sansin_ratio',
         'display_p_avg',
         'display_p_inning',
+        'img_path',
     ];
     /**
      * home team
@@ -213,6 +217,14 @@ class Player extends Model
         return $text;
     }
 
+    public function getImgPathAttribute($value)
+    {
+        if (file_exists(public_path('img/base_player/' . $this->base_player_id . '/file'))) {
+            return '/img/base_player/' . $this->base_player_id . '/file';
+        }
+
+        return '/img/noimage.jpg';
+    }
 
     ## 対象日時点の個人の成績
     public function getTargetDateSeisekiInfo($date)
@@ -350,6 +362,52 @@ class Player extends Model
         }
 
         return $pitcherOptions;
+    }
+
+    public function getPitcherHistory(Game $game, $teamId)
+    {
+        // 過去10試合の投手履歴の取得
+        // 対象ゲーム
+        $gameModel = new Game();
+        $gamePitcherModel = new GamePitcher();
+        $targetGames = $gameModel
+            ->where(function($q) use ($teamId) {
+                $q->where('games.home_team_id', $teamId)
+                    ->orWhere('games.visitor_team_id', $teamId);
+            })
+            ->where('games.inning' , 999)
+            ->where('games.date', '<' , $game->date)
+            ->orderBy('games.date', 'DESC')
+            ->limit(10)
+            ->get();
+
+        $returnArray = [];
+
+        foreach ($targetGames as $targetGame) {
+        \Log::debug('AAAA');
+            $returnArray[$targetGame->date] = [
+                'date' => $targetGame->date,
+                'info' => [],
+            ];
+            $gamePitchers = $gamePitcherModel->where('game_pitchers.game_id', $targetGame->id)
+                ->where('game_pitchers.team_id', $teamId)
+                ->with('player')
+                ->orderBy('game_pitchers.id', 'ASC')
+                ->get();
+
+            foreach ($gamePitchers as $gamePitcher) {
+                $returnArray[$targetGame->date]['info'][] = [
+                    'player' => $gamePitcher->player->name,
+                    'inning' => $gamePitcher->string_inning,
+                ];
+            }
+        }
+
+        \Log::debug($returnArray);
+
+        return $returnArray;
+
+
     }
 
     public function shukei($seasonId)

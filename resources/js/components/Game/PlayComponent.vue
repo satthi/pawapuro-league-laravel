@@ -53,6 +53,9 @@
                         [{{ playData.now_player.player.number }}] {{ playData.now_player.player.name }}
                     </div>
                     <div>
+                        <img :src="playData.now_player.player.img_path" width="200"/>
+                    </div>
+                    <div>
                         {{ playData.now_player.seiseki.dageki }}
                     </div>
                     <table class="table table-hover now_player_detail">
@@ -69,6 +72,9 @@
                 <div  v-if="gameData.is_home_team_phpr && playData.now_pitcher != null">
                     <div>
                         [{{ playData.now_pitcher.player.number }}] {{ playData.now_pitcher.player.name }}
+                    </div>
+                    <div>
+                        <img :src="playData.now_pitcher.player.img_path" width="200"/>
                     </div>
                     <div>
                         {{ playData.now_pitcher.seiseki.pitcher }}
@@ -154,6 +160,11 @@
                         </div>
                         <div class="col-sm-3">
                             {{ gameData.out }}アウト
+                        </div>
+                        <div class="col-sm-3">
+                            <div v-if="playData.manrui_walk == true">満塁四球</div>
+                            <div v-else-if="playData.walk == true">四球</div>
+                            <div v-else>-</div>
                         </div>
                     </div>
 
@@ -333,6 +344,9 @@
                         [{{ playData.now_player.player.number }}] {{ playData.now_player.player.name }}
                     </div>
                     <div>
+                        <img :src="playData.now_player.player.img_path" width="200"/>
+                    </div>
+                    <div>
                         {{ playData.now_player.seiseki.dageki }}
                     </div>
                     <table class="table table-hover now_player_detail">
@@ -349,6 +363,9 @@
                 <div  v-if="gameData.is_visitor_team_phpr && playData.now_pitcher != null">
                     <div>
                         [{{ playData.now_pitcher.player.number }}] {{ playData.now_pitcher.player.name }}
+                    </div>
+                    <div>
+                        <img :src="playData.now_pitcher.player.img_path" width="200"/>
                     </div>
                     <div>
                         {{ playData.now_pitcher.seiseki.pitcher }}
@@ -436,7 +453,9 @@
                     'pithcer_info' : {
                         'home_team' : {},
                         'visitor_team' : {},
-                    }
+                    },
+                    'walk' : false,
+                    'manrui_walk' : false,
                 },
                 resultData: {},
                 errors: {},

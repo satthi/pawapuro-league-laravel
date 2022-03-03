@@ -67,6 +67,10 @@ class CreatePlayersTable extends Migration
             $table->integer('p_jiseki')->nullable();
             $table->decimal('p_era', 11, 8)->nullable();
 
+            $table->integer('accident_type')->nullable();
+            $table->decimal('walk_ritsu', 11, 8)->nullable();
+            $table->decimal('p_walk_ritsu', 11, 8)->nullable();
+
             $table->timestamps();
         });
     }

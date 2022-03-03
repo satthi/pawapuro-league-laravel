@@ -3770,6 +3770,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3825,7 +3842,9 @@ __webpack_require__.r(__webpack_exports__);
         'pithcer_info': {
           'home_team': {},
           'visitor_team': {}
-        }
+        },
+        'walk': false,
+        'manrui_walk': false
       },
       resultData: {},
       errors: {},
@@ -4139,6 +4158,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -4159,7 +4197,9 @@ __webpack_require__.r(__webpack_exports__);
       data: {},
       errors: {},
       homePlayerOptions: {},
-      visitorPlayerOptions: {}
+      visitorPlayerOptions: {},
+      homeHistories: {},
+      visitorHistories: {}
     };
   },
   methods: {
@@ -4169,6 +4209,8 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(getPath).then(function (res) {
         _this.homePlayerOptions = res.data.home;
         _this.visitorPlayerOptions = res.data.visitor;
+        _this.homeHistories = res.data.home_hisory;
+        _this.visitorHistories = res.data.visitor_hisory;
       });
     }
   },
@@ -47846,6 +47888,15 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", [
+                    _c("img", {
+                      attrs: {
+                        src: _vm.playData.now_player.player.img_path,
+                        width: "200"
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
                     _vm._v(
                       "\n                    " +
                         _vm._s(_vm.playData.now_player.seiseki.dageki) +
@@ -47902,6 +47953,15 @@ var render = function() {
                         _vm._s(_vm.playData.now_pitcher.player.name) +
                         "\n                "
                     )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c("img", {
+                      attrs: {
+                        src: _vm.playData.now_pitcher.player.img_path,
+                        width: "200"
+                      }
+                    })
                   ]),
                   _vm._v(" "),
                   _c("div", [
@@ -48205,6 +48265,14 @@ var render = function() {
                             _vm._s(_vm.gameData.out) +
                             "アウト\n                    "
                         )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-3" }, [
+                        _vm.playData.manrui_walk == true
+                          ? _c("div", [_vm._v("満塁四球")])
+                          : _vm.playData.walk == true
+                          ? _c("div", [_vm._v("四球")])
+                          : _c("div", [_vm._v("-")])
                       ])
                     ]),
                     _vm._v(" "),
@@ -49026,6 +49094,15 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", [
+                    _c("img", {
+                      attrs: {
+                        src: _vm.playData.now_player.player.img_path,
+                        width: "200"
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
                     _vm._v(
                       "\n                    " +
                         _vm._s(_vm.playData.now_player.seiseki.dageki) +
@@ -49083,6 +49160,15 @@ var render = function() {
                         _vm._s(_vm.playData.now_pitcher.player.name) +
                         "\n                "
                     )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c("img", {
+                      attrs: {
+                        src: _vm.playData.now_pitcher.player.img_path,
+                        width: "200"
+                      }
+                    })
                   ]),
                   _vm._v(" "),
                   _c("div", [
@@ -49398,6 +49484,37 @@ var render = function() {
               }
             }),
             _vm._v(" "),
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              _vm._l(_vm.homeHistories, function(homeHistory) {
+                return _c(
+                  "tr",
+                  [
+                    _c("td", [_vm._v(_vm._s(homeHistory.date))]),
+                    _vm._v(" "),
+                    _vm._l(homeHistory.info, function(homeHistoryPlayer) {
+                      return _c(
+                        "td",
+                        { staticStyle: { "white-space": "nowrap" } },
+                        [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(homeHistoryPlayer.player) +
+                              " (" +
+                              _vm._s(homeHistoryPlayer.inning) +
+                              ")\n                        "
+                          )
+                        ]
+                      )
+                    })
+                  ],
+                  2
+                )
+              }),
+              0
+            ),
+            _vm._v(" "),
             _c("select-component", {
               attrs: {
                 label: "後攻 予告先発",
@@ -49414,6 +49531,37 @@ var render = function() {
                 expression: "data.home_probable_pitcher_id"
               }
             }),
+            _vm._v(" "),
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              _vm._l(_vm.visitorHistories, function(visitorHistory) {
+                return _c(
+                  "tr",
+                  [
+                    _c("td", [_vm._v(_vm._s(visitorHistory.date))]),
+                    _vm._v(" "),
+                    _vm._l(visitorHistory.info, function(visitorHistoryPlayer) {
+                      return _c(
+                        "td",
+                        { staticStyle: { "white-space": "nowrap" } },
+                        [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(visitorHistoryPlayer.player) +
+                              " (" +
+                              _vm._s(visitorHistoryPlayer.inning) +
+                              ")\n                        "
+                          )
+                        ]
+                      )
+                    })
+                  ],
+                  2
+                )
+              }),
+              0
+            ),
             _vm._v(" "),
             _c(
               "button",

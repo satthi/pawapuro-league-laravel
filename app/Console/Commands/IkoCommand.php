@@ -236,6 +236,9 @@ class IkoCommand extends Command
                 'position_sub1' => $positionSub[0] ?? null,
                 'position_sub2' => $positionSub[1] ?? null,
                 'position_sub3' => $positionSub[2] ?? null,
+                'accident_type' => $ikoMotoBasePlayer->accident_type,
+                'walk_ritsu' => $ikoMotoBasePlayer->walk_ritsu,
+                'p_walk_ritsu' => $ikoMotoBasePlayer->p_walk_ritsu,
             ]);
 
             // 古いIDと新しいIDのマッチング
@@ -343,6 +346,9 @@ class IkoCommand extends Command
                 'position_sub1' => $positionSub[0] ?? null,
                 'position_sub2' => $positionSub[1] ?? null,
                 'position_sub3' => $positionSub[2] ?? null,
+                'accident_type' => $ikoMotoPlayer->accident_type,
+                'walk_ritsu' => $ikoMotoPlayer->walk_ritsu,
+                'p_walk_ritsu' => $ikoMotoPlayer->p_walk_ritsu,
             ]);
 
             // 古いIDと新しいIDのマッチング

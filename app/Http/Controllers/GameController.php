@@ -68,6 +68,8 @@ class GameController extends Controller
         return [
             'home' => $playerModel->getProbablePitcherOptions($game, $game->home_team_id),
             'visitor' => $playerModel->getProbablePitcherOptions($game, $game->visitor_team_id),
+            'home_hisory' => $playerModel->getPitcherHistory($game, $game->home_team_id),
+            'visitor_hisory' => $playerModel->getPitcherHistory($game, $game->visitor_team_id),
         ];
     }
 
@@ -106,18 +108,32 @@ class GameController extends Controller
                 'now_pitcher' => null,
                 'inning_info' => $playModel->getInningInfo($game),
                 'pithcer_info' => [],
+                'walk' => false,
+                'manrui_walk' => false,
             ];
         } elseif ($game->board_status == GameBoardStatus::STATUS_GAME) {
             // 試合中
             $member = $playModel->getMember($game);
             $nowPlayer = $playModel->getNowPlayerInfo($member, $game);
             $nowPithcer = $playModel->getNowPitcherInfo($member, $game);
+
+            // 四球判定
+            $rand = rand(0, 10000);
+            $pWalkRitsu = $nowPithcer['player']->p_walk_ritsu;
+            $walkRitsu = $nowPlayer['player']->walk_ritsu;
+
+
+            $walKCheck = $pWalkRitsu * $walkRitsu * 100 > $rand;
+            $manruiWalKCheck = $pWalkRitsu * $walkRitsu * 50 > $rand;
+
             return [
                 'member' => $member,
                 'now_player' => $nowPlayer,
                 'now_pitcher' => $nowPithcer,
                 'inning_info' => $playModel->getInningInfo($game),
                 'pithcer_info' => [],
+                'walk' => $walKCheck,
+                'manrui_walk' => $manruiWalKCheck,
             ];
         } elseif ($game->board_status == GameBoardStatus::STATUS_INNING_END) {
             // 交代
@@ -128,6 +144,8 @@ class GameController extends Controller
                 'now_pitcher' => null,
                 'inning_info' => $playModel->getInningInfo($game),
                 'pithcer_info' => [],
+                'walk' => false,
+                'manrui_walk' => false,
             ];
         } elseif ($game->board_status == GameBoardStatus::STATUS_GAMEEND) {
             // 試合終了
@@ -138,6 +156,8 @@ class GameController extends Controller
                 'now_pitcher' => null,
                 'inning_info' => $playModel->getInningInfo($game),
                 'pithcer_info' => $playModel->getPitcherInfo($game),
+                'walk' => false,
+                'manrui_walk' => false,
             ];
         } elseif ($game->board_status == GameBoardStatus::STATUS_GAMEENDED) {
             // 試合終了
@@ -148,6 +168,8 @@ class GameController extends Controller
                 'now_pitcher_id' => null,
                 'inning_info' => $playModel->getInningInfo($game),
                 'pithcer_info' => $playModel->getPitcherInfo($game),
+                'walk' => false,
+                'manrui_walk' => false,
             ];
         }
         // error.

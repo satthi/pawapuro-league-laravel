@@ -59,6 +59,9 @@ class BasePlayer extends Model
         'p_inning',
         'p_jiseki',
         'p_era',
+        'accident_type',
+        'walk_ritsu',
+        'p_walk_ritsu',
     ];
 
     protected $appends = [

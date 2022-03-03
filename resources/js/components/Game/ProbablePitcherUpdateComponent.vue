@@ -4,7 +4,26 @@
             <div class="col-sm-6">
                 <form v-on:submit.prevent="submit(submitPath, {name: 'game.view', params: {gameId: gameId.toString() }})">
                     <select-component label="先行 予告先発" :errors="errors.visitor_probable_pitcher_id" :options="visitorPlayerOptions" :empty=true :value="data.visitor_probable_pitcher_id" v-model="data.visitor_probable_pitcher_id"/>
+                    
+                    <table class="table table-hover">
+                        <tr v-for="homeHistory in homeHistories">
+                            <td>{{ homeHistory.date }}</td>
+                            <td v-for="homeHistoryPlayer in homeHistory.info" style="white-space: nowrap;">
+                                {{ homeHistoryPlayer.player }} ({{ homeHistoryPlayer.inning }})
+                            </td>
+                        </tr>
+                    </table>
+
                     <select-component label="後攻 予告先発" :errors="errors.home_probable_pitcher_id" :options="homePlayerOptions" :empty=true :value="data.home_probable_pitcher_id" v-model="data.home_probable_pitcher_id"/>
+
+                    <table class="table table-hover">
+                        <tr v-for="visitorHistory in visitorHistories">
+                            <td>{{ visitorHistory.date }}</td>
+                            <td v-for="visitorHistoryPlayer in visitorHistory.info" style="white-space: nowrap;">
+                                {{ visitorHistoryPlayer.player }} ({{ visitorHistoryPlayer.inning }})
+                            </td>
+                        </tr>
+                    </table>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
 
@@ -37,7 +56,9 @@
                 data: {},
                 errors: {},
                 homePlayerOptions: {},
-                visitorPlayerOptions: {}
+                visitorPlayerOptions: {},
+                homeHistories: {},
+                visitorHistories: {}
             }
         },
         methods: {
@@ -46,6 +67,8 @@
                     .then((res) => {
                         this.homePlayerOptions = res.data.home;
                         this.visitorPlayerOptions = res.data.visitor;
+                        this.homeHistories = res.data.home_hisory;
+                        this.visitorHistories = res.data.visitor_hisory;
                     });
             },
         },

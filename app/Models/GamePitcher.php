@@ -54,7 +54,7 @@ class GamePitcher extends Model
      */
     public function getStringInningAttribute($value)
     {
-        $string = floor($this->inning / 3);
+        $string = (int)(floor($this->inning / 3));
         if ($this->inning % 3 != 0) {
             $string .= ' ' . ($this->inning % 3) . '/3';
         }
