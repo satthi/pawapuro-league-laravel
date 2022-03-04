@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <h2>{{ data.date }} {{ data.home_team.name }} VS {{ data.visitor_team.name }}</h2>
         <div class="row justify-content-center">
             <div class="col-sm-6">
                 <form v-on:submit.prevent="submit(submitPath, {name: 'game.view', params: {gameId: gameId.toString() }})">

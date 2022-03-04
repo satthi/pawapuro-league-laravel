@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SeasonRequest;
 use App\Models\Season;
 use App\Models\Team;
+use App\Models\Game;
 use App\Models\Player;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,6 +22,12 @@ class SeasonController extends Controller
     {
         return $season;
     }
+
+    public function nextGame(Season $season)
+    {
+        return $season->getNextGame();
+    }
+
     public function add(SeasonRequest $request)
     {
         (new Season())->add($request->all());

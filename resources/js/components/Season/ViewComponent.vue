@@ -13,6 +13,9 @@
                 <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString(), sortType: 'p_era' }}">
                     <button class="btn btn-success">投手成績</button>
                 </router-link>
+                <router-link v-if="nextGameInfo.id != null" v-bind:to="{name: 'game.view', params: {gameId: nextGameInfo.id.toString() }}">
+                    <button class="btn btn-success">次の試合</button>
+                </router-link>
             </form>
         </div>
         <table class="table table-hover">
@@ -62,11 +65,21 @@
             initial() {
                 // チーム情報など込みで詳細画面表示に必要な情報をまとめて取得（したい）
                 this.getData('/api/seasons/detail/' + this.seasonId);
+
+                // 次のゲーム
+                this.nextGame('/api/seasons/next-game/' + this.seasonId);
             },
             getData(getPath) {
                 axios.get(getPath)
                     .then((res) => {
                         this.data = res.data;
+                    });
+            },
+            nextGame(getPath) {
+                axios.get(getPath)
+                    .then((res) => {
+                        this.nextGameInfo = res.data;
+                        console.log(this.nextGameInfo)
                     });
             },
             reShukei(postPath) {
@@ -84,7 +97,10 @@
             return {
                 data: {
                     season: {}
-                }
+                },
+                nextGameInfo: {
+                    'id' : null,
+                },
             }
         },
         mounted() {

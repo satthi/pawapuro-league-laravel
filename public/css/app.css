@@ -10016,7 +10016,7 @@ td.selected {
 }
 
 #play_wrap.container {
-  max-width: 1200px;
+  max-width: 1600px;
 }
 
 #score_board {
@@ -10082,9 +10082,9 @@ table.stamen > tr > td {
 }
 
 .stamen td.seiseki {
-  font-size: 9px;
+  font-size: 15px;
   vertical-align: middle;
-  width: 80px;
+  width: 150px;
   padding: 0;
 }
 

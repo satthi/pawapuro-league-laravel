@@ -215,7 +215,7 @@ class GameController extends Controller
         $requestData = $request->all();
         $playModel = new Play();
         $member = $playModel->getMember($game);
-        $nowPitcherId = $playModel->getNowPitcherId($member, $game);
+        $nowPitcher = $playModel->getNowPitcherInfo($member, $game);
 
         Play::create([
             'game_id' => $game->id,
@@ -226,7 +226,7 @@ class GameController extends Controller
             'out_count' => $requestData['out'],
             'point_count' => $requestData['point'],
             'player_id' => null,
-            'pitcher_id' => $nowPitcherId,
+            'pitcher_id' => $nowPitcher['player']->id,
             'dajun' => null,
             'position' => null,
         ]);
@@ -239,13 +239,13 @@ class GameController extends Controller
         $requestData = $request->all();
         $playModel = new Play();
         $member = $playModel->getMember($game);
-        $nowPlayerId = $playModel->getNowPlayerId($member, $game);
+        $nowPlayer = $playModel->getNowPlayerInfo($member, $game);
         $pinchHitterInfo = Player::find($requestData['pinch_hitter_id']);
         $inningInfo = $playModel->getInningInfo($game);
 
         $memberLists = $teamType == 'home' ? $member['home_team'] : $member['visitor_team'];
         foreach ($memberLists as $memberList) {
-            if ($memberList['player']['id'] == $nowPlayerId) {
+            if ($memberList['player']['id'] == $nowPlayer['player']->id) {
                 // 代打処理
                 Play::create([
                     'game_id' => $game->id,
@@ -309,7 +309,7 @@ class GameController extends Controller
         $stealPlayerId = $requestData['steal_player_id'];
         $stealPlayer = Player::find($stealPlayerId);
         $member = $playModel->getMember($game);
-        $nowPitcherId = $playModel->getNowPitcherId($member, $game);
+        $nowPitcher = $playModel->getNowPitcherInfo($member, $game);
 
         // 盗塁成功
         Play::create([
@@ -321,7 +321,7 @@ class GameController extends Controller
             'out_count' => 0,
             'point_count' => null,
             'player_id' => $stealPlayer->id,
-            'pitcher_id' => $nowPitcherId,
+            'pitcher_id' => $nowPitcher['player']->id,
             'dajun' => null,
             'position' => null,
         ]);
@@ -335,7 +335,7 @@ class GameController extends Controller
         $stealPlayerId = $requestData['steal_player_id'];
         $stealPlayer = Player::find($stealPlayerId);
         $member = $playModel->getMember($game);
-        $nowPitcherId = $playModel->getNowPitcherId($member, $game);
+        $nowPitcher = $playModel->getNowPitcherInfo($member, $game);
 
         // 盗塁失敗
         Play::create([
@@ -347,7 +347,7 @@ class GameController extends Controller
             'out_count' => 1,
             'point_count' => null,
             'player_id' => $stealPlayer->id,
-            'pitcher_id' => $nowPitcherId,
+            'pitcher_id' => $nowPitcher['player']->id,
             'dajun' => null,
             'position' => null,
         ]);

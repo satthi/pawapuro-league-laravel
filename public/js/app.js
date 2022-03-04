@@ -4177,6 +4177,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -6018,11 +6019,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     initial: function initial() {
       // チーム情報など込みで詳細画面表示に必要な情報をまとめて取得（したい）
-      this.getData('/api/seasons/detail/' + this.seasonId);
+      this.getData('/api/seasons/detail/' + this.seasonId); // 次のゲーム
+
+      this.nextGame('/api/seasons/next-game/' + this.seasonId);
     },
     getData: function getData(getPath) {
       var _this = this;
@@ -6031,11 +6037,19 @@ __webpack_require__.r(__webpack_exports__);
         _this.data = res.data;
       });
     },
-    reShukei: function reShukei(postPath) {
+    nextGame: function nextGame(getPath) {
       var _this2 = this;
 
+      axios.get(getPath).then(function (res) {
+        _this2.nextGameInfo = res.data;
+        console.log(_this2.nextGameInfo);
+      });
+    },
+    reShukei: function reShukei(postPath) {
+      var _this3 = this;
+
       axios.post(postPath, this.data).then(function (res) {
-        _this2.initial();
+        _this3.initial();
 
         alert('再集計完了');
       });
@@ -6048,6 +6062,9 @@ __webpack_require__.r(__webpack_exports__);
     return {
       data: {
         season: {}
+      },
+      nextGameInfo: {
+        'id': null
       }
     };
   },
@@ -48269,9 +48286,13 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "col-sm-3" }, [
                         _vm.playData.manrui_walk == true
-                          ? _c("div", [_vm._v("満塁四球")])
+                          ? _c("div", { staticStyle: { color: "red" } }, [
+                              _vm._v("満塁四球")
+                            ])
                           : _vm.playData.walk == true
-                          ? _c("div", [_vm._v("四球")])
+                          ? _c("div", { staticStyle: { color: "red" } }, [
+                              _vm._v("四球")
+                            ])
                           : _c("div", [_vm._v("-")])
                       ])
                     ]),
@@ -49451,6 +49472,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _c("h2", [
+      _vm._v(
+        _vm._s(_vm.data.date) +
+          " " +
+          _vm._s(_vm.data.home_team.name) +
+          " VS " +
+          _vm._s(_vm.data.visitor_team.name)
+      )
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-sm-6" }, [
         _c(
@@ -50506,7 +50537,9 @@ var render = function() {
                 " " +
                 _vm._s(_vm.data.home_team.name) +
                 " VS " +
-                _vm._s(_vm.data.visitor_team.name)
+                _vm._s(_vm.data.visitor_team.name) +
+                " DH: " +
+                _vm._s(_vm.data.dh_flag ? "有" : "無")
             )
           ]),
           _vm._v(" "),
@@ -53485,7 +53518,26 @@ var render = function() {
                 _vm._v("投手成績")
               ])
             ]
-          )
+          ),
+          _vm._v(" "),
+          _vm.nextGameInfo.id != null
+            ? _c(
+                "router-link",
+                {
+                  attrs: {
+                    to: {
+                      name: "game.view",
+                      params: { gameId: _vm.nextGameInfo.id.toString() }
+                    }
+                  }
+                },
+                [
+                  _c("button", { staticClass: "btn btn-success" }, [
+                    _vm._v("次の試合")
+                  ])
+                ]
+              )
+            : _vm._e()
         ],
         1
       )

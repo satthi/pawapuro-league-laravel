@@ -1,6 +1,6 @@
 <template>
     <div class="container" v-if="Object.keys(enums).length">
-        <h2>{{ data.date }} {{ data.home_team.name }} VS {{ data.visitor_team.name }}</h2>
+        <h2>{{ data.date }} {{ data.home_team.name }} VS {{ data.visitor_team.name }} DH: {{ data.dh_flag ? '有' : '無' }}</h2>
         <router-link v-bind:to="{name: 'season.view', params: {seasonId: data.season_id.toString() }}">
             <button class="btn btn-success">シーズン詳細</button>
         </router-link>

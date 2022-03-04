@@ -81,6 +81,19 @@ class Season extends Model
         }
     }
 
+    public function getNextGame()
+    {
+        $gameModel = new Game();
+
+        return $gameModel
+            ->where('season_id', $this->id)
+            ->whereNull('inning')
+            ->orderBy('date', 'ASC')
+            ->orderBy('id', 'ASC')
+            ->first();
+
+    }
+
     ####  attirbute
     /**
      * 削除可能か
@@ -93,5 +106,6 @@ class Season extends Model
         // 後調整
         return true;
     }
+
 
 }

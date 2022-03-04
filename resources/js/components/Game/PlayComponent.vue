@@ -162,8 +162,8 @@
                             {{ gameData.out }}アウト
                         </div>
                         <div class="col-sm-3">
-                            <div v-if="playData.manrui_walk == true">満塁四球</div>
-                            <div v-else-if="playData.walk == true">四球</div>
+                            <div v-if="playData.manrui_walk == true" style="color:red;">満塁四球</div>
+                            <div v-else-if="playData.walk == true" style="color:red;">四球</div>
                             <div v-else>-</div>
                         </div>
                     </div>
