@@ -65,11 +65,14 @@ class GameController extends Controller
     public function getProbablePitcherOptions(Game $game)
     {
         $playerModel = new Player();
+        $gameModel = new Game();
         return [
             'home' => $playerModel->getProbablePitcherOptions($game, $game->home_team_id),
             'visitor' => $playerModel->getProbablePitcherOptions($game, $game->visitor_team_id),
             'home_hisory' => $playerModel->getPitcherHistory($game, $game->home_team_id),
             'visitor_hisory' => $playerModel->getPitcherHistory($game, $game->visitor_team_id),
+            'home_game_schedule' => $gameModel->getGameSchedule($game, $game->home_team_id),
+            'visitor_game_schedule' => $gameModel->getGameSchedule($game, $game->visitor_team_id),
         ];
     }
 

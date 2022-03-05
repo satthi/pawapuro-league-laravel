@@ -58,6 +58,7 @@ class SeasonController extends Controller
         return [
             'season' => $season,
             'teams' => $teamModel->getSeasonTeam($season),
+            'ranking' => $season->getRanking(),
         ];
     }
     public function reShukei(Request $request, Season $season)

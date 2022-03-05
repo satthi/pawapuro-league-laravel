@@ -56,6 +56,17 @@
                 <td>{{ team.p_point }}</td>
             </tr>
         </table>
+        <div class="row">
+            <div class="col-sm-3">
+                <table class="table table-hover">
+                    <tr v-for="avgPlayer in data.ranking.avg">
+                        <td>{{ avgPlayer.team.ryaku_name }}</td>
+                        <td>{{ avgPlayer.name }}</td>
+                        <td>{{ avgPlayer.display_avg }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
 
     </div>
 </template>
@@ -96,7 +107,8 @@
         data: function () {
             return {
                 data: {
-                    season: {}
+                    season: {},
+                    ranking: {},
                 },
                 nextGameInfo: {
                     'id' : null,

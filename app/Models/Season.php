@@ -91,6 +91,29 @@ class Season extends Model
             ->orderBy('date', 'ASC')
             ->orderBy('id', 'ASC')
             ->first();
+    }
+
+    public function getRanking()
+    {
+        $playerModel = new Player();
+
+        $avgPlayer = $playerModel->where('teams.season_id', $this->id)
+            ->where(\DB::raw('(players.dasu::numeric >= teams.game::numeric * 3.1)'), true)
+            ->select('players.name as name', 'players.dasu', 'players.avg', 'players.team_id')
+            ->with('team')
+            ->join('teams', 'teams.id', '=', 'players.team_id')
+            ->orderBy('players.avg', 'DESC')
+            ->orderBy('players.id', 'ASC')
+            ->limit(10)
+            ->get()
+            ;
+
+        \Log::debug($avgPlayer);
+        // \Log::debug($avgPlayer->toSql());
+
+        return [
+            'avg' => $avgPlayer,
+        ];
 
     }
 

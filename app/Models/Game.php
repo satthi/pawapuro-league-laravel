@@ -331,6 +331,43 @@ class Game extends Model
         return $gameLists;
     }
 
+    public function getGameSchedule($game, $teamId)
+    {
+        // 今週・来週のスケジュール取得
+        $todayDate = new Carbon($game->date);
+        // 週の頭(月曜日)の日付
+        $week = $todayDate->format('w');
+        // 日曜日は7として
+        if ($week == 0) {
+            $week = 7;
+        }
+        $weekStartDate = (clone $todayDate)->subDay($week - 1);
+        $returnArray = [];
+        for ($i = 0;$i < 14;$i++) {
+            $targetDate = (clone $weekStartDate)->addDays($i);
+            $returnArray[$i] = [
+                'date' => $targetDate->format('m/d'),
+                'team' => '',
+            ];
+            $targetGame = $this::where('date', $targetDate)
+                ->where(function($q) use ($teamId) {
+                    $q->where('home_team_id', $teamId)
+                        ->orWhere('visitor_team_id', $teamId);
+                })
+                ->first();
+
+            if (!empty($targetGame)) {
+                if ($targetGame->home_team_id == $teamId) {
+                    $returnArray[$i]['team'] = $targetGame->visitor_team->ryaku_name;
+                } else {
+                    $returnArray[$i]['team'] = $targetGame->home_team->ryaku_name;
+                }
+            }
+        }
+
+        return $returnArray;
+    }
+
     private function initialGame($gameLists, $carbonDate)
     {
         $gameLists[$carbonDate->format('Y-m-d')] = [

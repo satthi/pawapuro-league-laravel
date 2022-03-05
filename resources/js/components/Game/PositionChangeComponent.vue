@@ -25,9 +25,9 @@
             <div class="col-sm-3 hikae_waku">
                 <table class="table table-hover">
                     <tr v-for="(hikae, playerKey) in hikaeMemberData">
-                        <td v-on:click="playerClick" :data-key="playerKey" v-bind:class="{'selected' : playerClicked==playerKey}">{{ hikae.name }}</td>
+                        <td v-on:click="playerClick" :data-key="playerKey" v-bind:class="{'selected' : playerClicked==playerKey}">{{ hikae.number }}. {{ hikae.name }}</td>
                     </tr>
-                </table>
+                </table{{ hikae.name }}>
             </div>
         </div>
     </div>

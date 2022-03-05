@@ -93,6 +93,10 @@
                             <td>{{ playData.now_pitcher.playInfo.hr }}</td>
                         </tr>
                         <tr>
+                            <td>奪三振</td>
+                            <td>{{ playData.now_pitcher.playInfo.sansin }}</td>
+                        </tr>
+                        <tr>
                             <td>与四球</td>
                             <td>{{ playData.now_pitcher.playInfo.walk }}</td>
                         </tr>
@@ -382,6 +386,10 @@
                         <tr>
                             <td>被本塁打</td>
                             <td>{{ playData.now_pitcher.playInfo.hr }}</td>
+                        </tr>
+                        <tr>
+                            <td>奪三振</td>
+                            <td>{{ playData.now_pitcher.playInfo.sansin }}</td>
                         </tr>
                         <tr>
                             <td>与四球</td>

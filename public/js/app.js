@@ -3787,6 +3787,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4178,6 +4186,67 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -4200,7 +4269,9 @@ __webpack_require__.r(__webpack_exports__);
       homePlayerOptions: {},
       visitorPlayerOptions: {},
       homeHistories: {},
-      visitorHistories: {}
+      visitorHistories: {},
+      homeGameSchedule: {},
+      visitorGameSchedule: {}
     };
   },
   methods: {
@@ -4212,6 +4283,8 @@ __webpack_require__.r(__webpack_exports__);
         _this.visitorPlayerOptions = res.data.visitor;
         _this.homeHistories = res.data.home_hisory;
         _this.visitorHistories = res.data.visitor_hisory;
+        _this.homeGameSchedule = res.data.home_game_schedule;
+        _this.visitorGameSchedule = res.data.visitor_game_schedule;
       });
     }
   },
@@ -6022,6 +6095,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     initial: function initial() {
@@ -6061,7 +6145,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       data: {
-        season: {}
+        season: {},
+        ranking: {}
       },
       nextGameInfo: {
         'id': null
@@ -46919,7 +47004,7 @@ var render = function() {
                       attrs: { "data-key": hikae.id },
                       on: { click: _vm.playerClick }
                     },
-                    [_vm._v(_vm._s(hikae.name))]
+                    [_vm._v(_vm._s(hikae.number) + ". " + _vm._s(hikae.name))]
                   )
                 ])
               }),
@@ -47083,7 +47168,7 @@ var render = function() {
                       attrs: { "data-key": hikae.id },
                       on: { click: _vm.playerClick }
                     },
-                    [_vm._v(_vm._s(hikae.name))]
+                    [_vm._v(_vm._s(hikae.number) + ". " + _vm._s(hikae.name))]
                   )
                 ])
               }),
@@ -48018,6 +48103,16 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(_vm._s(_vm.playData.now_pitcher.playInfo.hr))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("奪三振")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(_vm.playData.now_pitcher.playInfo.sansin)
+                          )
                         ])
                       ]),
                       _vm._v(" "),
@@ -49233,6 +49328,16 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("tr", [
+                        _c("td", [_vm._v("奪三振")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(_vm.playData.now_pitcher.playInfo.sansin)
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
                         _c("td", [_vm._v("与四球")]),
                         _vm._v(" "),
                         _c("td", [
@@ -49437,7 +49542,7 @@ var render = function() {
                       attrs: { "data-key": playerKey },
                       on: { click: _vm.playerClick }
                     },
-                    [_vm._v(_vm._s(hikae.name))]
+                    [_vm._v(_vm._s(hikae.number) + ". " + _vm._s(hikae.name))]
                   )
                 ])
               }),
@@ -49478,105 +49583,155 @@ var render = function() {
           " " +
           _vm._s(_vm.data.home_team.name) +
           " VS " +
-          _vm._s(_vm.data.visitor_team.name)
+          _vm._s(_vm.data.visitor_team.name) +
+          " DH: " +
+          _vm._s(_vm.data.dh_flag ? "有" : "無")
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-sm-6" }, [
-        _c(
-          "form",
-          {
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                _vm.submit(_vm.submitPath, {
-                  name: "game.view",
-                  params: { gameId: _vm.gameId.toString() }
-                })
-              }
-            }
-          },
-          [
-            _c("select-component", {
-              attrs: {
-                label: "先行 予告先発",
-                errors: _vm.errors.visitor_probable_pitcher_id,
-                options: _vm.visitorPlayerOptions,
-                empty: true,
-                value: _vm.data.visitor_probable_pitcher_id
-              },
-              model: {
-                value: _vm.data.visitor_probable_pitcher_id,
-                callback: function($$v) {
-                  _vm.$set(_vm.data, "visitor_probable_pitcher_id", $$v)
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            _vm.submit(_vm.submitPath, {
+              name: "game.view",
+              params: { gameId: _vm.gameId.toString() }
+            })
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "row justify-content-center" }, [
+          _c(
+            "div",
+            { staticClass: "col-sm-6" },
+            [
+              _c("h3", [_vm._v(_vm._s(_vm.data.visitor_team.name))]),
+              _vm._v(" "),
+              _c("select-component", {
+                attrs: {
+                  label: "先行 予告先発",
+                  errors: _vm.errors.visitor_probable_pitcher_id,
+                  options: _vm.visitorPlayerOptions,
+                  empty: true,
+                  value: _vm.data.visitor_probable_pitcher_id
                 },
-                expression: "data.visitor_probable_pitcher_id"
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "table",
-              { staticClass: "table table-hover" },
-              _vm._l(_vm.homeHistories, function(homeHistory) {
-                return _c(
-                  "tr",
-                  [
-                    _c("td", [_vm._v(_vm._s(homeHistory.date))]),
-                    _vm._v(" "),
-                    _vm._l(homeHistory.info, function(homeHistoryPlayer) {
-                      return _c(
-                        "td",
-                        { staticStyle: { "white-space": "nowrap" } },
-                        [
-                          _vm._v(
-                            "\n                            " +
-                              _vm._s(homeHistoryPlayer.player) +
-                              " (" +
-                              _vm._s(homeHistoryPlayer.inning) +
-                              ")\n                        "
-                          )
-                        ]
-                      )
-                    })
-                  ],
-                  2
-                )
+                model: {
+                  value: _vm.data.visitor_probable_pitcher_id,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "visitor_probable_pitcher_id", $$v)
+                  },
+                  expression: "data.visitor_probable_pitcher_id"
+                }
               }),
-              0
-            ),
-            _vm._v(" "),
-            _c("select-component", {
-              attrs: {
-                label: "後攻 予告先発",
-                errors: _vm.errors.home_probable_pitcher_id,
-                options: _vm.homePlayerOptions,
-                empty: true,
-                value: _vm.data.home_probable_pitcher_id
-              },
-              model: {
-                value: _vm.data.home_probable_pitcher_id,
-                callback: function($$v) {
-                  _vm.$set(_vm.data, "home_probable_pitcher_id", $$v)
-                },
-                expression: "data.home_probable_pitcher_id"
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "table",
-              { staticClass: "table table-hover" },
-              _vm._l(_vm.visitorHistories, function(visitorHistory) {
-                return _c(
-                  "tr",
-                  [
-                    _c("td", [_vm._v(_vm._s(visitorHistory.date))]),
-                    _vm._v(" "),
-                    _vm._l(visitorHistory.info, function(visitorHistoryPlayer) {
-                      return _c(
-                        "td",
-                        { staticStyle: { "white-space": "nowrap" } },
-                        [
+              _vm._v(" "),
+              _c("table", { staticClass: "table table-hover" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[0].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[0].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[1].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[1].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[2].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[2].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[3].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[3].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[4].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[4].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[5].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[5].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[6].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[6].team))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[7].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[7].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[8].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[8].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[9].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[9].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[10].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[10].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[11].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[11].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[12].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[12].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[13].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[13].team))
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "table",
+                { staticClass: "table table-hover" },
+                _vm._l(_vm.visitorHistories, function(visitorHistory) {
+                  return _c(
+                    "tr",
+                    [
+                      _c("td", [_vm._v(_vm._s(visitorHistory.date))]),
+                      _vm._v(" "),
+                      _vm._l(visitorHistory.info, function(
+                        visitorHistoryPlayer
+                      ) {
+                        return _c("td", [
                           _vm._v(
                             "\n                            " +
                               _vm._s(visitorHistoryPlayer.player) +
@@ -49584,46 +49739,232 @@ var render = function() {
                               _vm._s(visitorHistoryPlayer.inning) +
                               ")\n                        "
                           )
-                        ]
-                      )
-                    })
-                  ],
-                  2
-                )
-              }),
-              0
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-              [_vm._v("Submit")]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
+                        ])
+                      })
+                    ],
+                    2
+                  )
+                }),
+                0
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "col-sm-6" },
+            [
+              _c("h3", [_vm._v(_vm._s(_vm.data.home_team.name))]),
+              _vm._v(" "),
+              _c("select-component", {
                 attrs: {
-                  to: {
-                    name: "game.view",
-                    params: { gameId: _vm.gameId.toString() }
-                  }
+                  label: "後攻 予告先発",
+                  errors: _vm.errors.home_probable_pitcher_id,
+                  options: _vm.homePlayerOptions,
+                  empty: true,
+                  value: _vm.data.home_probable_pitcher_id
+                },
+                model: {
+                  value: _vm.data.home_probable_pitcher_id,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "home_probable_pitcher_id", $$v)
+                  },
+                  expression: "data.home_probable_pitcher_id"
                 }
-              },
-              [
-                _c("button", { staticClass: "btn btn-success float-right" }, [
-                  _vm._v("ゲーム詳細に戻る")
+              }),
+              _vm._v(" "),
+              _c("table", { staticClass: "table table-hover" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.homeGameSchedule[0].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.homeGameSchedule[0].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.homeGameSchedule[1].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.homeGameSchedule[1].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.homeGameSchedule[2].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.homeGameSchedule[2].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.homeGameSchedule[3].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.homeGameSchedule[3].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.homeGameSchedule[4].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.homeGameSchedule[4].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.homeGameSchedule[5].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.homeGameSchedule[5].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.homeGameSchedule[6].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.homeGameSchedule[6].team))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.homeGameSchedule[7].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.homeGameSchedule[7].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.homeGameSchedule[8].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.homeGameSchedule[8].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.homeGameSchedule[9].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.homeGameSchedule[9].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.homeGameSchedule[10].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.homeGameSchedule[10].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.homeGameSchedule[11].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.homeGameSchedule[11].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.homeGameSchedule[12].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.homeGameSchedule[12].team))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.homeGameSchedule[13].date)),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.homeGameSchedule[13].team))
+                  ])
                 ])
-              ]
-            )
-          ],
-          1
-        )
-      ])
-    ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "table",
+                { staticClass: "table table-hover" },
+                _vm._l(_vm.homeHistories, function(homeHistory) {
+                  return _c(
+                    "tr",
+                    [
+                      _c("td", [_vm._v(_vm._s(homeHistory.date))]),
+                      _vm._v(" "),
+                      _vm._l(homeHistory.info, function(homeHistoryPlayer) {
+                        return _c("td", [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(homeHistoryPlayer.player) +
+                              " (" +
+                              _vm._s(homeHistoryPlayer.inning) +
+                              ")\n                        "
+                          )
+                        ])
+                      })
+                    ],
+                    2
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+                [_vm._v("Submit")]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  attrs: {
+                    to: {
+                      name: "game.view",
+                      params: { gameId: _vm.gameId.toString() }
+                    }
+                  }
+                },
+                [
+                  _c("button", { staticClass: "btn btn-success float-right" }, [
+                    _vm._v("ゲーム詳細に戻る")
+                  ])
+                ]
+              )
+            ],
+            1
+          )
+        ])
+      ]
+    )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("月")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("火")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("水")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("木")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("金")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("土")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("日")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("月")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("火")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("水")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("木")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("金")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("土")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("日")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -53605,7 +53946,26 @@ var render = function() {
         })
       ],
       2
-    )
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-3" }, [
+        _c(
+          "table",
+          { staticClass: "table table-hover" },
+          _vm._l(_vm.data.ranking.avg, function(avgPlayer) {
+            return _c("tr", [
+              _c("td", [_vm._v(_vm._s(avgPlayer.team.ryaku_name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(avgPlayer.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(avgPlayer.display_avg))])
+            ])
+          }),
+          0
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [

@@ -397,7 +397,7 @@ class Player extends Model
 
             foreach ($gamePitchers as $gamePitcher) {
                 $returnArray[$targetGame->date]['info'][] = [
-                    'player' => $gamePitcher->player->name,
+                    'player' => $gamePitcher->player->name_short,
                     'inning' => $gamePitcher->string_inning,
                 ];
             }

@@ -89,7 +89,7 @@ class Play extends Model
         $playForMembers = $this::whereIn('type', [PlayType::TYPE_STAMEN, PlayType::TYPE_MEMBER_CHANGE])
             ->where('game_id', $game->id)
             ->with('player')
-            ->orderBy('id', 'ASC')
+            ->orderBy('plays.id', 'ASC')
             ->get();
 
         $values = Position::getValues();
@@ -136,6 +136,7 @@ class Play extends Model
 
         $hikaePlayers = Player::where('team_id', $game->home_team_id)
             ->whereNotIn('id', $memberIds)
+            ->orderBy(\DB::raw('number::integer'), 'ASC')
             ->get();
         $key = 10;
         $member['home_team_hikae'] = [];
@@ -147,6 +148,7 @@ class Play extends Model
 
         $hikaePlayers = Player::where('team_id', $game->visitor_team_id)
             ->whereNotIn('id', $memberIds)
+            ->orderBy(\DB::raw('number::integer'), 'ASC')
             ->get();
         $key = 10;
         $member['visitor_team_hikae'] = [];
