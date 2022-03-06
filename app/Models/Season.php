@@ -105,14 +105,89 @@ class Season extends Model
             ->orderBy('players.avg', 'DESC')
             ->orderBy('players.id', 'ASC')
             ->limit(10)
-            ->get()
-            ;
+            ->get();
 
-        \Log::debug($avgPlayer);
-        // \Log::debug($avgPlayer->toSql());
+        $hrPlayer = $playerModel->where('teams.season_id', $this->id)
+            ->where('players.hr', '>' , 0)
+            ->select('players.name as name', 'players.hr', 'players.team_id')
+            ->with('team')
+            ->join('teams', 'teams.id', '=', 'players.team_id')
+            ->orderBy('players.hr', 'DESC')
+            ->orderBy('players.id', 'ASC')
+            ->limit(10)
+            ->get();
+
+        $datenPlayer = $playerModel->where('teams.season_id', $this->id)
+            ->where('players.daten', '>' , 0)
+            ->select('players.name as name', 'players.daten', 'players.team_id')
+            ->with('team')
+            ->join('teams', 'teams.id', '=', 'players.team_id')
+            ->orderBy('players.daten', 'DESC')
+            ->orderBy('players.id', 'ASC')
+            ->limit(10)
+            ->get();
+
+        $stealPlayer = $playerModel->where('teams.season_id', $this->id)
+            ->where('players.steal_success', '>' , 0)
+            ->select('players.name as name', 'players.steal_success', 'players.team_id')
+            ->with('team')
+            ->join('teams', 'teams.id', '=', 'players.team_id')
+            ->orderBy('players.steal_success', 'DESC')
+            ->orderBy('players.id', 'ASC')
+            ->limit(10)
+            ->get();
+
+        $eraPlayer = $playerModel->where('teams.season_id', $this->id)
+            ->where(\DB::raw('(players.p_inning >= teams.game * 3)'), true)
+            ->select('players.name as name', 'players.p_inning', 'players.p_era', 'players.team_id')
+            ->with('team')
+            ->join('teams', 'teams.id', '=', 'players.team_id')
+            ->orderBy('players.p_era', 'ASC')
+            ->orderBy('players.id', 'ASC')
+            ->limit(10)
+            ->get();
+
+
+        $winPlayer = $playerModel->where('teams.season_id', $this->id)
+            ->where('players.p_win', '>' , 0)
+            ->select('players.name as name', 'players.p_win', 'players.team_id')
+            ->with('team')
+            ->join('teams', 'teams.id', '=', 'players.team_id')
+            ->orderBy('players.p_win', 'DESC')
+            ->orderBy('players.id', 'ASC')
+            ->limit(10)
+            ->get();
+
+        $holdPlayer = $playerModel->where('teams.season_id', $this->id)
+            ->where('players.p_hold', '>' , 0)
+            ->select('players.name as name', 'players.p_hold', 'players.team_id')
+            ->with('team')
+            ->join('teams', 'teams.id', '=', 'players.team_id')
+            ->orderBy('players.p_hold', 'DESC')
+            ->orderBy('players.id', 'ASC')
+            ->limit(10)
+            ->get();
+
+
+        $savePlayer = $playerModel->where('teams.season_id', $this->id)
+            ->where('players.p_save', '>' , 0)
+            ->select('players.name as name', 'players.p_save', 'players.team_id')
+            ->with('team')
+            ->join('teams', 'teams.id', '=', 'players.team_id')
+            ->orderBy('players.p_save', 'DESC')
+            ->orderBy('players.id', 'ASC')
+            ->limit(10)
+            ->get();
 
         return [
             'avg' => $avgPlayer,
+            'hr' => $hrPlayer,
+            'daten' => $datenPlayer,
+            'steal' => $stealPlayer,
+            'era' => $eraPlayer,
+            'win' => $winPlayer,
+            'hold' => $holdPlayer,
+            'save' => $savePlayer,
         ];
 
     }

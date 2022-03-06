@@ -374,6 +374,9 @@ class GameController extends Controller
                 $memberList['position']['value'] != $requestData[$dajun]['base_position']['value'] || 
                 $memberList['player']['id'] != $requestData[$dajun]['player']['id']
             ) {
+                if ($memberList['dajun'] == 'P') {
+                    $memberList['dajun'] = 10;
+                }
                 // 守備変更
                 Play::create([
                     'game_id' => $game->id,

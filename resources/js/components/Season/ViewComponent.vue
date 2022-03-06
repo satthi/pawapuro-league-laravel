@@ -58,6 +58,7 @@
         </table>
         <div class="row">
             <div class="col-sm-3">
+                <h4>打率</h4>
                 <table class="table table-hover">
                     <tr v-for="avgPlayer in data.ranking.avg">
                         <td>{{ avgPlayer.team.ryaku_name }}</td>
@@ -66,8 +67,79 @@
                     </tr>
                 </table>
             </div>
+            <div class="col-sm-3">
+                <h4>HR</h4>
+                <table class="table table-hover">
+                    <tr v-for="hrPlayer in data.ranking.hr">
+                        <td>{{ hrPlayer.team.ryaku_name }}</td>
+                        <td>{{ hrPlayer.name }}</td>
+                        <td>{{ hrPlayer.hr }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-3">
+                <h4>打点</h4>
+                <table class="table table-hover">
+                    <tr v-for="dateniPlayer in data.ranking.daten">
+                        <td>{{ dateniPlayer.team.ryaku_name }}</td>
+                        <td>{{ dateniPlayer.name }}</td>
+                        <td>{{ dateniPlayer.daten }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-3">
+                <h4>盗塁</h4>
+                <table class="table table-hover">
+                    <tr v-for="stealPlayer in data.ranking.steal">
+                        <td>{{ stealPlayer.team.ryaku_name }}</td>
+                        <td>{{ stealPlayer.name }}</td>
+                        <td>{{ stealPlayer.steal_success }}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
-
+        <div class="row">
+            <div class="col-sm-3">
+                <h4>防御率</h4>
+                <table class="table table-hover">
+                    <tr v-for="eraPlayer in data.ranking.era">
+                        <td>{{ eraPlayer.team.ryaku_name }}</td>
+                        <td>{{ eraPlayer.name }}</td>
+                        <td>{{ eraPlayer.display_p_era }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-3">
+                <h4>勝利</h4>
+                <table class="table table-hover">
+                    <tr v-for="winPlayer in data.ranking.win">
+                        <td>{{ winPlayer.team.ryaku_name }}</td>
+                        <td>{{ winPlayer.name }}</td>
+                        <td>{{ winPlayer.p_win }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-3">
+                <h4>ホールド</h4>
+                <table class="table table-hover">
+                    <tr v-for="holdPlayer in data.ranking.hold">
+                        <td>{{ holdPlayer.team.ryaku_name }}</td>
+                        <td>{{ holdPlayer.name }}</td>
+                        <td>{{ holdPlayer.p_hold }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-3">
+                <h4>セーブ</h4>
+                <table class="table table-hover">
+                    <tr v-for="savePlayer in data.ranking.save">
+                        <td>{{ savePlayer.team.ryaku_name }}</td>
+                        <td>{{ savePlayer.name }}</td>
+                        <td>{{ savePlayer.p_save }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
 </template>
 <script>

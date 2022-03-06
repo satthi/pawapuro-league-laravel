@@ -6106,6 +6106,78 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     initial: function initial() {
@@ -46991,7 +47063,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-1" }),
           _vm._v(" "),
-          _c("div", { staticClass: "col-sm-3 hikae_waku" }, [
+          _c("div", { staticClass: "col-sm-6 hikae_waku" }, [
             _c(
               "table",
               { staticClass: "table table-hover" },
@@ -47004,7 +47076,20 @@ var render = function() {
                       attrs: { "data-key": hikae.id },
                       on: { click: _vm.playerClick }
                     },
-                    [_vm._v(_vm._s(hikae.number) + ". " + _vm._s(hikae.name))]
+                    [
+                      _vm._v(
+                        _vm._s(hikae.number) +
+                          ". " +
+                          _vm._s(hikae.name) +
+                          " " +
+                          _vm._s(hikae.display_avg) +
+                          " " +
+                          _vm._s(hikae.hr) +
+                          "本 " +
+                          _vm._s(hikae.daten) +
+                          "点"
+                      )
+                    ]
                   )
                 ])
               }),
@@ -49529,7 +49614,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-1" }),
           _vm._v(" "),
-          _c("div", { staticClass: "col-sm-3 hikae_waku" }, [
+          _c("div", { staticClass: "col-sm-6 hikae_waku" }, [
             _c(
               "table",
               { staticClass: "table table-hover" },
@@ -49542,7 +49627,25 @@ var render = function() {
                       attrs: { "data-key": playerKey },
                       on: { click: _vm.playerClick }
                     },
-                    [_vm._v(_vm._s(hikae.number) + ". " + _vm._s(hikae.name))]
+                    [
+                      _vm._v(
+                        _vm._s(hikae.number) +
+                          ". " +
+                          _vm._s(hikae.name) +
+                          " " +
+                          _vm._s(hikae.p_game) +
+                          "試合 " +
+                          _vm._s(hikae.p_win) +
+                          "勝 " +
+                          _vm._s(hikae.p_lose) +
+                          "敗 " +
+                          _vm._s(hikae.p_hold) +
+                          "H " +
+                          _vm._s(hikae.p_save) +
+                          "S " +
+                          _vm._s(hikae.display_p_era)
+                      )
+                    ]
                   )
                 ])
               }),
@@ -53950,6 +54053,8 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-sm-3" }, [
+        _c("h4", [_vm._v("打率")]),
+        _vm._v(" "),
         _c(
           "table",
           { staticClass: "table table-hover" },
@@ -53960,6 +54065,141 @@ var render = function() {
               _c("td", [_vm._v(_vm._s(avgPlayer.name))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(avgPlayer.display_avg))])
+            ])
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-3" }, [
+        _c("h4", [_vm._v("HR")]),
+        _vm._v(" "),
+        _c(
+          "table",
+          { staticClass: "table table-hover" },
+          _vm._l(_vm.data.ranking.hr, function(hrPlayer) {
+            return _c("tr", [
+              _c("td", [_vm._v(_vm._s(hrPlayer.team.ryaku_name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(hrPlayer.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(hrPlayer.hr))])
+            ])
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-3" }, [
+        _c("h4", [_vm._v("打点")]),
+        _vm._v(" "),
+        _c(
+          "table",
+          { staticClass: "table table-hover" },
+          _vm._l(_vm.data.ranking.daten, function(dateniPlayer) {
+            return _c("tr", [
+              _c("td", [_vm._v(_vm._s(dateniPlayer.team.ryaku_name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(dateniPlayer.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(dateniPlayer.daten))])
+            ])
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-3" }, [
+        _c("h4", [_vm._v("盗塁")]),
+        _vm._v(" "),
+        _c(
+          "table",
+          { staticClass: "table table-hover" },
+          _vm._l(_vm.data.ranking.steal, function(stealPlayer) {
+            return _c("tr", [
+              _c("td", [_vm._v(_vm._s(stealPlayer.team.ryaku_name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(stealPlayer.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(stealPlayer.steal_success))])
+            ])
+          }),
+          0
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-3" }, [
+        _c("h4", [_vm._v("防御率")]),
+        _vm._v(" "),
+        _c(
+          "table",
+          { staticClass: "table table-hover" },
+          _vm._l(_vm.data.ranking.era, function(eraPlayer) {
+            return _c("tr", [
+              _c("td", [_vm._v(_vm._s(eraPlayer.team.ryaku_name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(eraPlayer.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(eraPlayer.display_p_era))])
+            ])
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-3" }, [
+        _c("h4", [_vm._v("勝利")]),
+        _vm._v(" "),
+        _c(
+          "table",
+          { staticClass: "table table-hover" },
+          _vm._l(_vm.data.ranking.win, function(winPlayer) {
+            return _c("tr", [
+              _c("td", [_vm._v(_vm._s(winPlayer.team.ryaku_name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(winPlayer.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(winPlayer.p_win))])
+            ])
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-3" }, [
+        _c("h4", [_vm._v("ホールド")]),
+        _vm._v(" "),
+        _c(
+          "table",
+          { staticClass: "table table-hover" },
+          _vm._l(_vm.data.ranking.hold, function(holdPlayer) {
+            return _c("tr", [
+              _c("td", [_vm._v(_vm._s(holdPlayer.team.ryaku_name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(holdPlayer.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(holdPlayer.p_hold))])
+            ])
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-3" }, [
+        _c("h4", [_vm._v("セーブ")]),
+        _vm._v(" "),
+        _c(
+          "table",
+          { staticClass: "table table-hover" },
+          _vm._l(_vm.data.ranking.save, function(savePlayer) {
+            return _c("tr", [
+              _c("td", [_vm._v(_vm._s(savePlayer.team.ryaku_name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(savePlayer.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(savePlayer.p_save))])
             ])
           }),
           0

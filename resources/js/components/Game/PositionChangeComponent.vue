@@ -22,10 +22,10 @@
             </div>
             <div class="col-sm-1">
             </div>
-            <div class="col-sm-3 hikae_waku">
+            <div class="col-sm-6 hikae_waku">
                 <table class="table table-hover">
                     <tr v-for="(hikae, playerKey) in hikaeMemberData">
-                        <td v-on:click="playerClick" :data-key="playerKey" v-bind:class="{'selected' : playerClicked==playerKey}">{{ hikae.number }}. {{ hikae.name }}</td>
+                        <td v-on:click="playerClick" :data-key="playerKey" v-bind:class="{'selected' : playerClicked==playerKey}">{{ hikae.number }}. {{ hikae.name }} {{ hikae.p_game }}試合 {{ hikae.p_win }}勝 {{ hikae.p_lose }}敗 {{ hikae.p_hold }}H {{ hikae.p_save }}S {{ hikae.display_p_era }}</td>
                     </tr>
                 </table{{ hikae.name }}>
             </div>
