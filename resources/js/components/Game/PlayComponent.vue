@@ -162,8 +162,14 @@
                         <div class="col-sm-3">
                             <select-component label="" :options="enums.ResultPoint" :empty=false v-model="data.point"/>
                         </div>
-                        <div class="col-sm-3">
-                            {{ gameData.out }}アウト
+                        <div class="col-sm-3" v-if="gameData.out == 0">
+                            アウト：<span style="color: red;font-size: 22px;">○○</span>
+                        </div>
+                        <div class="col-sm-3" v-if="gameData.out == 1">
+                            アウト：<span style="color: red;font-size: 22px;">●○</span>
+                        </div>
+                        <div class="col-sm-3" v-if="gameData.out == 2">
+                            アウト：<span style="color: red;font-size: 22px;">●●</span>
                         </div>
                         <div class="col-sm-3">
                             <div v-if="playData.manrui_walk == true" style="color:red;">満塁四球</div>

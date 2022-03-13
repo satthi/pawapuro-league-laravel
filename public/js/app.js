@@ -3795,6 +3795,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -48456,13 +48462,53 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-3" }, [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(_vm.gameData.out) +
-                            "アウト\n                    "
-                        )
-                      ]),
+                      _vm.gameData.out == 0
+                        ? _c("div", { staticClass: "col-sm-3" }, [
+                            _vm._v("\n                        アウト："),
+                            _c(
+                              "span",
+                              {
+                                staticStyle: {
+                                  color: "red",
+                                  "font-size": "22px"
+                                }
+                              },
+                              [_vm._v("○○")]
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.gameData.out == 1
+                        ? _c("div", { staticClass: "col-sm-3" }, [
+                            _vm._v("\n                        アウト："),
+                            _c(
+                              "span",
+                              {
+                                staticStyle: {
+                                  color: "red",
+                                  "font-size": "22px"
+                                }
+                              },
+                              [_vm._v("●○")]
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.gameData.out == 2
+                        ? _c("div", { staticClass: "col-sm-3" }, [
+                            _vm._v("\n                        アウト："),
+                            _c(
+                              "span",
+                              {
+                                staticStyle: {
+                                  color: "red",
+                                  "font-size": "22px"
+                                }
+                              },
+                              [_vm._v("●●")]
+                            )
+                          ])
+                        : _vm._e(),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-sm-3" }, [
                         _vm.playData.manrui_walk == true

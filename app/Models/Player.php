@@ -386,7 +386,7 @@ class Player extends Model
         foreach ($targetGames as $targetGame) {
         \Log::debug('AAAA');
             $returnArray[$targetGame->date] = [
-                'date' => $targetGame->date,
+                'date' => (new Carbon($targetGame->date))->format('m/d(D)'),
                 'info' => [],
             ];
             $gamePitchers = $gamePitcherModel->where('game_pitchers.game_id', $targetGame->id)
