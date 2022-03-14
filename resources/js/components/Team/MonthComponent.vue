@@ -5,6 +5,9 @@
             <router-link v-bind:to="{name: 'season.view', params: {seasonId: data.team.season_id.toString() }}">
                 <button class="btn btn-success">シーズン詳細</button>
             </router-link>
+            <router-link v-bind:to="{name: 'team.view', params: {teamId: data.team.id.toString() }}">
+                <button class="btn btn-success">個人成績</button>
+            </router-link>
             <router-link v-for="(monthListParts, index) in monthList" :key="index" v-bind:to="{name: 'team.month', params: {teamId: data.team.id.toString(), month: monthListParts.month }}">
                 <button class="btn btn-success">{{ monthListParts.month }}</button>&nbsp;
             </router-link>
@@ -23,7 +26,7 @@
                 <td v-if="monthInfoRaw[1] != undefined && monthInfoRaw[1].date">
                     {{ monthInfoRaw[1].date }}
                     <span v-if="monthInfoRaw[1].game">
-                        <span v-if="monthInfoRaw[1].game.home_team_id == data.team.id">
+                        <span v-if="monthInfoRaw[1].game.visitor_team_id == data.team.id">
                             <router-link v-bind:to="{name: 'game.view', params: {gameId: monthInfoRaw[1].game.id.toString() }}">
                                 <button class="btn btn-success">vs {{ monthInfoRaw[1].game.visitor_team.ryaku_name }}</button>&nbsp;
                             </router-link>
@@ -31,7 +34,7 @@
                             <span v-if="monthInfoRaw[1].game.inning == 999">
                                 <span v-if="monthInfoRaw[1].game.visitor_point > monthInfoRaw[1].game.home_point" style="font-size:20px;">○</span>
                                 <span v-if="monthInfoRaw[1].game.visitor_point < monthInfoRaw[1].game.home_point" style="font-size:20px;">●</span>
-                                <span v-else style="font-size:20px;">△</span>
+                                <span v-if="monthInfoRaw[1].game.visitor_point == monthInfoRaw[1].game.home_point" style="font-size:20px;">△</span>
                                 <br />
                                 {{ monthInfoRaw[1].game.visitor_point }} - {{ monthInfoRaw[1].game.home_point }}
 
@@ -46,7 +49,7 @@
                                 </span>
                             </span>
                         </span>
-                        <span v-if="monthInfoRaw[1].game.visitor_team_id == data.team.id">
+                        <span v-if="monthInfoRaw[1].game.home_team_id == data.team.id">
                             <router-link v-bind:to="{name: 'game.view', params: {gameId: monthInfoRaw[1].game.id.toString() }}">
                                 <button class="btn btn-success">vs {{ monthInfoRaw[1].game.home_team.ryaku_name }}</button>&nbsp;
                             </router-link>
@@ -54,7 +57,7 @@
                             <span v-if="monthInfoRaw[1].game.inning == 999">
                                 <span v-if="monthInfoRaw[1].game.home_point > monthInfoRaw[1].game.visitor_point" style="font-size:20px;">○</span>
                                 <span v-if="monthInfoRaw[1].game.home_point < monthInfoRaw[1].game.visitor_point" style="font-size:20px;">●</span>
-                                <span v-else style="font-size:20px;">△</span>
+                                <span v-if="monthInfoRaw[1].game.home_point == monthInfoRaw[1].game.visitor_point" style="font-size:20px;">△</span>
                                 <br />
                                 {{ monthInfoRaw[1].game.home_point }} - {{ monthInfoRaw[1].game.visitor_point }}
 
@@ -75,7 +78,7 @@
                 <td v-if="monthInfoRaw[2] != undefined && monthInfoRaw[2].date">
                     {{ monthInfoRaw[2].date }}
                     <span v-if="monthInfoRaw[2].game">
-                        <span v-if="monthInfoRaw[2].game.home_team_id == data.team.id">
+                        <span v-if="monthInfoRaw[2].game.visitor_team_id == data.team.id">
                             <router-link v-bind:to="{name: 'game.view', params: {gameId: monthInfoRaw[2].game.id.toString() }}">
                                 <button class="btn btn-success">vs {{ monthInfoRaw[2].game.visitor_team.ryaku_name }}</button>&nbsp;
                             </router-link>
@@ -83,7 +86,7 @@
                             <span v-if="monthInfoRaw[2].game.inning == 999">
                                 <span v-if="monthInfoRaw[2].game.visitor_point > monthInfoRaw[2].game.home_point" style="font-size:20px;">○</span>
                                 <span v-if="monthInfoRaw[2].game.visitor_point < monthInfoRaw[2].game.home_point" style="font-size:20px;">●</span>
-                                <span v-else style="font-size:20px;">△</span>
+                                <span v-if="monthInfoRaw[2].game.visitor_point == monthInfoRaw[2].game.home_point" style="font-size:20px;">△</span>
                                 <br />
                                 {{ monthInfoRaw[2].game.visitor_point }} - {{ monthInfoRaw[2].game.home_point }}
 
@@ -98,7 +101,7 @@
                                 </span>
                             </span>
                         </span>
-                        <span v-if="monthInfoRaw[2].game.visitor_team_id == data.team.id">
+                        <span v-if="monthInfoRaw[2].game.home_team_id == data.team.id">
                             <router-link v-bind:to="{name: 'game.view', params: {gameId: monthInfoRaw[2].game.id.toString() }}">
                                 <button class="btn btn-success">vs {{ monthInfoRaw[2].game.home_team.ryaku_name }}</button>&nbsp;
                             </router-link>
@@ -106,7 +109,7 @@
                             <span v-if="monthInfoRaw[2].game.inning == 999">
                                 <span v-if="monthInfoRaw[2].game.home_point > monthInfoRaw[2].game.visitor_point" style="font-size:20px;">○</span>
                                 <span v-if="monthInfoRaw[2].game.home_point < monthInfoRaw[2].game.visitor_point" style="font-size:20px;">●</span>
-                                <span v-else style="font-size:20px;">△</span>
+                                <span v-if="monthInfoRaw[2].game.home_point == monthInfoRaw[2].game.visitor_point" style="font-size:20px;">△</span>
                                 <br />
                                 {{ monthInfoRaw[2].game.home_point }} - {{ monthInfoRaw[2].game.visitor_point }}
 
@@ -127,7 +130,7 @@
                 <td v-if="monthInfoRaw[3] != undefined && monthInfoRaw[3].date">
                     {{ monthInfoRaw[3].date }}
                     <span v-if="monthInfoRaw[3].game">
-                        <span v-if="monthInfoRaw[3].game.home_team_id == data.team.id">
+                        <span v-if="monthInfoRaw[3].game.visitor_team_id == data.team.id">
                             <router-link v-bind:to="{name: 'game.view', params: {gameId: monthInfoRaw[3].game.id.toString() }}">
                                 <button class="btn btn-success">vs {{ monthInfoRaw[3].game.visitor_team.ryaku_name }}</button>&nbsp;
                             </router-link>
@@ -135,7 +138,7 @@
                             <span v-if="monthInfoRaw[3].game.inning == 999">
                                 <span v-if="monthInfoRaw[3].game.visitor_point > monthInfoRaw[3].game.home_point" style="font-size:20px;">○</span>
                                 <span v-if="monthInfoRaw[3].game.visitor_point < monthInfoRaw[3].game.home_point" style="font-size:20px;">●</span>
-                                <span v-else style="font-size:20px;">△</span>
+                                <span v-if="monthInfoRaw[3].game.visitor_point == monthInfoRaw[3].game.home_point" style="font-size:20px;">△</span>
                                 <br />
                                 {{ monthInfoRaw[3].game.visitor_point }} - {{ monthInfoRaw[3].game.home_point }}
 
@@ -150,7 +153,7 @@
                                 </span>
                             </span>
                         </span>
-                        <span v-if="monthInfoRaw[3].game.visitor_team_id == data.team.id">
+                        <span v-if="monthInfoRaw[3].game.home_team_id == data.team.id">
                             <router-link v-bind:to="{name: 'game.view', params: {gameId: monthInfoRaw[3].game.id.toString() }}">
                                 <button class="btn btn-success">vs {{ monthInfoRaw[3].game.home_team.ryaku_name }}</button>&nbsp;
                             </router-link>
@@ -158,7 +161,7 @@
                             <span v-if="monthInfoRaw[3].game.inning == 999">
                                 <span v-if="monthInfoRaw[3].game.home_point > monthInfoRaw[3].game.visitor_point" style="font-size:20px;">○</span>
                                 <span v-if="monthInfoRaw[3].game.home_point < monthInfoRaw[3].game.visitor_point" style="font-size:20px;">●</span>
-                                <span v-else style="font-size:20px;">△</span>
+                                <span v-if="monthInfoRaw[3].game.home_point == monthInfoRaw[3].game.visitor_point" style="font-size:20px;">△</span>
                                 <br />
                                 {{ monthInfoRaw[3].game.home_point }} - {{ monthInfoRaw[3].game.visitor_point }}
 
@@ -179,7 +182,7 @@
                 <td v-if="monthInfoRaw[4] != undefined && monthInfoRaw[4].date">
                     {{ monthInfoRaw[4].date }}
                     <span v-if="monthInfoRaw[4].game">
-                        <span v-if="monthInfoRaw[4].game.home_team_id == data.team.id">
+                        <span v-if="monthInfoRaw[4].game.visitor_team_id == data.team.id">
                             <router-link v-bind:to="{name: 'game.view', params: {gameId: monthInfoRaw[4].game.id.toString() }}">
                                 <button class="btn btn-success">vs {{ monthInfoRaw[4].game.visitor_team.ryaku_name }}</button>&nbsp;
                             </router-link>
@@ -187,7 +190,7 @@
                             <span v-if="monthInfoRaw[4].game.inning == 999">
                                 <span v-if="monthInfoRaw[4].game.visitor_point > monthInfoRaw[4].game.home_point" style="font-size:20px;">○</span>
                                 <span v-if="monthInfoRaw[4].game.visitor_point < monthInfoRaw[4].game.home_point" style="font-size:20px;">●</span>
-                                <span v-else style="font-size:20px;">△</span>
+                                <span v-if="monthInfoRaw[4].game.visitor_point == monthInfoRaw[4].game.home_point" style="font-size:20px;">△</span>
                                 <br />
                                 {{ monthInfoRaw[4].game.visitor_point }} - {{ monthInfoRaw[4].game.home_point }}
 
@@ -202,7 +205,7 @@
                                 </span>
                             </span>
                         </span>
-                        <span v-if="monthInfoRaw[4].game.visitor_team_id == data.team.id">
+                        <span v-if="monthInfoRaw[4].game.home_team_id == data.team.id">
                             <router-link v-bind:to="{name: 'game.view', params: {gameId: monthInfoRaw[4].game.id.toString() }}">
                                 <button class="btn btn-success">vs {{ monthInfoRaw[4].game.home_team.ryaku_name }}</button>&nbsp;
                             </router-link>
@@ -210,7 +213,7 @@
                             <span v-if="monthInfoRaw[4].game.inning == 999">
                                 <span v-if="monthInfoRaw[4].game.home_point > monthInfoRaw[4].game.visitor_point" style="font-size:20px;">○</span>
                                 <span v-if="monthInfoRaw[4].game.home_point < monthInfoRaw[4].game.visitor_point" style="font-size:20px;">●</span>
-                                <span v-else style="font-size:20px;">△</span>
+                                <span v-if="monthInfoRaw[4].game.home_point == monthInfoRaw[4].game.visitor_point" style="font-size:20px;">△</span>
                                 <br />
                                 {{ monthInfoRaw[4].game.home_point }} - {{ monthInfoRaw[4].game.visitor_point }}
 
@@ -231,7 +234,7 @@
                 <td v-if="monthInfoRaw[5] != undefined && monthInfoRaw[5].date">
                     {{ monthInfoRaw[5].date }}
                     <span v-if="monthInfoRaw[5].game">
-                        <span v-if="monthInfoRaw[5].game.home_team_id == data.team.id">
+                        <span v-if="monthInfoRaw[5].game.visitor_team_id == data.team.id">
                             <router-link v-bind:to="{name: 'game.view', params: {gameId: monthInfoRaw[5].game.id.toString() }}">
                                 <button class="btn btn-success">vs {{ monthInfoRaw[5].game.visitor_team.ryaku_name }}</button>&nbsp;
                             </router-link>
@@ -239,7 +242,7 @@
                             <span v-if="monthInfoRaw[5].game.inning == 999">
                                 <span v-if="monthInfoRaw[5].game.visitor_point > monthInfoRaw[5].game.home_point" style="font-size:20px;">○</span>
                                 <span v-if="monthInfoRaw[5].game.visitor_point < monthInfoRaw[5].game.home_point" style="font-size:20px;">●</span>
-                                <span v-else style="font-size:20px;">△</span>
+                                <span v-if="monthInfoRaw[5].game.visitor_point == monthInfoRaw[5].game.home_point" style="font-size:20px;">△</span>
                                 <br />
                                 {{ monthInfoRaw[5].game.visitor_point }} - {{ monthInfoRaw[5].game.home_point }}
 
@@ -254,7 +257,7 @@
                                 </span>
                             </span>
                         </span>
-                        <span v-if="monthInfoRaw[5].game.visitor_team_id == data.team.id">
+                        <span v-if="monthInfoRaw[5].game.home_team_id == data.team.id">
                             <router-link v-bind:to="{name: 'game.view', params: {gameId: monthInfoRaw[5].game.id.toString() }}">
                                 <button class="btn btn-success">vs {{ monthInfoRaw[5].game.home_team.ryaku_name }}</button>&nbsp;
                             </router-link>
@@ -262,7 +265,7 @@
                             <span v-if="monthInfoRaw[5].game.inning == 999">
                                 <span v-if="monthInfoRaw[5].game.home_point > monthInfoRaw[5].game.visitor_point" style="font-size:20px;">○</span>
                                 <span v-if="monthInfoRaw[5].game.home_point < monthInfoRaw[5].game.visitor_point" style="font-size:20px;">●</span>
-                                <span v-else style="font-size:20px;">△</span>
+                                <span v-if="monthInfoRaw[5].game.home_point == monthInfoRaw[5].game.visitor_point" style="font-size:20px;">△</span>
                                 <br />
                                 {{ monthInfoRaw[5].game.home_point }} - {{ monthInfoRaw[5].game.visitor_point }}
 
@@ -283,7 +286,7 @@
                 <td v-if="monthInfoRaw[6] != undefined && monthInfoRaw[6].date">
                     {{ monthInfoRaw[6].date }}
                     <span v-if="monthInfoRaw[6].game">
-                        <span v-if="monthInfoRaw[6].game.home_team_id == data.team.id">
+                        <span v-if="monthInfoRaw[6].game.visitor_team_id == data.team.id">
                             <router-link v-bind:to="{name: 'game.view', params: {gameId: monthInfoRaw[6].game.id.toString() }}">
                                 <button class="btn btn-success">vs {{ monthInfoRaw[6].game.visitor_team.ryaku_name }}</button>&nbsp;
                             </router-link>
@@ -291,7 +294,7 @@
                             <span v-if="monthInfoRaw[6].game.inning == 999">
                                 <span v-if="monthInfoRaw[6].game.visitor_point > monthInfoRaw[6].game.home_point" style="font-size:20px;">○</span>
                                 <span v-if="monthInfoRaw[6].game.visitor_point < monthInfoRaw[6].game.home_point" style="font-size:20px;">●</span>
-                                <span v-else style="font-size:20px;">△</span>
+                                <span v-if="monthInfoRaw[6].game.visitor_point == monthInfoRaw[6].game.home_point" style="font-size:20px;">△</span>
                                 <br />
                                 {{ monthInfoRaw[6].game.visitor_point }} - {{ monthInfoRaw[6].game.home_point }}
 
@@ -306,7 +309,7 @@
                                 </span>
                             </span>
                         </span>
-                        <span v-if="monthInfoRaw[6].game.visitor_team_id == data.team.id">
+                        <span v-if="monthInfoRaw[6].game.home_team_id == data.team.id">
                             <router-link v-bind:to="{name: 'game.view', params: {gameId: monthInfoRaw[6].game.id.toString() }}">
                                 <button class="btn btn-success">vs {{ monthInfoRaw[6].game.home_team.ryaku_name }}</button>&nbsp;
                             </router-link>
@@ -314,7 +317,7 @@
                             <span v-if="monthInfoRaw[6].game.inning == 999">
                                 <span v-if="monthInfoRaw[6].game.home_point > monthInfoRaw[6].game.visitor_point" style="font-size:20px;">○</span>
                                 <span v-if="monthInfoRaw[6].game.home_point < monthInfoRaw[6].game.visitor_point" style="font-size:20px;">●</span>
-                                <span v-else style="font-size:20px;">△</span>
+                                <span v-if="monthInfoRaw[6].game.home_point == monthInfoRaw[6].game.visitor_point" style="font-size:20px;">△</span>
                                 <br />
                                 {{ monthInfoRaw[6].game.home_point }} - {{ monthInfoRaw[6].game.visitor_point }}
 
@@ -335,7 +338,7 @@
                 <td v-if="monthInfoRaw[0] != undefined && monthInfoRaw[0].date">
                     {{ monthInfoRaw[0].date }}
                     <span v-if="monthInfoRaw[0].game">
-                        <span v-if="monthInfoRaw[0].game.home_team_id == data.team.id">
+                        <span v-if="monthInfoRaw[0].game.visitor_team_id == data.team.id">
                             <router-link v-bind:to="{name: 'game.view', params: {gameId: monthInfoRaw[0].game.id.toString() }}">
                                 <button class="btn btn-success">vs {{ monthInfoRaw[0].game.visitor_team.ryaku_name }}</button>&nbsp;
                             </router-link>
@@ -343,7 +346,7 @@
                             <span v-if="monthInfoRaw[0].game.inning == 999">
                                 <span v-if="monthInfoRaw[0].game.visitor_point > monthInfoRaw[0].game.home_point" style="font-size:20px;">○</span>
                                 <span v-if="monthInfoRaw[0].game.visitor_point < monthInfoRaw[0].game.home_point" style="font-size:20px;">●</span>
-                                <span v-else style="font-size:20px;">△</span>
+                                <span v-if="monthInfoRaw[0].game.visitor_point == monthInfoRaw[0].game.home_point" style="font-size:20px;">△</span>
                                 <br />
                                 {{ monthInfoRaw[0].game.visitor_point }} - {{ monthInfoRaw[0].game.home_point }}
 
@@ -358,7 +361,7 @@
                                 </span>
                             </span>
                         </span>
-                        <span v-if="monthInfoRaw[0].game.visitor_team_id == data.team.id">
+                        <span v-if="monthInfoRaw[0].game.home_team_id == data.team.id">
                             <router-link v-bind:to="{name: 'game.view', params: {gameId: monthInfoRaw[0].game.id.toString() }}">
                                 <button class="btn btn-success">vs {{ monthInfoRaw[0].game.home_team.ryaku_name }}</button>&nbsp;
                             </router-link>
@@ -366,7 +369,7 @@
                             <span v-if="monthInfoRaw[0].game.inning == 999">
                                 <span v-if="monthInfoRaw[0].game.home_point > monthInfoRaw[0].game.visitor_point" style="font-size:20px;">○</span>
                                 <span v-if="monthInfoRaw[0].game.home_point < monthInfoRaw[0].game.visitor_point" style="font-size:20px;">●</span>
-                                <span v-else style="font-size:20px;">△</span>
+                                <span v-if="monthInfoRaw[0].game.home_point == monthInfoRaw[0].game.visitor_point" style="font-size:20px;">△</span>
                                 <br />
                                 {{ monthInfoRaw[0].game.home_point }} - {{ monthInfoRaw[0].game.visitor_point }}
 

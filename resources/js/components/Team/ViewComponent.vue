@@ -5,6 +5,9 @@
             <router-link v-bind:to="{name: 'season.view', params: {seasonId: data.team.season_id.toString() }}">
                 <button class="btn btn-success">シーズン詳細</button>
             </router-link>
+            <router-link v-bind:to="{name: 'team.view', params: {teamId: data.team.id.toString() }}">
+                <button class="btn btn-success">個人成績</button>
+            </router-link>
             <router-link v-for="(monthListParts, index) in monthList" :key="index" v-bind:to="{name: 'team.month', params: {teamId: data.team.id.toString(), month: monthListParts.month }}">
                 <button class="btn btn-success">{{ monthListParts.month }}</button>&nbsp;
             </router-link>
