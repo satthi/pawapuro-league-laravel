@@ -32,6 +32,7 @@ import GameSummaryComponent from "./components/Game/SummaryComponent";
 import GameFielderSummaryComponent from "./components/Game/FielderSummaryComponent";
 import GamePitcherSummaryComponent from "./components/Game/PitcherSummaryComponent";
 import TeamViewComponent from "./components/Team/ViewComponent";
+import TeamMonthComponent from "./components/Team/MonthComponent";
 import PlayerViewComponent from "./components/Player/ViewComponent";
 
 /**
@@ -234,6 +235,12 @@ const router = new VueRouter({
             path: '/teams/:teamId',
             name: 'team.view',
             component: TeamViewComponent,
+            props: true
+        },
+        {
+            path: '/teams/:teamId/:month/month',
+            name: 'team.month',
+            component: TeamMonthComponent,
             props: true
         },
         {

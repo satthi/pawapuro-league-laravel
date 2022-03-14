@@ -341,9 +341,9 @@ class Game extends Model
         if ($week == 0) {
             $week = 7;
         }
-        $weekStartDate = (clone $todayDate)->subDay($week - 1);
+        $weekStartDate = (clone $todayDate)->subDay($week + 6);
         $returnArray = [];
-        for ($i = 0;$i < 14;$i++) {
+        for ($i = 0;$i < 21;$i++) {
             $targetDate = (clone $weekStartDate)->addDays($i);
             $returnArray[$i] = [
                 'date' => $targetDate->format('m/d'),

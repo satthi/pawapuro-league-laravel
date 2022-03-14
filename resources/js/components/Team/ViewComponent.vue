@@ -5,6 +5,9 @@
             <router-link v-bind:to="{name: 'season.view', params: {seasonId: data.team.season_id.toString() }}">
                 <button class="btn btn-success">シーズン詳細</button>
             </router-link>
+            <router-link v-for="(monthListParts, index) in monthList" :key="index" v-bind:to="{name: 'team.month', params: {teamId: data.team.id.toString(), month: monthListParts.month }}">
+                <button class="btn btn-success">{{ monthListParts.month }}</button>&nbsp;
+            </router-link>
         </div>
         <h3>野手</h3>
         <table class="table table-hover seiseki_table">
@@ -117,12 +120,19 @@
             initial() {
                 // チーム情報など込みで詳細画面表示に必要な情報をまとめて取得（したい）
                 this.getData('/api/teams/view/' + this.teamId);
+                this.getMonthList('/api/teams/get-month-list/' + this.teamId);
             },
             getData(getPath) {
                 axios.get(getPath)
                     .then((res) => {
                         this.data = res.data;
-                        console.log(this.data)
+                    });
+            },
+            getMonthList(getPath) {
+                axios.get(getPath)
+                    .then((res) => {
+                        console.log(res)
+                        this.monthList = res.data;
                     });
             },
         },
@@ -131,7 +141,8 @@
         },
         data: function () {
             return {
-                data: {}
+                data: {},
+                monthList: {}
             }
         },
         mounted() {
