@@ -14,7 +14,7 @@
                     <button class="btn btn-success">投手成績</button>
                 </router-link>
                 <router-link v-if="nextGameInfo.id != null" v-bind:to="{name: 'game.view', params: {gameId: nextGameInfo.id.toString() }}">
-                    <button class="btn btn-success">次の試合</button>
+                    <button class="btn btn-success">次の試合({{ nextGameInfo.date }} {{ nextGameInfo.home_team.name }} VS {{ nextGameInfo.visitor_team.name }})</button>
                 </router-link>
                 <router-link v-bind:to="{name: 'season.trade', params: {seasonId: seasonId.toString()}}">
                     <button class="btn btn-success">トレード</button>

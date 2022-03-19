@@ -348,6 +348,7 @@ class Game extends Model
             $returnArray[$i] = [
                 'date' => $targetDate->format('m/d'),
                 'team' => '',
+                'today' => ($targetDate == $todayDate),
             ];
             $targetGame = $this::where('date', $targetDate)
                 ->where(function($q) use ($teamId) {

@@ -27,13 +27,13 @@
                             <td>{{ visitorGameSchedule[6].date }}<br />{{ visitorGameSchedule[6].team }}</td>
                         </tr>
                         <tr>
-                            <td>{{ visitorGameSchedule[7].date }}<br />{{ visitorGameSchedule[7].team }}</td>
-                            <td>{{ visitorGameSchedule[8].date }}<br />{{ visitorGameSchedule[8].team }}</td>
-                            <td>{{ visitorGameSchedule[9].date }}<br />{{ visitorGameSchedule[9].team }}</td>
-                            <td>{{ visitorGameSchedule[10].date }}<br />{{ visitorGameSchedule[10].team }}</td>
-                            <td>{{ visitorGameSchedule[11].date }}<br />{{ visitorGameSchedule[11].team }}</td>
-                            <td>{{ visitorGameSchedule[12].date }}<br />{{ visitorGameSchedule[12].team }}</td>
-                            <td>{{ visitorGameSchedule[13].date }}<br />{{ visitorGameSchedule[13].team }}</td>
+                            <td v-bind:class="visitorGameSchedule[7].today ? 'today_td' : ''">{{ visitorGameSchedule[7].date }}<br />{{ visitorGameSchedule[7].team }}</td>
+                            <td v-bind:class="visitorGameSchedule[8].today ? 'today_td' : ''">{{ visitorGameSchedule[8].date }}<br />{{ visitorGameSchedule[8].team }}</td>
+                            <td v-bind:class="visitorGameSchedule[9].today ? 'today_td' : ''">{{ visitorGameSchedule[9].date }}<br />{{ visitorGameSchedule[9].team }}</td>
+                            <td v-bind:class="visitorGameSchedule[10].today ? 'today_td' : ''">{{ visitorGameSchedule[10].date }}<br />{{ visitorGameSchedule[10].team }}</td>
+                            <td v-bind:class="visitorGameSchedule[11].today ? 'today_td' : ''">{{ visitorGameSchedule[11].date }}<br />{{ visitorGameSchedule[11].team }}</td>
+                            <td v-bind:class="visitorGameSchedule[12].today ? 'today_td' : ''">{{ visitorGameSchedule[12].date }}<br />{{ visitorGameSchedule[12].team }}</td>
+                            <td v-bind:class="visitorGameSchedule[13].today ? 'today_td' : ''">{{ visitorGameSchedule[13].date }}<br />{{ visitorGameSchedule[13].team }}</td>
                         </tr>
                         <tr>
                             <td>{{ visitorGameSchedule[14].date }}<br />{{ visitorGameSchedule[14].team }}</td>
@@ -77,13 +77,13 @@
                             <td>{{ homeGameSchedule[6].date }}<br />{{ homeGameSchedule[6].team }}</td>
                         </tr>
                         <tr>
-                            <td>{{ homeGameSchedule[7].date }}<br />{{ homeGameSchedule[7].team }}</td>
-                            <td>{{ homeGameSchedule[8].date }}<br />{{ homeGameSchedule[8].team }}</td>
-                            <td>{{ homeGameSchedule[9].date }}<br />{{ homeGameSchedule[9].team }}</td>
-                            <td>{{ homeGameSchedule[10].date }}<br />{{ homeGameSchedule[10].team }}</td>
-                            <td>{{ homeGameSchedule[11].date }}<br />{{ homeGameSchedule[11].team }}</td>
-                            <td>{{ homeGameSchedule[12].date }}<br />{{ homeGameSchedule[12].team }}</td>
-                            <td>{{ homeGameSchedule[13].date }}<br />{{ homeGameSchedule[13].team }}</td>
+                            <td v-bind:class="homeGameSchedule[7].today ? 'today_td' : ''">{{ homeGameSchedule[7].date }}<br />{{ homeGameSchedule[7].team }}</td>
+                            <td v-bind:class="homeGameSchedule[8].today ? 'today_td' : ''">{{ homeGameSchedule[8].date }}<br />{{ homeGameSchedule[8].team }}</td>
+                            <td v-bind:class="homeGameSchedule[9].today ? 'today_td' : ''">{{ homeGameSchedule[9].date }}<br />{{ homeGameSchedule[9].team }}</td>
+                            <td v-bind:class="homeGameSchedule[10].today ? 'today_td' : ''">{{ homeGameSchedule[10].date }}<br />{{ homeGameSchedule[10].team }}</td>
+                            <td v-bind:class="homeGameSchedule[11].today ? 'today_td' : ''">{{ homeGameSchedule[11].date }}<br />{{ homeGameSchedule[11].team }}</td>
+                            <td v-bind:class="homeGameSchedule[12].today ? 'today_td' : ''">{{ homeGameSchedule[12].date }}<br />{{ homeGameSchedule[12].team }}</td>
+                            <td v-bind:class="homeGameSchedule[13].today ? 'today_td' : ''">{{ homeGameSchedule[13].date }}<br />{{ homeGameSchedule[13].team }}</td>
                         </tr>
                         <tr>
                             <td>{{ homeGameSchedule[14].date }}<br />{{ homeGameSchedule[14].team }}</td>

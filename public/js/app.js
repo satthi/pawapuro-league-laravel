@@ -48805,7 +48805,7 @@ var render = function() {
             ),
             _vm._v(" "),
             _vm.gameData.is_visitor_team_phpr && _vm.playData.now_player != null
-              ? _c("div", [
+              ? _c("div", { staticClass: "game_player_info" }, [
                   _c("div", [
                     _vm._v(
                       "\n                    [" +
@@ -48820,7 +48820,7 @@ var render = function() {
                     _c("img", {
                       attrs: {
                         src: _vm.playData.now_player.player.img_path,
-                        width: "200"
+                        width: "100"
                       }
                     })
                   ]),
@@ -48873,7 +48873,7 @@ var render = function() {
               : _vm._e(),
             _vm._v(" "),
             _vm.gameData.is_home_team_phpr && _vm.playData.now_pitcher != null
-              ? _c("div", [
+              ? _c("div", { staticClass: "game_player_info" }, [
                   _c("div", [
                     _vm._v(
                       "\n                    [" +
@@ -48888,7 +48888,7 @@ var render = function() {
                     _c("img", {
                       attrs: {
                         src: _vm.playData.now_pitcher.player.img_path,
-                        width: "200"
+                        width: "100"
                       }
                     })
                   ]),
@@ -50065,7 +50065,7 @@ var render = function() {
             ),
             _vm._v(" "),
             _vm.gameData.is_home_team_phpr && _vm.playData.now_player != null
-              ? _c("div", [
+              ? _c("div", { staticClass: "game_player_info" }, [
                   _c("div", [
                     _vm._v(
                       "\n                    [" +
@@ -50080,7 +50080,7 @@ var render = function() {
                     _c("img", {
                       attrs: {
                         src: _vm.playData.now_player.player.img_path,
-                        width: "200"
+                        width: "100"
                       }
                     })
                   ]),
@@ -50134,7 +50134,7 @@ var render = function() {
             _vm._v(" "),
             _vm.gameData.is_visitor_team_phpr &&
             _vm.playData.now_pitcher != null
-              ? _c("div", [
+              ? _c("div", { staticClass: "game_player_info" }, [
                   _c("div", [
                     _vm._v(
                       "\n                    [" +
@@ -50149,7 +50149,7 @@ var render = function() {
                     _c("img", {
                       attrs: {
                         src: _vm.playData.now_pitcher.player.img_path,
-                        width: "200"
+                        width: "100"
                       }
                     })
                   ]),
@@ -50560,47 +50560,89 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("tr", [
-                  _c("td", [
-                    _vm._v(_vm._s(_vm.visitorGameSchedule[7].date)),
-                    _c("br"),
-                    _vm._v(_vm._s(_vm.visitorGameSchedule[7].team))
-                  ]),
+                  _c(
+                    "td",
+                    {
+                      class: _vm.visitorGameSchedule[7].today ? "today_td" : ""
+                    },
+                    [
+                      _vm._v(_vm._s(_vm.visitorGameSchedule[7].date)),
+                      _c("br"),
+                      _vm._v(_vm._s(_vm.visitorGameSchedule[7].team))
+                    ]
+                  ),
                   _vm._v(" "),
-                  _c("td", [
-                    _vm._v(_vm._s(_vm.visitorGameSchedule[8].date)),
-                    _c("br"),
-                    _vm._v(_vm._s(_vm.visitorGameSchedule[8].team))
-                  ]),
+                  _c(
+                    "td",
+                    {
+                      class: _vm.visitorGameSchedule[8].today ? "today_td" : ""
+                    },
+                    [
+                      _vm._v(_vm._s(_vm.visitorGameSchedule[8].date)),
+                      _c("br"),
+                      _vm._v(_vm._s(_vm.visitorGameSchedule[8].team))
+                    ]
+                  ),
                   _vm._v(" "),
-                  _c("td", [
-                    _vm._v(_vm._s(_vm.visitorGameSchedule[9].date)),
-                    _c("br"),
-                    _vm._v(_vm._s(_vm.visitorGameSchedule[9].team))
-                  ]),
+                  _c(
+                    "td",
+                    {
+                      class: _vm.visitorGameSchedule[9].today ? "today_td" : ""
+                    },
+                    [
+                      _vm._v(_vm._s(_vm.visitorGameSchedule[9].date)),
+                      _c("br"),
+                      _vm._v(_vm._s(_vm.visitorGameSchedule[9].team))
+                    ]
+                  ),
                   _vm._v(" "),
-                  _c("td", [
-                    _vm._v(_vm._s(_vm.visitorGameSchedule[10].date)),
-                    _c("br"),
-                    _vm._v(_vm._s(_vm.visitorGameSchedule[10].team))
-                  ]),
+                  _c(
+                    "td",
+                    {
+                      class: _vm.visitorGameSchedule[10].today ? "today_td" : ""
+                    },
+                    [
+                      _vm._v(_vm._s(_vm.visitorGameSchedule[10].date)),
+                      _c("br"),
+                      _vm._v(_vm._s(_vm.visitorGameSchedule[10].team))
+                    ]
+                  ),
                   _vm._v(" "),
-                  _c("td", [
-                    _vm._v(_vm._s(_vm.visitorGameSchedule[11].date)),
-                    _c("br"),
-                    _vm._v(_vm._s(_vm.visitorGameSchedule[11].team))
-                  ]),
+                  _c(
+                    "td",
+                    {
+                      class: _vm.visitorGameSchedule[11].today ? "today_td" : ""
+                    },
+                    [
+                      _vm._v(_vm._s(_vm.visitorGameSchedule[11].date)),
+                      _c("br"),
+                      _vm._v(_vm._s(_vm.visitorGameSchedule[11].team))
+                    ]
+                  ),
                   _vm._v(" "),
-                  _c("td", [
-                    _vm._v(_vm._s(_vm.visitorGameSchedule[12].date)),
-                    _c("br"),
-                    _vm._v(_vm._s(_vm.visitorGameSchedule[12].team))
-                  ]),
+                  _c(
+                    "td",
+                    {
+                      class: _vm.visitorGameSchedule[12].today ? "today_td" : ""
+                    },
+                    [
+                      _vm._v(_vm._s(_vm.visitorGameSchedule[12].date)),
+                      _c("br"),
+                      _vm._v(_vm._s(_vm.visitorGameSchedule[12].team))
+                    ]
+                  ),
                   _vm._v(" "),
-                  _c("td", [
-                    _vm._v(_vm._s(_vm.visitorGameSchedule[13].date)),
-                    _c("br"),
-                    _vm._v(_vm._s(_vm.visitorGameSchedule[13].team))
-                  ])
+                  _c(
+                    "td",
+                    {
+                      class: _vm.visitorGameSchedule[13].today ? "today_td" : ""
+                    },
+                    [
+                      _vm._v(_vm._s(_vm.visitorGameSchedule[13].date)),
+                      _c("br"),
+                      _vm._v(_vm._s(_vm.visitorGameSchedule[13].team))
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
                 _c("tr", [
@@ -50751,47 +50793,75 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("tr", [
-                  _c("td", [
-                    _vm._v(_vm._s(_vm.homeGameSchedule[7].date)),
-                    _c("br"),
-                    _vm._v(_vm._s(_vm.homeGameSchedule[7].team))
-                  ]),
+                  _c(
+                    "td",
+                    { class: _vm.homeGameSchedule[7].today ? "today_td" : "" },
+                    [
+                      _vm._v(_vm._s(_vm.homeGameSchedule[7].date)),
+                      _c("br"),
+                      _vm._v(_vm._s(_vm.homeGameSchedule[7].team))
+                    ]
+                  ),
                   _vm._v(" "),
-                  _c("td", [
-                    _vm._v(_vm._s(_vm.homeGameSchedule[8].date)),
-                    _c("br"),
-                    _vm._v(_vm._s(_vm.homeGameSchedule[8].team))
-                  ]),
+                  _c(
+                    "td",
+                    { class: _vm.homeGameSchedule[8].today ? "today_td" : "" },
+                    [
+                      _vm._v(_vm._s(_vm.homeGameSchedule[8].date)),
+                      _c("br"),
+                      _vm._v(_vm._s(_vm.homeGameSchedule[8].team))
+                    ]
+                  ),
                   _vm._v(" "),
-                  _c("td", [
-                    _vm._v(_vm._s(_vm.homeGameSchedule[9].date)),
-                    _c("br"),
-                    _vm._v(_vm._s(_vm.homeGameSchedule[9].team))
-                  ]),
+                  _c(
+                    "td",
+                    { class: _vm.homeGameSchedule[9].today ? "today_td" : "" },
+                    [
+                      _vm._v(_vm._s(_vm.homeGameSchedule[9].date)),
+                      _c("br"),
+                      _vm._v(_vm._s(_vm.homeGameSchedule[9].team))
+                    ]
+                  ),
                   _vm._v(" "),
-                  _c("td", [
-                    _vm._v(_vm._s(_vm.homeGameSchedule[10].date)),
-                    _c("br"),
-                    _vm._v(_vm._s(_vm.homeGameSchedule[10].team))
-                  ]),
+                  _c(
+                    "td",
+                    { class: _vm.homeGameSchedule[10].today ? "today_td" : "" },
+                    [
+                      _vm._v(_vm._s(_vm.homeGameSchedule[10].date)),
+                      _c("br"),
+                      _vm._v(_vm._s(_vm.homeGameSchedule[10].team))
+                    ]
+                  ),
                   _vm._v(" "),
-                  _c("td", [
-                    _vm._v(_vm._s(_vm.homeGameSchedule[11].date)),
-                    _c("br"),
-                    _vm._v(_vm._s(_vm.homeGameSchedule[11].team))
-                  ]),
+                  _c(
+                    "td",
+                    { class: _vm.homeGameSchedule[11].today ? "today_td" : "" },
+                    [
+                      _vm._v(_vm._s(_vm.homeGameSchedule[11].date)),
+                      _c("br"),
+                      _vm._v(_vm._s(_vm.homeGameSchedule[11].team))
+                    ]
+                  ),
                   _vm._v(" "),
-                  _c("td", [
-                    _vm._v(_vm._s(_vm.homeGameSchedule[12].date)),
-                    _c("br"),
-                    _vm._v(_vm._s(_vm.homeGameSchedule[12].team))
-                  ]),
+                  _c(
+                    "td",
+                    { class: _vm.homeGameSchedule[12].today ? "today_td" : "" },
+                    [
+                      _vm._v(_vm._s(_vm.homeGameSchedule[12].date)),
+                      _c("br"),
+                      _vm._v(_vm._s(_vm.homeGameSchedule[12].team))
+                    ]
+                  ),
                   _vm._v(" "),
-                  _c("td", [
-                    _vm._v(_vm._s(_vm.homeGameSchedule[13].date)),
-                    _c("br"),
-                    _vm._v(_vm._s(_vm.homeGameSchedule[13].team))
-                  ])
+                  _c(
+                    "td",
+                    { class: _vm.homeGameSchedule[13].today ? "today_td" : "" },
+                    [
+                      _vm._v(_vm._s(_vm.homeGameSchedule[13].date)),
+                      _c("br"),
+                      _vm._v(_vm._s(_vm.homeGameSchedule[13].team))
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
                 _c("tr", [
@@ -54942,7 +55012,15 @@ var render = function() {
                 },
                 [
                   _c("button", { staticClass: "btn btn-success" }, [
-                    _vm._v("次の試合")
+                    _vm._v(
+                      "次の試合(" +
+                        _vm._s(_vm.nextGameInfo.date) +
+                        " " +
+                        _vm._s(_vm.nextGameInfo.home_team.name) +
+                        " VS " +
+                        _vm._s(_vm.nextGameInfo.visitor_team.name) +
+                        ")"
+                    )
                   ])
                 ]
               )
@@ -55368,8 +55446,8 @@ var render = function() {
                                             _vm._v(
                                               "vs " +
                                                 _vm._s(
-                                                  monthInfoRaw[1].game
-                                                    .visitor_team.ryaku_name
+                                                  monthInfoRaw[1].game.home_team
+                                                    .ryaku_name
                                                 )
                                             )
                                           ]
@@ -55505,8 +55583,8 @@ var render = function() {
                                             _vm._v(
                                               "vs " +
                                                 _vm._s(
-                                                  monthInfoRaw[1].game.home_team
-                                                    .ryaku_name
+                                                  monthInfoRaw[1].game
+                                                    .visitor_team.ryaku_name
                                                 )
                                             )
                                           ]
@@ -55655,8 +55733,8 @@ var render = function() {
                                             _vm._v(
                                               "vs " +
                                                 _vm._s(
-                                                  monthInfoRaw[2].game
-                                                    .visitor_team.ryaku_name
+                                                  monthInfoRaw[2].game.home_team
+                                                    .ryaku_name
                                                 )
                                             )
                                           ]
@@ -55792,8 +55870,8 @@ var render = function() {
                                             _vm._v(
                                               "vs " +
                                                 _vm._s(
-                                                  monthInfoRaw[2].game.home_team
-                                                    .ryaku_name
+                                                  monthInfoRaw[2].game
+                                                    .visitor_team.ryaku_name
                                                 )
                                             )
                                           ]
@@ -55942,8 +56020,8 @@ var render = function() {
                                             _vm._v(
                                               "vs " +
                                                 _vm._s(
-                                                  monthInfoRaw[3].game
-                                                    .visitor_team.ryaku_name
+                                                  monthInfoRaw[3].game.home_team
+                                                    .ryaku_name
                                                 )
                                             )
                                           ]
@@ -56079,8 +56157,8 @@ var render = function() {
                                             _vm._v(
                                               "vs " +
                                                 _vm._s(
-                                                  monthInfoRaw[3].game.home_team
-                                                    .ryaku_name
+                                                  monthInfoRaw[3].game
+                                                    .visitor_team.ryaku_name
                                                 )
                                             )
                                           ]
@@ -56229,8 +56307,8 @@ var render = function() {
                                             _vm._v(
                                               "vs " +
                                                 _vm._s(
-                                                  monthInfoRaw[4].game
-                                                    .visitor_team.ryaku_name
+                                                  monthInfoRaw[4].game.home_team
+                                                    .ryaku_name
                                                 )
                                             )
                                           ]
@@ -56366,8 +56444,8 @@ var render = function() {
                                             _vm._v(
                                               "vs " +
                                                 _vm._s(
-                                                  monthInfoRaw[4].game.home_team
-                                                    .ryaku_name
+                                                  monthInfoRaw[4].game
+                                                    .visitor_team.ryaku_name
                                                 )
                                             )
                                           ]
@@ -56516,8 +56594,8 @@ var render = function() {
                                             _vm._v(
                                               "vs " +
                                                 _vm._s(
-                                                  monthInfoRaw[5].game
-                                                    .visitor_team.ryaku_name
+                                                  monthInfoRaw[5].game.home_team
+                                                    .ryaku_name
                                                 )
                                             )
                                           ]
@@ -56653,8 +56731,8 @@ var render = function() {
                                             _vm._v(
                                               "vs " +
                                                 _vm._s(
-                                                  monthInfoRaw[5].game.home_team
-                                                    .ryaku_name
+                                                  monthInfoRaw[5].game
+                                                    .visitor_team.ryaku_name
                                                 )
                                             )
                                           ]
@@ -56803,8 +56881,8 @@ var render = function() {
                                             _vm._v(
                                               "vs " +
                                                 _vm._s(
-                                                  monthInfoRaw[6].game
-                                                    .visitor_team.ryaku_name
+                                                  monthInfoRaw[6].game.home_team
+                                                    .ryaku_name
                                                 )
                                             )
                                           ]
@@ -56940,8 +57018,8 @@ var render = function() {
                                             _vm._v(
                                               "vs " +
                                                 _vm._s(
-                                                  monthInfoRaw[6].game.home_team
-                                                    .ryaku_name
+                                                  monthInfoRaw[6].game
+                                                    .visitor_team.ryaku_name
                                                 )
                                             )
                                           ]
@@ -57090,8 +57168,8 @@ var render = function() {
                                             _vm._v(
                                               "vs " +
                                                 _vm._s(
-                                                  monthInfoRaw[0].game
-                                                    .visitor_team.ryaku_name
+                                                  monthInfoRaw[0].game.home_team
+                                                    .ryaku_name
                                                 )
                                             )
                                           ]
@@ -57227,8 +57305,8 @@ var render = function() {
                                             _vm._v(
                                               "vs " +
                                                 _vm._s(
-                                                  monthInfoRaw[0].game.home_team
-                                                    .ryaku_name
+                                                  monthInfoRaw[0].game
+                                                    .visitor_team.ryaku_name
                                                 )
                                             )
                                           ]

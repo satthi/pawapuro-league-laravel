@@ -645,7 +645,7 @@ class Player extends Model
         $team = Team::find($requestData['team_id']);
         $basePlayer = BasePlayer::find($isekimotoPlayer->base_player_id);
         $basePlayer->update([
-            'base_player_id' => $team->base_player_id,
+            'base_team_id' => $team->base_team_id,
             'number' => $requestData['number'],
         ]);
 

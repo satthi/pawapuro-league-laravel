@@ -48,12 +48,12 @@
                         <button class="btn btn-success">守備</button>
                     </router-link>
                 </div>
-                <div  v-if="gameData.is_visitor_team_phpr && playData.now_player != null">
+                <div  v-if="gameData.is_visitor_team_phpr && playData.now_player != null" class="game_player_info">
                     <div>
                         [{{ playData.now_player.player.number }}] {{ playData.now_player.player.name }}
                     </div>
                     <div>
-                        <img :src="playData.now_player.player.img_path" width="200"/>
+                        <img :src="playData.now_player.player.img_path" width="100"/>
                     </div>
                     <div>
                         {{ playData.now_player.seiseki.dageki }}
@@ -69,12 +69,12 @@
                     </table>
                 </div>
 
-                <div  v-if="gameData.is_home_team_phpr && playData.now_pitcher != null">
+                <div  v-if="gameData.is_home_team_phpr && playData.now_pitcher != null" class="game_player_info">
                     <div>
                         [{{ playData.now_pitcher.player.number }}] {{ playData.now_pitcher.player.name }}
                     </div>
                     <div>
-                        <img :src="playData.now_pitcher.player.img_path" width="200"/>
+                        <img :src="playData.now_pitcher.player.img_path" width="100"/>
                     </div>
                     <div>
                         {{ playData.now_pitcher.seiseki.pitcher }}
@@ -349,12 +349,12 @@
                     </router-link>
                 </div>
 
-                <div  v-if="gameData.is_home_team_phpr && playData.now_player != null">
+                <div  v-if="gameData.is_home_team_phpr && playData.now_player != null" class="game_player_info">
                     <div>
                         [{{ playData.now_player.player.number }}] {{ playData.now_player.player.name }}
                     </div>
                     <div>
-                        <img :src="playData.now_player.player.img_path" width="200"/>
+                        <img :src="playData.now_player.player.img_path" width="100"/>
                     </div>
                     <div>
                         {{ playData.now_player.seiseki.dageki }}
@@ -370,12 +370,12 @@
                     </table>
 
                 </div>
-                <div  v-if="gameData.is_visitor_team_phpr && playData.now_pitcher != null">
+                <div  v-if="gameData.is_visitor_team_phpr && playData.now_pitcher != null" class="game_player_info">
                     <div>
                         [{{ playData.now_pitcher.player.number }}] {{ playData.now_pitcher.player.name }}
                     </div>
                     <div>
-                        <img :src="playData.now_pitcher.player.img_path" width="200"/>
+                        <img :src="playData.now_pitcher.player.img_path" width="100"/>
                     </div>
                     <div>
                         {{ playData.now_pitcher.seiseki.pitcher }}

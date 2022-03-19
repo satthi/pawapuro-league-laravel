@@ -86,6 +86,7 @@ class Season extends Model
         $gameModel = new Game();
 
         return $gameModel
+            ->with('home_team', 'visitor_team')
             ->where('season_id', $this->id)
             ->whereNull('inning')
             ->orderBy('date', 'ASC')
