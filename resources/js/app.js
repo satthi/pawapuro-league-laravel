@@ -16,6 +16,7 @@ import SeasonEditComponent from "./components/Season/EditComponent";
 import SeasonViewComponent from "./components/Season/ViewComponent";
 import SeasonFielderRankComponent from "./components/Season/FielderRankComponent";
 import SeasonPitcherRankComponent from "./components/Season/PitcherRankComponent";
+import SeasonTradeComponent from "./components/Season/TradeComponent";
 
 import GameIndexComponent from "./components/Game/IndexComponent";
 import GameAddComponent from "./components/Game/AddComponent";
@@ -145,6 +146,12 @@ const router = new VueRouter({
             path: '/season/:seasonId/:sortType/pitcher-rank',
             name: 'season.pitcher-rank',
             component: SeasonPitcherRankComponent,
+            props: true
+        },
+        {
+            path: '/season/:seasonId/trade',
+            name: 'season.trade',
+            component: SeasonTradeComponent,
             props: true
         },
         {

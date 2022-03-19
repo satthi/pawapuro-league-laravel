@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PlayerTradeRequest;
 use App\Enums\PlayerPosition;
 use App\Models\Play;
 use App\Models\Player;
@@ -31,5 +32,22 @@ class PlayerController extends Controller
             'season_pitcher_histories' => $playerModel->getSeasonPitcherHistory($player),
          ];
      }
+
+    public function getOptions(Season $season)
+    {
+        $playerModel = new Player();
+        return $playerModel
+            ->select('players.id as value', \DB::raw('\'[\' || teams.ryaku_name || \']\' || \'[\' || players.number || \']\' || players.name as text'))
+            ->join('teams', 'teams.id', '=', 'players.team_id')
+            ->where('teams.season_id', $season->id)
+            ->orderBy('teams.id', 'ASC')
+            ->orderBy(\DB::raw('players.number::integer'), 'ASC')
+            ->get();
+    }
+
+    public function trade(PlayerTradeRequest $request)
+    {
+        (new Player())->trade($request->all());
+    }
 
 }

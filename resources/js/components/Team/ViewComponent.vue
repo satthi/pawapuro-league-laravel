@@ -38,7 +38,7 @@
                 <th>長<br />打<br />率</th>
                 <th>O<br />P<br />S</th>
             </tr>
-            <tr v-for="fielder in data.fielders">
+            <tr v-for="fielder in data.fielders" v-bind:class="fielder.trade_flag ? 'trade_tr' : ''">
                 <td>{{ fielder.number }}</td>
                 <td>
                     <router-link v-bind:to="{name: 'player.view', params: {playerId: fielder.id.toString() }}">
@@ -90,7 +90,7 @@
                 <th>四<br />球</th>
                 <th>死<br />球</th>
             </tr>
-            <tr v-for="pitcher in data.pitchers">
+            <tr v-for="pitcher in data.pitchers" v-bind:class="pitcher.trade_flag ? 'trade_tr' : ''">
                 <td>{{ pitcher.number }}</td>
                 <td>
                     <router-link v-bind:to="{name: 'player.view', params: {playerId: pitcher.id.toString() }}">

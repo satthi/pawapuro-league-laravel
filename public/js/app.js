@@ -6047,6 +6047,87 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/TradeComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/TradeComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _common_form_InputComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../common/form/InputComponent */ "./resources/js/components/common/form/InputComponent.vue");
+/* harmony import */ var _common_form_SelectComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/form/SelectComponent */ "./resources/js/components/common/form/SelectComponent.vue");
+/* harmony import */ var _mixins_form_add_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/form/add.js */ "./resources/js/mixins/form/add.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    InputComponent: _common_form_InputComponent__WEBPACK_IMPORTED_MODULE_0__.default,
+    SelectComponent: _common_form_SelectComponent__WEBPACK_IMPORTED_MODULE_1__.default
+  },
+  mixins: [_mixins_form_add_js__WEBPACK_IMPORTED_MODULE_2__.default],
+  props: {
+    seasonId: String
+  },
+  computed: {
+    submitPath: function submitPath() {
+      return '/api/players/trade/' + this.seasonId;
+    }
+  },
+  data: function data() {
+    return {
+      data: {
+        'season_id': this.seasonId
+      },
+      errors: {},
+      players: {},
+      teams: {}
+    };
+  },
+  methods: {
+    getPlayers: function getPlayers(getPath) {
+      var _this = this;
+
+      axios.get(getPath).then(function (res) {
+        _this.players = res.data;
+      });
+    },
+    getTeams: function getTeams(getPath) {
+      var _this2 = this;
+
+      axios.get(getPath).then(function (res) {
+        _this2.teams = res.data;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getPlayers('/api/players/get-options/' + this.seasonId);
+    this.getTeams('/api/teams/get-options/' + this.seasonId);
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/ViewComponent.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/ViewComponent.vue?vue&type=script&lang=js& ***!
@@ -6058,6 +6139,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
 //
 //
 //
@@ -7108,7 +7192,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _components_HeaderComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/HeaderComponent */ "./resources/js/components/HeaderComponent.vue");
 /* harmony import */ var _components_BaseTeam_IndexComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/BaseTeam/IndexComponent */ "./resources/js/components/BaseTeam/IndexComponent.vue");
 /* harmony import */ var _components_BaseTeam_AddComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/BaseTeam/AddComponent */ "./resources/js/components/BaseTeam/AddComponent.vue");
@@ -7122,28 +7206,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Season_ViewComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Season/ViewComponent */ "./resources/js/components/Season/ViewComponent.vue");
 /* harmony import */ var _components_Season_FielderRankComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Season/FielderRankComponent */ "./resources/js/components/Season/FielderRankComponent.vue");
 /* harmony import */ var _components_Season_PitcherRankComponent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Season/PitcherRankComponent */ "./resources/js/components/Season/PitcherRankComponent.vue");
-/* harmony import */ var _components_Game_IndexComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Game/IndexComponent */ "./resources/js/components/Game/IndexComponent.vue");
-/* harmony import */ var _components_Game_AddComponent__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Game/AddComponent */ "./resources/js/components/Game/AddComponent.vue");
-/* harmony import */ var _components_Game_AutoAddComponent__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Game/AutoAddComponent */ "./resources/js/components/Game/AutoAddComponent.vue");
-/* harmony import */ var _components_Game_ViewComponent__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Game/ViewComponent */ "./resources/js/components/Game/ViewComponent.vue");
-/* harmony import */ var _components_Game_ProbablePitcherUpdateComponent__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Game/ProbablePitcherUpdateComponent */ "./resources/js/components/Game/ProbablePitcherUpdateComponent.vue");
-/* harmony import */ var _components_Game_StamenEditComponent__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Game/StamenEditComponent */ "./resources/js/components/Game/StamenEditComponent.vue");
-/* harmony import */ var _components_Game_PlayComponent__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/Game/PlayComponent */ "./resources/js/components/Game/PlayComponent.vue");
-/* harmony import */ var _components_Game_PinchHitterComponent__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/Game/PinchHitterComponent */ "./resources/js/components/Game/PinchHitterComponent.vue");
-/* harmony import */ var _components_Game_PinchRunnerComponent__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/Game/PinchRunnerComponent */ "./resources/js/components/Game/PinchRunnerComponent.vue");
-/* harmony import */ var _components_Game_PositionChangeComponent__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/Game/PositionChangeComponent */ "./resources/js/components/Game/PositionChangeComponent.vue");
-/* harmony import */ var _components_Game_StealComponent__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/Game/StealComponent */ "./resources/js/components/Game/StealComponent.vue");
-/* harmony import */ var _components_Game_SummaryComponent__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/Game/SummaryComponent */ "./resources/js/components/Game/SummaryComponent.vue");
-/* harmony import */ var _components_Game_FielderSummaryComponent__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/Game/FielderSummaryComponent */ "./resources/js/components/Game/FielderSummaryComponent.vue");
-/* harmony import */ var _components_Game_PitcherSummaryComponent__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/Game/PitcherSummaryComponent */ "./resources/js/components/Game/PitcherSummaryComponent.vue");
-/* harmony import */ var _components_Team_ViewComponent__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/Team/ViewComponent */ "./resources/js/components/Team/ViewComponent.vue");
-/* harmony import */ var _components_Team_MonthComponent__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/Team/MonthComponent */ "./resources/js/components/Team/MonthComponent.vue");
-/* harmony import */ var _components_Player_ViewComponent__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/Player/ViewComponent */ "./resources/js/components/Player/ViewComponent.vue");
+/* harmony import */ var _components_Season_TradeComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Season/TradeComponent */ "./resources/js/components/Season/TradeComponent.vue");
+/* harmony import */ var _components_Game_IndexComponent__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Game/IndexComponent */ "./resources/js/components/Game/IndexComponent.vue");
+/* harmony import */ var _components_Game_AddComponent__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Game/AddComponent */ "./resources/js/components/Game/AddComponent.vue");
+/* harmony import */ var _components_Game_AutoAddComponent__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Game/AutoAddComponent */ "./resources/js/components/Game/AutoAddComponent.vue");
+/* harmony import */ var _components_Game_ViewComponent__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Game/ViewComponent */ "./resources/js/components/Game/ViewComponent.vue");
+/* harmony import */ var _components_Game_ProbablePitcherUpdateComponent__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Game/ProbablePitcherUpdateComponent */ "./resources/js/components/Game/ProbablePitcherUpdateComponent.vue");
+/* harmony import */ var _components_Game_StamenEditComponent__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/Game/StamenEditComponent */ "./resources/js/components/Game/StamenEditComponent.vue");
+/* harmony import */ var _components_Game_PlayComponent__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/Game/PlayComponent */ "./resources/js/components/Game/PlayComponent.vue");
+/* harmony import */ var _components_Game_PinchHitterComponent__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/Game/PinchHitterComponent */ "./resources/js/components/Game/PinchHitterComponent.vue");
+/* harmony import */ var _components_Game_PinchRunnerComponent__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/Game/PinchRunnerComponent */ "./resources/js/components/Game/PinchRunnerComponent.vue");
+/* harmony import */ var _components_Game_PositionChangeComponent__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/Game/PositionChangeComponent */ "./resources/js/components/Game/PositionChangeComponent.vue");
+/* harmony import */ var _components_Game_StealComponent__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/Game/StealComponent */ "./resources/js/components/Game/StealComponent.vue");
+/* harmony import */ var _components_Game_SummaryComponent__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/Game/SummaryComponent */ "./resources/js/components/Game/SummaryComponent.vue");
+/* harmony import */ var _components_Game_FielderSummaryComponent__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/Game/FielderSummaryComponent */ "./resources/js/components/Game/FielderSummaryComponent.vue");
+/* harmony import */ var _components_Game_PitcherSummaryComponent__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/Game/PitcherSummaryComponent */ "./resources/js/components/Game/PitcherSummaryComponent.vue");
+/* harmony import */ var _components_Team_ViewComponent__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/Team/ViewComponent */ "./resources/js/components/Team/ViewComponent.vue");
+/* harmony import */ var _components_Team_MonthComponent__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/Team/MonthComponent */ "./resources/js/components/Team/MonthComponent.vue");
+/* harmony import */ var _components_Player_ViewComponent__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/Player/ViewComponent */ "./resources/js/components/Player/ViewComponent.vue");
 
  // import TaskListComponent from "./components/TaskListComponent";
 // import TaskShowComponent from "./components/TaskShowComponent";
 // import TaskCreateComponent from "./components/TaskCreateComponent";
 // import TaskEditComponent from "./components/TaskEditComponent";
+
 
 
 
@@ -7183,8 +7269,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default;
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_30__.default);
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_30__.default({
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_31__.default);
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_31__.default({
   mode: 'history',
   routes: [// {
   //     path: '/tasks',
@@ -7272,89 +7358,94 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_30__.default({
     component: _components_Season_PitcherRankComponent__WEBPACK_IMPORTED_MODULE_12__.default,
     props: true
   }, {
+    path: '/season/:seasonId/trade',
+    name: 'season.trade',
+    component: _components_Season_TradeComponent__WEBPACK_IMPORTED_MODULE_13__.default,
+    props: true
+  }, {
     path: '/games/:seasonId',
     name: 'game.index',
-    component: _components_Game_IndexComponent__WEBPACK_IMPORTED_MODULE_13__.default,
+    component: _components_Game_IndexComponent__WEBPACK_IMPORTED_MODULE_14__.default,
     props: true
   }, {
     path: '/games/:seasonId/add',
     name: 'game.add',
-    component: _components_Game_AddComponent__WEBPACK_IMPORTED_MODULE_14__.default,
+    component: _components_Game_AddComponent__WEBPACK_IMPORTED_MODULE_15__.default,
     props: true
   }, {
     path: '/games/:seasonId/auto-add',
     name: 'game.auto_add',
-    component: _components_Game_AutoAddComponent__WEBPACK_IMPORTED_MODULE_15__.default,
+    component: _components_Game_AutoAddComponent__WEBPACK_IMPORTED_MODULE_16__.default,
     props: true
   }, {
     path: '/games/view/:gameId',
     name: 'game.view',
-    component: _components_Game_ViewComponent__WEBPACK_IMPORTED_MODULE_16__.default,
+    component: _components_Game_ViewComponent__WEBPACK_IMPORTED_MODULE_17__.default,
     props: true
   }, {
     path: '/games/:gameId/probable-pitcher-edit',
     name: 'game.probable-pitcher-edit',
-    component: _components_Game_ProbablePitcherUpdateComponent__WEBPACK_IMPORTED_MODULE_17__.default,
+    component: _components_Game_ProbablePitcherUpdateComponent__WEBPACK_IMPORTED_MODULE_18__.default,
     props: true
   }, {
     path: '/games/:gameId/:stamenType/stamen-edit',
     name: 'game.stamen-edit',
-    component: _components_Game_StamenEditComponent__WEBPACK_IMPORTED_MODULE_18__.default,
+    component: _components_Game_StamenEditComponent__WEBPACK_IMPORTED_MODULE_19__.default,
     props: true
   }, {
     path: '/games/:gameId/play',
     name: 'game.play',
-    component: _components_Game_PlayComponent__WEBPACK_IMPORTED_MODULE_19__.default,
+    component: _components_Game_PlayComponent__WEBPACK_IMPORTED_MODULE_20__.default,
     props: true
   }, {
     path: '/games/:gameId/:teamType/ph',
     name: 'game.ph',
-    component: _components_Game_PinchHitterComponent__WEBPACK_IMPORTED_MODULE_20__.default,
+    component: _components_Game_PinchHitterComponent__WEBPACK_IMPORTED_MODULE_21__.default,
     props: true
   }, {
     path: '/games/:gameId/:teamType/pr',
     name: 'game.pr',
-    component: _components_Game_PinchRunnerComponent__WEBPACK_IMPORTED_MODULE_21__.default,
+    component: _components_Game_PinchRunnerComponent__WEBPACK_IMPORTED_MODULE_22__.default,
     props: true
   }, {
     path: '/games/:gameId/:teamType/position',
     name: 'game.position',
-    component: _components_Game_PositionChangeComponent__WEBPACK_IMPORTED_MODULE_22__.default,
+    component: _components_Game_PositionChangeComponent__WEBPACK_IMPORTED_MODULE_23__.default,
     props: true
   }, {
     path: '/games/:gameId/:teamType/steal',
     name: 'game.steal',
-    component: _components_Game_StealComponent__WEBPACK_IMPORTED_MODULE_23__.default,
+    component: _components_Game_StealComponent__WEBPACK_IMPORTED_MODULE_24__.default,
     props: true
   }, {
     path: '/games/:gameId/summary',
     name: 'game.summary',
-    component: _components_Game_SummaryComponent__WEBPACK_IMPORTED_MODULE_24__.default,
+    component: _components_Game_SummaryComponent__WEBPACK_IMPORTED_MODULE_25__.default,
     props: true
   }, {
     path: '/games/:gameId/:type/fielder_summary',
     name: 'game.fielder_summary',
-    component: _components_Game_FielderSummaryComponent__WEBPACK_IMPORTED_MODULE_25__.default,
+    component: _components_Game_FielderSummaryComponent__WEBPACK_IMPORTED_MODULE_26__.default,
     props: true
   }, {
     path: '/games/:gameId/:type/pitcher_summary',
     name: 'game.pitcher_summary',
-    component: _components_Game_PitcherSummaryComponent__WEBPACK_IMPORTED_MODULE_26__.default,
+    component: _components_Game_PitcherSummaryComponent__WEBPACK_IMPORTED_MODULE_27__.default,
     props: true
   }, {
     path: '/teams/:teamId',
     name: 'team.view',
-    component: _components_Team_ViewComponent__WEBPACK_IMPORTED_MODULE_27__.default,
+    component: _components_Team_ViewComponent__WEBPACK_IMPORTED_MODULE_28__.default,
     props: true
   }, {
     path: '/teams/:teamId/:month/month',
     name: 'team.month',
-    component: _components_Team_MonthComponent__WEBPACK_IMPORTED_MODULE_28__.default,
+    component: _components_Team_MonthComponent__WEBPACK_IMPORTED_MODULE_29__.default,
     props: true
   }, {
     path: '/players/:playerId',
     name: 'player.view',
-    component: _components_Player_ViewComponent__WEBPACK_IMPORTED_MODULE_29__.default,
+    component: _components_Player_ViewComponent__WEBPACK_IMPORTED_MODULE_30__.default,
     props: true
   }]
 });
@@ -43997,6 +44088,45 @@ component.options.__file = "resources/js/components/Season/PitcherRankComponent.
 
 /***/ }),
 
+/***/ "./resources/js/components/Season/TradeComponent.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/Season/TradeComponent.vue ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TradeComponent_vue_vue_type_template_id_6750d0ea___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TradeComponent.vue?vue&type=template&id=6750d0ea& */ "./resources/js/components/Season/TradeComponent.vue?vue&type=template&id=6750d0ea&");
+/* harmony import */ var _TradeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TradeComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Season/TradeComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _TradeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _TradeComponent_vue_vue_type_template_id_6750d0ea___WEBPACK_IMPORTED_MODULE_0__.render,
+  _TradeComponent_vue_vue_type_template_id_6750d0ea___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Season/TradeComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Season/ViewComponent.vue":
 /*!**********************************************************!*\
   !*** ./resources/js/components/Season/ViewComponent.vue ***!
@@ -44757,6 +44887,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Season/TradeComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/Season/TradeComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TradeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TradeComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/TradeComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TradeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Season/ViewComponent.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************!*\
   !*** ./resources/js/components/Season/ViewComponent.vue?vue&type=script&lang=js& ***!
@@ -45357,6 +45503,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PitcherRankComponent_vue_vue_type_template_id_35e76bf5___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PitcherRankComponent_vue_vue_type_template_id_35e76bf5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PitcherRankComponent.vue?vue&type=template&id=35e76bf5& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/PitcherRankComponent.vue?vue&type=template&id=35e76bf5&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Season/TradeComponent.vue?vue&type=template&id=6750d0ea&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/Season/TradeComponent.vue?vue&type=template&id=6750d0ea& ***!
+  \******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TradeComponent_vue_vue_type_template_id_6750d0ea___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TradeComponent_vue_vue_type_template_id_6750d0ea___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TradeComponent_vue_vue_type_template_id_6750d0ea___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TradeComponent.vue?vue&type=template&id=6750d0ea& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/TradeComponent.vue?vue&type=template&id=6750d0ea&");
 
 
 /***/ }),
@@ -50444,43 +50607,43 @@ var render = function() {
                   _c("td", [
                     _vm._v(_vm._s(_vm.visitorGameSchedule[14].date)),
                     _c("br"),
-                    _vm._v(_vm._s(_vm.visitorGameSchedule[7].team))
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[14].team))
                   ]),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(_vm._s(_vm.visitorGameSchedule[15].date)),
                     _c("br"),
-                    _vm._v(_vm._s(_vm.visitorGameSchedule[8].team))
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[15].team))
                   ]),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(_vm._s(_vm.visitorGameSchedule[16].date)),
                     _c("br"),
-                    _vm._v(_vm._s(_vm.visitorGameSchedule[9].team))
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[16].team))
                   ]),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(_vm._s(_vm.visitorGameSchedule[17].date)),
                     _c("br"),
-                    _vm._v(_vm._s(_vm.visitorGameSchedule[10].team))
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[17].team))
                   ]),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(_vm._s(_vm.visitorGameSchedule[18].date)),
                     _c("br"),
-                    _vm._v(_vm._s(_vm.visitorGameSchedule[11].team))
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[18].team))
                   ]),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(_vm._s(_vm.visitorGameSchedule[19].date)),
                     _c("br"),
-                    _vm._v(_vm._s(_vm.visitorGameSchedule[12].team))
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[19].team))
                   ]),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(_vm._s(_vm.visitorGameSchedule[20].date)),
                     _c("br"),
-                    _vm._v(_vm._s(_vm.visitorGameSchedule[13].team))
+                    _vm._v(_vm._s(_vm.visitorGameSchedule[20].team))
                   ])
                 ])
               ]),
@@ -50635,43 +50798,43 @@ var render = function() {
                   _c("td", [
                     _vm._v(_vm._s(_vm.homeGameSchedule[14].date)),
                     _c("br"),
-                    _vm._v(_vm._s(_vm.homeGameSchedule[7].team))
+                    _vm._v(_vm._s(_vm.homeGameSchedule[14].team))
                   ]),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(_vm._s(_vm.homeGameSchedule[15].date)),
                     _c("br"),
-                    _vm._v(_vm._s(_vm.homeGameSchedule[8].team))
+                    _vm._v(_vm._s(_vm.homeGameSchedule[15].team))
                   ]),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(_vm._s(_vm.homeGameSchedule[16].date)),
                     _c("br"),
-                    _vm._v(_vm._s(_vm.homeGameSchedule[9].team))
+                    _vm._v(_vm._s(_vm.homeGameSchedule[16].team))
                   ]),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(_vm._s(_vm.homeGameSchedule[17].date)),
                     _c("br"),
-                    _vm._v(_vm._s(_vm.homeGameSchedule[10].team))
+                    _vm._v(_vm._s(_vm.homeGameSchedule[17].team))
                   ]),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(_vm._s(_vm.homeGameSchedule[18].date)),
                     _c("br"),
-                    _vm._v(_vm._s(_vm.homeGameSchedule[11].team))
+                    _vm._v(_vm._s(_vm.homeGameSchedule[18].team))
                   ]),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(_vm._s(_vm.homeGameSchedule[19].date)),
                     _c("br"),
-                    _vm._v(_vm._s(_vm.homeGameSchedule[12].team))
+                    _vm._v(_vm._s(_vm.homeGameSchedule[19].team))
                   ]),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(_vm._s(_vm.homeGameSchedule[20].date)),
                     _c("br"),
-                    _vm._v(_vm._s(_vm.homeGameSchedule[13].team))
+                    _vm._v(_vm._s(_vm.homeGameSchedule[20].team))
                   ])
                 ])
               ]),
@@ -54580,6 +54743,101 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/TradeComponent.vue?vue&type=template&id=6750d0ea&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/TradeComponent.vue?vue&type=template&id=6750d0ea& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-sm-6" }, [
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                _vm.submit(_vm.submitPath, {
+                  name: "season.view",
+                  params: { seasonId: _vm.seasonId.toString() }
+                })
+              }
+            }
+          },
+          [
+            _c("select-component", {
+              attrs: {
+                label: "選手",
+                errors: _vm.errors.player_id,
+                options: _vm.players,
+                empty: true
+              },
+              model: {
+                value: _vm.data.player_id,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "player_id", $$v)
+                },
+                expression: "data.player_id"
+              }
+            }),
+            _vm._v(" "),
+            _c("select-component", {
+              attrs: {
+                label: "移籍先チーム",
+                errors: _vm.errors.team_id,
+                options: _vm.teams,
+                empty: true
+              },
+              model: {
+                value: _vm.data.team_id,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "team_id", $$v)
+                },
+                expression: "data.team_id"
+              }
+            }),
+            _vm._v(" "),
+            _c("input-component", {
+              attrs: { label: "背番号", errors: _vm.errors.number },
+              model: {
+                value: _vm.data.number,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "number", $$v)
+                },
+                expression: "data.number"
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+              [_vm._v("Submit")]
+            )
+          ],
+          1
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/ViewComponent.vue?vue&type=template&id=1e5f4c77&":
 /*!********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/ViewComponent.vue?vue&type=template&id=1e5f4c77& ***!
@@ -54688,7 +54946,24 @@ var render = function() {
                   ])
                 ]
               )
-            : _vm._e()
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              attrs: {
+                to: {
+                  name: "season.trade",
+                  params: { seasonId: _vm.seasonId.toString() }
+                }
+              }
+            },
+            [
+              _c("button", { staticClass: "btn btn-success" }, [
+                _vm._v("トレード")
+              ])
+            ]
+          )
         ],
         1
       )
@@ -57201,7 +57476,7 @@ var render = function() {
             _vm._m(0),
             _vm._v(" "),
             _vm._l(_vm.data.fielders, function(fielder) {
-              return _c("tr", [
+              return _c("tr", { class: fielder.trade_flag ? "trade_tr" : "" }, [
                 _c("td", [_vm._v(_vm._s(fielder.number))]),
                 _vm._v(" "),
                 _c(
@@ -57283,7 +57558,7 @@ var render = function() {
             _vm._m(1),
             _vm._v(" "),
             _vm._l(_vm.data.pitchers, function(pitcher) {
-              return _c("tr", [
+              return _c("tr", { class: pitcher.trade_flag ? "trade_tr" : "" }, [
                 _c("td", [_vm._v(_vm._s(pitcher.number))]),
                 _vm._v(" "),
                 _c(

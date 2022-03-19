@@ -156,6 +156,7 @@ class Stamen extends Model
 
         // 残りのデータをセットする(予告先発以外)
         $players = Player::where('team_id', $teamId)
+            ->where('trade_flag', false)
             ->whereNotIn('id', $stamePlayerIds)
             ->orderBy('position_main', 'ASC')
             ->orderBy(\DB::raw('number::numeric'), 'ASC')
@@ -324,6 +325,7 @@ class Stamen extends Model
 
         // 残りのデータをセットする(予告先発以外)
         $players = Player::where('team_id', $teamId)
+            ->where('trade_flag', false)
             ->orderBy('position_main', 'ASC')
             ->orderBy(\DB::raw('number::numeric'), 'ASC')
             ->whereNotIn('id', $stamenPlayerIds)
@@ -405,6 +407,7 @@ class Stamen extends Model
 
         // 残りのデータをセットする(予告先発以外)
         $players = Player::where('team_id', $teamId)
+            ->where('trade_flag', false)
             ->orderBy('position_main', 'ASC')
             ->orderBy(\DB::raw('number::numeric'), 'ASC')
             ->whereNotIn('id', [$probablePitcherId])

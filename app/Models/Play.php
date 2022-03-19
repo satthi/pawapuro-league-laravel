@@ -135,6 +135,7 @@ class Play extends Model
         }
 
         $hikaePlayers = Player::where('team_id', $game->home_team_id)
+            ->where('trade_flag', false)
             ->whereNotIn('id', $memberIds)
             ->orderBy(\DB::raw('number::integer'), 'ASC')
             ->get();
@@ -147,6 +148,7 @@ class Play extends Model
         }
 
         $hikaePlayers = Player::where('team_id', $game->visitor_team_id)
+            ->where('trade_flag', false)
             ->whereNotIn('id', $memberIds)
             ->orderBy(\DB::raw('number::integer'), 'ASC')
             ->get();

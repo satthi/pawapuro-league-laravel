@@ -16,6 +16,9 @@
                 <router-link v-if="nextGameInfo.id != null" v-bind:to="{name: 'game.view', params: {gameId: nextGameInfo.id.toString() }}">
                     <button class="btn btn-success">次の試合</button>
                 </router-link>
+                <router-link v-bind:to="{name: 'season.trade', params: {seasonId: seasonId.toString()}}">
+                    <button class="btn btn-success">トレード</button>
+                </router-link>
             </form>
         </div>
         <table class="table table-hover">

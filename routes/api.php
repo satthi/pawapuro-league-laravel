@@ -83,5 +83,8 @@ Route::get('/teams/view/{team}', 'App\Http\Controllers\TeamController@view');
 Route::get('/teams/get-options/{season}', 'App\Http\Controllers\TeamController@getOptions');
 Route::get('/teams/get-month-list/{team}', 'App\Http\Controllers\TeamController@getMonthList');
 Route::get('/teams/get-month-info/{team}/{month}', 'App\Http\Controllers\TeamController@getMonthInfo');
+Route::get('/teams/get-month-info/{team}/{month}', 'App\Http\Controllers\TeamController@getMonthInfo');
 
 Route::get('/players/view/{player}', 'App\Http\Controllers\PlayerController@view');
+Route::get('/players/get-options/{season}', 'App\Http\Controllers\PlayerController@getOptions');
+Route::post('/players/trade/{season}', 'App\Http\Controllers\PlayerController@trade');

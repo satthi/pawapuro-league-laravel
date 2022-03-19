@@ -36,13 +36,13 @@
                             <td>{{ visitorGameSchedule[13].date }}<br />{{ visitorGameSchedule[13].team }}</td>
                         </tr>
                         <tr>
-                            <td>{{ visitorGameSchedule[14].date }}<br />{{ visitorGameSchedule[7].team }}</td>
-                            <td>{{ visitorGameSchedule[15].date }}<br />{{ visitorGameSchedule[8].team }}</td>
-                            <td>{{ visitorGameSchedule[16].date }}<br />{{ visitorGameSchedule[9].team }}</td>
-                            <td>{{ visitorGameSchedule[17].date }}<br />{{ visitorGameSchedule[10].team }}</td>
-                            <td>{{ visitorGameSchedule[18].date }}<br />{{ visitorGameSchedule[11].team }}</td>
-                            <td>{{ visitorGameSchedule[19].date }}<br />{{ visitorGameSchedule[12].team }}</td>
-                            <td>{{ visitorGameSchedule[20].date }}<br />{{ visitorGameSchedule[13].team }}</td>
+                            <td>{{ visitorGameSchedule[14].date }}<br />{{ visitorGameSchedule[14].team }}</td>
+                            <td>{{ visitorGameSchedule[15].date }}<br />{{ visitorGameSchedule[15].team }}</td>
+                            <td>{{ visitorGameSchedule[16].date }}<br />{{ visitorGameSchedule[16].team }}</td>
+                            <td>{{ visitorGameSchedule[17].date }}<br />{{ visitorGameSchedule[17].team }}</td>
+                            <td>{{ visitorGameSchedule[18].date }}<br />{{ visitorGameSchedule[18].team }}</td>
+                            <td>{{ visitorGameSchedule[19].date }}<br />{{ visitorGameSchedule[19].team }}</td>
+                            <td>{{ visitorGameSchedule[20].date }}<br />{{ visitorGameSchedule[20].team }}</td>
                         </tr>
                     </table>
                     <table class="table table-hover">
@@ -86,13 +86,13 @@
                             <td>{{ homeGameSchedule[13].date }}<br />{{ homeGameSchedule[13].team }}</td>
                         </tr>
                         <tr>
-                            <td>{{ homeGameSchedule[14].date }}<br />{{ homeGameSchedule[7].team }}</td>
-                            <td>{{ homeGameSchedule[15].date }}<br />{{ homeGameSchedule[8].team }}</td>
-                            <td>{{ homeGameSchedule[16].date }}<br />{{ homeGameSchedule[9].team }}</td>
-                            <td>{{ homeGameSchedule[17].date }}<br />{{ homeGameSchedule[10].team }}</td>
-                            <td>{{ homeGameSchedule[18].date }}<br />{{ homeGameSchedule[11].team }}</td>
-                            <td>{{ homeGameSchedule[19].date }}<br />{{ homeGameSchedule[12].team }}</td>
-                            <td>{{ homeGameSchedule[20].date }}<br />{{ homeGameSchedule[13].team }}</td>
+                            <td>{{ homeGameSchedule[14].date }}<br />{{ homeGameSchedule[14].team }}</td>
+                            <td>{{ homeGameSchedule[15].date }}<br />{{ homeGameSchedule[15].team }}</td>
+                            <td>{{ homeGameSchedule[16].date }}<br />{{ homeGameSchedule[16].team }}</td>
+                            <td>{{ homeGameSchedule[17].date }}<br />{{ homeGameSchedule[17].team }}</td>
+                            <td>{{ homeGameSchedule[18].date }}<br />{{ homeGameSchedule[18].team }}</td>
+                            <td>{{ homeGameSchedule[19].date }}<br />{{ homeGameSchedule[19].team }}</td>
+                            <td>{{ homeGameSchedule[20].date }}<br />{{ homeGameSchedule[20].team }}</td>
                         </tr>
                     </table>
                     <table class="table table-hover">

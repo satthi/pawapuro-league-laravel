@@ -65,6 +65,7 @@ class Player extends Model
         'accident_type',
         'walk_ritsu',
         'p_walk_ritsu',
+        'trade_flag',
     ];
 
     protected $appends = [
@@ -346,6 +347,7 @@ class Player extends Model
         $gameSubDay = (new Carbon($game->date))->subDay()->format('Y/m/d');
 
         $pitchers = $this->where('team_id', $teamId)
+            ->where('trade_flag', false)
             // 並び順の調整
             ->orderBy(\DB::raw('position_main = 1'), 'DESC')
             ->orderBy(\DB::raw('number::integer'), 'ASC')
@@ -614,4 +616,42 @@ class Player extends Model
             ->orderBy('seasons.id', 'ASC')
             ->get();
     }
+
+    public function trade($requestData)
+    {
+        \Log::debug($requestData);
+
+        $isekimotoPlayer = $this::find($requestData['player_id']);
+        // 移籍元のtrade_flagをonに
+        $isekimotoPlayer->update(['trade_flag' => true]);
+
+        // 移籍先のデータの作成
+        $isekisakiPlayerData = [
+            'base_player_id' => $isekimotoPlayer->base_player_id,
+            'team_id' => $requestData['team_id'],
+            'number' => $requestData['number'],
+            'name' => $isekimotoPlayer->name,
+            'name_short' => $isekimotoPlayer->name_short,
+            'hand_p' => $isekimotoPlayer->hand_p,
+            'hand_b' => $isekimotoPlayer->hand_b,
+            'position_main' => $isekimotoPlayer->position_main,
+            'position_sub1' => $isekimotoPlayer->position_sub1,
+            'position_sub2' => $isekimotoPlayer->position_sub2,
+            'position_sub3' => $isekimotoPlayer->position_sub3,
+        ];
+        $this::create($isekisakiPlayerData);
+
+        // baseplayerの情報更新
+        $team = Team::find($requestData['team_id']);
+        $basePlayer = BasePlayer::find($isekimotoPlayer->base_player_id);
+        $basePlayer->update([
+            'base_player_id' => $team->base_player_id,
+            'number' => $requestData['number'],
+        ]);
+
+        // 最後にplayerの集計はかけておく
+        $this->shukei($requestData['season_id']);
+    }
+
+
 }
