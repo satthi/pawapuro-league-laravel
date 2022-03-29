@@ -578,6 +578,7 @@ class Play extends Model
             'steal' => 0,
             'seiseki' => '',
             'position' => '',
+            'now_seiseki' => '-',
         ];
 
         foreach ($plays as $play) {
@@ -629,6 +630,19 @@ class Play extends Model
                         $playHistories[$play->game_id]['steal']++;
                     }
                     break;
+            }
+        }
+
+        $totalDasu = 0;
+        $totalHit = 0;
+        $totalHr = 0;
+        foreach ($playHistories as $gameId => $playHistory) {
+            $totalDasu += $playHistory['dasu'];
+            $totalHit += $playHistory['hit'];
+            $totalHr += $playHistory['hr'];
+
+            if ($totalDasu > 0) {
+                $playHistories[$gameId]['now_seiseki'] = preg_replace('/^0/', '', sprintf('%.3f', round($totalHit / $totalDasu, 3))) . '(' . $totalHr . ')';
             }
         }
 

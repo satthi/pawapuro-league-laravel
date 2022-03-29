@@ -5416,6 +5416,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   watch: {
@@ -52504,6 +52508,8 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(fielder_history.steal))]),
                       _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(fielder_history.now_seiseki))]),
+                      _vm._v(" "),
                       _c("td", { staticStyle: { "text-align": "left" } }, [
                         _vm._v(_vm._s(fielder_history.seiseki))
                       ])
@@ -52570,7 +52576,9 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(pitcher_history.sansin))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(pitcher_history.jiseki))])
+                      _c("td", [_vm._v(_vm._s(pitcher_history.jiseki))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(pitcher_history.era))])
                     ])
                   })
                 ],
@@ -53067,6 +53075,8 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("盗塁")]),
       _vm._v(" "),
+      _c("th", [_vm._v("成績")]),
+      _vm._v(" "),
       _c("th")
     ])
   },
@@ -53093,7 +53103,9 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("奪三振")]),
       _vm._v(" "),
-      _c("th", [_vm._v("自責点")])
+      _c("th", [_vm._v("自責点")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("防御率")])
     ])
   },
   function() {

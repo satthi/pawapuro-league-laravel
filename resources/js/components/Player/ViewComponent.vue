@@ -112,6 +112,7 @@
                     <th>四球</th>
                     <th>死球</th>
                     <th>盗塁</th>
+                    <th>成績</th>
                     <th></th>
                 </tr>
                 <tr v-for="fielder_history in data.fielder_histories">
@@ -130,6 +131,7 @@
                     <td>{{ fielder_history.walk }}</td>
                     <td>{{ fielder_history.dead }}</td>
                     <td>{{ fielder_history.steal }}</td>
+                    <td>{{ fielder_history.now_seiseki }}</td>
                     <td style="text-align:left;">{{ fielder_history.seiseki }}</td>
                 </tr>
             </table>
@@ -150,6 +152,7 @@
                     <th>死球</th>
                     <th>奪三振</th>
                     <th>自責点</th>
+                    <th>防御率</th>
                 </tr>
                 <tr v-for="pitcher_history in data.pitcher_histories">
                     <td>
@@ -166,6 +169,7 @@
                     <td>{{ pitcher_history.dead }}</td>
                     <td>{{ pitcher_history.sansin }}</td>
                     <td>{{ pitcher_history.jiseki }}</td>
+                    <td>{{ pitcher_history.era }}</td>
                 </tr>
             </table>
         </div>

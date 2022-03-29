@@ -185,6 +185,8 @@ class GamePitcher extends Model
         // exit;
 
         $gamePitcherHistories = [];
+        $totalInning = 0;
+        $totalJiseki = 0;
         foreach ($gamePitchers as $gamePitcher) {
             $gamePitcherHistory = [];
             $gamePitcherHistory['game_id'] = $gamePitcher->game_id;
@@ -214,6 +216,14 @@ class GamePitcher extends Model
             $gamePitcherHistory['walk'] = $gamePitcher->walk;
             $gamePitcherHistory['dead'] = $gamePitcher->dead;
             $gamePitcherHistory['sansin'] = $gamePitcher->sansin;
+
+            $totalInning += $gamePitcher->inning;
+            $totalJiseki += $gamePitcher->jiseki;
+            if ($totalInning == 0) {
+                $gamePitcherHistory['era'] = '-';
+            } else {
+                $gamePitcherHistory['era'] = sprintf('%.2f', round($totalJiseki / $totalInning * 27, 2));
+            }
 
             $gamePitcherHistories[] = $gamePitcherHistory;
         }
