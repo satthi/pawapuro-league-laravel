@@ -190,9 +190,9 @@ class GamePitcher extends Model
             $gamePitcherHistory['game_id'] = $gamePitcher->game_id;
             $gamePitcherHistory['date'] = $gamePitcher->game->date;
             if ($gamePitcher->game->home_team_id != $player->team_id) {
-                $gamePitcherHistory['vs'] = $gamePitcher->game->visitor_team->ryaku_name;
-            } else {
                 $gamePitcherHistory['vs'] = $gamePitcher->game->home_team->ryaku_name;
+            } else {
+                $gamePitcherHistory['vs'] = $gamePitcher->game->visitor_team->ryaku_name;
             }
             $gamePitcherHistory['type'] = '';
             if ($gamePitcher->win_flag) {

@@ -25,7 +25,7 @@ class GameEndRequest extends FormRequest
                 function ($attribute, $value, $fail) {
                     $gameInfo = Game::find($this->game_id);
                     if (
-                        $gameInfo->home_team_id != $gameInfo->visitor_team_id &&
+                        $gameInfo->home_point != $gameInfo->visitor_point &&
                         empty($value['win'])
                     ) {
                         $fail('勝が未選択です');
@@ -35,7 +35,7 @@ class GameEndRequest extends FormRequest
                 function ($attribute, $value, $fail) {
                     $gameInfo = Game::find($this->game_id);
                     if (
-                        $gameInfo->home_team_id != $gameInfo->visitor_team_id &&
+                        $gameInfo->home_point != $gameInfo->visitor_point &&
                         empty($value['lose'])
                     ) {
                         $fail('負けが未選択です');

@@ -607,7 +607,7 @@ class Play extends Model
                 case PlayType::TYPE_DAGEKI_KEKKA:
                     $playHistories[$play->game_id]['seiseki'] .= $play->result->name .' '; // 調整
                     $playHistories[$play->game_id]['daseki']++;
-                    if ($play->result->dasu_flag) {
+                    if ($play->result->dasu_count_flag) {
                         $playHistories[$play->game_id]['dasu']++;
                     }
                     if ($play->result->hit_flag) {
