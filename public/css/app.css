@@ -10177,3 +10177,7 @@ table.stamen > tr > td {
 .trade_tr {
   background-color: #999999;
 }
+
+.today_td {
+  background-color: #FFFF00;
+}
