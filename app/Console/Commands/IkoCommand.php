@@ -505,7 +505,7 @@ class IkoCommand extends Command
                 $this->fielderSeisekiSelectParts('walk_flag', 'walk'),
                 $this->fielderSeisekiSelectParts('dead_flag', 'dead'),
             ])
-            ->join('results', 'results.id', '=', 'plays.result_id')
+            ->leftjoin('results', 'results.id', '=', 'plays.result_id')
             ->groupBy('pitcher_id')
             ->groupBy('game_id')
             ->get();

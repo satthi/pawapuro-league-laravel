@@ -120,7 +120,7 @@ class Team extends Model
 
         // 打撃成績の集計
         $dagekiShukei = Play::join('games', 'games.id', '=', 'plays.game_id')
-            ->join('results', 'results.id', '=', 'plays.result_id')
+            ->leftjoin('results', 'results.id', '=', 'plays.result_id')
             ->where('type', PlayType::TYPE_DAGEKI_KEKKA)
             ->where('games.season_id', $seasonId)
             ->select([

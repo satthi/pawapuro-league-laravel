@@ -233,7 +233,7 @@ class Player extends Model
         
         $player = Play::where('player_id', $this->id)
             ->join('games', 'games.id', '=', 'plays.game_id')
-            ->join('results', 'results.id', '=', 'plays.result_id')
+            ->leftjoin('results', 'results.id', '=', 'plays.result_id')
             ->where('date', '<=', $date)
             ->whereIn('type', [PlayType::TYPE_DAGEKI_KEKKA, PlayType::TYPE_STEAL])
             ->groupBy('player_id');
@@ -307,7 +307,7 @@ class Player extends Model
         $checkPlayInfo = Play::where('game_id', $game->id)
             ->where('plays.id', '<=', $lastPlayId)
             ->where('player_id', $this->id)
-            ->join('results', 'results.id', '=', 'plays.result_id')
+            ->leftjoin('results', 'results.id', '=', 'plays.result_id')
             ->whereIn('type', [PlayType::TYPE_DAGEKI_KEKKA, PlayType::TYPE_STEAL])
             ->groupBy('player_id');
         

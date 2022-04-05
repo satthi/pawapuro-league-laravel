@@ -244,7 +244,7 @@ class Play extends Model
         $nowPitcher = $newPlayersModel::find($pitcherId);
         $seiseki = $nowPitcher->getRecentSeisekiInfo($game);
         $playInfo = Play::where('game_id', $game->id)
-            ->join('results', 'results.id', '=', 'plays.result_id')
+            ->leftjoin('results', 'results.id', '=', 'plays.result_id')
             ->where('pitcher_id', $nowPitcher->id)
             ->select([
                 \DB::raw('sum(plays.out_count) as inning'),
@@ -538,13 +538,13 @@ class Play extends Model
             ])
             ->with('player')
             ->with('pitcher')
-            ->join('results', 'results.id', '=', 'plays.result_id')
+            ->leftjoin('results', 'results.id', '=', 'plays.result_id')
             ->where('results.hr_flag', true)
             ->get()
             ->toArray();
         foreach ($hrPlayers as $hrPlayerKey => $hrPlayer) {
             $hrPlayers[$hrPlayerKey]['hr_count'] = $this::where('player_id', $hrPlayer['player_id'])
-                ->join('results', 'results.id', '=', 'plays.result_id')
+                ->leftjoin('results', 'results.id', '=', 'plays.result_id')
                 ->where('results.hr_flag', true)
                 ->where('plays.id', '<=', $hrPlayer['id'])
                 ->get()
