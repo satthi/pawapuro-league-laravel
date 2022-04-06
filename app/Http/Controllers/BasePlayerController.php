@@ -35,4 +35,12 @@ class BasePlayerController extends Controller
 
         return $basePlayer;
     }
+    public function fielderRank(string $sortType)
+    {
+        return (new BasePlayer())->getRank($sortType);
+    }
+    public function pitcherRank(string $sortType)
+    {
+        return (new BasePlayer())->getRank($sortType);
+    }
 }

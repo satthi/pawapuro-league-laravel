@@ -313,4 +313,26 @@ class BasePlayer extends Model
         }
 
     }
+
+    public function getRank(string $sortType)
+    {
+        $players = $this::join('base_teams', 'base_teams.id', '=', 'base_players.base_team_id')
+            ->select([
+                'base_players.*',
+                'base_teams.ryaku_name as team_ryaku_name'
+            ]);
+
+        switch ($sortType) {
+            case 'p_era':
+            case 'p_avg':
+                // 防御率は昇順/規定投球回数到達の実
+                $players->where('p_game', '>' , 0)->orderBy($sortType, 'ASC');
+                break;
+            default:
+            $players->orderBy($sortType, 'DESC');
+        }
+
+        return $players->get();
+
+    }
 }

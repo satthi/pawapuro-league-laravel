@@ -10,6 +10,9 @@ import BaseTeamEditComponent from "./components/BaseTeam/EditComponent";
 import BasePlayerIndexComponent from "./components/BasePlayer/IndexComponent";
 import BasePlayerAddComponent from "./components/BasePlayer/AddComponent";
 import BasePlayerEditComponent from "./components/BasePlayer/EditComponent";
+import BasePlayerFielderRankComponent from "./components/BasePlayer/FielderRankComponent";
+import BasePlayerPitcherRankComponent from "./components/BasePlayer/PitcherRankComponent";
+
 import SeasonIndexComponent from "./components/Season/IndexComponent";
 import SeasonAddComponent from "./components/Season/AddComponent";
 import SeasonEditComponent from "./components/Season/EditComponent";
@@ -109,6 +112,18 @@ const router = new VueRouter({
             path: '/base-player/:basePlayerId/edit',
             name: 'base-player.edit',
             component: BasePlayerEditComponent,
+            props: true
+        },
+        {
+            path: '/base-player/:sortType/fielder-rank',
+            name: 'base-player.fielder-rank',
+            component: BasePlayerFielderRankComponent,
+            props: true
+        },
+        {
+            path: '/base-player/:sortType/pitcher-rank',
+            name: 'base-player.pitcher-rank',
+            component: BasePlayerPitcherRankComponent,
             props: true
         },
         // ベースのチーム
