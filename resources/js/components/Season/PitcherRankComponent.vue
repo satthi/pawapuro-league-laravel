@@ -81,6 +81,16 @@
                     </router-link>
                 </th>
                 <th>
+                    <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString(), sortType: 'p_kanto' }}">
+                        完<br />投
+                    </router-link>
+                </th>
+                <th>
+                    <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString(), sortType: 'p_kanpu' }}">
+                        完<br />封
+                    </router-link>
+                </th>
+                <th>
                     <router-link v-bind:to="{name: 'season.pitcher-rank', params: {seasonId: seasonId.toString(), sortType: 'p_walk' }}">
                         四<br />球
                     </router-link>
@@ -112,6 +122,8 @@
                 <td>{{ pitcher.p_hr }}</td>
                 <td>{{ pitcher.p_jiseki }}</td>
                 <td>{{ pitcher.display_p_inning }}</td>
+                <td>{{ pitcher.p_kanto }}</td>
+                <td>{{ pitcher.p_kanpu }}</td>
                 <td>{{ pitcher.p_walk }}</td>
                 <td>{{ pitcher.p_dead }}</td>
             </tr>

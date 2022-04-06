@@ -62,6 +62,8 @@ class Player extends Model
         'p_inning',
         'p_jiseki',
         'p_era',
+        'p_kanto',
+        'p_kanpu',
         'accident_type',
         'walk_ritsu',
         'p_walk_ritsu',
@@ -472,8 +474,7 @@ class Player extends Model
                 \DB::raw('coalesce(sum(game_pitchers.save_flag::integer), 0) as save_count'),
             ])
             ->groupBy('players.id')
-            ->get()
-            ;
+            ->get();
 
         foreach ($pitcherShukeis as $pitcherShukei) {
             $shukeis[$pitcherShukei->player_id]['p_game'] = $pitcherShukei->game_sum;
@@ -506,7 +507,57 @@ class Player extends Model
             if ($pitcherShukei->inning_sum) {
                 $shukeis[$pitcherShukei->player_id]['p_sansin_ratio'] = $pitcherShukei->sansin_sum / $pitcherShukei->inning_sum * 27;
             }
+        }
 
+        // 完投/完封の集計
+        $pitcherShukeisForKanto = $this::join('teams', 'teams.id', '=', 'players.team_id')
+            ->leftjoin('game_pitchers', 'game_pitchers.player_id', '=', 'players.id')
+            ->join('games', 'games.id' , '=', 'game_pitchers.game_id')
+            ->where('teams.season_id', $seasonId)
+            ->where(\DB::raw('
+                (
+                SELECT count(*) FROM game_pitchers as check_game_pitchers
+                    LEFT JOIN players as check_players ON check_game_pitchers.player_id = check_players.id
+                WHERE game_pitchers.game_id = check_game_pitchers.game_id
+                AND players.team_id = check_players.team_id
+                AND players.id != check_players.id
+                )
+            '), '=', 0)
+            ->select([
+                'players.id as player_id',
+                \DB::raw('count(*) as p_kanto_sum'),
+                \DB::raw('sum(
+                    CASE WHEN
+                        games.inning = 999
+                        AND
+                        (
+                            (
+                                players.team_id = games.home_team_id
+                                AND
+                                games.visitor_point = 0
+                                AND
+                                games.home_point > 0
+                            ) OR
+                            (
+                                players.team_id = games.visitor_team_id
+                                AND
+                                games.home_point = 0
+                                AND
+                                games.visitor_point > 0
+                            )
+                        )
+                    THEN 1
+                    ELSE 0
+                    END
+                ) as p_kanpu_sum'),
+            ])
+            ->groupBy('players.id')
+            ->get()
+            ;
+
+        foreach ($pitcherShukeisForKanto as $pitcherShukeiForKanto) {
+            $shukeis[$pitcherShukeiForKanto->player_id]['p_kanto'] = $pitcherShukeiForKanto->p_kanto_sum;
+            $shukeis[$pitcherShukeiForKanto->player_id]['p_kanpu'] = $pitcherShukeiForKanto->p_kanpu_sum;
         }
 
         foreach ($shukeis as $shukei) {

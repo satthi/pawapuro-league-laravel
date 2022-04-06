@@ -73,6 +73,8 @@
                     <th>被<br />本<br />塁<br />打</th>
                     <th>自<br />責<br />点</th>
                     <th>回<br />数</th>
+                    <th>完<br />投</th>
+                    <th>完<br />封</th>
                     <th>四<br />球</th>
                     <th>死<br />球</th>
                 </tr>
@@ -91,6 +93,8 @@
                     <td>{{ data.player.p_hr }}</td>
                     <td>{{ data.player.p_jiseki }}</td>
                     <td>{{ data.player.display_p_inning }}</td>
+                    <td>{{ data.player.p_kanto }}</td>
+                    <td>{{ data.player.p_kanpu }}</td>
                     <td>{{ data.player.p_walk }}</td>
                     <td>{{ data.player.p_dead }}</td>
                 </tr>
@@ -280,6 +284,8 @@
                     <th>被<br />打<br />率</th>
                     <th>被<br />本<br />塁<br />打</th>
                     <th>自<br />責<br />点</th>
+                    <th>完<br />投</th>
+                    <th>完<br />封</th>
                     <th>回<br />数</th>
                     <th>四<br />球</th>
                     <th>死<br />球</th>
@@ -306,6 +312,8 @@
                     <td>{{ season_history.p_hr }}</td>
                     <td>{{ season_history.p_jiseki }}</td>
                     <td>{{ season_history.display_p_inning }}</td>
+                    <td>{{ season_history.p_kanto }}</td>
+                    <td>{{ season_history.p_kanpu }}</td>
                     <td>{{ season_history.p_walk }}</td>
                     <td>{{ season_history.p_dead }}</td>
                 </tr>
@@ -327,6 +335,8 @@
                     <td>{{ data.player.base_player.p_hr }}</td>
                     <td>{{ data.player.base_player.p_jiseki }}</td>
                     <td>{{ data.player.base_player.display_p_inning }}</td>
+                    <td>{{ data.player.base_player.p_kanto }}</td>
+                    <td>{{ data.player.base_player.p_kanpu }}</td>
                     <td>{{ data.player.base_player.p_walk }}</td>
                     <td>{{ data.player.base_player.p_dead }}</td>
                 </tr>

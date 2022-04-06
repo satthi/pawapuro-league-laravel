@@ -5420,6 +5420,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   watch: {
@@ -5887,6 +5897,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -52441,6 +52463,10 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(_vm.data.player.display_p_inning))]),
                   _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_kanto))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_kanpu))]),
+                  _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(_vm.data.player.p_walk))]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(_vm.data.player.p_dead))])
@@ -52846,6 +52872,10 @@ var render = function() {
                         _vm._v(_vm._s(season_history.display_p_inning))
                       ]),
                       _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.p_kanto))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(season_history.p_kanpu))]),
+                      _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(season_history.p_walk))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(season_history.p_dead))])
@@ -52921,6 +52951,14 @@ var render = function() {
                       _vm._v(
                         _vm._s(_vm.data.player.base_player.display_p_inning)
                       )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.p_kanto))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.data.player.base_player.p_kanpu))
                     ]),
                     _vm._v(" "),
                     _c("td", [
@@ -53042,6 +53080,10 @@ var staticRenderFns = [
       _c("th", [_vm._v("自"), _c("br"), _vm._v("責"), _c("br"), _vm._v("点")]),
       _vm._v(" "),
       _c("th", [_vm._v("回"), _c("br"), _vm._v("数")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("完"), _c("br"), _vm._v("投")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("完"), _c("br"), _vm._v("封")]),
       _vm._v(" "),
       _c("th", [_vm._v("四"), _c("br"), _vm._v("球")]),
       _vm._v(" "),
@@ -53220,6 +53262,10 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("th", [_vm._v("自"), _c("br"), _vm._v("責"), _c("br"), _vm._v("点")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("完"), _c("br"), _vm._v("投")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("完"), _c("br"), _vm._v("封")]),
       _vm._v(" "),
       _c("th", [_vm._v("回"), _c("br"), _vm._v("数")]),
       _vm._v(" "),
@@ -54708,6 +54754,58 @@ var render = function() {
                           name: "season.pitcher-rank",
                           params: {
                             seasonId: _vm.seasonId.toString(),
+                            sortType: "p_kanto"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    完"),
+                      _c("br"),
+                      _vm._v("投\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.pitcher-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
+                            sortType: "p_kanpu"
+                          }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                    完"),
+                      _c("br"),
+                      _vm._v("封\n                ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "season.pitcher-rank",
+                          params: {
+                            seasonId: _vm.seasonId.toString(),
                             sortType: "p_walk"
                           }
                         }
@@ -54806,6 +54904,10 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(pitcher.p_jiseki))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(pitcher.display_p_inning))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_kanto))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.p_kanpu))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(pitcher.p_walk))]),
                 _vm._v(" "),
