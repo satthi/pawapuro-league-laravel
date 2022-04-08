@@ -216,25 +216,25 @@
                     <td>{{ season_history.team_ryaku_name }}</td>
                     <td>{{ season_history.number }}</td>
                     <td>{{ season_history.game }}</td>
-                    <td>{{ season_history.display_avg }}</td>
-                    <td>{{ season_history.hr }}</td>
-                    <td>{{ season_history.daten }}</td>
-                    <td>{{ season_history.daseki }}</td>
-                    <td>{{ season_history.dasu }}</td>
-                    <td>{{ season_history.hit }}</td>
-                    <td>{{ season_history.hit_2 }}</td>
-                    <td>{{ season_history.hit_3 }}</td>
-                    <td>{{ season_history.sansin }}</td>
-                    <td>{{ season_history.heisatsu }}</td>
-                    <td>{{ season_history.walk }}</td>
-                    <td>{{ season_history.dead }}</td>
-                    <td>{{ season_history.bant }}</td>
-                    <td>{{ season_history.sac_fly }}</td>
-                    <td>{{ season_history.steal_success }}</td>
-                    <td>{{ season_history.steal_miss }}</td>
-                    <td>{{ season_history.display_obp }}</td>
-                    <td>{{ season_history.display_slg }}</td>
-                    <td>{{ season_history.display_ops }}</td>
+                    <td>{{ season_history.display_avg }}<span v-html="season_history.avg_rank"></span></td>
+                    <td>{{ season_history.hr }}<span v-html="season_history.hr_rank"></span></td>
+                    <td>{{ season_history.daten }}<span v-html="season_history.daten_rank"></span></td>
+                    <td>{{ season_history.daseki }}<span v-html="season_history.daseki_rank"></span></td>
+                    <td>{{ season_history.dasu }}<span v-html="season_history.dasu_rank"></span></td>
+                    <td>{{ season_history.hit }}<span v-html="season_history.hit_rank"></span></td>
+                    <td>{{ season_history.hit_2 }}<span v-html="season_history.hit2_rank"></span></td>
+                    <td>{{ season_history.hit_3 }}<span v-html="season_history.hit3_rank"></span></td>
+                    <td>{{ season_history.sansin }}<span v-html="season_history.sansin_rank"></span></td>
+                    <td>{{ season_history.heisatsu }}<span v-html="season_history.heisatsu_rank"></span></td>
+                    <td>{{ season_history.walk }}<span v-html="season_history.walk_rank"></span></td>
+                    <td>{{ season_history.dead }}<span v-html="season_history.dead_rank"></span></td>
+                    <td>{{ season_history.bant }}<span v-html="season_history.bant_rank"></span></td>
+                    <td>{{ season_history.sac_fly }}<span v-html="season_history.sac_fly_rank"></span></td>
+                    <td>{{ season_history.steal_success }}<span v-html="season_history.steal_success_rank"></span></td>
+                    <td>{{ season_history.steal_miss }}<span v-html="season_history.steal_miss_rank"></span></td>
+                    <td>{{ season_history.display_obp }}<span v-html="season_history.obp_rank"></span></td>
+                    <td>{{ season_history.display_slg }}<span v-html="season_history.slg_rank"></span></td>
+                    <td>{{ season_history.display_ops }}<span v-html="season_history.ops_rank"></span></td>
                 </tr>
                 <tr>
                     <td>合計</td>
@@ -298,24 +298,24 @@
                     </td>
                     <td>{{ season_history.team_ryaku_name }}</td>
                     <td>{{ season_history.number }}</td>
-                    <td>{{ season_history.p_game }}</td>
-                    <td>{{ season_history.display_p_era }}</td>
-                    <td>{{ season_history.p_win }}</td>
-                    <td>{{ season_history.p_lose }}</td>
-                    <td>{{ season_history.p_hold }}</td>
-                    <td>{{ season_history.p_save }}</td>
-                    <td>{{ season_history.display_p_win_ratio }}</td>
-                    <td>{{ season_history.p_sansin }}</td>
-                    <td>{{ season_history.display_p_sansin_ratio }}</td>
-                    <td>{{ season_history.p_hit }}</td>
-                    <td>{{ season_history.display_p_avg }}</td>
-                    <td>{{ season_history.p_hr }}</td>
-                    <td>{{ season_history.p_jiseki }}</td>
-                    <td>{{ season_history.display_p_inning }}</td>
-                    <td>{{ season_history.p_kanto }}</td>
-                    <td>{{ season_history.p_kanpu }}</td>
-                    <td>{{ season_history.p_walk }}</td>
-                    <td>{{ season_history.p_dead }}</td>
+                    <td>{{ season_history.p_game }}<span v-html="season_history.p_game_rank"></span></td>
+                    <td>{{ season_history.display_p_era }}<span v-html="season_history.p_era_rank"></span></td>
+                    <td>{{ season_history.p_win }}<span v-html="season_history.p_win_rank"></span></td>
+                    <td>{{ season_history.p_lose }}<span v-html="season_history.p_lose_rank"></span></td>
+                    <td>{{ season_history.p_hold }}<span v-html="season_history.p_hold_rank"></span></td>
+                    <td>{{ season_history.p_save }}<span v-html="season_history.p_save_rank"></span></td>
+                    <td>{{ season_history.display_p_win_ratio }}<span v-html="season_history.p_win_ratio_rank"></span></td>
+                    <td>{{ season_history.p_sansin }}<span v-html="season_history.p_sansin_rank"></span></td>
+                    <td>{{ season_history.display_p_sansin_ratio }}<span v-html="season_history.p_sansin_ratio_rank"></span></td>
+                    <td>{{ season_history.p_hit }}<span v-html="season_history.p_hit_rank"></span></td>
+                    <td>{{ season_history.display_p_avg }}<span v-html="season_history.p_avg_rank"></span></td>
+                    <td>{{ season_history.p_hr }}<span v-html="season_history.p_hr_rank"></span></td>
+                    <td>{{ season_history.p_jiseki }}<span v-html="season_history.p_jiseki_rank"></span></td>
+                    <td>{{ season_history.display_p_inning }}<span v-html="season_history.p_inning_rank"></span></td>
+                    <td>{{ season_history.p_kanto }}<span v-html="season_history.p_kantog_rank"></span></td>
+                    <td>{{ season_history.p_kanpu }}<span v-html="season_history.p_kanpu_rank"></span></td>
+                    <td>{{ season_history.p_walk }}<span v-html="season_history.p_walk_rank"></span></td>
+                    <td>{{ season_history.p_dead }}<span v-html="season_history.p_dead_rank"></span></td>
                 </tr>
                 <tr>
                     <td>合計</td>

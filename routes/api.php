@@ -32,6 +32,8 @@ Route::post('/base-teams/add', 'App\Http\Controllers\BaseTeamController@add');
 Route::get('/base-teams/view/{baseTeam}', 'App\Http\Controllers\BaseTeamController@show');
 Route::put('/base-teams/edit/{baseTeam}', 'App\Http\Controllers\BaseTeamController@update');
 Route::delete('/base-teams/delete/{baseTeam}', 'App\Http\Controllers\BaseTeamController@destroy');
+Route::get('/base-teams/seiseki', 'App\Http\Controllers\BaseTeamController@seiseki');
+Route::get('/base-teams/rankHensen', 'App\Http\Controllers\BaseTeamController@rankHensen');
 
 Route::get('/base-players/{baseTeam}', 'App\Http\Controllers\BasePlayerController@index');
 Route::post('/base-players/add/{baseTeam}', 'App\Http\Controllers\BasePlayerController@add');

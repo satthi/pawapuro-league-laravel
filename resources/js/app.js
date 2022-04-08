@@ -7,6 +7,7 @@ import HeaderComponent from "./components/HeaderComponent";
 import BaseTeamIndexComponent from "./components/BaseTeam/IndexComponent";
 import BaseTeamAddComponent from "./components/BaseTeam/AddComponent";
 import BaseTeamEditComponent from "./components/BaseTeam/EditComponent";
+import BaseTeamSeisekiComponent from "./components/BaseTeam/SeisekiComponent";
 import BasePlayerIndexComponent from "./components/BasePlayer/IndexComponent";
 import BasePlayerAddComponent from "./components/BasePlayer/AddComponent";
 import BasePlayerEditComponent from "./components/BasePlayer/EditComponent";
@@ -93,6 +94,12 @@ const router = new VueRouter({
             path: '/base-team/:baseTeamId/edit',
             name: 'base-team.edit',
             component: BaseTeamEditComponent,
+            props: true
+        },
+        {
+            path: '/base-team/seiseki',
+            name: 'base-team.seiseki',
+            component: BaseTeamSeisekiComponent,
             props: true
         },
         // ベースの選手

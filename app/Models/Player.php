@@ -229,6 +229,251 @@ class Player extends Model
         return '/img/noimage.jpg';
     }
 
+    ## ranking
+    public function getAvgRankAttribute($value)
+    {
+        return $this->getHistoryRank('avg');
+    }
+    public function getHrRankAttribute($value)
+    {
+        return $this->getHistoryRank('hr');
+    }
+    public function getDatenRankAttribute($value)
+    {
+        return $this->getHistoryRank('daten');
+    }
+    public function getDasekiRankAttribute($value)
+    {
+        return $this->getHistoryRank('daseki');
+    }
+    public function getDasuRankAttribute($value)
+    {
+        return $this->getHistoryRank('dasu');
+    }
+    public function getHitRankAttribute($value)
+    {
+        return $this->getHistoryRank('hit');
+    }
+    public function getHit2RankAttribute($value)
+    {
+        return $this->getHistoryRank('hit_2');
+    }
+    public function getHit3RankAttribute($value)
+    {
+        return $this->getHistoryRank('hit_3');
+    }
+    public function getSansinRankAttribute($value)
+    {
+        return $this->getHistoryRank('sansin');
+    }
+    public function getHeisatsuRankAttribute($value)
+    {
+        return $this->getHistoryRank('heisatsu');
+    }
+    public function getWalkRankAttribute($value)
+    {
+        return $this->getHistoryRank('walk');
+    }
+    public function getDeadRankAttribute($value)
+    {
+        return $this->getHistoryRank('dead');
+    }
+    public function getBantRankAttribute($value)
+    {
+        return $this->getHistoryRank('bant');
+    }
+    public function getSacFlyRankAttribute($value)
+    {
+        return $this->getHistoryRank('sac_fly');
+    }
+    public function getStealSuccessRankAttribute($value)
+    {
+        return $this->getHistoryRank('steal_success');
+    }
+    public function getStealMissRankAttribute($value)
+    {
+        return $this->getHistoryRank('steal_miss');
+    }
+    public function getObpRankAttribute($value)
+    {
+        return $this->getHistoryRank('obp');
+    }
+    public function getSlgRankAttribute($value)
+    {
+        return $this->getHistoryRank('slg');
+    }
+    public function getOpsRankAttribute($value)
+    {
+        return $this->getHistoryRank('ops');
+    }
+    public function getPGameRankAttribute($value)
+    {
+        return $this->getHistoryRank('p_game');
+    }
+    public function getPEraRankAttribute($value)
+    {
+        return $this->getHistoryRank('p_era');
+    }
+    public function getPWinRankAttribute($value)
+    {
+        return $this->getHistoryRank('p_win');
+    }
+    public function getPLoseRankAttribute($value)
+    {
+        return $this->getHistoryRank('p_lose');
+    }
+    public function getPHoldRankAttribute($value)
+    {
+        return $this->getHistoryRank('p_hold');
+    }
+    public function getPSaveRankAttribute($value)
+    {
+        return $this->getHistoryRank('p_save');
+    }
+    public function getPWinRatioRankAttribute($value)
+    {
+        return $this->getHistoryRank('p_win_ratio');
+    }
+    public function getPSansinRankAttribute($value)
+    {
+        return $this->getHistoryRank('p_sansin');
+    }
+    public function getPSansinRatioRankAttribute($value)
+    {
+        return $this->getHistoryRank('p_sansin_ratio');
+    }
+    public function getPHitRankAttribute($value)
+    {
+        return $this->getHistoryRank('p_hit');
+    }
+    public function getPAvgRankAttribute($value)
+    {
+        return $this->getHistoryRank('p_avg');
+    }
+    public function getPHrRankAttribute($value)
+    {
+        return $this->getHistoryRank('p_hr');
+    }
+    public function getPJisekiRankAttribute($value)
+    {
+        return $this->getHistoryRank('p_jiseki');
+    }
+    public function getPInningRankAttribute($value)
+    {
+        return $this->getHistoryRank('p_inning');
+    }
+    public function getPKantoRankAttribute($value)
+    {
+        return $this->getHistoryRank('p_kanto');
+    }
+    public function getPKanpuRankAttribute($value)
+    {
+        return $this->getHistoryRank('p_kanpu');
+    }
+    public function getPWalkRankAttribute($value)
+    {
+        return $this->getHistoryRank('p_walk');
+    }
+    public function getPDeadRankAttribute($value)
+    {
+        return $this->getHistoryRank('p_dead');
+    }
+
+    private function getHistoryRank($field)
+    {
+        $team = Team::find($this->team_id);
+        $seasonId = $team->season_id;
+        // 規定打席のチェック
+        if (in_array($field, [
+            'avg',
+            'obp',
+            'slg',
+            'ops',
+        ]) &&
+            $this->daseki < $team->game * 3.1
+        ) {
+            return '';
+        }
+
+        // 規定投球回数のチェック
+        if (in_array($field, [
+            'p_era',
+            'p_sansin_ratio',
+            'p_avg',
+        ]) &&
+            $this->p_inning < $team->game * 3
+        ) {
+            return 'aa';
+        }
+
+        // 勝率のチェック
+        if (in_array($field, [
+            'p_win_ratio',
+        ]) &&
+            $this->p_win < 13
+        ) {
+            return '';
+        }
+
+        // 0をランキングから外す(防御率 被打率以外？)
+        if ($this->{$field} == 0 && !in_array($field, [
+            'p_era',
+            'p_avg',
+        ])) {
+            return '';
+        }
+
+        $rankQuery = $this::join('teams', 'teams.id', '=', 'players.team_id')
+            ->where('teams.season_id', $seasonId);
+
+        if (in_array($field, [
+            'p_era',
+            'p_avg',
+        ])) {
+            $rankQuery->where('players.' . $field , '<', $this->{$field});
+        } else {
+            $rankQuery->where('players.' . $field , '>', $this->{$field});
+        }
+
+        if (in_array($field, [
+            'avg',
+            'obp',
+            'slg',
+            'ops',
+        ])) {
+            $rankQuery->where(\DB::raw('(players.daseki::numeric >= teams.game::numeric * 3.1)'), true);
+        }
+
+
+        // 規定投球回数のチェック
+        if (in_array($field, [
+            'p_era',
+            'p_sansin_ratio',
+            'p_avg',
+        ])) {
+            $rankQuery->where(\DB::raw('(players.p_inning >= teams.game * 3)'), true);
+        }
+
+        // 勝率のチェック
+        if (in_array($field, [
+            'p_win_ratio',
+        ])) {
+            $rankQuery->where(\DB::raw('(players.p_win >= 13)'), true);
+        }
+
+
+        $rank = $rankQuery->count() + 1;
+
+        if ($rank == 1) {
+            return '<b>(1)</b>';
+        } elseif ($rank <= 10) {
+            return '(' . $rank . ')';
+        } else {
+            return '';
+        }
+
+    }
+
     ## 対象日時点の個人の成績
     public function getTargetDateSeisekiInfo($date)
     {
@@ -639,7 +884,7 @@ class Player extends Model
 
     public function getSeasonFielderHistory(Player $player)
     {
-        return $this::where('base_player_id', $player->base_player_id)
+        $data = $this->where('base_player_id', $player->base_player_id)
             ->select([
                 'players.*',
                 'teams.ryaku_name as team_ryaku_name',
@@ -651,10 +896,36 @@ class Player extends Model
             ->where('players.daseki', '>', 0)
             ->orderBy('seasons.id', 'ASC')
             ->get();
+
+        foreach ($data as $datum) {
+            $datum->setAppends(array_merge($this->appends, [
+                'avg_rank',
+                'hr_rank',
+                'daten_rank',
+                'daseki_rank',
+                'dasu_rank',
+                'hit_rank',
+                'hit2_rank',
+                'hit3_rank',
+                'sansin_rank',
+                'heisatsu_rank',
+                'walk_rank',
+                'dead_rank',
+                'bant_rank',
+                'sac_fly_rank',
+                'steal_success_rank',
+                'steal_miss_rank',
+                'obp_rank',
+                'slg_rank',
+                'ops_rank',
+            ]));
+        }
+
+        return $data;
     }
     public function getSeasonPitcherHistory(Player $player)
     {
-        return $this::where('base_player_id', $player->base_player_id)
+        $data =  $this::where('base_player_id', $player->base_player_id)
             ->select([
                 'players.*',
                 'teams.ryaku_name as team_ryaku_name',
@@ -666,6 +937,32 @@ class Player extends Model
             ->where('players.p_game', '>', 0)
             ->orderBy('seasons.id', 'ASC')
             ->get();
+
+        foreach ($data as $datum) {
+            $datum->setAppends(array_merge($this->appends, [
+                'p_game_rank',
+                'p_era_rank',
+                'p_win_rank',
+                'p_lose_rank',
+                'p_hold_rank',
+                'p_save_rank',
+                'p_win_ratio_rank',
+                'p_sansin_rank',
+                'p_sansin_ratio_rank',
+                'p_hit_rank',
+                'p_avg_rank',
+                'p_hr_rank',
+                'p_jiseki_rank',
+                'p_inning_rank',
+                'p_kanto_rank',
+                'p_kanpu_rank',
+                'p_walk_rank',
+                'p_dead_rank',
+            ]));
+        }
+
+        return $data;
+
     }
 
     public function trade($requestData)

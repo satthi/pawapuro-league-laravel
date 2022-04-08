@@ -40,4 +40,14 @@ class BaseTeamController extends Controller
         $baseTeamModel = new BaseTeam();
         return $baseTeamModel->select('id as value', 'name as text')->get();
     }
+
+     public function seiseki()
+     {
+         return (new BaseTeam())->seiseki();
+     }
+     public function rankHensen()
+     {
+         return (new BaseTeam())->rankHensen();
+     }
+
 }
