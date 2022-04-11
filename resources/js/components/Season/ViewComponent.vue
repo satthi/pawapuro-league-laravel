@@ -20,6 +20,11 @@
                     <button class="btn btn-success">トレード</button>
                 </router-link>
             </form>
+            <div style="margin-top:10px;">
+                <router-link v-for="(monthListParts, index) in data.monthList" :key="index" v-bind:to="{name: 'season.month', params: { seasonId: seasonId.toString(), month: monthListParts.month }}">
+                    <button class="btn btn-success">{{ monthListParts.month }}</button>&nbsp;
+                </router-link>
+            </div>
         </div>
 
         <table class="table table-hover">
@@ -204,6 +209,7 @@
                     season: {},
                     ranking: {},
                     vs: {},
+                    monthList : {},
                 },
                 nextGameInfo: {
                     'id' : null,

@@ -53,6 +53,7 @@ Route::post('/seasons/re-shukei/{season}', 'App\Http\Controllers\SeasonControlle
 Route::delete('/seasons/delete/{season}', 'App\Http\Controllers\SeasonController@destroy');
 Route::get('/seasons/fielder-rank/{season}/{sortType}', 'App\Http\Controllers\SeasonController@fielderRank');
 Route::get('/seasons/pitcher-rank/{season}/{sortType}', 'App\Http\Controllers\SeasonController@pitcherRank');
+Route::get('/seasons/monthData/{season}/{month}', 'App\Http\Controllers\SeasonController@monthData');
 
 Route::get('/games/get-result', 'App\Http\Controllers\GameController@getResult');
 Route::get('/games/{season}', 'App\Http\Controllers\GameController@index');
