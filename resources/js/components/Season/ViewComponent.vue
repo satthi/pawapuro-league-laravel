@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" v-if="Object.keys(data).length">
         <h2>{{  data.season.name }}</h2>
         <div class="clearfix">
             <form v-on:submit.prevent="reShukei('/api/seasons/re-shukei/' + seasonId.toString())">
@@ -21,6 +21,7 @@
                 </router-link>
             </form>
         </div>
+
         <table class="table table-hover">
             <tr>
                 <th></th>
@@ -59,6 +60,23 @@
                 <td>{{ team.p_point }}</td>
             </tr>
         </table>
+
+        <table class="table table-hover">
+            <tr>
+                <th></th>
+                <th v-for="team in data.teams">{{ team.ryaku_name }}</th>
+            </tr>
+            <tr v-for="baseTeam in data.teams">
+                <th>{{ baseTeam.ryaku_name }}</th>
+                <td v-for="compareTeam in data.teams">
+                    <span v-if="baseTeam.id == compareTeam.id">-</span>
+                    <span v-else-if="data.vs[baseTeam.id] == undefined || data.vs[baseTeam.id][compareTeam.id] == undefined">0勝0敗0分</span>
+                    <span v-else>{{ data.vs[baseTeam.id][compareTeam.id]['win'] }}勝{{ data.vs[baseTeam.id][compareTeam.id]['lose'] }}敗{{ data.vs[baseTeam.id][compareTeam.id]['draw'] }}分</span>
+                </td>
+            </tr>
+        </table>
+
+
         <div class="row">
             <div class="col-sm-3">
                 <h4>打率</h4>
@@ -158,6 +176,7 @@
             getData(getPath) {
                 axios.get(getPath)
                     .then((res) => {
+                    console.log(res)
                         this.data = res.data;
                     });
             },
@@ -184,6 +203,7 @@
                 data: {
                     season: {},
                     ranking: {},
+                    vs: {},
                 },
                 nextGameInfo: {
                     'id' : null,

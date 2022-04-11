@@ -868,4 +868,41 @@ class Game extends Model
             'inning' => $latestPlay->inning,
         ]);
     }
+
+    public function getVs($season)
+    {
+        $games = $this::where('season_id', $season->id)
+            ->where('inning', 999)
+            ->get();
+
+        $vsInfo = [];
+        $initialArray = [
+            'win' => 0,
+            'lose' => 0,
+            'draw' => 0,
+        ];
+        foreach ($games as $game) {
+            if (empty($vsInfo[$game->home_team_id][$game->visitor_team_id])) {
+                $vsInfo[$game->home_team_id][$game->visitor_team_id] = $initialArray;
+            }
+            if (empty($vsInfo[$game->visitor_team_id][$game->home_team_id])) {
+                $vsInfo[$game->visitor_team_id][$game->home_team_id] = $initialArray;
+            }
+
+            if ($game->home_point > $game->visitor_point) {
+                $vsInfo[$game->home_team_id][$game->visitor_team_id]['win']++;
+                $vsInfo[$game->visitor_team_id][$game->home_team_id]['lose']++;
+            }
+            if ($game->home_point < $game->visitor_point) {
+                $vsInfo[$game->visitor_team_id][$game->home_team_id]['win']++;
+                $vsInfo[$game->home_team_id][$game->visitor_team_id]['lose']++;
+            }
+            if ($game->home_point == $game->visitor_point) {
+                $vsInfo[$game->home_team_id][$game->visitor_team_id]['draw']++;
+                $vsInfo[$game->visitor_team_id][$game->home_team_id]['draw']++;
+            }
+        }
+
+        return $vsInfo;
+    }
 }

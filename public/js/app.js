@@ -6748,6 +6748,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     initial: function initial() {
@@ -6760,6 +6778,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get(getPath).then(function (res) {
+        console.log(res);
         _this.data = res.data;
       });
     },
@@ -6788,7 +6807,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       data: {
         season: {},
-        ranking: {}
+        ranking: {},
+        vs: {}
       },
       nextGameInfo: {
         'id': null
@@ -57227,349 +57247,415 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("h2", [_vm._v(_vm._s(_vm.data.season.name))]),
-    _vm._v(" "),
-    _c("div", { staticClass: "clearfix" }, [
-      _c(
-        "form",
-        {
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              _vm.reShukei("/api/seasons/re-shukei/" + _vm.seasonId.toString())
-            }
-          }
-        },
-        [
+  return Object.keys(_vm.data).length
+    ? _c("div", { staticClass: "container" }, [
+        _c("h2", [_vm._v(_vm._s(_vm.data.season.name))]),
+        _vm._v(" "),
+        _c("div", { staticClass: "clearfix" }, [
           _c(
-            "button",
-            { staticClass: "btn btn-success", attrs: { type: "submit" } },
-            [_vm._v("再集計")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
+            "form",
             {
-              attrs: {
-                to: {
-                  name: "game.index",
-                  params: { seasonId: _vm.seasonId.toString() }
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  _vm.reShukei(
+                    "/api/seasons/re-shukei/" + _vm.seasonId.toString()
+                  )
                 }
               }
             },
             [
-              _c("button", { staticClass: "btn btn-success" }, [
-                _vm._v("日程一覧")
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              attrs: {
-                to: {
-                  name: "season.fielder-rank",
-                  params: { seasonId: _vm.seasonId.toString(), sortType: "avg" }
-                }
-              }
-            },
-            [
-              _c("button", { staticClass: "btn btn-success" }, [
-                _vm._v("野手成績")
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              attrs: {
-                to: {
-                  name: "season.pitcher-rank",
-                  params: {
-                    seasonId: _vm.seasonId.toString(),
-                    sortType: "p_era"
-                  }
-                }
-              }
-            },
-            [
-              _c("button", { staticClass: "btn btn-success" }, [
-                _vm._v("投手成績")
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _vm.nextGameInfo.id != null
-            ? _c(
+              _c(
+                "button",
+                { staticClass: "btn btn-success", attrs: { type: "submit" } },
+                [_vm._v("再集計")]
+              ),
+              _vm._v(" "),
+              _c(
                 "router-link",
                 {
                   attrs: {
                     to: {
-                      name: "game.view",
-                      params: { gameId: _vm.nextGameInfo.id.toString() }
+                      name: "game.index",
+                      params: { seasonId: _vm.seasonId.toString() }
                     }
                   }
                 },
                 [
                   _c("button", { staticClass: "btn btn-success" }, [
-                    _vm._v(
-                      "次の試合(" +
-                        _vm._s(_vm.nextGameInfo.date) +
-                        " " +
-                        _vm._s(_vm.nextGameInfo.home_team.name) +
-                        " VS " +
-                        _vm._s(_vm.nextGameInfo.visitor_team.name) +
-                        ")"
-                    )
+                    _vm._v("日程一覧")
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  attrs: {
+                    to: {
+                      name: "season.fielder-rank",
+                      params: {
+                        seasonId: _vm.seasonId.toString(),
+                        sortType: "avg"
+                      }
+                    }
+                  }
+                },
+                [
+                  _c("button", { staticClass: "btn btn-success" }, [
+                    _vm._v("野手成績")
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  attrs: {
+                    to: {
+                      name: "season.pitcher-rank",
+                      params: {
+                        seasonId: _vm.seasonId.toString(),
+                        sortType: "p_era"
+                      }
+                    }
+                  }
+                },
+                [
+                  _c("button", { staticClass: "btn btn-success" }, [
+                    _vm._v("投手成績")
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _vm.nextGameInfo.id != null
+                ? _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "game.view",
+                          params: { gameId: _vm.nextGameInfo.id.toString() }
+                        }
+                      }
+                    },
+                    [
+                      _c("button", { staticClass: "btn btn-success" }, [
+                        _vm._v(
+                          "次の試合(" +
+                            _vm._s(_vm.nextGameInfo.date) +
+                            " " +
+                            _vm._s(_vm.nextGameInfo.home_team.name) +
+                            " VS " +
+                            _vm._s(_vm.nextGameInfo.visitor_team.name) +
+                            ")"
+                        )
+                      ])
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  attrs: {
+                    to: {
+                      name: "season.trade",
+                      params: { seasonId: _vm.seasonId.toString() }
+                    }
+                  }
+                },
+                [
+                  _c("button", { staticClass: "btn btn-success" }, [
+                    _vm._v("トレード")
                   ])
                 ]
               )
-            : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              attrs: {
-                to: {
-                  name: "season.trade",
-                  params: { seasonId: _vm.seasonId.toString() }
-                }
-              }
-            },
-            [
-              _c("button", { staticClass: "btn btn-success" }, [
-                _vm._v("トレード")
-              ])
-            ]
+            ],
+            1
           )
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c(
-      "table",
-      { staticClass: "table table-hover" },
-      [
-        _vm._m(0),
+        ]),
         _vm._v(" "),
-        _vm._l(_vm.data.teams, function(team) {
-          return _c("tr", [
-            _c("td", [_vm._v(_vm._s(team.rank))]),
+        _c(
+          "table",
+          { staticClass: "table table-hover" },
+          [
+            _vm._m(0),
             _vm._v(" "),
-            _c(
-              "td",
-              [
+            _vm._l(_vm.data.teams, function(team) {
+              return _c("tr", [
+                _c("td", [_vm._v(_vm._s(team.rank))]),
+                _vm._v(" "),
                 _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      to: {
-                        name: "team.view",
-                        params: { teamId: team.id.toString() }
-                      }
-                    }
-                  },
+                  "td",
                   [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(team.name) +
-                        "\n                "
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "team.view",
+                            params: { teamId: team.id.toString() }
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(team.name) +
+                            "\n                "
+                        )
+                      ]
                     )
-                  ]
-                )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(team.game))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(team.win))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(team.lose))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(team.draw))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(team.display_win_ratio))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(team.diff))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(team.remain))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(team.display_avg))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(team.hr))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(team.display_era))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(team.point))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(team.p_point))])
+              ])
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "table",
+          { staticClass: "table table-hover" },
+          [
+            _c(
+              "tr",
+              [
+                _c("th"),
+                _vm._v(" "),
+                _vm._l(_vm.data.teams, function(team) {
+                  return _c("th", [_vm._v(_vm._s(team.ryaku_name))])
+                })
               ],
-              1
+              2
             ),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(team.game))]),
+            _vm._l(_vm.data.teams, function(baseTeam) {
+              return _c(
+                "tr",
+                [
+                  _c("th", [_vm._v(_vm._s(baseTeam.ryaku_name))]),
+                  _vm._v(" "),
+                  _vm._l(_vm.data.teams, function(compareTeam) {
+                    return _c("td", [
+                      baseTeam.id == compareTeam.id
+                        ? _c("span", [_vm._v("-")])
+                        : _vm.data.vs[baseTeam.id] == undefined ||
+                          _vm.data.vs[baseTeam.id][compareTeam.id] == undefined
+                        ? _c("span", [_vm._v("0勝0敗0分")])
+                        : _c("span", [
+                            _vm._v(
+                              _vm._s(
+                                _vm.data.vs[baseTeam.id][compareTeam.id]["win"]
+                              ) +
+                                "勝" +
+                                _vm._s(
+                                  _vm.data.vs[baseTeam.id][compareTeam.id][
+                                    "lose"
+                                  ]
+                                ) +
+                                "敗" +
+                                _vm._s(
+                                  _vm.data.vs[baseTeam.id][compareTeam.id][
+                                    "draw"
+                                  ]
+                                ) +
+                                "分"
+                            )
+                          ])
+                    ])
+                  })
+                ],
+                2
+              )
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("h4", [_vm._v("打率")]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(team.win))]),
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              _vm._l(_vm.data.ranking.avg, function(avgPlayer) {
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(avgPlayer.team.ryaku_name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(avgPlayer.name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(avgPlayer.display_avg))])
+                ])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("h4", [_vm._v("HR")]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(team.lose))]),
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              _vm._l(_vm.data.ranking.hr, function(hrPlayer) {
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(hrPlayer.team.ryaku_name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(hrPlayer.name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(hrPlayer.hr))])
+                ])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("h4", [_vm._v("打点")]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(team.draw))]),
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              _vm._l(_vm.data.ranking.daten, function(dateniPlayer) {
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(dateniPlayer.team.ryaku_name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(dateniPlayer.name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(dateniPlayer.daten))])
+                ])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("h4", [_vm._v("盗塁")]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(team.display_win_ratio))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(team.diff))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(team.remain))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(team.display_avg))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(team.hr))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(team.display_era))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(team.point))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(team.p_point))])
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              _vm._l(_vm.data.ranking.steal, function(stealPlayer) {
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(stealPlayer.team.ryaku_name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(stealPlayer.name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(stealPlayer.steal_success))])
+                ])
+              }),
+              0
+            )
           ])
-        })
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("h4", [_vm._v("打率")]),
+        ]),
         _vm._v(" "),
-        _c(
-          "table",
-          { staticClass: "table table-hover" },
-          _vm._l(_vm.data.ranking.avg, function(avgPlayer) {
-            return _c("tr", [
-              _c("td", [_vm._v(_vm._s(avgPlayer.team.ryaku_name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(avgPlayer.name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(avgPlayer.display_avg))])
-            ])
-          }),
-          0
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("h4", [_vm._v("HR")]),
-        _vm._v(" "),
-        _c(
-          "table",
-          { staticClass: "table table-hover" },
-          _vm._l(_vm.data.ranking.hr, function(hrPlayer) {
-            return _c("tr", [
-              _c("td", [_vm._v(_vm._s(hrPlayer.team.ryaku_name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(hrPlayer.name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(hrPlayer.hr))])
-            ])
-          }),
-          0
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("h4", [_vm._v("打点")]),
-        _vm._v(" "),
-        _c(
-          "table",
-          { staticClass: "table table-hover" },
-          _vm._l(_vm.data.ranking.daten, function(dateniPlayer) {
-            return _c("tr", [
-              _c("td", [_vm._v(_vm._s(dateniPlayer.team.ryaku_name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(dateniPlayer.name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(dateniPlayer.daten))])
-            ])
-          }),
-          0
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("h4", [_vm._v("盗塁")]),
-        _vm._v(" "),
-        _c(
-          "table",
-          { staticClass: "table table-hover" },
-          _vm._l(_vm.data.ranking.steal, function(stealPlayer) {
-            return _c("tr", [
-              _c("td", [_vm._v(_vm._s(stealPlayer.team.ryaku_name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(stealPlayer.name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(stealPlayer.steal_success))])
-            ])
-          }),
-          0
-        )
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("h4", [_vm._v("防御率")]),
+            _vm._v(" "),
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              _vm._l(_vm.data.ranking.era, function(eraPlayer) {
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(eraPlayer.team.ryaku_name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(eraPlayer.name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(eraPlayer.display_p_era))])
+                ])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("h4", [_vm._v("勝利")]),
+            _vm._v(" "),
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              _vm._l(_vm.data.ranking.win, function(winPlayer) {
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(winPlayer.team.ryaku_name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(winPlayer.name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(winPlayer.p_win))])
+                ])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("h4", [_vm._v("ホールド")]),
+            _vm._v(" "),
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              _vm._l(_vm.data.ranking.hold, function(holdPlayer) {
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(holdPlayer.team.ryaku_name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(holdPlayer.name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(holdPlayer.p_hold))])
+                ])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("h4", [_vm._v("セーブ")]),
+            _vm._v(" "),
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              _vm._l(_vm.data.ranking.save, function(savePlayer) {
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(savePlayer.team.ryaku_name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(savePlayer.name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(savePlayer.p_save))])
+                ])
+              }),
+              0
+            )
+          ])
+        ])
       ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("h4", [_vm._v("防御率")]),
-        _vm._v(" "),
-        _c(
-          "table",
-          { staticClass: "table table-hover" },
-          _vm._l(_vm.data.ranking.era, function(eraPlayer) {
-            return _c("tr", [
-              _c("td", [_vm._v(_vm._s(eraPlayer.team.ryaku_name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(eraPlayer.name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(eraPlayer.display_p_era))])
-            ])
-          }),
-          0
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("h4", [_vm._v("勝利")]),
-        _vm._v(" "),
-        _c(
-          "table",
-          { staticClass: "table table-hover" },
-          _vm._l(_vm.data.ranking.win, function(winPlayer) {
-            return _c("tr", [
-              _c("td", [_vm._v(_vm._s(winPlayer.team.ryaku_name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(winPlayer.name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(winPlayer.p_win))])
-            ])
-          }),
-          0
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("h4", [_vm._v("ホールド")]),
-        _vm._v(" "),
-        _c(
-          "table",
-          { staticClass: "table table-hover" },
-          _vm._l(_vm.data.ranking.hold, function(holdPlayer) {
-            return _c("tr", [
-              _c("td", [_vm._v(_vm._s(holdPlayer.team.ryaku_name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(holdPlayer.name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(holdPlayer.p_hold))])
-            ])
-          }),
-          0
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("h4", [_vm._v("セーブ")]),
-        _vm._v(" "),
-        _c(
-          "table",
-          { staticClass: "table table-hover" },
-          _vm._l(_vm.data.ranking.save, function(savePlayer) {
-            return _c("tr", [
-              _c("td", [_vm._v(_vm._s(savePlayer.team.ryaku_name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(savePlayer.name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(savePlayer.p_save))])
-            ])
-          }),
-          0
-        )
-      ])
-    ])
-  ])
+    : _vm._e()
 }
 var staticRenderFns = [
   function() {

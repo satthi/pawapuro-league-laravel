@@ -55,10 +55,12 @@ class SeasonController extends Controller
     public function detail(Season $season)
     {
         $teamModel = new Team();
+        $gameModel = new Game();
         return [
             'season' => $season,
             'teams' => $teamModel->getSeasonTeam($season),
             'ranking' => $season->getRanking(),
+            'vs' => $gameModel->getVs($season),
         ];
     }
     public function reShukei(Request $request, Season $season)
