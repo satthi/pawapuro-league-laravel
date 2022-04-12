@@ -284,9 +284,9 @@
                     <th>被<br />打<br />率</th>
                     <th>被<br />本<br />塁<br />打</th>
                     <th>自<br />責<br />点</th>
+                    <th>回<br />数</th>
                     <th>完<br />投</th>
                     <th>完<br />封</th>
-                    <th>回<br />数</th>
                     <th>四<br />球</th>
                     <th>死<br />球</th>
                 </tr>

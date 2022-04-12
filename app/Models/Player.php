@@ -403,7 +403,7 @@ class Player extends Model
         ]) &&
             $this->p_inning < $team->game * 3
         ) {
-            return 'aa';
+            return '';
         }
 
         // 勝率のチェック
