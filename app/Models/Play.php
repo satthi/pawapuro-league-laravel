@@ -79,7 +79,7 @@ class Play extends Model
         }
     }
 
-    public function getMember(Game $game)
+    public function getMember(Game $game, $hikaeInclude = true)
     {
         $gameSubDay = (new Carbon($game->date))->subDay()->format('Y/m/d');
 
@@ -102,9 +102,11 @@ class Play extends Model
         }
 
         $memberIds = [];
+        $playerIds = [];
         $member = [];
         foreach ($playForMembers as $playForMember) {
             $memberIds[] = $playForMember->player->id;// 一度でも登場したことがある人をセットする
+            $playerIds[] = $playForMember->player->id;
 
             $teamType = $playForMember->team_id == $game->home_team_id ? 'home_team' : 'visitor_team';
             $beforeBasePosition = $member[$teamType][$playForMember->dajun]['base_position'] ?? null;
@@ -123,7 +125,7 @@ class Play extends Model
                 'dajun' => $playForMember->dajun == 10 ? 'P' : (string)$playForMember->dajun,
                 'position' => $positionOptions[$playForMember->position],
                 'player' => $playForMember->player->toArray(),
-                'seiseki' => $playForMember->player->getRecentSeisekiInfo($game),
+                // 'seiseki' => $playForMember->player->getRecentSeisekiInfo($game),
                 'base_position' => $beforeBasePosition,
                 'play_info' => $playInfo,
             ];
@@ -134,31 +136,57 @@ class Play extends Model
             }
         }
 
-        $hikaePlayers = Player::where('team_id', $game->home_team_id)
-            ->where('trade_flag', false)
-            ->whereNotIn('id', $memberIds)
-            ->orderBy(\DB::raw('number::integer'), 'ASC')
-            ->get();
-        $key = 10;
-        $member['home_team_hikae'] = [];
-        foreach ($hikaePlayers as $hikaePlayer) {
-            $key++;
-            $member['home_team_hikae'][$key] = $hikaePlayer->toArray();
-            $member['home_team_hikae'][$key]['seiseki'] = $hikaePlayer->getRecentSeisekiInfo($game);
+        if ($hikaeInclude) {
+            $hikaePlayers = Player::where('team_id', $game->home_team_id)
+                ->where('trade_flag', false)
+                ->whereNotIn('id', $memberIds)
+                ->orderBy(\DB::raw('number::integer'), 'ASC')
+                ->get();
+            $key = 10;
+            $member['home_team_hikae'] = [];
+            foreach ($hikaePlayers as $hikaePlayer) {
+                $key++;
+                $playerIds[] = $hikaePlayer->id;
+                $member['home_team_hikae'][$key] = $hikaePlayer->toArray();
+                // $member['home_team_hikae'][$key]['seiseki'] = $hikaePlayer->getRecentSeisekiInfo($game, true);
+            }
+
+            $hikaePlayers = Player::where('team_id', $game->visitor_team_id)
+                ->where('trade_flag', false)
+                ->whereNotIn('id', $memberIds)
+                ->orderBy(\DB::raw('number::integer'), 'ASC')
+                ->get();
+            $key = 10;
+            $member['visitor_team_hikae'] = [];
+            foreach ($hikaePlayers as $hikaePlayer) {
+                $key++;
+                $playerIds[] = $hikaePlayer->id;
+                $member['visitor_team_hikae'][$key] = $hikaePlayer;
+                // $member['visitor_team_hikae'][$key]['seiseki'] = $hikaePlayer->getRecentSeisekiInfo($game, true);
+            }
         }
 
-        $hikaePlayers = Player::where('team_id', $game->visitor_team_id)
-            ->where('trade_flag', false)
-            ->whereNotIn('id', $memberIds)
-            ->orderBy(\DB::raw('number::integer'), 'ASC')
-            ->get();
-        $key = 10;
-        $member['visitor_team_hikae'] = [];
-        foreach ($hikaePlayers as $hikaePlayer) {
-            $key++;
-            $member['visitor_team_hikae'][$key] = $hikaePlayer;
-            $member['visitor_team_hikae'][$key]['seiseki'] = $hikaePlayer->getRecentSeisekiInfo($game);
+        // dump($member);
+        // dump($playerIds);
+        // exit;
+
+        $getRecentSeisekiInfoAll = (new Player())->getRecentSeisekiInfoAll($game, $playerIds);
+        // dump($getRecentSeisekiInfoAll);
+        // exit;
+        // dump($member);
+        // exit;
+        foreach ($member as $type => $member1) {
+            foreach ($member1 as $dajun => $member2) {
+                if (!empty($member2['player'])) {
+                    $member[$type][$dajun]['seiseki'] = $getRecentSeisekiInfoAll[$member2['player']['id']];
+                } else {
+                    $member[$type][$dajun]['seiseki'] = $getRecentSeisekiInfoAll[$member2['id']];
+                }
+            }
         }
+
+        // dump($member);
+        // exit;
 
         return $member;
     }

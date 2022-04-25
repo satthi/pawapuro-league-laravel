@@ -112,6 +112,64 @@ class GamePitcher extends Model
         return $seiseki;
     }
 
+    public function getSeisekiAll($playerIds, $gameDate)
+    {
+        $seisekis = $this::whereIn('player_id', $playerIds)
+            ->join('games', 'games.id', '=', 'game_pitchers.game_id')
+            ->where('games.date' , '<=', $gameDate)
+            ->select([
+                'player_id',
+                \DB::raw('count(game_pitchers.id) as game_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.inning), 0) as inning_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.jiseki), 0) as jiseki_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.daseki), 0) as daseki_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.dasu), 0) as dasu_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.hit), 0) as hit_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.hr), 0) as hr_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.sansin), 0) as sansin_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.walk), 0) as walk_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.dead), 0) as dead_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.win_flag::integer), 0) as win_count'),
+                \DB::raw('coalesce(sum(game_pitchers.lose_flag::integer), 0) as lose_count'),
+                \DB::raw('coalesce(sum(game_pitchers.hold_flag::integer), 0) as hold_count'),
+                \DB::raw('coalesce(sum(game_pitchers.save_flag::integer), 0) as save_count'),
+            ])
+            ->groupBy('player_id')
+            ->get()
+            ->keyBy('player_id')
+            ->toArray();
+
+        foreach ($playerIds as $playerId) {
+            if (array_key_exists($playerId, $seisekis)) {
+                if (empty($seisekis[$playerId]['inning_sum'])) {
+                    $seisekis[$playerId]['era'] = '-';
+                } else {
+                    $seisekis[$playerId]['era'] = sprintf('%.2f', round($seisekis[$playerId]['jiseki_sum'] / $seisekis[$playerId]['inning_sum'] * 27, 2));
+                }
+            } else {
+                $seisekis[$playerId] = [
+                    'game_sum' => 0,
+                    'inning_sum' => 0,
+                    'jiseki_sum' => 0,
+                    'daseki_sum' => 0,
+                    'dasu_sum' => 0,
+                    'hit_sum' => 0,
+                    'hr_sum' => 0,
+                    'sansin_sum' => 0,
+                    'walk_sum' => 0,
+                    'dead_sum' => 0,
+                    'win_count' => 0,
+                    'lose_count' => 0,
+                    'hold_count' => 0,
+                    'save_count' => 0,
+                    'era' => '-',
+                ];
+            }
+        }
+
+        return $seisekis;
+    }
+
     public function topPitcherSeisekiInfo($game)
     {
         // ピッチャー情報を取得して勝ち投手/負け投手/セーブ投手を取得

@@ -134,7 +134,7 @@ class Game extends Model
         if ($this->getBoardStatusAttribute($value) !== GameBoardStatus::STATUS_INNING_END) {
             return false;
         }
-        $member = (new Play())->getMember($this);
+        $member = (new Play())->getMember($this, false);
         // dump($member);
         // exit;
         $positionCheck = true;
@@ -679,7 +679,8 @@ class Game extends Model
                 ->append('is_visitor_team_position')
                 ->append('prev_game_id')
                 ->append('next_game_id')
-                ->append('is_next_inning');
+                ->append('is_next_inning')
+                ;
         }
 
         return $game;
