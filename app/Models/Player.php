@@ -581,7 +581,9 @@ class Player extends Model
 
         if (!is_null($checkPlayInfo)) {
             foreach ($checkPlayInfo->toArray() as $fieldKey => $playVal) {
-                $dagekiSeiseki[$fieldKey] = $dagekiSeiseki[$fieldKey] + $playVal;
+                if ($fieldKey != 'player_id') {
+                    $dagekiSeiseki[$fieldKey] = $dagekiSeiseki[$fieldKey] + $playVal;
+                }
             }
 
             if (!$dagekiSeiseki['dasu']) {
@@ -650,7 +652,9 @@ class Player extends Model
         foreach ($checkPlayInfos as $checkPlayInfo) {
             if (!is_null($checkPlayInfo)) {
                 foreach ($checkPlayInfo->toArray() as $fieldKey => $playVal) {
-                    $dagekiSeisekis[$checkPlayInfo->player_id][$fieldKey] = $dagekiSeisekis[$checkPlayInfo->player_id][$fieldKey] + $playVal;
+                    if ($fieldKey != 'player_id') {
+                        $dagekiSeisekis[$checkPlayInfo->player_id][$fieldKey] = $dagekiSeisekis[$checkPlayInfo->player_id][$fieldKey] + $playVal;
+                    }
                 }
 
                 if (!$dagekiSeisekis[$checkPlayInfo->player_id]['dasu']) {
@@ -936,7 +940,7 @@ class Player extends Model
             ])
             ->where('teams.season_id', $season->id)
             // 一応30件まで
-            ->limit(30);
+            ->limit(50);
 
         switch ($sortType) {
             case 'avg':
