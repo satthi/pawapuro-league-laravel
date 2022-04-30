@@ -202,6 +202,76 @@ class Team extends Model
             }
         }
 
+        // 終了してないゲームを抽出
+        $remainGames = Game::where('season_id', $season->id)
+            ->where(function($q) {
+                $q->where('inning', '<>', 999)
+                    ->orWhere('inning', null);
+            })
+            ->get();
+
+        $remainGameVs = [];
+        foreach ($teams as $team) {
+            foreach ($teams as $team2) {
+                $remainGameVs[$team['id']][$team2['id']] = 0;
+            }
+        }
+        foreach ($remainGames as $remainGame) {
+            $remainGameVs[$remainGame->home_team_id][$remainGame->visitor_team_id]++;
+            $remainGameVs[$remainGame->visitor_team_id][$remainGame->home_team_id]++;
+        }
+
+        // 優勝可能確認
+        foreach ($teams as $teamKey => $team) {
+            $yushoKano = true;
+            $yushoKakutei = true;
+            $jirikiYushoKano = true;
+            $magicNumber = 0;
+
+            $allWinRatio = ($team['win'] + $team['remain']) / ($team['win'] + $team['lose'] + $team['remain']);
+            $allLoseRatio = ($team['win']) / ($team['win'] + $team['lose'] + $team['remain']);
+            $remainRatio = [];
+            // 0勝～残りの勝率(140まで入れてるのは先の情報まで見るようにするため)
+            for ($i = 0; $i <= 140; $i++) {
+                $remainRatio[$i] = ($team['win'] + $i) / ($team['win'] + $team['lose'] + $team['remain']);
+            }
+            // dump($remainRatio);
+            // exit;
+            foreach ($teams as $checkTeamKey => $checkTeam) {
+                if ($team['id'] == $checkTeam['id']) {
+                    continue;
+                }
+                $checkAllLoseRatio =  ($checkTeam['win']) / ($checkTeam['win'] + $checkTeam['lose'] + $checkTeam['remain']);
+                $checkAllWinRatio =  ($checkTeam['win'] + $checkTeam['remain']) / ($checkTeam['win'] + $checkTeam['lose'] + $checkTeam['remain']);
+                
+                // 自力優勝可能かどうかは直接対決以外全部負け
+                $checkAllWinRatioChokusetsuLose = ($checkTeam['win'] + $checkTeam['remain'] - $remainGameVs[$team['id']][$checkTeam['id']]) / ($checkTeam['win'] + $checkTeam['lose'] + $checkTeam['remain']);
+                if ($allWinRatio < $checkAllLoseRatio) {
+                    $yushoKano = false;
+                }
+                if ($allLoseRatio <= $checkAllWinRatio) {
+                    $yushoKakutei = false;
+                }
+                if ($allWinRatio < $checkAllWinRatioChokusetsuLose) {
+                    $jirikiYushoKano = false;
+                }
+                // マジックのチェック
+                foreach ($remainRatio as $magicNumberCheckWin => $checkRemainRatio) {
+                    if ($checkRemainRatio > $checkAllWinRatio) {
+                        if ($magicNumber < $magicNumberCheckWin) {
+                            $magicNumber = $magicNumberCheckWin;
+                        }
+                        break;
+                    }
+                }
+            }
+
+            $teams[$teamKey]['yusho_kano'] = $yushoKano;
+            $teams[$teamKey]['yusho_kakutei'] = $yushoKakutei;
+            $teams[$teamKey]['jiriki_yusho_kano'] = $jirikiYushoKano;
+            $teams[$teamKey]['magic_number'] = $magicNumber;
+        }
+
         return $teams;
     }
 }

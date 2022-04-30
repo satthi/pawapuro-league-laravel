@@ -43,6 +43,10 @@
                 <th>防御率</th>
                 <th>得点</th>
                 <th>失点</th>
+                <th>優確</th>
+                <th>優可</th>
+                <th>自可</th>
+                <th>M</th>
             </tr>
             <tr v-for="team in data.teams">
                 <td>{{ team.rank }}</td>
@@ -63,6 +67,10 @@
                 <td>{{ team.display_era }}</td>
                 <td>{{ team.point }}</td>
                 <td>{{ team.p_point }}</td>
+                <td>{{ team.yusho_kakutei ? '○' : '' }}</td>
+                <td>{{ team.yusho_kano ? '○' : '' }}</td>
+                <td>{{ team.jiriki_yusho_kano ? '○' : '' }}</td>
+                <td>{{ team.yusho_kano ? team.magic_number : '-' }}</td>
             </tr>
         </table>
 

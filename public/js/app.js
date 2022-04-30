@@ -6862,6 +6862,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     initial: function initial() {
@@ -57771,7 +57779,17 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(team.point))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(team.p_point))])
+                _c("td", [_vm._v(_vm._s(team.p_point))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(team.yusho_kakutei ? "○" : ""))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(team.yusho_kano ? "○" : ""))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(team.jiriki_yusho_kano ? "○" : ""))]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(_vm._s(team.yusho_kano ? team.magic_number : "-"))
+                ])
               ])
             })
           ],
@@ -58027,7 +58045,15 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("得点")]),
       _vm._v(" "),
-      _c("th", [_vm._v("失点")])
+      _c("th", [_vm._v("失点")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("優確")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("優可")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("自可")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("M")])
     ])
   }
 ]
