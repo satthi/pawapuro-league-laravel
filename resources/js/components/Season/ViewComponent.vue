@@ -21,6 +21,9 @@
                 </router-link>
             </form>
             <div style="margin-top:10px;">
+                <router-link v-bind:to="{name: 'season.graph', params: {seasonId: seasonId.toString()}}">
+                    <button class="btn btn-success">履歴</button>
+                </router-link>
                 <router-link v-for="(monthListParts, index) in data.monthList" :key="index" v-bind:to="{name: 'season.month', params: { seasonId: seasonId.toString(), month: monthListParts.month }}">
                     <button class="btn btn-success">{{ monthListParts.month }}</button>&nbsp;
                 </router-link>

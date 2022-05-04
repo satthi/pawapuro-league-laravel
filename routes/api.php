@@ -54,6 +54,7 @@ Route::delete('/seasons/delete/{season}', 'App\Http\Controllers\SeasonController
 Route::get('/seasons/fielder-rank/{season}/{sortType}', 'App\Http\Controllers\SeasonController@fielderRank');
 Route::get('/seasons/pitcher-rank/{season}/{sortType}', 'App\Http\Controllers\SeasonController@pitcherRank');
 Route::get('/seasons/monthData/{season}/{month}', 'App\Http\Controllers\SeasonController@monthData');
+Route::get('/seasons/graph/{season}', 'App\Http\Controllers\SeasonController@graph');
 
 Route::get('/games/get-result', 'App\Http\Controllers\GameController@getResult');
 Route::get('/games/{season}', 'App\Http\Controllers\GameController@index');

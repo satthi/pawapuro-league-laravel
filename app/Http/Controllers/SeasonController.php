@@ -146,6 +146,113 @@ class SeasonController extends Controller
         return $sortMonthData;
     }
 
+    public function graph(Season $season)
+    {
+        $teams = Team::where('season_id', $season->id)
+            ->get();
+
+        $games = Game::where('season_id', $season->id)
+            ->where('inning', 999)
+            ->orderBy('date', 'ASC')
+            ->get();
+
+        $graphInfo = [];
+        $chokinInfo = [];
+        foreach ($teams as $team) {
+            $graphInfo[$team->id] = [];
+            $chokinInfo[$team->id] = 0;
+        }
+
+        $minDate = null;
+        $maxDate = null;
+        foreach ($games as $game) {
+            if (is_null($minDate)) {
+                $minDate = $game->date;
+            }
+            if ($game->home_point > $game->visitor_point) {
+                $chokinInfo[$game->home_team_id]++;
+                $chokinInfo[$game->visitor_team_id]--;
+            } else if ($game->home_point < $game->visitor_point) {
+                $chokinInfo[$game->visitor_team_id]++;
+                $chokinInfo[$game->home_team_id]--;
+            }
+
+            $graphInfo[$game->home_team_id][] = [
+                'date' => $game->date,
+                'chokin' => $chokinInfo[$game->home_team_id],
+            ];
+            $graphInfo[$game->visitor_team_id][] = [
+                'date' => $game->date,
+                'chokin' => $chokinInfo[$game->visitor_team_id],
+            ];
+        }
+        $maxDate = $game->date;
+
+        $returnArray = [];
+        $returnArray['labels'] = [];
+        $returnArray['datasets'] = [];
+        foreach ($teams as $team) {
+            $color = '';
+            if ($team->ryaku_name == 'LB') {
+                $color = '#FF0000';
+            } elseif ($team->ryaku_name == 'TU') {
+                $color = '#000000';
+            } elseif ($team->ryaku_name == 'MF') {
+                $color = '#008000';
+            } elseif ($team->ryaku_name == 'TF') {
+                $color = '#FFA500';
+            } elseif ($team->ryaku_name == 'SN') {
+                $color = '#0000FF';
+            } elseif ($team->ryaku_name == 'FF') {
+                $color = '#FFFF00';
+            }
+            $returnArray['datasets'][$team->id] = [
+                'label' => $team->ryaku_name,
+                'data' => [],
+                'borderColor' => $color, // 後
+                // 以下は固定
+                'lineTension' =>  0,
+                'fill' =>  false,
+                'spanGaps' => true,
+            ];
+        }
+
+        $targetDateChronos = new Carbon($minDate);
+        while (true) {
+            // label作り
+            $returnArray['labels'][$targetDateChronos->format('Y-m-d')] = $targetDateChronos->format('Y-m-d');
+            // とりあえず殻をセットする
+            foreach ($teams as $team) {
+                $returnArray['datasets'][$team->id]['data'][$targetDateChronos->format('Y-m-d')] = null;
+            }
+            $targetDateChronos->addDay();
+
+            if ($targetDateChronos->format('Y-m-d') == $maxDate) {
+                break;
+            }
+        }
+
+        foreach ($graphInfo as $teamId => $teamInfo) {
+            foreach ($teamInfo as $targetDateInfo) {
+                $returnArray['datasets'][$teamId]['data'][$targetDateInfo['date']] = $targetDateInfo['chokin'];
+            }
+        }
+
+        // ここで配列のkeyを降りなおしておく(jsonで変な順にならないように)
+        $returnArray['labels'] = array_values($returnArray['labels']);
+        $returnArray['datasets'] = array_values($returnArray['datasets']);
+        foreach (array_keys($returnArray['datasets']) as $teamKey) {
+            $returnArray['datasets'][$teamKey]['data'] = array_values($returnArray['datasets'][$teamKey]['data']);
+        }
+        // dump($graphInfo);
+        // dump($returnArray);
+        // exit;
+
+
+
+        return $returnArray;
+    }
+
 
     public function reShukei(Request $request, Season $season)
     {

@@ -22,6 +22,7 @@ import SeasonFielderRankComponent from "./components/Season/FielderRankComponent
 import SeasonPitcherRankComponent from "./components/Season/PitcherRankComponent";
 import SeasonTradeComponent from "./components/Season/TradeComponent";
 import SeasonMonthComponent from "./components/Season/MonthComponent";
+import SeasonGraphComponent from "./components/Season/GraphComponent";
 
 import GameIndexComponent from "./components/Game/IndexComponent";
 import GameAddComponent from "./components/Game/AddComponent";
@@ -181,6 +182,12 @@ const router = new VueRouter({
             path: '/season/:seasonId/:month/month',
             name: 'season.month',
             component: SeasonMonthComponent,
+            props: true
+        },
+        {
+            path: '/season/:seasonId/graph',
+            name: 'season.graph',
+            component: SeasonGraphComponent,
             props: true
         },
         {
