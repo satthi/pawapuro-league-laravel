@@ -26,6 +26,8 @@ class PlayerController extends Controller
 
          return [
             'player' => $player,
+            'monthly_fielder_infos' => $playModel->getMonthlyFielder($player),
+            'monthly_pitcher_infos' => $gamePitcherModel->getMothryPitcher($player),
             'fielder_histories' => $playModel->getFielderHistory($player),
             'pitcher_histories' => $gamePitcherModel->getPitcherHistory($player),
             'season_fielder_histories' => $playerModel->getSeasonFielderHistory($player),

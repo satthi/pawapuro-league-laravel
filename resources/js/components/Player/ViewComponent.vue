@@ -102,6 +102,102 @@
         </div>
 
         <div v-if="Object.keys(data.fielder_histories).length">
+            <h4>月間野手成績</h4>
+            <table class="table table-hover seiseki_table">
+                <tr>
+                    <th></th>
+                    <th>試<br />合</th>
+                    <th>打<br />率</th>
+                    <th>本<br />塁<br />打</th>
+                    <th>打<br />点</th>
+                    <th>打<br />席</th>
+                    <th>打<br />数</th>
+                    <th>安<br />打</th>
+                    <th>二<br />塁<br />打</th>
+                    <th>三<br />塁<br />打</th>
+                    <th>三<br />振</th>
+                    <th>併<br />殺</th>
+                    <th>四<br />球</th>
+                    <th>死<br />球</th>
+                    <th>犠<br />打</th>
+                    <th>犠<br />飛</th>
+                    <th>盗<br />塁</th>
+                    <th>盗<br />塁<br />失</th>
+                    <th>出<br />塁<br />率</th>
+                    <th>長<br />打<br />率</th>
+                    <th>O<br />P<br />S</th>
+                </tr>
+                <tr v-for="monthly_fielder_info in data.monthly_fielder_infos">
+                    <td>{{ monthly_fielder_info.month }}</td>
+                    <td>{{ monthly_fielder_info.game }}</td>
+                    <td>{{ monthly_fielder_info.target_avg }}</td>
+                    <td>{{ monthly_fielder_info.hr }}</td>
+                    <td>{{ monthly_fielder_info.daten }}</td>
+                    <td>{{ monthly_fielder_info.daseki }}</td>
+                    <td>{{ monthly_fielder_info.dasu }}</td>
+                    <td>{{ monthly_fielder_info.hit }}</td>
+                    <td>{{ monthly_fielder_info.hit_2 }}</td>
+                    <td>{{ monthly_fielder_info.hit_3 }}</td>
+                    <td>{{ monthly_fielder_info.sansin }}</td>
+                    <td>{{ monthly_fielder_info.heisatsu }}</td>
+                    <td>{{ monthly_fielder_info.walk }}</td>
+                    <td>{{ monthly_fielder_info.dead }}</td>
+                    <td>{{ monthly_fielder_info.bant }}</td>
+                    <td>{{ monthly_fielder_info.sac_fly }}</td>
+                    <td>{{ monthly_fielder_info.steal_success }}</td>
+                    <td>{{ monthly_fielder_info.steal_miss }}</td>
+                    <td>{{ monthly_fielder_info.target_opb }}</td>
+                    <td>{{ monthly_fielder_info.target_slg }}</td>
+                    <td>{{ monthly_fielder_info.target_ops }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div v-if="data.player.position_main == enums.Position.POSITION_P.value || data.player.p_inning > 0">
+            <h4>月間投手成績</h4>
+            <table class="table table-hover seiseki_table">
+                <tr>
+                    <th></th>
+                    <th>試<br />合</th>
+                    <th>防<br />御<br />率</th>
+                    <th>勝<br />利</th>
+                    <th>敗<br />北</th>
+                    <th>ホ<br />ー<br />ル<br />ド</th>
+                    <th>セ<br />ー<br />ブ</th>
+                    <th>勝<br />率</th>
+                    <th>奪<br />三<br />振</th>
+                    <th>奪<br />三<br />振<br />率</th>
+                    <th>被<br />安<br />打</th>
+                    <th>被<br />打<br />率</th>
+                    <th>被<br />本<br />塁<br />打</th>
+                    <th>自<br />責<br />点</th>
+                    <th>回<br />数</th>
+                    <th>四<br />球</th>
+                    <th>死<br />球</th>
+                </tr>
+                <tr v-for="monthly_pitcher_info in data.monthly_pitcher_infos">
+                    <td>{{ monthly_pitcher_info.month }}</td>
+                    <td>{{ monthly_pitcher_info.p_game }}</td>
+                    <td>{{ monthly_pitcher_info.display_p_era }}</td>
+                    <td>{{ monthly_pitcher_info.p_win }}</td>
+                    <td>{{ monthly_pitcher_info.p_lose }}</td>
+                    <td>{{ monthly_pitcher_info.p_hold }}</td>
+                    <td>{{ monthly_pitcher_info.p_save }}</td>
+                    <td>{{ monthly_pitcher_info.display_p_win_ratio }}</td>
+                    <td>{{ monthly_pitcher_info.p_sansin }}</td>
+                    <td>{{ monthly_pitcher_info.display_p_sansin_ratio }}</td>
+                    <td>{{ monthly_pitcher_info.p_hit }}</td>
+                    <td>{{ monthly_pitcher_info.display_p_avg }}</td>
+                    <td>{{ monthly_pitcher_info.p_hr }}</td>
+                    <td>{{ monthly_pitcher_info.p_jiseki }}</td>
+                    <td>{{ monthly_pitcher_info.display_p_inning }}</td>
+                    <td>{{ monthly_pitcher_info.p_walk }}</td>
+                    <td>{{ monthly_pitcher_info.p_dead }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div v-if="Object.keys(data.fielder_histories).length">
             <h4>野手成績履歴</h4>
             <table class="table table-hover seiseki_table">
                 <tr>

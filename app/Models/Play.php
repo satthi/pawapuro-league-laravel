@@ -556,6 +556,52 @@ class Play extends Model
         return preg_replace('/^0/', '' , $avg);
     }
 
+    public function getTargetOpbAttribute($value)
+    {
+        $obpBunbo = $this->dasu + $this->walk + $this->dead + $this->sac_fly;
+        $obpBunshi = $this->hit + $this->walk + $this->dead;
+        if ($obpBunbo) {
+            return sprintf("%.3f", round($obpBunshi / $obpBunbo, 3));
+
+        } else {
+            return '-';
+        }
+    }
+
+    public function getTargetSlgAttribute($value)
+    {
+        $bunbo = $this->dasu;
+        $bunshi = $this->hit +  $this->hit_2 + $this->hit_3 * 2 + $this->hr * 3;
+        if ($bunbo) {
+            return sprintf("%.3f", round($bunshi / $bunbo, 3));
+        } else {
+            return '-';
+        }
+    }
+
+    public function getTargetOpsAttribute($value)
+    {
+        $obpBunbo = $this->dasu + $this->walk + $this->dead + $this->sac_fly;
+        $obpBunshi = $this->hit + $this->walk + $this->dead;
+        if ($obpBunbo) {
+            $opb = $obpBunshi / $obpBunbo;
+
+        } else {
+            $opb = 0;
+        }
+
+        $bunbo = $this->dasu;
+        $bunshi = $this->hit +  $this->hit_2 + $this->hit_3 * 2 + $this->hr * 3;
+        if ($bunbo) {
+            $slg = $bunshi / $bunbo;
+        } else {
+            $slg = 0;
+        }
+
+        return sprintf("%.3f", round($opb + $slg, 3));
+    }
+
+
     public function getTopSummaryHr($game)
     {
         $hrPlayers = Play::where('game_id', $game->id)
@@ -679,6 +725,46 @@ class Play extends Model
         // dump($playHistories);
         // exit;
 
+    }
+
+    public function getMonthlyFielder($player)
+    {
+        $playerModel = new Player();
+        $monthlyInfos = $this::where('player_id', $player->id)
+            ->join('games', 'games.id', '=', 'plays.game_id')
+            ->leftjoin('results', 'results.id', '=', 'plays.result_id')
+            ->select([
+                \DB::raw('to_char(date,\'YYYY-MM\') as month'),
+                \DB::raw('count(DISTINCT(games.id)) AS game'),
+                \DB::raw('count(results.id) AS daseki'),
+                $playerModel->fielderSeisekiSelectParts('dasu_count_flag', 'dasu'),
+                $playerModel->fielderSeisekiSelectParts('hit_flag', 'hit'),
+                $playerModel->fielderSeisekiSelectParts('hit_2_flag', 'hit_2'),
+                $playerModel->fielderSeisekiSelectParts('hit_3_flag', 'hit_3'),
+                $playerModel->fielderSeisekiSelectParts('hr_flag', 'hr'),
+                $playerModel->fielderSeisekiSelectParts('sansin_flag', 'sansin'),
+                $playerModel->fielderSeisekiSelectParts('heisatsu_flag', 'heisatsu'),
+                $playerModel->fielderSeisekiSelectParts('walk_flag', 'walk'),
+                $playerModel->fielderSeisekiSelectParts('dead_flag', 'dead'),
+                $playerModel->fielderSeisekiSelectParts('bant_flag', 'bant'),
+                $playerModel->fielderSeisekiSelectParts('sac_fly_flag', 'sac_fly'),
+                \DB::raw('sum(plays.point_count) AS daten'),
+                \DB::raw('sum(CASE WHEN plays.type = ' . PlayType::TYPE_STEAL . ' AND plays.out_count = 0 THEN 1 ELSE 0 END) AS steal_success'),
+                \DB::raw('sum(CASE WHEN plays.type = ' . PlayType::TYPE_STEAL . ' AND plays.out_count = 1 THEN 1 ELSE 0 END) AS steal_miss'),
+            ])
+            ->whereIn('type', [PlayType::TYPE_DAGEKI_KEKKA, PlayType::TYPE_STEAL])
+            ->groupBy(\DB::raw('to_char(date,\'YYYY-MM\')'))
+            ->orderBy(\DB::raw('to_char(date,\'YYYY-MM\')'), 'ASC')
+            ->get();
+
+        foreach ($monthlyInfos as $monthlyInfo) {
+            $monthlyInfo->append('target_avg');
+            $monthlyInfo->append('target_opb');
+            $monthlyInfo->append('target_slg');
+            $monthlyInfo->append('target_ops');
+        }
+
+        return $monthlyInfos;
     }
 
 

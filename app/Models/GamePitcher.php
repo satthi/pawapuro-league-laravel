@@ -292,4 +292,102 @@ class GamePitcher extends Model
 
     }
 
+    public function getMothryPitcher(Player $player)
+    {
+        $monthlyInfos = $this::where('player_id', $player->id)
+            ->join('games', 'games.id', '=', 'game_pitchers.game_id')
+            ->select([
+                \DB::raw('to_char(date,\'YYYY-MM\') as month'),
+                \DB::raw('count(game_pitchers.id) as p_game'),
+                \DB::raw('coalesce(sum(game_pitchers.inning), 0) as inning_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.jiseki), 0) as p_jiseki'),
+                \DB::raw('coalesce(sum(game_pitchers.daseki), 0) as daseki_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.dasu), 0) as dasu_sum'),
+                \DB::raw('coalesce(sum(game_pitchers.hit), 0) as p_hit'),
+                \DB::raw('coalesce(sum(game_pitchers.hr), 0) as p_hr'),
+                \DB::raw('coalesce(sum(game_pitchers.sansin), 0) as p_sansin'),
+                \DB::raw('coalesce(sum(game_pitchers.walk), 0) as p_walk'),
+                \DB::raw('coalesce(sum(game_pitchers.dead), 0) as p_dead'),
+                \DB::raw('coalesce(sum(game_pitchers.win_flag::integer), 0) as p_win'),
+                \DB::raw('coalesce(sum(game_pitchers.lose_flag::integer), 0) as p_lose'),
+                \DB::raw('coalesce(sum(game_pitchers.hold_flag::integer), 0) as p_hold'),
+                \DB::raw('coalesce(sum(game_pitchers.save_flag::integer), 0) as p_save'),
+            ])
+            ->groupBy(\DB::raw('to_char(date,\'YYYY-MM\')'))
+            ->orderBy(\DB::raw('to_char(date,\'YYYY-MM\')'), 'ASC')
+            ->get();
+
+        foreach ($monthlyInfos as $monthlyInfo) {
+            $monthlyInfo->append('display_p_era');
+            $monthlyInfo->append('display_p_win_ratio');
+            $monthlyInfo->append('display_p_sansin_ratio');
+            $monthlyInfo->append('display_p_avg');
+            $monthlyInfo->append('display_p_inning');
+        }
+
+        // dump($monthlyInfos);
+        // exit;
+
+        return $monthlyInfos;
+    }
+
+    public function getDisplayPEraAttribute($value)
+    {
+        $bunbo = $this->inning_sum / 27;
+        $bunshi = $this->p_jiseki;
+
+        if ($bunbo) {
+            return sprintf("%.2f", round($bunshi / $bunbo, 2));
+        } else {
+            return '-';
+        }
+    }
+
+    public function getDisplayPWinRatioAttribute($value)
+    {
+        $bunbo = $this->p_win + $this->p_lose;
+        $bunshi = $this->p_win;
+
+        if ($bunbo) {
+            return sprintf("%.3f", round($bunshi / $bunbo, 3));
+        } else {
+            return '-';
+        }
+    }
+
+    public function getDisplayPSansinRatioAttribute($value)
+    {
+        $bunbo = $this->inning_sum / 27;
+        $bunshi = $this->p_sansin;
+
+        if ($bunbo) {
+            return sprintf("%.2f", round($bunshi / $bunbo, 2));
+        } else {
+            return '-';
+        }
+    }
+
+    public function getDisplayPAvgAttribute($value)
+    {
+        $bunbo = $this->dasu_sum;
+        $bunshi = $this->p_hit;
+
+        if ($bunbo) {
+            return sprintf("%.3f", round($bunshi / $bunbo, 3));
+        } else {
+            return '-';
+        }
+    }
+
+    public function getDisplayPInningAttribute($value)
+    {
+        $text = floor($this->inning_sum / 3);
+        if ($this->inning_sum % 3 != 0) {
+            $text .= ' ' . ($this->inning_sum % 3) . '/3';
+        }
+
+        return $text;
+    }
+
+
 }
