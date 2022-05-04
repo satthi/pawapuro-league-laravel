@@ -225,11 +225,12 @@ class SeasonController extends Controller
             foreach ($teams as $team) {
                 $returnArray['datasets'][$team->id]['data'][$targetDateChronos->format('Y-m-d')] = null;
             }
-            $targetDateChronos->addDay();
-
             if ($targetDateChronos->format('Y-m-d') == $maxDate) {
                 break;
             }
+
+            $targetDateChronos->addDay();
+
         }
 
         foreach ($graphInfo as $teamId => $teamInfo) {
