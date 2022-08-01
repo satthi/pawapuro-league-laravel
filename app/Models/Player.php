@@ -1100,5 +1100,55 @@ class Player extends Model
         $this->shukei($requestData['season_id']);
     }
 
+    public function getSimpleTopPlayer($seasonId, $field, $keta = null, $condition = null, $minMax = 'max')
+    {
+        $dataQuery = $this::where('teams.season_id', $seasonId)
+            ->select([
+                \DB::raw($minMax . '(players.' . $field . ') as value'),
+            ])
+            ->leftjoin('teams', 'teams.id', '=', 'players.team_id');
+
+        if ($condition) {
+            $dataQuery = $dataQuery->where($condition, true);
+        }
+
+        $data = $dataQuery->get()
+            ->first();
+
+        if (is_null($data)) {
+            return [];
+        }
+
+        $value = $data->value;
+
+        $playersQuery = $this::where('teams.season_id', $seasonId)
+            ->where('players.' . $field, $value)
+            ->select([
+                'players.id as player_id',
+                'players.number as player_no',
+                'players.name as player_name',
+                'teams.ryaku_name  as team_name',
+            ])
+            ->leftjoin('teams', 'teams.id', '=', 'players.team_id');
+
+        if ($condition) {
+            $playersQuery = $playersQuery->where($condition, true);
+        }
+
+        $players = $playersQuery->get();
+
+        if ($keta) {
+            $value = sprintf('%.' . $keta . 'f', round($value, $keta));
+        }
+
+        return [
+            'value' => $value,
+            'players' => $players,
+        ];
+        // dump($data);
+        // dump($players);
+        // exit;
+    }
+
 
 }

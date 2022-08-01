@@ -21,6 +21,9 @@
                 </router-link>
             </form>
             <div style="margin-top:10px;">
+                <router-link v-bind:to="{name: 'season.title', params: {seasonId: seasonId.toString()}}">
+                    <button class="btn btn-success">タイトル</button>
+                </router-link>
                 <router-link v-bind:to="{name: 'season.graph', params: {seasonId: seasonId.toString()}}">
                     <button class="btn btn-success">履歴</button>
                 </router-link>

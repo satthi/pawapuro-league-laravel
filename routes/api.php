@@ -44,10 +44,12 @@ Route::get('/base-players/fielder-rank/{sortType}', 'App\Http\Controllers\BasePl
 Route::get('/base-players/pitcher-rank/{sortType}', 'App\Http\Controllers\BasePlayerController@pitcherRank');
 
 Route::get('/seasons', 'App\Http\Controllers\SeasonController@index');
+Route::get('/seasons/regularList', 'App\Http\Controllers\SeasonController@regularList');
 Route::post('/seasons/add', 'App\Http\Controllers\SeasonController@add');
 Route::get('/seasons/view/{season}', 'App\Http\Controllers\SeasonController@show');
 Route::get('/seasons/next-game/{season}', 'App\Http\Controllers\SeasonController@nextGame');
 Route::get('/seasons/detail/{season}', 'App\Http\Controllers\SeasonController@detail');
+Route::get('/seasons/title/{season}', 'App\Http\Controllers\SeasonController@title');
 Route::put('/seasons/edit/{season}', 'App\Http\Controllers\SeasonController@update');
 Route::post('/seasons/re-shukei/{season}', 'App\Http\Controllers\SeasonController@reShukei');
 Route::delete('/seasons/delete/{season}', 'App\Http\Controllers\SeasonController@destroy');

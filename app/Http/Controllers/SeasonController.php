@@ -19,6 +19,12 @@ class SeasonController extends Controller
          return Season::all();
      }
 
+     public function regularList()
+     {
+         return Season::where('regular_flag', true)
+            ->get();
+     }
+
     public function show(Season $season)
     {
         return $season;
@@ -76,6 +82,10 @@ class SeasonController extends Controller
         ];
     }
 
+    public function title(Season $season)
+    {
+        return $season->getTitle();
+    }
     public function monthData(Season $season, string $month)
     {
         $startDate = new Carbon($month . '-01');

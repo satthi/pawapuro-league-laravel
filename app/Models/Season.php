@@ -12,6 +12,16 @@ class Season extends Model
     protected $fillable = [
         'name',
         'regular_flag',
+        'mvp_player_id',
+        'b9_1_player_id',
+        'b9_2_player_id',
+        'b9_3_player_id',
+        'b9_4_player_id',
+        'b9_5_player_id',
+        'b9_6_player_id',
+        'b9_7_player_id',
+        'b9_8_player_id',
+        'b9_9_player_id',
     ];
     protected $appends = [
         'is_deletable',
@@ -191,6 +201,24 @@ class Season extends Model
             'save' => $savePlayer,
         ];
 
+    }
+
+    public function getTitle(): array
+    {
+        $playerModel = new Player();
+        return [
+            'avg' => $playerModel->getSimpleTopPlayer($this->id, 'avg', 3, \DB::raw('(players.daseki::numeric >= teams.game::numeric * 3.1)'), 'max'),
+            'hr' => $playerModel->getSimpleTopPlayer($this->id, 'hr'),
+            'daten' => $playerModel->getSimpleTopPlayer($this->id, 'daten'),
+            'steal' => $playerModel->getSimpleTopPlayer($this->id, 'steal_success'),
+            'hit' => $playerModel->getSimpleTopPlayer($this->id, 'hit'),
+            'p_era' => $playerModel->getSimpleTopPlayer($this->id, 'p_era', 2, \DB::raw('(players.p_inning >= teams.game * 3)'), 'min'),
+            'p_win' => $playerModel->getSimpleTopPlayer($this->id, 'p_win'),
+            'p_win_ratio' => $playerModel->getSimpleTopPlayer($this->id, 'p_win_ratio', 3, \DB::raw('(players.p_win >= 13::numeric)')),
+            'p_sansin' => $playerModel->getSimpleTopPlayer($this->id, 'p_sansin'),
+            'p_hold' => $playerModel->getSimpleTopPlayer($this->id, 'p_hold'),
+            'p_save' => $playerModel->getSimpleTopPlayer($this->id, 'p_save'),
+        ];
     }
 
     ####  attirbute
