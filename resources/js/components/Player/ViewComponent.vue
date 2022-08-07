@@ -302,6 +302,7 @@
                     <th>出<br />塁<br />率</th>
                     <th>長<br />打<br />率</th>
                     <th>O<br />P<br />S</th>
+                    <th></th>
                 </tr>
                 <tr v-for="season_history in data.season_fielder_histories">
                     <td>
@@ -331,6 +332,10 @@
                     <td>{{ season_history.display_obp }}<span v-html="season_history.obp_rank"></span></td>
                     <td>{{ season_history.display_slg }}<span v-html="season_history.slg_rank"></span></td>
                     <td>{{ season_history.display_ops }}<span v-html="season_history.ops_rank"></span></td>
+                    <td>
+                        <span v-if="season_history.is_mvp">MVP</span>
+                        <span v-if="season_history.is_b9">B9</span>
+                    </td>
                 </tr>
                 <tr>
                     <td>合計</td>
@@ -356,6 +361,7 @@
                     <td>{{ data.player.base_player.display_obp }}</td>
                     <td>{{ data.player.base_player.display_slg }}</td>
                     <td>{{ data.player.base_player.display_ops }}</td>
+                    <td></td>
                 </tr>
             </table>
         </div>
@@ -438,7 +444,107 @@
                 </tr>
             </table>
         </div>
-
+        <div>
+            <h4>通算カウント</h4>
+            <table class="table table-hover" style="width: 200px;">
+                <tr v-if="data.count.mvp">
+                    <th>MVP</th>
+                    <td>{{ data.count.mvp }}</td>
+                </tr>
+                <tr v-if="data.count.b9">
+                    <th>ベストナイン</th>
+                    <td>{{ data.count.b9 }}</td>
+                </tr>
+                <tr v-if="data.count.avg">
+                    <th>首位打者</th>
+                    <td>{{ data.count.avg }}</td>
+                </tr>
+                <tr v-if="data.count.hr">
+                    <th>ホームラン王</th>
+                    <td>{{ data.count.hr }}</td>
+                </tr>
+                <tr v-if="data.count.daten">
+                    <th>打点王</th>
+                    <td>{{ data.count.daten }}</td>
+                </tr>
+                <tr v-if="data.count.hit">
+                    <th>最多安打</th>
+                    <td>{{ data.count.hit }}</td>
+                </tr>
+                <tr v-if="data.count.steal">
+                    <th>盗塁王</th>
+                    <td>{{ data.count.steal }}</td>
+                </tr>
+                <tr v-if="data.count.kitei_daseki">
+                    <th>規定打席到達</th>
+                    <td>{{ data.count.kitei_daseki }}</td>
+                </tr>
+                <tr v-if="data.count.avg_3wari">
+                    <th>3割</th>
+                    <td>{{ data.count.avg_3wari }}</td>
+                </tr>
+                <tr v-if="data.count.hr_30">
+                    <th>30本</th>
+                    <td>{{ data.count.hr_30 }}</td>
+                </tr>
+                <tr v-if="data.count.daten_100">
+                    <th>100打点</th>
+                    <td>{{ data.count.daten_100 }}</td>
+                </tr>
+                <tr v-if="data.count.steal_30">
+                    <th>30盗塁</th>
+                    <td>{{ data.count.steal_30 }}</td>
+                </tr>
+                <tr v-if="data.count.era">
+                    <th>最優秀防御率</th>
+                    <td>{{ data.count.era }}</td>
+                </tr>
+                <tr v-if="data.count.win">
+                    <th>最多勝</th>
+                    <td>{{ data.count.win }}</td>
+                </tr>
+                <tr v-if="data.count.win_ratio">
+                    <th>最高勝率</th>
+                    <td>{{ data.count.win_ratio }}</td>
+                </tr>
+                <tr v-if="data.count.sansin">
+                    <th>最多奪三振</th>
+                    <td>{{ data.count.sansin }}</td>
+                </tr>
+                <tr v-if="data.count.hold">
+                    <th>最優秀中継ぎ投手</th>
+                    <td>{{ data.count.hold }}</td>
+                </tr>
+                <tr v-if="data.count.save">
+                    <th>最優秀救援投手</th>
+                    <td>{{ data.count.save }}</td>
+                </tr>
+                <tr v-if="data.count.kitei_tokyu">
+                    <th>規定投球回数</th>
+                    <td>{{ data.count.kitei_tokyu }}</td>
+                </tr>
+                <tr v-if="data.count.game_50">
+                    <th>50試合以上</th>
+                    <td>{{ data.count.game_50 }}</td>
+                </tr>
+                <tr v-if="data.count.win_10">
+                    <th>10勝</th>
+                    <td>{{ data.count.win_10 }}</td>
+                </tr>
+                <tr v-if="data.count.era_1ten">
+                    <th>防御率1点台</th>
+                    <td>{{ data.count.era_1ten }}</td>
+                </tr>
+                <tr v-if="data.count.hold_30">
+                    <th>30ホールド</th>
+                    <td>{{ data.count.hold_30 }}</td>
+                </tr>
+                <tr v-if="data.count.save_30">
+                    <th>30セーブ</th>
+                    <td>{{ data.count.save_30 }}</td>
+                </tr>
+            </table>
+        </div>
     </div>
 </template>
 <script>

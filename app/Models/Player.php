@@ -379,6 +379,22 @@ class Player extends Model
         return $this->getHistoryRank('p_dead');
     }
 
+    public function getIsMvpAttribute($value)
+    {
+        return $this->id == $this->team->season->mvp_player_id;
+    }
+    public function getIsB9Attribute($value)
+    {
+        return $this->id == $this->team->season->b9_1_player_id || 
+        $this->id == $this->team->season->b9_2_player_id || 
+        $this->id == $this->team->season->b9_3_player_id || 
+        $this->id == $this->team->season->b9_4_player_id || 
+        $this->id == $this->team->season->b9_5_player_id || 
+        $this->id == $this->team->season->b9_6_player_id || 
+        $this->id == $this->team->season->b9_7_player_id || 
+        $this->id == $this->team->season->b9_8_player_id || 
+        $this->id == $this->team->season->b9_9_player_id;
+    }
     private function getHistoryRank($field)
     {
         $team = Team::find($this->team_id);
@@ -1017,6 +1033,8 @@ class Player extends Model
                 'obp_rank',
                 'slg_rank',
                 'ops_rank',
+                'is_b9',
+                'is_mvp',
             ]));
         }
 

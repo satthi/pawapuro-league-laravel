@@ -16,7 +16,8 @@ class SeasonController extends Controller
 {
      public function index()
      {
-         return Season::all();
+         return Season::orderBy('seasons.id', 'ASC')
+            ->get();
      }
 
      public function regularList()

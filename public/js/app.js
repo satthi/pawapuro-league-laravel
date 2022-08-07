@@ -6182,6 +6182,112 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   watch: {
@@ -94034,6 +94140,16 @@ var render = function() {
                             innerHTML: _vm._s(season_history.ops_rank)
                           }
                         })
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        season_history.is_mvp
+                          ? _c("span", [_vm._v("MVP")])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        season_history.is_b9
+                          ? _c("span", [_vm._v("B9")])
+                          : _vm._e()
                       ])
                     ])
                   }),
@@ -94119,7 +94235,9 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [
                       _vm._v(_vm._s(_vm.data.player.base_player.display_ops))
-                    ])
+                    ]),
+                    _vm._v(" "),
+                    _c("td")
                   ])
                 ],
                 2
@@ -94431,7 +94549,212 @@ var render = function() {
                 2
               )
             ])
-          : _vm._e()
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", [
+          _c("h4", [_vm._v("通算カウント")]),
+          _vm._v(" "),
+          _c(
+            "table",
+            {
+              staticClass: "table table-hover",
+              staticStyle: { width: "200px" }
+            },
+            [
+              _vm.data.count.mvp
+                ? _c("tr", [
+                    _c("th", [_vm._v("MVP")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.mvp))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.b9
+                ? _c("tr", [
+                    _c("th", [_vm._v("ベストナイン")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.b9))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.avg
+                ? _c("tr", [
+                    _c("th", [_vm._v("首位打者")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.avg))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.hr
+                ? _c("tr", [
+                    _c("th", [_vm._v("ホームラン王")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.hr))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.daten
+                ? _c("tr", [
+                    _c("th", [_vm._v("打点王")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.daten))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.hit
+                ? _c("tr", [
+                    _c("th", [_vm._v("最多安打")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.hit))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.steal
+                ? _c("tr", [
+                    _c("th", [_vm._v("盗塁王")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.steal))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.kitei_daseki
+                ? _c("tr", [
+                    _c("th", [_vm._v("規定打席到達")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.kitei_daseki))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.avg_3wari
+                ? _c("tr", [
+                    _c("th", [_vm._v("3割")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.avg_3wari))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.hr_30
+                ? _c("tr", [
+                    _c("th", [_vm._v("30本")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.hr_30))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.daten_100
+                ? _c("tr", [
+                    _c("th", [_vm._v("100打点")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.daten_100))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.steal_30
+                ? _c("tr", [
+                    _c("th", [_vm._v("30盗塁")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.steal_30))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.era
+                ? _c("tr", [
+                    _c("th", [_vm._v("最優秀防御率")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.era))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.win
+                ? _c("tr", [
+                    _c("th", [_vm._v("最多勝")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.win))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.win_ratio
+                ? _c("tr", [
+                    _c("th", [_vm._v("最高勝率")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.win_ratio))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.sansin
+                ? _c("tr", [
+                    _c("th", [_vm._v("最多奪三振")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.sansin))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.hold
+                ? _c("tr", [
+                    _c("th", [_vm._v("最優秀中継ぎ投手")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.hold))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.save
+                ? _c("tr", [
+                    _c("th", [_vm._v("最優秀救援投手")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.save))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.kitei_tokyu
+                ? _c("tr", [
+                    _c("th", [_vm._v("規定投球回数")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.kitei_tokyu))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.game_50
+                ? _c("tr", [
+                    _c("th", [_vm._v("50試合以上")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.game_50))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.win_10
+                ? _c("tr", [
+                    _c("th", [_vm._v("10勝")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.win_10))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.era_1ten
+                ? _c("tr", [
+                    _c("th", [_vm._v("防御率1点台")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.era_1ten))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.hold_30
+                ? _c("tr", [
+                    _c("th", [_vm._v("30ホールド")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.hold_30))])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.count.save_30
+                ? _c("tr", [
+                    _c("th", [_vm._v("30セーブ")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.data.count.save_30))])
+                  ])
+                : _vm._e()
+            ]
+          )
+        ])
       ])
     : _vm._e()
 }
@@ -94769,7 +95092,9 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("長"), _c("br"), _vm._v("打"), _c("br"), _vm._v("率")]),
       _vm._v(" "),
-      _c("th", [_vm._v("O"), _c("br"), _vm._v("P"), _c("br"), _vm._v("S")])
+      _c("th", [_vm._v("O"), _c("br"), _vm._v("P"), _c("br"), _vm._v("S")]),
+      _vm._v(" "),
+      _c("th")
     ])
   },
   function() {
