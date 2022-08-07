@@ -4,6 +4,7 @@
         <select
             class="col-sm-9 form-control"
             v-bind:class="{'is-invalid' : isError()}"
+            v-model="value"
             :value="value"
             @change="updateValue"
         >

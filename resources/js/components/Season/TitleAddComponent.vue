@@ -3,20 +3,20 @@
         <h2>タイトル登録</h2>
         <div class="row justify-content-center">
             <div class="col-sm-6">
-                <form v-on:submit.prevent="submit(submitPath, {name: 'season.index'})">
-                    <div class="form-group row">
-                        <label for="id" class="col-sm-3 col-form-label">ID</label>
-                        <input type="text" class="col-sm-9 form-control-plaintext" readonly id="id" v-model="data.id" >
-                    </div>
+                <form v-on:submit.prevent="submit(submitPath, {name: 'season.title', params: {seasonId: seasonId.toString() }})">
 
-                    <input-component label="シーズン名" :errors="errors.name" v-model="data.name"/>
-                    <checkbox-component label="レギュラーフラグ" :errors="errors.regular_flag" v-model="data.regular_flag"/>
+                    <select-component label="mvp" :options="players" :empty=true :value="data.mvp_player_id" v-model="data.mvp_player_id"/>
+                    <select-component label="B9 投手" :options="players" :empty=true :value="data.b9_1_player_id" v-model="data.b9_1_player_id"/>
+                    <select-component label="B9 捕手" :options="players" :empty=true :value="data.b9_2_player_id" v-model="data.b9_2_player_id"/>
+                    <select-component label="B9 一塁手" :options="players" :empty=true :value="data.b9_3_player_id" v-model="data.b9_3_player_id"/>
+                    <select-component label="B9 二塁手" :options="players" :empty=true :value="data.b9_4_player_id" v-model="data.b9_4_player_id"/>
+                    <select-component label="B9 三塁手" :options="players" :empty=true :value="data.b9_5_player_id" v-model="data.b9_5_player_id"/>
+                    <select-component label="B9 遊撃手" :options="players" :empty=true :value="data.b9_6_player_id" v-model="data.b9_6_player_id"/>
+                    <select-component label="B9 外野手1" :options="players" :empty=true :value="data.b9_7_player_id" v-model="data.b9_7_player_id"/>
+                    <select-component label="B9 外野手2" :options="players" :empty=true :value="data.b9_8_player_id" v-model="data.b9_8_player_id"/>
+                    <select-component label="B9 外野手3" :options="players" :empty=true :value="data.b9_9_player_id" v-model="data.b9_9_player_id"/>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
-
-                    <router-link v-bind:to="{name: 'season.index'}">
-                        <button class="btn btn-success float-right">一覧に戻る</button>
-                    </router-link>
                 </form>
             </div>
         </div>
@@ -24,11 +24,10 @@
 </template>
 
 <script>
-    import InputComponent from '../common/form/InputComponent';
-    import CheckboxComponent from '../common/form/CheckboxComponent';
+    import SelectComponent from '../common/form/SelectComponent';
     import editMixin from '../../mixins/form/edit.js';
     export default {
-        components: {InputComponent, CheckboxComponent},
+        components: {SelectComponent},
         mixins : [editMixin],
         props: {
             seasonId: String
@@ -41,11 +40,21 @@
         data: function () {
             return {
                 data: {},
-                errors: {}
+                errors: {},
+                players: {}
             }
+        },
+        methods: {
+            getPlayers(getPath) {
+                axios.get(getPath)
+                    .then((res) => {
+                        this.players = res.data;
+                    });
+            },
         },
         mounted() {
             this.getData('/api/seasons/view/' + this.seasonId);
+            this.getPlayers('/api/players/get-options/' + this.seasonId);
         }
     }
 </script>

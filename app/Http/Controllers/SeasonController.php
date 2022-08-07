@@ -22,6 +22,7 @@ class SeasonController extends Controller
      public function regularList()
      {
          return Season::where('regular_flag', true)
+            ->orderBy('seasons.id', 'ASC')
             ->get();
      }
 

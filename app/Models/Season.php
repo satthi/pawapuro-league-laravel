@@ -27,6 +27,48 @@ class Season extends Model
         'is_deletable',
     ];
 
+    public function mvp_player()
+    {
+        return $this->belongsTo(Player::class, 'mvp_player_id');
+    }
+    public function b9_1_player()
+    {
+        return $this->belongsTo(Player::class, 'b9_1_player_id');
+    }
+    public function b9_2_player()
+    {
+        return $this->belongsTo(Player::class, 'b9_2_player_id');
+    }
+    public function b9_3_player()
+    {
+        return $this->belongsTo(Player::class, 'b9_3_player_id');
+    }
+    public function b9_4_player()
+    {
+        return $this->belongsTo(Player::class, 'b9_4_player_id');
+    }
+    public function b9_5_player()
+    {
+        return $this->belongsTo(Player::class, 'b9_5_player_id');
+    }
+    public function b9_6_player()
+    {
+        return $this->belongsTo(Player::class, 'b9_6_player_id');
+    }
+    public function b9_7_player()
+    {
+        return $this->belongsTo(Player::class, 'b9_7_player_id');
+    }
+    public function b9_8_player()
+    {
+        return $this->belongsTo(Player::class, 'b9_8_player_id');
+    }
+    public function b9_9_player()
+    {
+        return $this->belongsTo(Player::class, 'b9_9_player_id');
+    }
+
+
     #### season make
     public function add($requestData)
     {
@@ -206,6 +248,36 @@ class Season extends Model
     public function getTitle(): array
     {
         $playerModel = new Player();
+        if ($this->mvp_player) {
+            $this->mvp_player->team;
+        }
+        if ($this->b9_1_player) {
+            $this->b9_1_player->team;
+        }
+        if ($this->b9_2_player) {
+            $this->b9_2_player->team;
+        }
+        if ($this->b9_3_player) {
+            $this->b9_3_player->team;
+        }
+        if ($this->b9_4_player) {
+            $this->b9_4_player->team;
+        }
+        if ($this->b9_5_player) {
+            $this->b9_5_player->team;
+        }
+        if ($this->b9_6_player) {
+            $this->b9_6_player->team;
+        }
+        if ($this->b9_7_player) {
+            $this->b9_7_player->team;
+        }
+        if ($this->b9_8_player) {
+            $this->b9_8_player->team;
+        }
+        if ($this->b9_9_player) {
+            $this->b9_9_player->team;
+        }
         return [
             'avg' => $playerModel->getSimpleTopPlayer($this->id, 'avg', 3, \DB::raw('(players.daseki::numeric >= teams.game::numeric * 3.1)'), 'max'),
             'hr' => $playerModel->getSimpleTopPlayer($this->id, 'hr'),
@@ -218,6 +290,16 @@ class Season extends Model
             'p_sansin' => $playerModel->getSimpleTopPlayer($this->id, 'p_sansin'),
             'p_hold' => $playerModel->getSimpleTopPlayer($this->id, 'p_hold'),
             'p_save' => $playerModel->getSimpleTopPlayer($this->id, 'p_save'),
+            'mvp' => $this->mvp_player,
+            'bb_1' => $this->b9_1_player,
+            'bb_2' => $this->b9_2_player,
+            'bb_3' => $this->b9_3_player,
+            'bb_4' => $this->b9_4_player,
+            'bb_5' => $this->b9_5_player,
+            'bb_6' => $this->b9_6_player,
+            'bb_7' => $this->b9_7_player,
+            'bb_8' => $this->b9_8_player,
+            'bb_9' => $this->b9_9_player,
         ];
     }
 

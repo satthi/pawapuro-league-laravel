@@ -7122,6 +7122,83 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/TitleAddComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/TitleAddComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _common_form_SelectComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../common/form/SelectComponent */ "./resources/js/components/common/form/SelectComponent.vue");
+/* harmony import */ var _mixins_form_edit_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/form/edit.js */ "./resources/js/mixins/form/edit.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    SelectComponent: _common_form_SelectComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  mixins: [_mixins_form_edit_js__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  props: {
+    seasonId: String
+  },
+  computed: {
+    submitPath: function submitPath() {
+      return '/api/seasons/edit/' + this.seasonId;
+    }
+  },
+  data: function data() {
+    return {
+      data: {},
+      errors: {},
+      players: {}
+    };
+  },
+  methods: {
+    getPlayers: function getPlayers(getPath) {
+      var _this = this;
+
+      axios.get(getPath).then(function (res) {
+        _this.players = res.data;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getData('/api/seasons/view/' + this.seasonId);
+    this.getPlayers('/api/players/get-options/' + this.seasonId);
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/TitleComponent.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/TitleComponent.vue?vue&type=script&lang=js& ***!
@@ -7133,6 +7210,103 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8495,6 +8669,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['label', 'errors', 'value', 'options', 'empty'],
   methods: {
@@ -8518,7 +8693,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _components_HeaderComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/HeaderComponent */ "./resources/js/components/HeaderComponent.vue");
 /* harmony import */ var _components_BaseTeam_IndexComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/BaseTeam/IndexComponent */ "./resources/js/components/BaseTeam/IndexComponent.vue");
 /* harmony import */ var _components_BaseTeam_AddComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/BaseTeam/AddComponent */ "./resources/js/components/BaseTeam/AddComponent.vue");
@@ -8539,28 +8714,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Season_MonthComponent__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Season/MonthComponent */ "./resources/js/components/Season/MonthComponent.vue");
 /* harmony import */ var _components_Season_GraphComponent__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Season/GraphComponent */ "./resources/js/components/Season/GraphComponent.vue");
 /* harmony import */ var _components_Season_TitleComponent__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/Season/TitleComponent */ "./resources/js/components/Season/TitleComponent.vue");
-/* harmony import */ var _components_Game_IndexComponent__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/Game/IndexComponent */ "./resources/js/components/Game/IndexComponent.vue");
-/* harmony import */ var _components_Game_AddComponent__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/Game/AddComponent */ "./resources/js/components/Game/AddComponent.vue");
-/* harmony import */ var _components_Game_AutoAddComponent__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/Game/AutoAddComponent */ "./resources/js/components/Game/AutoAddComponent.vue");
-/* harmony import */ var _components_Game_ViewComponent__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/Game/ViewComponent */ "./resources/js/components/Game/ViewComponent.vue");
-/* harmony import */ var _components_Game_ProbablePitcherUpdateComponent__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/Game/ProbablePitcherUpdateComponent */ "./resources/js/components/Game/ProbablePitcherUpdateComponent.vue");
-/* harmony import */ var _components_Game_StamenEditComponent__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/Game/StamenEditComponent */ "./resources/js/components/Game/StamenEditComponent.vue");
-/* harmony import */ var _components_Game_PlayComponent__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/Game/PlayComponent */ "./resources/js/components/Game/PlayComponent.vue");
-/* harmony import */ var _components_Game_PinchHitterComponent__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/Game/PinchHitterComponent */ "./resources/js/components/Game/PinchHitterComponent.vue");
-/* harmony import */ var _components_Game_PinchRunnerComponent__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/Game/PinchRunnerComponent */ "./resources/js/components/Game/PinchRunnerComponent.vue");
-/* harmony import */ var _components_Game_PositionChangeComponent__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/Game/PositionChangeComponent */ "./resources/js/components/Game/PositionChangeComponent.vue");
-/* harmony import */ var _components_Game_StealComponent__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/Game/StealComponent */ "./resources/js/components/Game/StealComponent.vue");
-/* harmony import */ var _components_Game_SummaryComponent__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/Game/SummaryComponent */ "./resources/js/components/Game/SummaryComponent.vue");
-/* harmony import */ var _components_Game_FielderSummaryComponent__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/Game/FielderSummaryComponent */ "./resources/js/components/Game/FielderSummaryComponent.vue");
-/* harmony import */ var _components_Game_PitcherSummaryComponent__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/Game/PitcherSummaryComponent */ "./resources/js/components/Game/PitcherSummaryComponent.vue");
-/* harmony import */ var _components_Team_ViewComponent__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./components/Team/ViewComponent */ "./resources/js/components/Team/ViewComponent.vue");
-/* harmony import */ var _components_Team_MonthComponent__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./components/Team/MonthComponent */ "./resources/js/components/Team/MonthComponent.vue");
-/* harmony import */ var _components_Player_ViewComponent__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./components/Player/ViewComponent */ "./resources/js/components/Player/ViewComponent.vue");
+/* harmony import */ var _components_Season_TitleAddComponent__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/Season/TitleAddComponent */ "./resources/js/components/Season/TitleAddComponent.vue");
+/* harmony import */ var _components_Game_IndexComponent__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/Game/IndexComponent */ "./resources/js/components/Game/IndexComponent.vue");
+/* harmony import */ var _components_Game_AddComponent__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/Game/AddComponent */ "./resources/js/components/Game/AddComponent.vue");
+/* harmony import */ var _components_Game_AutoAddComponent__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/Game/AutoAddComponent */ "./resources/js/components/Game/AutoAddComponent.vue");
+/* harmony import */ var _components_Game_ViewComponent__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/Game/ViewComponent */ "./resources/js/components/Game/ViewComponent.vue");
+/* harmony import */ var _components_Game_ProbablePitcherUpdateComponent__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/Game/ProbablePitcherUpdateComponent */ "./resources/js/components/Game/ProbablePitcherUpdateComponent.vue");
+/* harmony import */ var _components_Game_StamenEditComponent__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/Game/StamenEditComponent */ "./resources/js/components/Game/StamenEditComponent.vue");
+/* harmony import */ var _components_Game_PlayComponent__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/Game/PlayComponent */ "./resources/js/components/Game/PlayComponent.vue");
+/* harmony import */ var _components_Game_PinchHitterComponent__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/Game/PinchHitterComponent */ "./resources/js/components/Game/PinchHitterComponent.vue");
+/* harmony import */ var _components_Game_PinchRunnerComponent__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/Game/PinchRunnerComponent */ "./resources/js/components/Game/PinchRunnerComponent.vue");
+/* harmony import */ var _components_Game_PositionChangeComponent__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/Game/PositionChangeComponent */ "./resources/js/components/Game/PositionChangeComponent.vue");
+/* harmony import */ var _components_Game_StealComponent__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/Game/StealComponent */ "./resources/js/components/Game/StealComponent.vue");
+/* harmony import */ var _components_Game_SummaryComponent__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/Game/SummaryComponent */ "./resources/js/components/Game/SummaryComponent.vue");
+/* harmony import */ var _components_Game_FielderSummaryComponent__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/Game/FielderSummaryComponent */ "./resources/js/components/Game/FielderSummaryComponent.vue");
+/* harmony import */ var _components_Game_PitcherSummaryComponent__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./components/Game/PitcherSummaryComponent */ "./resources/js/components/Game/PitcherSummaryComponent.vue");
+/* harmony import */ var _components_Team_ViewComponent__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./components/Team/ViewComponent */ "./resources/js/components/Team/ViewComponent.vue");
+/* harmony import */ var _components_Team_MonthComponent__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./components/Team/MonthComponent */ "./resources/js/components/Team/MonthComponent.vue");
+/* harmony import */ var _components_Player_ViewComponent__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./components/Player/ViewComponent */ "./resources/js/components/Player/ViewComponent.vue");
 
  // import TaskListComponent from "./components/TaskListComponent";
 // import TaskShowComponent from "./components/TaskShowComponent";
 // import TaskCreateComponent from "./components/TaskCreateComponent";
 // import TaskEditComponent from "./components/TaskEditComponent";
+
 
 
 
@@ -8607,8 +8784,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_37__["default"]);
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_37__["default"]({
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_38__["default"]);
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_38__["default"]({
   mode: 'history',
   routes: [// {
   //     path: '/tasks',
@@ -8726,6 +8903,11 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_37__["default"]({
     component: _components_Season_TitleComponent__WEBPACK_IMPORTED_MODULE_19__["default"],
     props: true
   }, {
+    path: '/season/:seasonId/title-add',
+    name: 'season.title-add',
+    component: _components_Season_TitleAddComponent__WEBPACK_IMPORTED_MODULE_20__["default"],
+    props: true
+  }, {
     path: '/season/:seasonId/graph',
     name: 'season.graph',
     component: _components_Season_GraphComponent__WEBPACK_IMPORTED_MODULE_18__["default"],
@@ -8733,87 +8915,87 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_37__["default"]({
   }, {
     path: '/games/:seasonId',
     name: 'game.index',
-    component: _components_Game_IndexComponent__WEBPACK_IMPORTED_MODULE_20__["default"],
+    component: _components_Game_IndexComponent__WEBPACK_IMPORTED_MODULE_21__["default"],
     props: true
   }, {
     path: '/games/:seasonId/add',
     name: 'game.add',
-    component: _components_Game_AddComponent__WEBPACK_IMPORTED_MODULE_21__["default"],
+    component: _components_Game_AddComponent__WEBPACK_IMPORTED_MODULE_22__["default"],
     props: true
   }, {
     path: '/games/:seasonId/auto-add',
     name: 'game.auto_add',
-    component: _components_Game_AutoAddComponent__WEBPACK_IMPORTED_MODULE_22__["default"],
+    component: _components_Game_AutoAddComponent__WEBPACK_IMPORTED_MODULE_23__["default"],
     props: true
   }, {
     path: '/games/view/:gameId',
     name: 'game.view',
-    component: _components_Game_ViewComponent__WEBPACK_IMPORTED_MODULE_23__["default"],
+    component: _components_Game_ViewComponent__WEBPACK_IMPORTED_MODULE_24__["default"],
     props: true
   }, {
     path: '/games/:gameId/probable-pitcher-edit',
     name: 'game.probable-pitcher-edit',
-    component: _components_Game_ProbablePitcherUpdateComponent__WEBPACK_IMPORTED_MODULE_24__["default"],
+    component: _components_Game_ProbablePitcherUpdateComponent__WEBPACK_IMPORTED_MODULE_25__["default"],
     props: true
   }, {
     path: '/games/:gameId/:stamenType/stamen-edit',
     name: 'game.stamen-edit',
-    component: _components_Game_StamenEditComponent__WEBPACK_IMPORTED_MODULE_25__["default"],
+    component: _components_Game_StamenEditComponent__WEBPACK_IMPORTED_MODULE_26__["default"],
     props: true
   }, {
     path: '/games/:gameId/play',
     name: 'game.play',
-    component: _components_Game_PlayComponent__WEBPACK_IMPORTED_MODULE_26__["default"],
+    component: _components_Game_PlayComponent__WEBPACK_IMPORTED_MODULE_27__["default"],
     props: true
   }, {
     path: '/games/:gameId/:teamType/ph',
     name: 'game.ph',
-    component: _components_Game_PinchHitterComponent__WEBPACK_IMPORTED_MODULE_27__["default"],
+    component: _components_Game_PinchHitterComponent__WEBPACK_IMPORTED_MODULE_28__["default"],
     props: true
   }, {
     path: '/games/:gameId/:teamType/pr',
     name: 'game.pr',
-    component: _components_Game_PinchRunnerComponent__WEBPACK_IMPORTED_MODULE_28__["default"],
+    component: _components_Game_PinchRunnerComponent__WEBPACK_IMPORTED_MODULE_29__["default"],
     props: true
   }, {
     path: '/games/:gameId/:teamType/position',
     name: 'game.position',
-    component: _components_Game_PositionChangeComponent__WEBPACK_IMPORTED_MODULE_29__["default"],
+    component: _components_Game_PositionChangeComponent__WEBPACK_IMPORTED_MODULE_30__["default"],
     props: true
   }, {
     path: '/games/:gameId/:teamType/steal',
     name: 'game.steal',
-    component: _components_Game_StealComponent__WEBPACK_IMPORTED_MODULE_30__["default"],
+    component: _components_Game_StealComponent__WEBPACK_IMPORTED_MODULE_31__["default"],
     props: true
   }, {
     path: '/games/:gameId/summary',
     name: 'game.summary',
-    component: _components_Game_SummaryComponent__WEBPACK_IMPORTED_MODULE_31__["default"],
+    component: _components_Game_SummaryComponent__WEBPACK_IMPORTED_MODULE_32__["default"],
     props: true
   }, {
     path: '/games/:gameId/:type/fielder_summary',
     name: 'game.fielder_summary',
-    component: _components_Game_FielderSummaryComponent__WEBPACK_IMPORTED_MODULE_32__["default"],
+    component: _components_Game_FielderSummaryComponent__WEBPACK_IMPORTED_MODULE_33__["default"],
     props: true
   }, {
     path: '/games/:gameId/:type/pitcher_summary',
     name: 'game.pitcher_summary',
-    component: _components_Game_PitcherSummaryComponent__WEBPACK_IMPORTED_MODULE_33__["default"],
+    component: _components_Game_PitcherSummaryComponent__WEBPACK_IMPORTED_MODULE_34__["default"],
     props: true
   }, {
     path: '/teams/:teamId',
     name: 'team.view',
-    component: _components_Team_ViewComponent__WEBPACK_IMPORTED_MODULE_34__["default"],
+    component: _components_Team_ViewComponent__WEBPACK_IMPORTED_MODULE_35__["default"],
     props: true
   }, {
     path: '/teams/:teamId/:month/month',
     name: 'team.month',
-    component: _components_Team_MonthComponent__WEBPACK_IMPORTED_MODULE_35__["default"],
+    component: _components_Team_MonthComponent__WEBPACK_IMPORTED_MODULE_36__["default"],
     props: true
   }, {
     path: '/players/:playerId',
     name: 'player.view',
-    component: _components_Player_ViewComponent__WEBPACK_IMPORTED_MODULE_36__["default"],
+    component: _components_Player_ViewComponent__WEBPACK_IMPORTED_MODULE_37__["default"],
     props: true
   }]
 });
@@ -83422,6 +83604,45 @@ component.options.__file = "resources/js/components/Season/PitcherRankComponent.
 
 /***/ }),
 
+/***/ "./resources/js/components/Season/TitleAddComponent.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/Season/TitleAddComponent.vue ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TitleAddComponent_vue_vue_type_template_id_1ab102f3___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TitleAddComponent.vue?vue&type=template&id=1ab102f3& */ "./resources/js/components/Season/TitleAddComponent.vue?vue&type=template&id=1ab102f3&");
+/* harmony import */ var _TitleAddComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TitleAddComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Season/TitleAddComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TitleAddComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TitleAddComponent_vue_vue_type_template_id_1ab102f3___WEBPACK_IMPORTED_MODULE_0__.render,
+  _TitleAddComponent_vue_vue_type_template_id_1ab102f3___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Season/TitleAddComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Season/TitleComponent.vue":
 /*!***********************************************************!*\
   !*** ./resources/js/components/Season/TitleComponent.vue ***!
@@ -84340,6 +84561,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Season/TitleAddComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/Season/TitleAddComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TitleAddComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TitleAddComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/TitleAddComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TitleAddComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Season/TitleComponent.vue?vue&type=script&lang=js&":
 /*!************************************************************************************!*\
   !*** ./resources/js/components/Season/TitleComponent.vue?vue&type=script&lang=js& ***!
@@ -85057,6 +85294,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PitcherRankComponent_vue_vue_type_template_id_35e76bf5___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PitcherRankComponent_vue_vue_type_template_id_35e76bf5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PitcherRankComponent.vue?vue&type=template&id=35e76bf5& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/PitcherRankComponent.vue?vue&type=template&id=35e76bf5&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Season/TitleAddComponent.vue?vue&type=template&id=1ab102f3&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/Season/TitleAddComponent.vue?vue&type=template&id=1ab102f3& ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TitleAddComponent_vue_vue_type_template_id_1ab102f3___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TitleAddComponent_vue_vue_type_template_id_1ab102f3___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TitleAddComponent_vue_vue_type_template_id_1ab102f3___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TitleAddComponent.vue?vue&type=template&id=1ab102f3& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/TitleAddComponent.vue?vue&type=template&id=1ab102f3&");
 
 
 /***/ }),
@@ -96442,6 +96696,220 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/TitleAddComponent.vue?vue&type=template&id=1ab102f3&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/TitleAddComponent.vue?vue&type=template&id=1ab102f3& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("h2", [_vm._v("タイトル登録")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-sm-6" }, [
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                _vm.submit(_vm.submitPath, {
+                  name: "season.title",
+                  params: { seasonId: _vm.seasonId.toString() }
+                })
+              }
+            }
+          },
+          [
+            _c("select-component", {
+              attrs: {
+                label: "mvp",
+                options: _vm.players,
+                empty: true,
+                value: _vm.data.mvp_player_id
+              },
+              model: {
+                value: _vm.data.mvp_player_id,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "mvp_player_id", $$v)
+                },
+                expression: "data.mvp_player_id"
+              }
+            }),
+            _vm._v(" "),
+            _c("select-component", {
+              attrs: {
+                label: "B9 投手",
+                options: _vm.players,
+                empty: true,
+                value: _vm.data.b9_1_player_id
+              },
+              model: {
+                value: _vm.data.b9_1_player_id,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "b9_1_player_id", $$v)
+                },
+                expression: "data.b9_1_player_id"
+              }
+            }),
+            _vm._v(" "),
+            _c("select-component", {
+              attrs: {
+                label: "B9 捕手",
+                options: _vm.players,
+                empty: true,
+                value: _vm.data.b9_2_player_id
+              },
+              model: {
+                value: _vm.data.b9_2_player_id,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "b9_2_player_id", $$v)
+                },
+                expression: "data.b9_2_player_id"
+              }
+            }),
+            _vm._v(" "),
+            _c("select-component", {
+              attrs: {
+                label: "B9 一塁手",
+                options: _vm.players,
+                empty: true,
+                value: _vm.data.b9_3_player_id
+              },
+              model: {
+                value: _vm.data.b9_3_player_id,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "b9_3_player_id", $$v)
+                },
+                expression: "data.b9_3_player_id"
+              }
+            }),
+            _vm._v(" "),
+            _c("select-component", {
+              attrs: {
+                label: "B9 二塁手",
+                options: _vm.players,
+                empty: true,
+                value: _vm.data.b9_4_player_id
+              },
+              model: {
+                value: _vm.data.b9_4_player_id,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "b9_4_player_id", $$v)
+                },
+                expression: "data.b9_4_player_id"
+              }
+            }),
+            _vm._v(" "),
+            _c("select-component", {
+              attrs: {
+                label: "B9 三塁手",
+                options: _vm.players,
+                empty: true,
+                value: _vm.data.b9_5_player_id
+              },
+              model: {
+                value: _vm.data.b9_5_player_id,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "b9_5_player_id", $$v)
+                },
+                expression: "data.b9_5_player_id"
+              }
+            }),
+            _vm._v(" "),
+            _c("select-component", {
+              attrs: {
+                label: "B9 遊撃手",
+                options: _vm.players,
+                empty: true,
+                value: _vm.data.b9_6_player_id
+              },
+              model: {
+                value: _vm.data.b9_6_player_id,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "b9_6_player_id", $$v)
+                },
+                expression: "data.b9_6_player_id"
+              }
+            }),
+            _vm._v(" "),
+            _c("select-component", {
+              attrs: {
+                label: "B9 外野手1",
+                options: _vm.players,
+                empty: true,
+                value: _vm.data.b9_7_player_id
+              },
+              model: {
+                value: _vm.data.b9_7_player_id,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "b9_7_player_id", $$v)
+                },
+                expression: "data.b9_7_player_id"
+              }
+            }),
+            _vm._v(" "),
+            _c("select-component", {
+              attrs: {
+                label: "B9 外野手2",
+                options: _vm.players,
+                empty: true,
+                value: _vm.data.b9_8_player_id
+              },
+              model: {
+                value: _vm.data.b9_8_player_id,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "b9_8_player_id", $$v)
+                },
+                expression: "data.b9_8_player_id"
+              }
+            }),
+            _vm._v(" "),
+            _c("select-component", {
+              attrs: {
+                label: "B9 外野手3",
+                options: _vm.players,
+                empty: true,
+                value: _vm.data.b9_9_player_id
+              },
+              model: {
+                value: _vm.data.b9_9_player_id,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "b9_9_player_id", $$v)
+                },
+                expression: "data.b9_9_player_id"
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+              [_vm._v("Submit")]
+            )
+          ],
+          1
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/TitleComponent.vue?vue&type=template&id=1e06cc76&":
 /*!*********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Season/TitleComponent.vue?vue&type=template&id=1e06cc76& ***!
@@ -96482,6 +96950,23 @@ var render = function() {
                   _vm._v("詳細")
                 ])
               ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                attrs: {
+                  to: {
+                    name: "season.title-add",
+                    params: { seasonId: _vm.seasonId.toString() }
+                  }
+                }
+              },
+              [
+                _c("button", { staticClass: "btn btn-success" }, [
+                  _vm._v("登録")
+                ])
+              ]
             )
           ],
           1
@@ -96520,459 +97005,881 @@ var render = function() {
           0
         ),
         _vm._v(" "),
-        _c("table", { staticClass: "table table-hover" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", [_vm._v("首位打者")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.title.avg.value))]),
-            _vm._v(" "),
-            _c(
-              "td",
-              _vm._l(_vm.title.avg.players, function(player) {
-                return _c(
-                  "div",
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          to: {
-                            name: "player.view",
-                            params: { playerId: player.player_id.toString() }
-                          }
-                        }
-                      },
+        _c("div", { staticClass: "row justify-content-center" }, [
+          _c("div", { staticClass: "col-sm-7" }, [
+            _c("table", { staticClass: "table table-hover" }, [
+              _c("tr", [
+                _c("th", { staticStyle: { width: "200px" } }, [
+                  _vm._v("首位打者")
+                ]),
+                _vm._v(" "),
+                _c("td", { staticStyle: { width: "100px" } }, [
+                  _vm._v(_vm._s(_vm.title.avg.value))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  _vm._l(_vm.title.avg.players, function(player) {
+                    return _c(
+                      "div",
                       [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(player.team_name) +
-                            " " +
-                            _vm._s(player.player_no) +
-                            " : " +
-                            _vm._s(player.player_name) +
-                            "\n                    "
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "player.view",
+                                params: {
+                                  playerId: player.player_id.toString()
+                                }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(player.team_name) +
+                                " " +
+                                _vm._s(player.player_no) +
+                                " : " +
+                                _vm._s(player.player_name) +
+                                "\n                            "
+                            )
+                          ]
                         )
-                      ]
+                      ],
+                      1
                     )
-                  ],
-                  1
+                  }),
+                  0
                 )
-              }),
-              0
-            )
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("th", [_vm._v("HR王")]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.title.hr.value) + "本")]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  _vm._l(_vm.title.hr.players, function(player) {
+                    return _c(
+                      "div",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "player.view",
+                                params: {
+                                  playerId: player.player_id.toString()
+                                }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(player.team_name) +
+                                " " +
+                                _vm._s(player.player_no) +
+                                " : " +
+                                _vm._s(player.player_name) +
+                                "\n                            "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("th", [_vm._v("打点王")]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.title.daten.value) + "点")]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  _vm._l(_vm.title.daten.players, function(player) {
+                    return _c(
+                      "div",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "player.view",
+                                params: {
+                                  playerId: player.player_id.toString()
+                                }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(player.team_name) +
+                                " " +
+                                _vm._s(player.player_no) +
+                                " : " +
+                                _vm._s(player.player_name) +
+                                "\n                            "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("th", [_vm._v("最多安打")]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.title.hit.value) + "本")]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  _vm._l(_vm.title.hit.players, function(player) {
+                    return _c(
+                      "div",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "player.view",
+                                params: {
+                                  playerId: player.player_id.toString()
+                                }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(player.team_name) +
+                                " " +
+                                _vm._s(player.player_no) +
+                                " : " +
+                                _vm._s(player.player_name) +
+                                "\n                            "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("th", [_vm._v("盗塁王")]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.title.steal.value) + "個")]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  _vm._l(_vm.title.steal.players, function(player) {
+                    return _c(
+                      "div",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "player.view",
+                                params: {
+                                  playerId: player.player_id.toString()
+                                }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(player.team_name) +
+                                " " +
+                                _vm._s(player.player_no) +
+                                " : " +
+                                _vm._s(player.player_name) +
+                                "\n                            "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("th", [_vm._v("最優秀防御率")]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.title.p_era.value))]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  _vm._l(_vm.title.p_era.players, function(player) {
+                    return _c(
+                      "div",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "player.view",
+                                params: {
+                                  playerId: player.player_id.toString()
+                                }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(player.team_name) +
+                                " " +
+                                _vm._s(player.player_no) +
+                                " : " +
+                                _vm._s(player.player_name) +
+                                "\n                            "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("th", [_vm._v("最多勝")]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.title.p_win.value) + "勝")]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  _vm._l(_vm.title.p_win.players, function(player) {
+                    return _c(
+                      "div",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "player.view",
+                                params: {
+                                  playerId: player.player_id.toString()
+                                }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(player.team_name) +
+                                " " +
+                                _vm._s(player.player_no) +
+                                " : " +
+                                _vm._s(player.player_name) +
+                                "\n                            "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("th", [_vm._v("最高勝率")]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.title.p_win_ratio.value))]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  _vm._l(_vm.title.p_win_ratio.players, function(player) {
+                    return _c(
+                      "div",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "player.view",
+                                params: {
+                                  playerId: player.player_id.toString()
+                                }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(player.team_name) +
+                                " " +
+                                _vm._s(player.player_no) +
+                                " : " +
+                                _vm._s(player.player_name) +
+                                "\n                            "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("th", [_vm._v("最多奪三振")]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.title.p_sansin.value) + "個")]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  _vm._l(_vm.title.p_sansin.players, function(player) {
+                    return _c(
+                      "div",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "player.view",
+                                params: {
+                                  playerId: player.player_id.toString()
+                                }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(player.team_name) +
+                                " " +
+                                _vm._s(player.player_no) +
+                                " : " +
+                                _vm._s(player.player_name) +
+                                "\n                            "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("th", [_vm._v("最優秀中継ぎ投手")]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.title.p_hold.value) + "ホールド")]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  _vm._l(_vm.title.p_hold.players, function(player) {
+                    return _c(
+                      "div",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "player.view",
+                                params: {
+                                  playerId: player.player_id.toString()
+                                }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(player.team_name) +
+                                " " +
+                                _vm._s(player.player_no) +
+                                " : " +
+                                _vm._s(player.player_name) +
+                                "\n                            "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("th", [_vm._v("最優秀救援投手")]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.title.p_save.value) + "セーブ")]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  _vm._l(_vm.title.p_save.players, function(player) {
+                    return _c(
+                      "div",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "player.view",
+                                params: {
+                                  playerId: player.player_id.toString()
+                                }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(player.team_name) +
+                                " " +
+                                _vm._s(player.player_no) +
+                                " : " +
+                                _vm._s(player.player_name) +
+                                "\n                            "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  }),
+                  0
+                )
+              ])
+            ])
           ]),
           _vm._v(" "),
-          _c("tr", [
-            _c("th", [_vm._v("HR王")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.title.hr.value) + "本")]),
-            _vm._v(" "),
-            _c(
-              "td",
-              _vm._l(_vm.title.hr.players, function(player) {
-                return _c(
-                  "div",
-                  [
+          _c("div", { staticClass: "col-sm-5" }, [
+            _c("table", { staticClass: "table table-hover" }, [
+              Object.keys(_vm.title).length && _vm.title.mvp != null
+                ? _c("tr", [
+                    _c("th", { staticStyle: { width: "100px" } }, [
+                      _vm._v("MVP")
+                    ]),
+                    _vm._v(" "),
                     _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          to: {
-                            name: "player.view",
-                            params: { playerId: player.player_id.toString() }
-                          }
-                        }
-                      },
+                      "td",
                       [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(player.team_name) +
-                            " " +
-                            _vm._s(player.player_no) +
-                            " : " +
-                            _vm._s(player.player_name) +
-                            "\n                    "
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "player.view",
+                                params: {
+                                  playerId: _vm.title.mvp.id.toString()
+                                }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(_vm.title.mvp.team.ryaku_name) +
+                                " " +
+                                _vm._s(_vm.title.mvp.number) +
+                                " : " +
+                                _vm._s(_vm.title.mvp.name) +
+                                "\n                        "
+                            )
+                          ]
                         )
-                      ]
+                      ],
+                      1
                     )
-                  ],
-                  1
-                )
-              }),
-              0
-            )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              Object.keys(_vm.title).length && _vm.title.bb_1 != null
+                ? _c("tr", [
+                    _c("th", { staticStyle: { width: "100px" } }, [
+                      _vm._v("投手")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "player.view",
+                                params: {
+                                  playerId: _vm.title.bb_1.id.toString()
+                                }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(_vm.title.bb_1.team.ryaku_name) +
+                                " " +
+                                _vm._s(_vm.title.bb_1.number) +
+                                " : " +
+                                _vm._s(_vm.title.bb_1.name) +
+                                "\n                        "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              Object.keys(_vm.title).length && _vm.title.bb_2 != null
+                ? _c("tr", [
+                    _c("th", { staticStyle: { width: "100px" } }, [
+                      _vm._v("捕手")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "player.view",
+                                params: {
+                                  playerId: _vm.title.bb_2.id.toString()
+                                }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(_vm.title.bb_2.team.ryaku_name) +
+                                " " +
+                                _vm._s(_vm.title.bb_2.number) +
+                                " : " +
+                                _vm._s(_vm.title.bb_2.name) +
+                                "\n                        "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              Object.keys(_vm.title).length && _vm.title.bb_3 != null
+                ? _c("tr", [
+                    _c("th", { staticStyle: { width: "100px" } }, [
+                      _vm._v("一塁手")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "player.view",
+                                params: {
+                                  playerId: _vm.title.bb_3.id.toString()
+                                }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(_vm.title.bb_3.team.ryaku_name) +
+                                " " +
+                                _vm._s(_vm.title.bb_3.number) +
+                                " : " +
+                                _vm._s(_vm.title.bb_3.name) +
+                                "\n                        "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              Object.keys(_vm.title).length && _vm.title.bb_4 != null
+                ? _c("tr", [
+                    _c("th", { staticStyle: { width: "100px" } }, [
+                      _vm._v("二塁手")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "player.view",
+                                params: {
+                                  playerId: _vm.title.bb_4.id.toString()
+                                }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(_vm.title.bb_4.team.ryaku_name) +
+                                " " +
+                                _vm._s(_vm.title.bb_4.number) +
+                                " : " +
+                                _vm._s(_vm.title.bb_4.name) +
+                                "\n                        "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              Object.keys(_vm.title).length && _vm.title.bb_5 != null
+                ? _c("tr", [
+                    _c("th", { staticStyle: { width: "100px" } }, [
+                      _vm._v("三塁手")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "player.view",
+                                params: {
+                                  playerId: _vm.title.bb_5.id.toString()
+                                }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(_vm.title.bb_5.team.ryaku_name) +
+                                " " +
+                                _vm._s(_vm.title.bb_5.number) +
+                                " : " +
+                                _vm._s(_vm.title.bb_5.name) +
+                                "\n                        "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              Object.keys(_vm.title).length && _vm.title.bb_6 != null
+                ? _c("tr", [
+                    _c("th", { staticStyle: { width: "100px" } }, [
+                      _vm._v("遊撃手")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "player.view",
+                                params: {
+                                  playerId: _vm.title.bb_6.id.toString()
+                                }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(_vm.title.bb_6.team.ryaku_name) +
+                                " " +
+                                _vm._s(_vm.title.bb_6.number) +
+                                " : " +
+                                _vm._s(_vm.title.bb_6.name) +
+                                "\n                        "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              Object.keys(_vm.title).length && _vm.title.bb_7 != null
+                ? _c("tr", [
+                    _c(
+                      "th",
+                      {
+                        staticStyle: { width: "100px" },
+                        attrs: { rowspan: "3" }
+                      },
+                      [_vm._v("外野手")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "player.view",
+                                params: {
+                                  playerId: _vm.title.bb_7.id.toString()
+                                }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(_vm.title.bb_7.team.ryaku_name) +
+                                " " +
+                                _vm._s(_vm.title.bb_7.number) +
+                                " : " +
+                                _vm._s(_vm.title.bb_7.name) +
+                                "\n                        "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              Object.keys(_vm.title).length && _vm.title.bb_8 != null
+                ? _c("tr", [
+                    _c(
+                      "td",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "player.view",
+                                params: {
+                                  playerId: _vm.title.bb_8.id.toString()
+                                }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(_vm.title.bb_8.team.ryaku_name) +
+                                " " +
+                                _vm._s(_vm.title.bb_8.number) +
+                                " : " +
+                                _vm._s(_vm.title.bb_8.name) +
+                                "\n                        "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              Object.keys(_vm.title).length && _vm.title.bb_9 != null
+                ? _c("tr", [
+                    _c(
+                      "td",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "player.view",
+                                params: {
+                                  playerId: _vm.title.bb_9.id.toString()
+                                }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(_vm.title.bb_9.team.ryaku_name) +
+                                " " +
+                                _vm._s(_vm.title.bb_9.number) +
+                                " : " +
+                                _vm._s(_vm.title.bb_9.name) +
+                                "\n                        "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                : _vm._e()
+            ])
           ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", [_vm._v("打点王")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.title.daten.value) + "点")]),
-            _vm._v(" "),
-            _c(
-              "td",
-              _vm._l(_vm.title.daten.players, function(player) {
-                return _c(
-                  "div",
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          to: {
-                            name: "player.view",
-                            params: { playerId: player.player_id.toString() }
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(player.team_name) +
-                            " " +
-                            _vm._s(player.player_no) +
-                            " : " +
-                            _vm._s(player.player_name) +
-                            "\n                    "
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                )
-              }),
-              0
-            )
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", [_vm._v("最多安打")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.title.hit.value) + "本")]),
-            _vm._v(" "),
-            _c(
-              "td",
-              _vm._l(_vm.title.hit.players, function(player) {
-                return _c(
-                  "div",
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          to: {
-                            name: "player.view",
-                            params: { playerId: player.player_id.toString() }
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(player.team_name) +
-                            " " +
-                            _vm._s(player.player_no) +
-                            " : " +
-                            _vm._s(player.player_name) +
-                            "\n                    "
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                )
-              }),
-              0
-            )
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", [_vm._v("盗塁王")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.title.steal.value) + "個")]),
-            _vm._v(" "),
-            _c(
-              "td",
-              _vm._l(_vm.title.steal.players, function(player) {
-                return _c(
-                  "div",
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          to: {
-                            name: "player.view",
-                            params: { playerId: player.player_id.toString() }
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(player.team_name) +
-                            " " +
-                            _vm._s(player.player_no) +
-                            " : " +
-                            _vm._s(player.player_name) +
-                            "\n                    "
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                )
-              }),
-              0
-            )
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", [_vm._v("最優秀防御率")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.title.p_era.value))]),
-            _vm._v(" "),
-            _c(
-              "td",
-              _vm._l(_vm.title.p_era.players, function(player) {
-                return _c(
-                  "div",
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          to: {
-                            name: "player.view",
-                            params: { playerId: player.player_id.toString() }
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(player.team_name) +
-                            " " +
-                            _vm._s(player.player_no) +
-                            " : " +
-                            _vm._s(player.player_name) +
-                            "\n                    "
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                )
-              }),
-              0
-            )
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", [_vm._v("最多勝")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.title.p_win.value) + "勝")]),
-            _vm._v(" "),
-            _c(
-              "td",
-              _vm._l(_vm.title.p_win.players, function(player) {
-                return _c(
-                  "div",
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          to: {
-                            name: "player.view",
-                            params: { playerId: player.player_id.toString() }
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(player.team_name) +
-                            " " +
-                            _vm._s(player.player_no) +
-                            " : " +
-                            _vm._s(player.player_name) +
-                            "\n                    "
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                )
-              }),
-              0
-            )
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", [_vm._v("最高勝率")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.title.p_win_ratio.value))]),
-            _vm._v(" "),
-            _c(
-              "td",
-              _vm._l(_vm.title.p_win_ratio.players, function(player) {
-                return _c(
-                  "div",
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          to: {
-                            name: "player.view",
-                            params: { playerId: player.player_id.toString() }
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(player.team_name) +
-                            " " +
-                            _vm._s(player.player_no) +
-                            " : " +
-                            _vm._s(player.player_name) +
-                            "\n                    "
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                )
-              }),
-              0
-            )
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", [_vm._v("最多奪三振")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.title.p_sansin.value) + "個")]),
-            _vm._v(" "),
-            _c(
-              "td",
-              _vm._l(_vm.title.p_sansin.players, function(player) {
-                return _c(
-                  "div",
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          to: {
-                            name: "player.view",
-                            params: { playerId: player.player_id.toString() }
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(player.team_name) +
-                            " " +
-                            _vm._s(player.player_no) +
-                            " : " +
-                            _vm._s(player.player_name) +
-                            "\n                    "
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                )
-              }),
-              0
-            )
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", [_vm._v("最優秀中継ぎ投手")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.title.p_hold.value) + "ホールド")]),
-            _vm._v(" "),
-            _c(
-              "td",
-              _vm._l(_vm.title.p_hold.players, function(player) {
-                return _c(
-                  "div",
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          to: {
-                            name: "player.view",
-                            params: { playerId: player.player_id.toString() }
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(player.team_name) +
-                            " " +
-                            _vm._s(player.player_no) +
-                            " : " +
-                            _vm._s(player.player_name) +
-                            "\n                    "
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                )
-              }),
-              0
-            )
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", [_vm._v("最優秀救援投手")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.title.p_save.value) + "セーブ")]),
-            _vm._v(" "),
-            _c(
-              "td",
-              _vm._l(_vm.title.p_save.players, function(player) {
-                return _c(
-                  "div",
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          to: {
-                            name: "player.view",
-                            params: { playerId: player.player_id.toString() }
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(player.team_name) +
-                            " " +
-                            _vm._s(player.player_no) +
-                            " : " +
-                            _vm._s(player.player_name) +
-                            "\n                    "
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                )
-              }),
-              0
-            )
-          ])
+          _vm._v("\n        -->\n    ")
         ])
       ])
     : _vm._e()
@@ -96983,11 +97890,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", [
-      _c("th", { staticStyle: { width: "200px" } }, [_vm._v("MVP")]),
-      _vm._v(" "),
-      _c("td", { staticStyle: { width: "100px" } }),
-      _vm._v(" "),
-      _c("td")
+      _c(
+        "th",
+        { staticStyle: { "text-align": "center" }, attrs: { colspan: "2" } },
+        [_vm._v("B9")]
+      )
     ])
   }
 ]
@@ -100391,10 +101298,35 @@ var render = function() {
       _c(
         "select",
         {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.value,
+              expression: "value"
+            }
+          ],
           staticClass: "col-sm-9 form-control",
           class: { "is-invalid": _vm.isError() },
           domProps: { value: _vm.value },
-          on: { change: _vm.updateValue }
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.value = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.updateValue
+            ]
+          }
         },
         [
           _vm.empty
