@@ -13,6 +13,12 @@
                     <router-link v-bind:to="{name: 'base-player.pitcher-rank', params: {sortType: 'p_era' }}">
                         <button class="btn btn-success">投手成績</button>
                     </router-link>
+                    <router-link v-bind:to="{name: 'base-player.title-fielder-rank', params: {sortType: 'mvp_count_for_fielder' }}">
+                        <button class="btn btn-success">表彰(野手)</button>
+                    </router-link>
+                    <router-link v-bind:to="{name: 'base-player.title-pitcher-rank', params: {sortType: 'mvp_count_for_pitcher' }}">
+                        <button class="btn btn-success">表彰(投手)</button>
+                    </router-link>
                     <router-link v-bind:to="{name: 'base-team.index'}">
                         <button class="btn btn-success">チーム</button>
                     </router-link>

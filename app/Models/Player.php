@@ -1143,6 +1143,7 @@ class Player extends Model
             ->where('players.' . $field, $value)
             ->select([
                 'players.id as player_id',
+                'players.base_player_id as base_player_id',
                 'players.number as player_no',
                 'players.name as player_name',
                 'teams.ryaku_name  as team_name',

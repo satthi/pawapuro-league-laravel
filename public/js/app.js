@@ -2682,6 +2682,366 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BasePlayer/TitleFielderRankComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BasePlayer/TitleFielderRankComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  watch: {
+    '$route': function $route(to, from) {
+      this.initial();
+    }
+  },
+  methods: {
+    initial: function initial() {
+      // チーム情報など込みで詳細画面表示に必要な情報をまとめて取得（したい）
+      this.getRankingData(this.sortType);
+    },
+    getRankingData: function getRankingData(sortType) {
+      var _this = this;
+
+      axios.get('/api/base-players/title-fielder-rank/' + sortType).then(function (res) {
+        _this.rankingData = res.data;
+      });
+    }
+  },
+  props: {
+    sortType: String
+  },
+  data: function data() {
+    return {
+      rankingData: {}
+    };
+  },
+  mounted: function mounted() {
+    this.initial();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BasePlayer/TitlePitcherRankComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BasePlayer/TitlePitcherRankComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  watch: {
+    '$route': function $route(to, from) {
+      this.initial();
+    }
+  },
+  methods: {
+    initial: function initial() {
+      // チーム情報など込みで詳細画面表示に必要な情報をまとめて取得（したい）
+      this.getRankingData(this.sortType);
+    },
+    getRankingData: function getRankingData(sortType) {
+      var _this = this;
+
+      axios.get('/api/base-players/title-pitcher-rank/' + sortType).then(function (res) {
+        _this.rankingData = res.data;
+      });
+    }
+  },
+  props: {
+    sortType: String
+  },
+  data: function data() {
+    return {
+      rankingData: {}
+    };
+  },
+  mounted: function mounted() {
+    this.initial();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BaseTeam/AddComponent.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BaseTeam/AddComponent.vue?vue&type=script&lang=js& ***!
@@ -5696,6 +6056,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8799,7 +9165,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _components_HeaderComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/HeaderComponent */ "./resources/js/components/HeaderComponent.vue");
 /* harmony import */ var _components_BaseTeam_IndexComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/BaseTeam/IndexComponent */ "./resources/js/components/BaseTeam/IndexComponent.vue");
 /* harmony import */ var _components_BaseTeam_AddComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/BaseTeam/AddComponent */ "./resources/js/components/BaseTeam/AddComponent.vue");
@@ -8810,39 +9176,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_BasePlayer_EditComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/BasePlayer/EditComponent */ "./resources/js/components/BasePlayer/EditComponent.vue");
 /* harmony import */ var _components_BasePlayer_FielderRankComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/BasePlayer/FielderRankComponent */ "./resources/js/components/BasePlayer/FielderRankComponent.vue");
 /* harmony import */ var _components_BasePlayer_PitcherRankComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/BasePlayer/PitcherRankComponent */ "./resources/js/components/BasePlayer/PitcherRankComponent.vue");
-/* harmony import */ var _components_Season_IndexComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Season/IndexComponent */ "./resources/js/components/Season/IndexComponent.vue");
-/* harmony import */ var _components_Season_AddComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Season/AddComponent */ "./resources/js/components/Season/AddComponent.vue");
-/* harmony import */ var _components_Season_EditComponent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Season/EditComponent */ "./resources/js/components/Season/EditComponent.vue");
-/* harmony import */ var _components_Season_ViewComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Season/ViewComponent */ "./resources/js/components/Season/ViewComponent.vue");
-/* harmony import */ var _components_Season_FielderRankComponent__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Season/FielderRankComponent */ "./resources/js/components/Season/FielderRankComponent.vue");
-/* harmony import */ var _components_Season_PitcherRankComponent__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Season/PitcherRankComponent */ "./resources/js/components/Season/PitcherRankComponent.vue");
-/* harmony import */ var _components_Season_TradeComponent__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Season/TradeComponent */ "./resources/js/components/Season/TradeComponent.vue");
-/* harmony import */ var _components_Season_MonthComponent__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Season/MonthComponent */ "./resources/js/components/Season/MonthComponent.vue");
-/* harmony import */ var _components_Season_GraphComponent__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Season/GraphComponent */ "./resources/js/components/Season/GraphComponent.vue");
-/* harmony import */ var _components_Season_TitleComponent__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/Season/TitleComponent */ "./resources/js/components/Season/TitleComponent.vue");
-/* harmony import */ var _components_Season_TitleAddComponent__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/Season/TitleAddComponent */ "./resources/js/components/Season/TitleAddComponent.vue");
-/* harmony import */ var _components_Game_IndexComponent__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/Game/IndexComponent */ "./resources/js/components/Game/IndexComponent.vue");
-/* harmony import */ var _components_Game_AddComponent__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/Game/AddComponent */ "./resources/js/components/Game/AddComponent.vue");
-/* harmony import */ var _components_Game_AutoAddComponent__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/Game/AutoAddComponent */ "./resources/js/components/Game/AutoAddComponent.vue");
-/* harmony import */ var _components_Game_ViewComponent__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/Game/ViewComponent */ "./resources/js/components/Game/ViewComponent.vue");
-/* harmony import */ var _components_Game_ProbablePitcherUpdateComponent__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/Game/ProbablePitcherUpdateComponent */ "./resources/js/components/Game/ProbablePitcherUpdateComponent.vue");
-/* harmony import */ var _components_Game_StamenEditComponent__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/Game/StamenEditComponent */ "./resources/js/components/Game/StamenEditComponent.vue");
-/* harmony import */ var _components_Game_PlayComponent__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/Game/PlayComponent */ "./resources/js/components/Game/PlayComponent.vue");
-/* harmony import */ var _components_Game_PinchHitterComponent__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/Game/PinchHitterComponent */ "./resources/js/components/Game/PinchHitterComponent.vue");
-/* harmony import */ var _components_Game_PinchRunnerComponent__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/Game/PinchRunnerComponent */ "./resources/js/components/Game/PinchRunnerComponent.vue");
-/* harmony import */ var _components_Game_PositionChangeComponent__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/Game/PositionChangeComponent */ "./resources/js/components/Game/PositionChangeComponent.vue");
-/* harmony import */ var _components_Game_StealComponent__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/Game/StealComponent */ "./resources/js/components/Game/StealComponent.vue");
-/* harmony import */ var _components_Game_SummaryComponent__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/Game/SummaryComponent */ "./resources/js/components/Game/SummaryComponent.vue");
-/* harmony import */ var _components_Game_FielderSummaryComponent__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/Game/FielderSummaryComponent */ "./resources/js/components/Game/FielderSummaryComponent.vue");
-/* harmony import */ var _components_Game_PitcherSummaryComponent__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./components/Game/PitcherSummaryComponent */ "./resources/js/components/Game/PitcherSummaryComponent.vue");
-/* harmony import */ var _components_Team_ViewComponent__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./components/Team/ViewComponent */ "./resources/js/components/Team/ViewComponent.vue");
-/* harmony import */ var _components_Team_MonthComponent__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./components/Team/MonthComponent */ "./resources/js/components/Team/MonthComponent.vue");
-/* harmony import */ var _components_Player_ViewComponent__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./components/Player/ViewComponent */ "./resources/js/components/Player/ViewComponent.vue");
+/* harmony import */ var _components_BasePlayer_TitleFielderRankComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/BasePlayer/TitleFielderRankComponent */ "./resources/js/components/BasePlayer/TitleFielderRankComponent.vue");
+/* harmony import */ var _components_BasePlayer_TitlePitcherRankComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/BasePlayer/TitlePitcherRankComponent */ "./resources/js/components/BasePlayer/TitlePitcherRankComponent.vue");
+/* harmony import */ var _components_Season_IndexComponent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Season/IndexComponent */ "./resources/js/components/Season/IndexComponent.vue");
+/* harmony import */ var _components_Season_AddComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Season/AddComponent */ "./resources/js/components/Season/AddComponent.vue");
+/* harmony import */ var _components_Season_EditComponent__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Season/EditComponent */ "./resources/js/components/Season/EditComponent.vue");
+/* harmony import */ var _components_Season_ViewComponent__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Season/ViewComponent */ "./resources/js/components/Season/ViewComponent.vue");
+/* harmony import */ var _components_Season_FielderRankComponent__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Season/FielderRankComponent */ "./resources/js/components/Season/FielderRankComponent.vue");
+/* harmony import */ var _components_Season_PitcherRankComponent__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Season/PitcherRankComponent */ "./resources/js/components/Season/PitcherRankComponent.vue");
+/* harmony import */ var _components_Season_TradeComponent__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Season/TradeComponent */ "./resources/js/components/Season/TradeComponent.vue");
+/* harmony import */ var _components_Season_MonthComponent__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/Season/MonthComponent */ "./resources/js/components/Season/MonthComponent.vue");
+/* harmony import */ var _components_Season_GraphComponent__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/Season/GraphComponent */ "./resources/js/components/Season/GraphComponent.vue");
+/* harmony import */ var _components_Season_TitleComponent__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/Season/TitleComponent */ "./resources/js/components/Season/TitleComponent.vue");
+/* harmony import */ var _components_Season_TitleAddComponent__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/Season/TitleAddComponent */ "./resources/js/components/Season/TitleAddComponent.vue");
+/* harmony import */ var _components_Game_IndexComponent__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/Game/IndexComponent */ "./resources/js/components/Game/IndexComponent.vue");
+/* harmony import */ var _components_Game_AddComponent__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/Game/AddComponent */ "./resources/js/components/Game/AddComponent.vue");
+/* harmony import */ var _components_Game_AutoAddComponent__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/Game/AutoAddComponent */ "./resources/js/components/Game/AutoAddComponent.vue");
+/* harmony import */ var _components_Game_ViewComponent__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/Game/ViewComponent */ "./resources/js/components/Game/ViewComponent.vue");
+/* harmony import */ var _components_Game_ProbablePitcherUpdateComponent__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/Game/ProbablePitcherUpdateComponent */ "./resources/js/components/Game/ProbablePitcherUpdateComponent.vue");
+/* harmony import */ var _components_Game_StamenEditComponent__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/Game/StamenEditComponent */ "./resources/js/components/Game/StamenEditComponent.vue");
+/* harmony import */ var _components_Game_PlayComponent__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/Game/PlayComponent */ "./resources/js/components/Game/PlayComponent.vue");
+/* harmony import */ var _components_Game_PinchHitterComponent__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/Game/PinchHitterComponent */ "./resources/js/components/Game/PinchHitterComponent.vue");
+/* harmony import */ var _components_Game_PinchRunnerComponent__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/Game/PinchRunnerComponent */ "./resources/js/components/Game/PinchRunnerComponent.vue");
+/* harmony import */ var _components_Game_PositionChangeComponent__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/Game/PositionChangeComponent */ "./resources/js/components/Game/PositionChangeComponent.vue");
+/* harmony import */ var _components_Game_StealComponent__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/Game/StealComponent */ "./resources/js/components/Game/StealComponent.vue");
+/* harmony import */ var _components_Game_SummaryComponent__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./components/Game/SummaryComponent */ "./resources/js/components/Game/SummaryComponent.vue");
+/* harmony import */ var _components_Game_FielderSummaryComponent__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./components/Game/FielderSummaryComponent */ "./resources/js/components/Game/FielderSummaryComponent.vue");
+/* harmony import */ var _components_Game_PitcherSummaryComponent__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./components/Game/PitcherSummaryComponent */ "./resources/js/components/Game/PitcherSummaryComponent.vue");
+/* harmony import */ var _components_Team_ViewComponent__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./components/Team/ViewComponent */ "./resources/js/components/Team/ViewComponent.vue");
+/* harmony import */ var _components_Team_MonthComponent__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./components/Team/MonthComponent */ "./resources/js/components/Team/MonthComponent.vue");
+/* harmony import */ var _components_Player_ViewComponent__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./components/Player/ViewComponent */ "./resources/js/components/Player/ViewComponent.vue");
 
  // import TaskListComponent from "./components/TaskListComponent";
 // import TaskShowComponent from "./components/TaskShowComponent";
 // import TaskCreateComponent from "./components/TaskCreateComponent";
 // import TaskEditComponent from "./components/TaskEditComponent";
+
+
 
 
 
@@ -8890,8 +9260,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_38__["default"]);
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_38__["default"]({
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_40__["default"]);
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_40__["default"]({
   mode: 'history',
   routes: [// {
   //     path: '/tasks',
@@ -8962,146 +9332,156 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_38__["default"]({
     name: 'base-player.pitcher-rank',
     component: _components_BasePlayer_PitcherRankComponent__WEBPACK_IMPORTED_MODULE_9__["default"],
     props: true
+  }, {
+    path: '/base-player/:sortType/title-fielder-rank',
+    name: 'base-player.title-fielder-rank',
+    component: _components_BasePlayer_TitleFielderRankComponent__WEBPACK_IMPORTED_MODULE_10__["default"],
+    props: true
+  }, {
+    path: '/base-player/:sortType/title-pitcher-rank',
+    name: 'base-player.title-pitcher-rank',
+    component: _components_BasePlayer_TitlePitcherRankComponent__WEBPACK_IMPORTED_MODULE_11__["default"],
+    props: true
   }, // ベースのチーム
   {
     path: '/seasons',
     name: 'season.index',
-    component: _components_Season_IndexComponent__WEBPACK_IMPORTED_MODULE_10__["default"],
+    component: _components_Season_IndexComponent__WEBPACK_IMPORTED_MODULE_12__["default"],
     props: true
   }, {
     path: '/seasons/add',
     name: 'season.add',
-    component: _components_Season_AddComponent__WEBPACK_IMPORTED_MODULE_11__["default"],
+    component: _components_Season_AddComponent__WEBPACK_IMPORTED_MODULE_13__["default"],
     props: true
   }, {
     path: '/season/:seasonId/edit',
     name: 'season.edit',
-    component: _components_Season_EditComponent__WEBPACK_IMPORTED_MODULE_12__["default"],
+    component: _components_Season_EditComponent__WEBPACK_IMPORTED_MODULE_14__["default"],
     props: true
   }, {
     path: '/season/:seasonId/view',
     name: 'season.view',
-    component: _components_Season_ViewComponent__WEBPACK_IMPORTED_MODULE_13__["default"],
+    component: _components_Season_ViewComponent__WEBPACK_IMPORTED_MODULE_15__["default"],
     props: true
   }, {
     path: '/season/:seasonId/:sortType/fielder-rank',
     name: 'season.fielder-rank',
-    component: _components_Season_FielderRankComponent__WEBPACK_IMPORTED_MODULE_14__["default"],
+    component: _components_Season_FielderRankComponent__WEBPACK_IMPORTED_MODULE_16__["default"],
     props: true
   }, {
     path: '/season/:seasonId/:sortType/pitcher-rank',
     name: 'season.pitcher-rank',
-    component: _components_Season_PitcherRankComponent__WEBPACK_IMPORTED_MODULE_15__["default"],
+    component: _components_Season_PitcherRankComponent__WEBPACK_IMPORTED_MODULE_17__["default"],
     props: true
   }, {
     path: '/season/:seasonId/trade',
     name: 'season.trade',
-    component: _components_Season_TradeComponent__WEBPACK_IMPORTED_MODULE_16__["default"],
+    component: _components_Season_TradeComponent__WEBPACK_IMPORTED_MODULE_18__["default"],
     props: true
   }, {
     path: '/season/:seasonId/:month/month',
     name: 'season.month',
-    component: _components_Season_MonthComponent__WEBPACK_IMPORTED_MODULE_17__["default"],
+    component: _components_Season_MonthComponent__WEBPACK_IMPORTED_MODULE_19__["default"],
     props: true
   }, {
     path: '/season/:seasonId/title',
     name: 'season.title',
-    component: _components_Season_TitleComponent__WEBPACK_IMPORTED_MODULE_19__["default"],
+    component: _components_Season_TitleComponent__WEBPACK_IMPORTED_MODULE_21__["default"],
     props: true
   }, {
     path: '/season/:seasonId/title-add',
     name: 'season.title-add',
-    component: _components_Season_TitleAddComponent__WEBPACK_IMPORTED_MODULE_20__["default"],
+    component: _components_Season_TitleAddComponent__WEBPACK_IMPORTED_MODULE_22__["default"],
     props: true
   }, {
     path: '/season/:seasonId/graph',
     name: 'season.graph',
-    component: _components_Season_GraphComponent__WEBPACK_IMPORTED_MODULE_18__["default"],
+    component: _components_Season_GraphComponent__WEBPACK_IMPORTED_MODULE_20__["default"],
     props: true
   }, {
     path: '/games/:seasonId',
     name: 'game.index',
-    component: _components_Game_IndexComponent__WEBPACK_IMPORTED_MODULE_21__["default"],
+    component: _components_Game_IndexComponent__WEBPACK_IMPORTED_MODULE_23__["default"],
     props: true
   }, {
     path: '/games/:seasonId/add',
     name: 'game.add',
-    component: _components_Game_AddComponent__WEBPACK_IMPORTED_MODULE_22__["default"],
+    component: _components_Game_AddComponent__WEBPACK_IMPORTED_MODULE_24__["default"],
     props: true
   }, {
     path: '/games/:seasonId/auto-add',
     name: 'game.auto_add',
-    component: _components_Game_AutoAddComponent__WEBPACK_IMPORTED_MODULE_23__["default"],
+    component: _components_Game_AutoAddComponent__WEBPACK_IMPORTED_MODULE_25__["default"],
     props: true
   }, {
     path: '/games/view/:gameId',
     name: 'game.view',
-    component: _components_Game_ViewComponent__WEBPACK_IMPORTED_MODULE_24__["default"],
+    component: _components_Game_ViewComponent__WEBPACK_IMPORTED_MODULE_26__["default"],
     props: true
   }, {
     path: '/games/:gameId/probable-pitcher-edit',
     name: 'game.probable-pitcher-edit',
-    component: _components_Game_ProbablePitcherUpdateComponent__WEBPACK_IMPORTED_MODULE_25__["default"],
+    component: _components_Game_ProbablePitcherUpdateComponent__WEBPACK_IMPORTED_MODULE_27__["default"],
     props: true
   }, {
     path: '/games/:gameId/:stamenType/stamen-edit',
     name: 'game.stamen-edit',
-    component: _components_Game_StamenEditComponent__WEBPACK_IMPORTED_MODULE_26__["default"],
+    component: _components_Game_StamenEditComponent__WEBPACK_IMPORTED_MODULE_28__["default"],
     props: true
   }, {
     path: '/games/:gameId/play',
     name: 'game.play',
-    component: _components_Game_PlayComponent__WEBPACK_IMPORTED_MODULE_27__["default"],
+    component: _components_Game_PlayComponent__WEBPACK_IMPORTED_MODULE_29__["default"],
     props: true
   }, {
     path: '/games/:gameId/:teamType/ph',
     name: 'game.ph',
-    component: _components_Game_PinchHitterComponent__WEBPACK_IMPORTED_MODULE_28__["default"],
+    component: _components_Game_PinchHitterComponent__WEBPACK_IMPORTED_MODULE_30__["default"],
     props: true
   }, {
     path: '/games/:gameId/:teamType/pr',
     name: 'game.pr',
-    component: _components_Game_PinchRunnerComponent__WEBPACK_IMPORTED_MODULE_29__["default"],
+    component: _components_Game_PinchRunnerComponent__WEBPACK_IMPORTED_MODULE_31__["default"],
     props: true
   }, {
     path: '/games/:gameId/:teamType/position',
     name: 'game.position',
-    component: _components_Game_PositionChangeComponent__WEBPACK_IMPORTED_MODULE_30__["default"],
+    component: _components_Game_PositionChangeComponent__WEBPACK_IMPORTED_MODULE_32__["default"],
     props: true
   }, {
     path: '/games/:gameId/:teamType/steal',
     name: 'game.steal',
-    component: _components_Game_StealComponent__WEBPACK_IMPORTED_MODULE_31__["default"],
+    component: _components_Game_StealComponent__WEBPACK_IMPORTED_MODULE_33__["default"],
     props: true
   }, {
     path: '/games/:gameId/summary',
     name: 'game.summary',
-    component: _components_Game_SummaryComponent__WEBPACK_IMPORTED_MODULE_32__["default"],
+    component: _components_Game_SummaryComponent__WEBPACK_IMPORTED_MODULE_34__["default"],
     props: true
   }, {
     path: '/games/:gameId/:type/fielder_summary',
     name: 'game.fielder_summary',
-    component: _components_Game_FielderSummaryComponent__WEBPACK_IMPORTED_MODULE_33__["default"],
+    component: _components_Game_FielderSummaryComponent__WEBPACK_IMPORTED_MODULE_35__["default"],
     props: true
   }, {
     path: '/games/:gameId/:type/pitcher_summary',
     name: 'game.pitcher_summary',
-    component: _components_Game_PitcherSummaryComponent__WEBPACK_IMPORTED_MODULE_34__["default"],
+    component: _components_Game_PitcherSummaryComponent__WEBPACK_IMPORTED_MODULE_36__["default"],
     props: true
   }, {
     path: '/teams/:teamId',
     name: 'team.view',
-    component: _components_Team_ViewComponent__WEBPACK_IMPORTED_MODULE_35__["default"],
+    component: _components_Team_ViewComponent__WEBPACK_IMPORTED_MODULE_37__["default"],
     props: true
   }, {
     path: '/teams/:teamId/:month/month',
     name: 'team.month',
-    component: _components_Team_MonthComponent__WEBPACK_IMPORTED_MODULE_36__["default"],
+    component: _components_Team_MonthComponent__WEBPACK_IMPORTED_MODULE_38__["default"],
     props: true
   }, {
     path: '/players/:playerId',
     name: 'player.view',
-    component: _components_Player_ViewComponent__WEBPACK_IMPORTED_MODULE_37__["default"],
+    component: _components_Player_ViewComponent__WEBPACK_IMPORTED_MODULE_39__["default"],
     props: true
   }]
 });
@@ -82618,6 +82998,84 @@ component.options.__file = "resources/js/components/BasePlayer/PitcherRankCompon
 
 /***/ }),
 
+/***/ "./resources/js/components/BasePlayer/TitleFielderRankComponent.vue":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/BasePlayer/TitleFielderRankComponent.vue ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TitleFielderRankComponent_vue_vue_type_template_id_64227a50___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TitleFielderRankComponent.vue?vue&type=template&id=64227a50& */ "./resources/js/components/BasePlayer/TitleFielderRankComponent.vue?vue&type=template&id=64227a50&");
+/* harmony import */ var _TitleFielderRankComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TitleFielderRankComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/BasePlayer/TitleFielderRankComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TitleFielderRankComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TitleFielderRankComponent_vue_vue_type_template_id_64227a50___WEBPACK_IMPORTED_MODULE_0__.render,
+  _TitleFielderRankComponent_vue_vue_type_template_id_64227a50___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/BasePlayer/TitleFielderRankComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/BasePlayer/TitlePitcherRankComponent.vue":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/BasePlayer/TitlePitcherRankComponent.vue ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TitlePitcherRankComponent_vue_vue_type_template_id_4b2eb64a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TitlePitcherRankComponent.vue?vue&type=template&id=4b2eb64a& */ "./resources/js/components/BasePlayer/TitlePitcherRankComponent.vue?vue&type=template&id=4b2eb64a&");
+/* harmony import */ var _TitlePitcherRankComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TitlePitcherRankComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/BasePlayer/TitlePitcherRankComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TitlePitcherRankComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TitlePitcherRankComponent_vue_vue_type_template_id_4b2eb64a___WEBPACK_IMPORTED_MODULE_0__.render,
+  _TitlePitcherRankComponent_vue_vue_type_template_id_4b2eb64a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/BasePlayer/TitlePitcherRankComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/BaseTeam/AddComponent.vue":
 /*!***********************************************************!*\
   !*** ./resources/js/components/BaseTeam/AddComponent.vue ***!
@@ -84219,6 +84677,38 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/BasePlayer/TitleFielderRankComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/BasePlayer/TitleFielderRankComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TitleFielderRankComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TitleFielderRankComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BasePlayer/TitleFielderRankComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TitleFielderRankComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/BasePlayer/TitlePitcherRankComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/BasePlayer/TitlePitcherRankComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TitlePitcherRankComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TitlePitcherRankComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BasePlayer/TitlePitcherRankComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TitlePitcherRankComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/BaseTeam/AddComponent.vue?vue&type=script&lang=js&":
 /*!************************************************************************************!*\
   !*** ./resources/js/components/BaseTeam/AddComponent.vue?vue&type=script&lang=js& ***!
@@ -84924,6 +85414,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PitcherRankComponent_vue_vue_type_template_id_2868fe26___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PitcherRankComponent_vue_vue_type_template_id_2868fe26___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PitcherRankComponent.vue?vue&type=template&id=2868fe26& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BasePlayer/PitcherRankComponent.vue?vue&type=template&id=2868fe26&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/BasePlayer/TitleFielderRankComponent.vue?vue&type=template&id=64227a50&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/BasePlayer/TitleFielderRankComponent.vue?vue&type=template&id=64227a50& ***!
+  \*********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TitleFielderRankComponent_vue_vue_type_template_id_64227a50___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TitleFielderRankComponent_vue_vue_type_template_id_64227a50___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TitleFielderRankComponent_vue_vue_type_template_id_64227a50___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TitleFielderRankComponent.vue?vue&type=template&id=64227a50& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BasePlayer/TitleFielderRankComponent.vue?vue&type=template&id=64227a50&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/BasePlayer/TitlePitcherRankComponent.vue?vue&type=template&id=4b2eb64a&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/BasePlayer/TitlePitcherRankComponent.vue?vue&type=template&id=4b2eb64a& ***!
+  \*********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TitlePitcherRankComponent_vue_vue_type_template_id_4b2eb64a___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TitlePitcherRankComponent_vue_vue_type_template_id_4b2eb64a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TitlePitcherRankComponent_vue_vue_type_template_id_4b2eb64a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TitlePitcherRankComponent.vue?vue&type=template&id=4b2eb64a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BasePlayer/TitlePitcherRankComponent.vue?vue&type=template&id=4b2eb64a&");
 
 
 /***/ }),
@@ -87246,6 +87770,994 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(pitcher.p_walk))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(pitcher.p_dead))])
+              ])
+            })
+          ],
+          2
+        )
+      ])
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BasePlayer/TitleFielderRankComponent.vue?vue&type=template&id=64227a50&":
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BasePlayer/TitleFielderRankComponent.vue?vue&type=template&id=64227a50& ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return Object.keys(_vm.rankingData).length
+    ? _c("div", { staticClass: "container" }, [
+        _c("h2", [_vm._v("野手成績一覧")]),
+        _vm._v(" "),
+        _c(
+          "table",
+          { staticClass: "table table-hover seiseki_table" },
+          [
+            _c("tr", [
+              _c("th", [_vm._v("No")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("選手名")]),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "mvp_count_for_fielder" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    MVP\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "b9_count_for_fielder" }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    ベストナイン\n                "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "avg_king_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    首位打者\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "hr_king_count" }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    ホームラン王\n                "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "daten_king_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    打点王\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "hit_king_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    最多安打\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "steal_king_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    盗塁王\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "kitei_daseki_count" }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    規定打席到達\n                "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "avg_2wari_8bu_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    2割8分\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "avg_3wari_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    3割\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "avg_3wari_2bu_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    3割2分\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "avg_3wari_4bu_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    3割4分\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "hr_10_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    10本\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "hr_20_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    20本\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "hr_30_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    30本\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "hr_40_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    40本\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "daten_60_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    60打点\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "daten_80_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    80打点\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "daten_100_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    100打点\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "steal_10_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    10盗塁\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "steal_20_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    20盗塁\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "steal_30_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    30盗塁\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-fielder-rank",
+                          params: { sortType: "steal_40_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    40盗塁\n                ")]
+                  )
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.rankingData, function(fielder) {
+              return _c("tr", [
+                _c("td", [_vm._v(_vm._s(fielder.team_ryaku_name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.name_short))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.mvp_count_for_fielder))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.b9_count_for_fielder))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.avg_king_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.hr_king_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.daten_king_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.hit_king_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.steal_king_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.kitei_daseki_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.avg_2wari_8bu_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.avg_3wari_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.avg_3wari_2bu_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.avg_3wari_4bu_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.hr_10_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.hr_20_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.hr_30_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.hr_40_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.daten_60_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.daten_80_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.daten_100_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.steal_10_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.steal_20_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.steal_30_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.steal_40_count))])
+              ])
+            })
+          ],
+          2
+        )
+      ])
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BasePlayer/TitlePitcherRankComponent.vue?vue&type=template&id=4b2eb64a&":
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/BasePlayer/TitlePitcherRankComponent.vue?vue&type=template&id=4b2eb64a& ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return Object.keys(_vm.rankingData).length
+    ? _c("div", { staticClass: "container" }, [
+        _c("h2", [_vm._v("野手成績一覧")]),
+        _vm._v(" "),
+        _c(
+          "table",
+          { staticClass: "table table-hover seiseki_table" },
+          [
+            _c("tr", [
+              _c("th", [_vm._v("No")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("選手名")]),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-pitcher-rank",
+                          params: { sortType: "mvp_count_for_pitcher" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    MVP\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-pitcher-rank",
+                          params: { sortType: "b9_count_for_pitcher" }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    ベストナイン\n                "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-pitcher-rank",
+                          params: { sortType: "p_era_king_count" }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    最優秀防御率\n                "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-pitcher-rank",
+                          params: { sortType: "p_win_king_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    最多勝\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-pitcher-rank",
+                          params: { sortType: "p_win_ratio_king_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    最高勝率\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-pitcher-rank",
+                          params: { sortType: "p_sansin_king_count" }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    最多奪三振\n                "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-pitcher-rank",
+                          params: { sortType: "p_hold_king_count" }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    最優秀中継ぎ投手\n                "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-pitcher-rank",
+                          params: { sortType: "p_save_king_count" }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    最優秀救援投手\n                "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-pitcher-rank",
+                          params: { sortType: "kitei_tokyu_count" }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    規定投球回数\n                "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-pitcher-rank",
+                          params: { sortType: "p_game_50_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    50試合\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-pitcher-rank",
+                          params: { sortType: "p_era_1ten_count" }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    防御率1点台\n                "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-pitcher-rank",
+                          params: { sortType: "p_era_2ten_count" }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    防御率2点台\n                "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-pitcher-rank",
+                          params: { sortType: "p_win_10_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    10勝\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-pitcher-rank",
+                          params: { sortType: "p_win_13_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    13勝\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-pitcher-rank",
+                          params: { sortType: "p_win_15_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    15勝\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-pitcher-rank",
+                          params: { sortType: "p_hold_30_count" }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    30ホールド\n                "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.title-pitcher-rank",
+                          params: { sortType: "p_save_30_count" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    30セーブ\n                ")]
+                  )
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.rankingData, function(fielder) {
+              return _c("tr", [
+                _c("td", [_vm._v(_vm._s(fielder.team_ryaku_name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.name_short))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.mvp_count_for_pitcher))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.b9_count_for_pitcher))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.p_era_king_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.p_win_king_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.p_win_ratio_king_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.p_sansin_king_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.p_hold_king_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.p_save_king_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.kitei_tokyu_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.p_game_50_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.p_era_1ten_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.p_era_2ten_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.p_win_10_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.p_win_13_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.p_win_15_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.p_hold_30_count))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.p_save_30_count))])
               ])
             })
           ],
@@ -93459,6 +94971,40 @@ var render = function() {
               [
                 _c("button", { staticClass: "btn btn-success" }, [
                   _vm._v("投手成績")
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                attrs: {
+                  to: {
+                    name: "base-player.title-fielder-rank",
+                    params: { sortType: "mvp_count_for_fielder" }
+                  }
+                }
+              },
+              [
+                _c("button", { staticClass: "btn btn-success" }, [
+                  _vm._v("表彰(野手)")
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                attrs: {
+                  to: {
+                    name: "base-player.title-pitcher-rank",
+                    params: { sortType: "mvp_count_for_pitcher" }
+                  }
+                }
+              },
+              [
+                _c("button", { staticClass: "btn btn-success" }, [
+                  _vm._v("表彰(投手)")
                 ])
               ]
             ),

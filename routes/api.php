@@ -42,6 +42,8 @@ Route::put('/base-players/edit/{basePlayer}', 'App\Http\Controllers\BasePlayerCo
 Route::delete('/base-players/delete/{basePlayer}', 'App\Http\Controllers\BasePlayerController@destroy');
 Route::get('/base-players/fielder-rank/{sortType}', 'App\Http\Controllers\BasePlayerController@fielderRank');
 Route::get('/base-players/pitcher-rank/{sortType}', 'App\Http\Controllers\BasePlayerController@pitcherRank');
+Route::get('/base-players/title-fielder-rank/{sortType}', 'App\Http\Controllers\BasePlayerController@titleFielderRank');
+Route::get('/base-players/title-pitcher-rank/{sortType}', 'App\Http\Controllers\BasePlayerController@titlePitcherRank');
 
 Route::get('/seasons', 'App\Http\Controllers\SeasonController@index');
 Route::get('/seasons/regularList', 'App\Http\Controllers\SeasonController@regularList');

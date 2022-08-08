@@ -43,4 +43,14 @@ class BasePlayerController extends Controller
     {
         return (new BasePlayer())->getRank($sortType);
     }
+
+    public function titleFielderRank(string $sortType)
+    {
+        return (new BasePlayer())->getRank($sortType, true);
+    }
+    public function titlePitcherRank(string $sortType)
+    {
+        return (new BasePlayer())->getRank($sortType, true);
+    }
+
 }
