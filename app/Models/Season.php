@@ -126,7 +126,9 @@ class Season extends Model
         // チームの集計
         $teamModel->shukei($this->id);
         // // 個人の集計
-        $playerModel->shukei($this->id);
+        $isSeasonEnd = !$this->getNextGame();
+        $titles = $this->getTitle();
+        $playerModel->shukei($this, $isSeasonEnd, $titles);
         // シーズンをまたいだ集計
         if ($baseShukei) {
             $basePlayerModel->shukei();

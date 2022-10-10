@@ -2390,6 +2390,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   watch: {
     '$route': function $route(to, from) {
@@ -2526,6 +2532,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -86598,6 +86610,25 @@ var render = function() {
                     {
                       attrs: {
                         to: {
+                          name: "base-player.pitcher-rank",
+                          params: { sortType: "hyoka" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    rank\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
                           name: "base-player.fielder-rank",
                           params: { sortType: "game" }
                         }
@@ -87071,6 +87102,8 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(fielder.name_short))]),
                 _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(fielder.display_hyoka))]),
+                _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(fielder.game))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(fielder.display_avg))]),
@@ -87289,6 +87322,25 @@ var render = function() {
               _c("th", [_vm._v("No")]),
               _vm._v(" "),
               _c("th", [_vm._v("選手名")]),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "base-player.pitcher-rank",
+                          params: { sortType: "hyoka" }
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    rank\n                ")]
+                  )
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "th",
@@ -87734,6 +87786,8 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(pitcher.number))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(pitcher.name_short))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pitcher.display_hyoka))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(pitcher.p_game))]),
                 _vm._v(" "),

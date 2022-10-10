@@ -104,6 +104,7 @@ class BasePlayer extends Model
         'p_win_15_count',
         'p_hold_30_count',
         'p_save_30_count',
+        'hyoka',
 
     ];
 
@@ -121,6 +122,7 @@ class BasePlayer extends Model
         'display_p_sansin_ratio',
         'display_p_avg',
         'display_p_inning',
+        'display_hyoka',
     ];
 
     private $titleRank = [];
@@ -166,6 +168,46 @@ class BasePlayer extends Model
             'p_hold_30_count' => 0,
             'p_save_30_count' => 0,
         ];
+    /**
+     * home team
+     */
+    public function players()
+    {
+        return $this->hasMany(Player::class, 'base_player_id');
+    }
+
+
+    /**
+     * 利き(投げ) テキスト表示
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getDisplayHyokaAttribute($value)
+    {
+        $hyokaList = [
+            54 => 'S',
+            53 => 'A++',
+            52 => 'A+',
+            51 => 'A',
+            43 => 'B++',
+            42 => 'B+',
+            41 => 'B',
+            33 => 'C++',
+            32 => 'C+',
+            31 => 'C',
+            23 => 'D++',
+            22 => 'D+',
+            21 => 'D',
+            13 => 'E++',
+            12 => 'E+',
+            11 => 'E',
+            0 => 'F',
+            null => 'F',
+        ];
+
+        return $hyokaList[$this->hyoka];
+    }
     /**
      * 利き(投げ) テキスト表示
      *
@@ -479,9 +521,6 @@ class BasePlayer extends Model
 
         }
 
-        // dump($this->titleRank);
-        // exit;
-
         $sumFields = [
             'game',
             'daseki',
@@ -538,6 +577,7 @@ class BasePlayer extends Model
                 $q->where('seasons.regular_flag', true)
                     ->orWhere('seasons.regular_flag', null);
             })
+            ->with('players')
             ->select($selectMake)
             ->groupBy('base_players.id')
             ->get();
@@ -547,7 +587,6 @@ class BasePlayer extends Model
             foreach ($this->appends as $append) {
                 unset($shukei[$append]);
             }
-
             $updateBaseData = $this::find($shukei['id']);
 
             if (empty($this->titleRank[$shukei['id']])) {
@@ -594,7 +633,100 @@ class BasePlayer extends Model
             if ($shukei['p_inning']) {
                 $shukei['p_sansin_ratio'] = $shukei['p_sansin'] / $shukei['p_inning'] * 27;
             }
+            // shukei関係
+            $hyokaList = [];
+            foreach ($basePlayerShukei->players as $hyokaPlayer) {
+                if ($hyokaPlayer->hyoka) {
+                    $hyokaList[] = json_decode($hyokaPlayer->hyoka);
+                }
+            }
 
+            $hyokaSet = [
+                'e' => 0,
+                'd' => 0,
+                'c' => 0,
+                'b' => 0,
+                'a' => [
+                    'year' => 0,
+                    'count' => 0,
+                ],
+            ];
+            foreach ($hyokaList as $hyokaLista) {
+                $yFlag = false;
+                foreach ($hyokaLista as $hyokaListParts) {
+                    if ($hyokaListParts != 'a') {
+                        $hyokaSet[$hyokaListParts]++;
+                    } else {
+                        $hyokaSet[$hyokaListParts]['count']++;
+                        if (!$yFlag) {
+                            $yFlag = true;
+                            $hyokaSet[$hyokaListParts]['year']++;
+                        }
+                    }
+                }
+            }
+
+
+            // A判定 
+            $hantei = [
+                'a' => 0,
+                'b' => 0,
+                'c' => 0,
+                'd' => 0,
+                'e' => 0,
+            ];
+            if (
+                $hyokaSet['a']['year'] >= 3 && $hyokaSet['a']['count'] >= 5
+            ) {
+                $hantei['a'] = 3;
+            } elseif (
+                $hyokaSet['a']['year'] >= 2 && $hyokaSet['a']['count'] >= 3
+            ) {
+                $hantei['a'] = 2;
+            }elseif (
+                $hyokaSet['a']['count'] >= 1
+            ) {
+                $hantei['a'] = 1;
+            }
+            // Bを5年以上やってるときはAを+1
+
+            // B~E判定
+            foreach (array_keys($hantei) as $hanteiKey) {
+                // aは上で判定
+                if ($hanteiKey === 'a') {
+                    continue;
+                }
+                if ($hyokaSet[$hanteiKey] >= 5) {
+                    $hantei[$hanteiKey] = 3;
+                } elseif ($hyokaSet[$hanteiKey] >= 3) {
+                    $hantei[$hanteiKey] = 2;
+                } elseif ($hyokaSet[$hanteiKey] >= 1) {
+                    $hantei[$hanteiKey] = 1;
+                }
+            }
+
+
+            $basePlayerHantei = 0;
+            if ($hantei['a'] || $hantei['b'] === 3) {
+                // タイトルが1つだけで、B5回以上の条件がない時はBの判定を一つ上げるだけにする
+                if ($hyokaSet['a']['count'] === 1 && $hantei['b'] < 3) {
+                    $hantei['a'] = 0;
+                    $hantei['b']++;
+                    $basePlayerHantei = 40 + $hantei['b'];
+                } else {
+                    $basePlayerHantei = 50 + $hantei['a'] + (int)($hantei['b'] === 3);
+                }
+            } elseif ($hantei['b']) {
+                $basePlayerHantei = 40 + $hantei['b'];
+            } elseif ($hantei['c']) {
+                $basePlayerHantei = 30 + $hantei['c'];
+            } elseif ($hantei['d']) {
+                $basePlayerHantei = 20 + $hantei['d'];
+            } elseif ($hantei['e']) {
+                $basePlayerHantei = 10 + $hantei['e'];
+            }
+
+            $shukei['hyoka'] = $basePlayerHantei;
 
             $updateBaseData->update($shukei);
         }

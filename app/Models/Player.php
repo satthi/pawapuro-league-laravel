@@ -68,6 +68,7 @@ class Player extends Model
         'walk_ritsu',
         'p_walk_ritsu',
         'trade_flag',
+        'hyoka',
     ];
 
     protected $appends = [
@@ -774,8 +775,9 @@ class Player extends Model
 
     }
 
-    public function shukei($seasonId)
+    public function shukei($season, $isSeasonEnd, $titles)
     {
+        $seasonId = $season->id;
         $shukeis =  $this->leftjoin('plays', 'players.id', '=', 'plays.player_id')
             ->leftjoin('games', 'games.id', '=', 'plays.game_id')
             ->leftjoin('results', 'results.id', '=', 'plays.result_id')
@@ -789,7 +791,9 @@ class Player extends Model
                     ->orWhere('plays.type');
             })
             ->groupBy('players.id')
+            ->groupBy('teams.id')
             ->select([
+                'teams.game as team_game',
                 'players.id as player_id',
                 \DB::raw('count(DISTINCT(games.id)) AS game'),
                 \DB::raw('count(results.id) AS daseki'),
@@ -921,6 +925,7 @@ class Player extends Model
         }
 
         foreach ($shukeis as $shukei) {
+
             $player = Player::find($shukei['player_id']);
 
             $shukei['avg'] = 0;
@@ -941,6 +946,105 @@ class Player extends Model
 
             // 出塁率+長打率
             $shukei['ops'] = $shukei['obp'] + $shukei['slg'];
+
+            $shukei['hyoka'] = [];
+            if ($season->regular_flag && $isSeasonEnd) {
+                // rank E
+                // 規定打席/規定投球回数/50試合登板
+                if (
+                    $shukei['daseki'] >= $shukei['team_game'] * 3.1 ||
+                    $shukei['p_inning'] >= $shukei['team_game'] * 3 ||
+                    $shukei['p_game'] >= 50
+                ) {
+                    $shukei['hyoka'][] = 'e';
+                }
+
+                // rank D
+                // .280/20本/20盗塁 2点台 10勝 20H 20S
+                if (
+                    (
+                        $shukei['daseki'] >= $shukei['team_game'] * 3.1 &&
+                        $shukei['avg'] >= 0.28
+                    ) ||
+                    $shukei['hr'] >= 20 ||
+                    $shukei['steal_success'] >= 20 ||
+                    (
+                        $shukei['p_inning'] >= $shukei['team_game'] * 3 &&
+                        $shukei['p_era'] < 3
+                    ) ||
+                    $shukei['p_win'] >= 10 ||
+                    $shukei['p_hold'] >= 20 ||
+                    $shukei['p_save'] >= 20
+                ) {
+                    $shukei['hyoka'][] = 'd';
+                }
+
+                // rankC
+                // .300/30本/30盗塁 1点台 13勝 30H 30S
+                if (
+                    (
+                        $shukei['daseki'] >= $shukei['team_game'] * 3.1 &&
+                        $shukei['avg'] >= 0.3
+                    ) ||
+                    $shukei['hr'] >= 30 ||
+                    $shukei['steal_success'] >= 30 ||
+                    (
+                        $shukei['p_inning'] >= $shukei['team_game'] * 3 &&
+                        $shukei['p_era'] < 2
+                    ) ||
+                    $shukei['p_win'] >= 13 ||
+                    $shukei['p_hold'] >= 30 ||
+                    $shukei['p_save'] >= 30
+                ) {
+                    $shukei['hyoka'][] = 'c';
+                }
+                // rankB
+                // .320/40本/40盗塁 1.5未満 15勝 40H 40S
+                if (
+                    (
+                        $shukei['daseki'] >= $shukei['team_game'] * 3.1 &&
+                        $shukei['avg'] >= 0.32
+                    ) ||
+                    $shukei['hr'] >= 40 ||
+                    $shukei['steal_success'] >= 40 ||
+                    (
+                        $shukei['p_inning'] >= $shukei['team_game'] * 3 &&
+                        $shukei['p_era'] < 1.5
+                    ) ||
+                    $shukei['p_win'] >= 15 ||
+                    $shukei['p_hold'] >= 40 ||
+                    $shukei['p_save'] >= 40
+                ) {
+                    $shukei['hyoka'][] = 'b';
+                }
+
+                // タイトル対象
+                // 首位打者 HR王 最多安打 打点王 盗塁王
+                // 最優秀防御率 最多勝 最高勝率 最多奪三振
+                // 最優秀中継ぎ 最優秀救援投手
+                foreach ($titles as $titleKey => $title) {
+                    if (in_array($titleKey, [
+                        'avg',
+                        'hr',
+                        'daten',
+                        'steal',
+                        'hit',
+                        'p_era',
+                        'p_win',
+                        'p_win_ratio',
+                        'p_sansin',
+                        'p_hold',
+                        'p_save',
+                    ])) {
+                        foreach ($title['players'] as $titlePlayer) {
+                            if ($titlePlayer->player_id === $shukei['player_id']) {
+                                $shukei['hyoka'][] = 'a';
+                            }
+                        }
+                    }
+                }
+            }
+
 
             unset($shukei['player_id']);
             $player->update($shukei);

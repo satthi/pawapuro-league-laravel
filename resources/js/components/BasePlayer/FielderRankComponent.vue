@@ -6,6 +6,11 @@
                 <th>No</th>
                 <th>選手名</th>
                 <th>
+                    <router-link v-bind:to="{name: 'base-player.pitcher-rank', params: {sortType: 'hyoka' }}">
+                        rank
+                    </router-link>
+                </th>
+                <th>
                     <router-link v-bind:to="{name: 'base-player.fielder-rank', params: {sortType: 'game' }}">
                         試<br />合
                     </router-link>
@@ -109,6 +114,7 @@
             <tr v-for="fielder in rankingData">
                 <td>{{ fielder.team_ryaku_name }}</td>
                 <td>{{ fielder.name_short }}</td>
+                <td>{{ fielder.display_hyoka }}</td>
                 <td>{{ fielder.game }}</td>
                 <td>{{ fielder.display_avg }}</td>
                 <td>{{ fielder.hr }}</td>
