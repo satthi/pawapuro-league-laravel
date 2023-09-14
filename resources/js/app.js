@@ -45,6 +45,9 @@ import GamePitcherSummaryComponent from "./components/Game/PitcherSummaryCompone
 import TeamViewComponent from "./components/Team/ViewComponent";
 import TeamMonthComponent from "./components/Team/MonthComponent";
 import PlayerViewComponent from "./components/Player/ViewComponent";
+import CardIndexComponent from "./components/Card/IndexComponent";
+import CardViewComponent from "./components/Card/ViewComponent";
+
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -318,6 +321,18 @@ const router = new VueRouter({
             path: '/players/:playerId',
             name: 'player.view',
             component: PlayerViewComponent,
+            props: true
+        },
+        {
+            path: '/cards',
+            name: 'card.index',
+            component: CardIndexComponent,
+            props: true
+        },
+        {
+            path: '/cards/:playerId',
+            name: 'card.view',
+            component: CardViewComponent,
             props: true
         },
 
