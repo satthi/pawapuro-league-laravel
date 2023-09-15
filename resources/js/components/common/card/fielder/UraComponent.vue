@@ -1,21 +1,28 @@
 <template>
-    <div class="card_ura">
-        <div class="card_ura_team_1">
-            MORIYA FROGS
+    <div class="card_ura" :style="{backgroundColor:data.data.data.player.team.base_team.base_color }">
+        <div class="card_ura_team_1" :style="{color:data.data.data.player.team.base_team.second_color }">
+            {{ data.data.data.player.team.name }}
         </div>
-        <img class="card_ura_shashin" src="/img/base_player/92/file" />
-        <div class="card_ura_name">
-            霊烏路　空
+        <img class="card_ura_shashin" :src="data.data.data.player.img_path" />
+        <div class="card_ura_name" v-if="data.data.data.player.name.length > 7" :style="{fontSize: 7 / data.data.data.player.name.length * 2 + 'em'}">
+            {{ data.data.data.player.name }}
+        </div>
+        <div class="card_ura_name" v-else>
+            {{ data.data.data.player.name }}
         </div>
         <div class="card_ura_profile">
-            左投左打<br />
-            背番号90<br />
-            外野手
+            {{ data.data.data.player.hand_full_text }}
+            <br />
+            背番号{{ data.data.data.player.number }}<br />
+            <span v-if="data.data.data.player.position_main === 1">投手</span>
+            <span v-if="data.data.data.player.position_main === 2">捕手</span>
+            <span v-if="data.data.data.player.position_main === 3">内野手</span>
+            <span v-if="data.data.data.player.position_main === 4">外野手</span>
         </div>
         <div class="card_ura_position_wrap">
-            <div>
-                <svg widht="230" height="220" xmlns="http://www.w3.org/2000/svg">
-                    <g fill="#fff" stroke="#000" stroke-width="1">
+            <div syle="background-color: black;">
+                <svg width="230" height="220" xmlns="http://www.w3.org/2000/svg" style="background-color: gray;">
+                    <g fill="#000" stroke="#fff" stroke-width="1">
                         <path d="M115,10 L20,105" />
                         <path d="M20,105 L115,200" />
                         <path d="M115,200 L210,105" />
@@ -39,14 +46,30 @@
                     </g>
                  </svg>
              </div>
-             <div class="card_ura_position_c">Ⓐ</div>
-             <div class="card_ura_position_1b">Ⓐ</div>
-             <div class="card_ura_position_2b">Ⓐ</div>
-             <div class="card_ura_position_3b">Ⓐ</div>
-             <div class="card_ura_position_ss">Ⓐ</div>
-             <div class="card_ura_position_lf">Ⓐ</div>
-             <div class="card_ura_position_cf">Ⓐ</div>
-             <div class="card_ura_position_rf">Ⓐ</div>
+             <div class="card_ura_position_c">
+                <status-mark-component :value="60" />
+             </div>
+             <div class="card_ura_position_1b">
+                <status-mark-component :value="70" />
+             </div>
+             <div class="card_ura_position_2b">
+                <status-mark-component :value="80" />
+             </div>
+             <div class="card_ura_position_3b">
+                <status-mark-component :value="90" />
+             </div>
+             <div class="card_ura_position_ss">
+                <status-mark-component :value="50" />
+             </div>
+             <div class="card_ura_position_lf">
+                <status-mark-component :value="40" />
+             </div>
+             <div class="card_ura_position_cf">
+                 <status-mark-component :value="39" />
+             </div>
+             <div class="card_ura_position_rf">
+                 <status-mark-component :value="39" />
+             </div>
         </div>
         <div class="card_ura_seiseki">
             <table class="card_ura_seiseki_table">
@@ -62,22 +85,22 @@
                     <th>盗塁</th>
                 </tr>
                 <tr>
-                    <td>1期</td>
-                    <td>140</td>
-                    <td>.310</td>
-                    <td>610</td>
-                    <td>130</td>
-                    <td>.310</td>
-                    <td>45</td>
-                    <td>125</td>
-                    <td>30</td>
+                    <td>{{ data.data.data.player.team.season.name }}</td>
+                    <td>{{ data.data.data.player.game }}</td>
+                    <td>{{ data.data.data.player.daseki }}</td>
+                    <td>{{ data.data.data.player.dasu }}</td>
+                    <td>{{ data.data.data.player.hit }}</td>
+                    <td>{{ data.data.data.player.display_avg }}</td>
+                    <td>{{ data.data.data.player.hr }}</td>
+                    <td>{{ data.data.data.player.daten }}</td>
+                    <td>{{ data.data.data.player.steal_success }}</td>
                 </tr>
             </table>
         </div>
         <div class="card_ura_block_area">
         </div>
-        <div class="card_ura_team_2">
-            MORIYA FROGS
+        <div class="card_ura_team_2" :style="{color:data.data.data.player.team.base_team.second_color }">
+            {{ data.data.data.player.team.name }}
         </div>
 
     </div>
@@ -86,7 +109,6 @@
     .card_ura {
         width: 400px;
         height: 600px;
-        background-color: green;
         position: relative;
         float: left;
         margin: 10px;
@@ -95,7 +117,6 @@
         width: 360px;
         height: 20px;
         position: absolute;
-        color: white;
         top: 0px;
         left: 20px;
         text-align: center;
@@ -200,6 +221,15 @@
         width: 100%;
     }
 
+    .card_ura_seiseki_table th {
+        text-align:center;
+        white-space: nowrap;
+    }
+    .card_ura_seiseki_table td {
+        text-align:center;
+        vertical-align: top;
+    }
+
     .card_ura_block_area {
         width: 360px;
         height: 240px;
@@ -213,9 +243,15 @@
         width: 360px;
         height: 20px;
         position: absolute;
-        color: white;
         top: 580px;
         left: 20px;
         text-align: center;
     }
 </style>
+<script>
+    import StatusMarkComponent from '../common/StatusMarkComponent';
+    export default {
+        components: {StatusMarkComponent},
+        props: ['data'],
+    }
+</script>

@@ -22,6 +22,7 @@ class PlayerController extends Controller
         $gamePitcherModel = new GamePitcher();
 
         $player->team->season;
+        $player->team->base_team;
         $player->base_player;
 
         $seasonFielderHistories = $playerModel->getSeasonFielderHistory($player);

@@ -1,10 +1,13 @@
 <template>
-    <div class="card_omote">
-        <div class="card_omote_team_1">
+    <div class="card_omote" :style="{backgroundColor:data.data.data.player.team.base_team.base_color }">
+        <div class="card_omote_team_1" :style="{color:data.data.data.player.team.base_team.second_color }">
             {{ data.data.data.player.team.name }}
         </div>
-        <img class="card_omote_shashin" :src='`/img/base_player/${data.data.data.player.base_player_id}/file`' />
-        <div class="card_omote_name">
+        <img class="card_omote_shashin" :src="data.data.data.player.img_path" />
+        <div class="card_omote_name" v-if="data.data.data.player.name.length > 10" :style="{fontSize: 10 / data.data.data.player.name.length * 2 + 'em'}">
+            {{ data.data.data.player.number }}. {{ data.data.data.player.name }}
+        </div>
+        <div class="card_omote_name" v-else>
             {{ data.data.data.player.number }}. {{ data.data.data.player.name }}
         </div>
         <div class="card_omote_status_wrap">
@@ -27,7 +30,7 @@
                 <status-bar-component label="精神力" :value="70"/>
             </div>
         </div>
-        <div class="card_omote_cost">
+        <div class="card_omote_cost" :style="{color:data.data.data.player.team.base_team.second_color }">
             <div class="card_omote_cost_star">
                 ★★★★★★★★★☆
             </div>
@@ -35,7 +38,7 @@
                 9
             </div>
         </div>
-        <div class="card_omote_team_2">
+        <div class="card_omote_team_2" :style="{color:data.data.data.player.team.base_team.second_color }">
             {{ data.data.data.player.team.name }}
         </div>
     </div>
@@ -44,7 +47,6 @@
     .card_omote {
         width: 400px;
         height: 600px;
-        background-color: green;
         position: relative;
         float: left;
         margin: 10px;
@@ -53,7 +55,6 @@
         width: 360px;
         height: 20px;
         position: absolute;
-        color: white;
         top: 0px;
         left: 20px;
         text-align: center;
@@ -115,7 +116,6 @@
         height: 35px;
         position: absolute;
         font-size: 2.5em;
-        color:white;
         top: 535px;
         left: 20px;
     }
@@ -133,7 +133,6 @@
         width: 360px;
         height: 20px;
         position: absolute;
-        color: white;
         top: 580px;
         left: 20px;
         text-align: center;
