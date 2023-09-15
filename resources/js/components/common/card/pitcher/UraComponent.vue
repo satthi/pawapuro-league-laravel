@@ -1,23 +1,23 @@
 <template>
-    <div class="card_ura" :style="{backgroundColor:data.data.data.player.team.base_team.base_color }">
-        <div class="card_ura_team_1" :style="{color:data.data.data.player.team.base_team.second_color }">
-            {{ data.data.data.player.team.name }}
+    <div class="card_ura" :style="{backgroundColor:data.player.team.base_team.base_color }">
+        <div class="card_ura_team_1" :style="{color:data.player.team.base_team.second_color }">
+            {{ data.player.team.name }}
         </div>
-        <img class="card_ura_shashin" :src="data.data.data.player.img_path" />
-        <div class="card_ura_name" v-if="data.data.data.player.name.length > 7" :style="{fontSize: 7 / data.data.data.player.name.length * 2 + 'em'}">
-            {{ data.data.data.player.name }}
+        <img class="card_ura_shashin" :src="data.player.img_path" />
+        <div class="card_ura_name" v-if="data.player.name.length > 7" :style="{fontSize: 7 / data.player.name.length * 2 + 'em'}">
+            {{ data.player.name }}
         </div>
         <div class="card_ura_name" v-else>
-            {{ data.data.data.player.name }}
+            {{ data.player.name }}
         </div>
         <div class="card_ura_profile">
-            {{ data.data.data.player.hand_full_text }}
+            {{ data.player.hand_full_text }}
             <br />
-            背番号{{ data.data.data.player.number }}<br />
-            <span v-if="data.data.data.player.position_main === 1">投手</span>
-            <span v-if="data.data.data.player.position_main === 2">捕手</span>
-            <span v-if="data.data.data.player.position_main === 3">内野手</span>
-            <span v-if="data.data.data.player.position_main === 4">外野手</span>
+            背番号{{ data.player.number }}<br />
+            <span v-if="data.player.position_main === 1">投手</span>
+            <span v-if="data.player.position_main === 2">捕手</span>
+            <span v-if="data.player.position_main === 3">内野手</span>
+            <span v-if="data.player.position_main === 4">外野手</span>
         </div>
         <div class="card_ura_position_wrap">
             <div>
@@ -71,20 +71,20 @@
                     <th>防御率</th>
                 </tr>
                 <tr>
-                    <td>{{ data.data.data.player.team.season.name }}</td>
-                    <td>{{ data.data.data.player.p_game }}</td>
-                    <td>{{ data.data.data.player.p_win }}</td>
-                    <td>{{ data.data.data.player.p_lose }}</td>
-                    <td>{{ data.data.data.player.p_hold }}</td>
-                    <td>{{ data.data.data.player.p_save }}</td>
-                    <td>{{ data.data.data.player.display_p_era }}</td>
+                    <td>{{ data.player.team.season.name }}</td>
+                    <td>{{ data.player.p_game }}</td>
+                    <td>{{ data.player.p_win }}</td>
+                    <td>{{ data.player.p_lose }}</td>
+                    <td>{{ data.player.p_hold }}</td>
+                    <td>{{ data.player.p_save }}</td>
+                    <td>{{ data.player.display_p_era }}</td>
                 </tr>
             </table>
         </div>
         <div class="card_ura_block_area">
         </div>
-        <div class="card_ura_team_2" :style="{color:data.data.data.player.team.base_team.second_color }">
-            {{ data.data.data.player.team.name }}
+        <div class="card_ura_team_2" :style="{color:data.player.team.base_team.second_color }">
+            {{ data.player.team.name }}
         </div>
     </div>
 </template>

@@ -1,10 +1,10 @@
 <template>
     <div class="container">
         <div class="card_omote">
-            <card-omote-component :data={data} />
+            <card-omote-component :data="dataset" />
         </div>
         <div class="card_ura">
-            <card-ura-component :data={data} />
+            <card-ura-component :data="dataset" />
         </div>
     </div>
 </template>
@@ -21,8 +21,7 @@
             getData(getPath) {
                 axios.get(getPath)
                     .then((res) => {
-                    console.log(res)
-                        this.data = res.data;
+                        this.dataset = res.data;
                     });
             },
         },
@@ -31,7 +30,7 @@
         },
         data: function () {
             return {
-                data: {}
+                dataset: {}
             }
         },
         mounted() {

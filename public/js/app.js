@@ -3406,8 +3406,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get(getPath).then(function (res) {
-        console.log(res);
-        _this.data = res.data;
+        _this.dataset = res.data;
       });
     }
   },
@@ -3416,7 +3415,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      data: {}
+      dataset: {}
     };
   },
   mounted: function mounted() {
@@ -6211,7 +6210,130 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/enums.js */ "./resources/js/mixins/enums.js");
+/* harmony import */ var _common_form_InputComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../common/form/InputComponent */ "./resources/js/components/common/form/InputComponent.vue");
+/* harmony import */ var _common_card_OmoteComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/card/OmoteComponent */ "./resources/js/components/common/card/OmoteComponent.vue");
+/* harmony import */ var _common_card_UraComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/card/UraComponent */ "./resources/js/components/common/card/UraComponent.vue");
+/* harmony import */ var _mixins_enums_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../mixins/enums.js */ "./resources/js/mixins/enums.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6762,13 +6884,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   watch: {
     '$route': function $route(to, from) {
       this.initial();
     }
   },
-  mixins: [_mixins_enums_js__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  mixins: [_mixins_enums_js__WEBPACK_IMPORTED_MODULE_3__["default"]],
+  components: {
+    InputComponent: _common_form_InputComponent__WEBPACK_IMPORTED_MODULE_0__["default"],
+    CardOmoteComponent: _common_card_OmoteComponent__WEBPACK_IMPORTED_MODULE_1__["default"],
+    CardUraComponent: _common_card_UraComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
   methods: {
     initial: function initial() {
       this.getData('/api/players/view/' + this.playerId);
@@ -6777,7 +6907,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get(getPath).then(function (res) {
-        _this.data = res.data;
+        _this.dataset = res.data;
       });
     }
   },
@@ -6786,7 +6916,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      data: {}
+      dataset: {}
     };
   },
   mounted: function mounted() {
@@ -31529,6 +31659,30 @@ core_controller.helpers.each(
 return src;
 
 })));
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Player/ViewComponent.vue?vue&type=style&index=0&id=b0ba8e16&scoped=true&lang=css&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Player/ViewComponent.vue?vue&type=style&index=0&id=b0ba8e16&scoped=true&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.card_input_table[data-v-b0ba8e16] {\r\n    float:left;\r\n    width: 130px;\n}\n.card_input_table th[data-v-b0ba8e16] {\r\nwidth: 60px;\n}\n.card_input_table td[data-v-b0ba8e16] {\r\nwidth: 70px;\n}\r\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
 /***/ }),
@@ -84309,6 +84463,36 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Player/ViewComponent.vue?vue&type=style&index=0&id=b0ba8e16&scoped=true&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Player/ViewComponent.vue?vue&type=style&index=0&id=b0ba8e16&scoped=true&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_style_index_0_id_b0ba8e16_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ViewComponent.vue?vue&type=style&index=0&id=b0ba8e16&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Player/ViewComponent.vue?vue&type=style&index=0&id=b0ba8e16&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_style_index_0_id_b0ba8e16_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_style_index_0_id_b0ba8e16_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/common/card/common/HenkaBarComponent.vue?vue&type=style&index=0&id=20be271a&scoped=true&lang=css&":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/common/card/common/HenkaBarComponent.vue?vue&type=style&index=0&id=20be271a&scoped=true&lang=css& ***!
@@ -85940,23 +86124,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _ViewComponent_vue_vue_type_template_id_b0ba8e16___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ViewComponent.vue?vue&type=template&id=b0ba8e16& */ "./resources/js/components/Player/ViewComponent.vue?vue&type=template&id=b0ba8e16&");
+/* harmony import */ var _ViewComponent_vue_vue_type_template_id_b0ba8e16_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ViewComponent.vue?vue&type=template&id=b0ba8e16&scoped=true& */ "./resources/js/components/Player/ViewComponent.vue?vue&type=template&id=b0ba8e16&scoped=true&");
 /* harmony import */ var _ViewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ViewComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Player/ViewComponent.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _ViewComponent_vue_vue_type_style_index_0_id_b0ba8e16_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ViewComponent.vue?vue&type=style&index=0&id=b0ba8e16&scoped=true&lang=css& */ "./resources/js/components/Player/ViewComponent.vue?vue&type=style&index=0&id=b0ba8e16&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
+;
 
 
 /* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _ViewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ViewComponent_vue_vue_type_template_id_b0ba8e16___WEBPACK_IMPORTED_MODULE_0__.render,
-  _ViewComponent_vue_vue_type_template_id_b0ba8e16___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _ViewComponent_vue_vue_type_template_id_b0ba8e16_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ViewComponent_vue_vue_type_template_id_b0ba8e16_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  null,
+  "b0ba8e16",
   null
   
 )
@@ -87947,6 +88133,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Player/ViewComponent.vue?vue&type=style&index=0&id=b0ba8e16&scoped=true&lang=css&":
+/*!*******************************************************************************************************************!*\
+  !*** ./resources/js/components/Player/ViewComponent.vue?vue&type=style&index=0&id=b0ba8e16&scoped=true&lang=css& ***!
+  \*******************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_style_index_0_id_b0ba8e16_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ViewComponent.vue?vue&type=style&index=0&id=b0ba8e16&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Player/ViewComponent.vue?vue&type=style&index=0&id=b0ba8e16&scoped=true&lang=css&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/common/card/common/HenkaBarComponent.vue?vue&type=style&index=0&id=20be271a&scoped=true&lang=css&":
 /*!***********************************************************************************************************************************!*\
   !*** ./resources/js/components/common/card/common/HenkaBarComponent.vue?vue&type=style&index=0&id=20be271a&scoped=true&lang=css& ***!
@@ -88531,19 +88730,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Player/ViewComponent.vue?vue&type=template&id=b0ba8e16&":
-/*!*****************************************************************************************!*\
-  !*** ./resources/js/components/Player/ViewComponent.vue?vue&type=template&id=b0ba8e16& ***!
-  \*****************************************************************************************/
+/***/ "./resources/js/components/Player/ViewComponent.vue?vue&type=template&id=b0ba8e16&scoped=true&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/components/Player/ViewComponent.vue?vue&type=template&id=b0ba8e16&scoped=true& ***!
+  \*****************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_template_id_b0ba8e16___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_template_id_b0ba8e16___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_template_id_b0ba8e16_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_template_id_b0ba8e16_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_template_id_b0ba8e16___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ViewComponent.vue?vue&type=template&id=b0ba8e16& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Player/ViewComponent.vue?vue&type=template&id=b0ba8e16&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewComponent_vue_vue_type_template_id_b0ba8e16_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ViewComponent.vue?vue&type=template&id=b0ba8e16&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Player/ViewComponent.vue?vue&type=template&id=b0ba8e16&scoped=true&");
 
 
 /***/ }),
@@ -92209,14 +92408,14 @@ var render = function() {
     _c(
       "div",
       { staticClass: "card_omote" },
-      [_c("card-omote-component", { attrs: { data: { data: _vm.data } } })],
+      [_c("card-omote-component", { attrs: { data: _vm.dataset } })],
       1
     ),
     _vm._v(" "),
     _c(
       "div",
       { staticClass: "card_ura" },
-      [_c("card-ura-component", { attrs: { data: { data: _vm.data } } })],
+      [_c("card-ura-component", { attrs: { data: _vm.dataset } })],
       1
     )
   ])
@@ -98038,10 +98237,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Player/ViewComponent.vue?vue&type=template&id=b0ba8e16&":
-/*!********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Player/ViewComponent.vue?vue&type=template&id=b0ba8e16& ***!
-  \********************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Player/ViewComponent.vue?vue&type=template&id=b0ba8e16&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Player/ViewComponent.vue?vue&type=template&id=b0ba8e16&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -98054,17 +98253,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return Object.keys(_vm.enums).length && Object.keys(_vm.data).length
+  return Object.keys(_vm.enums).length && Object.keys(_vm.dataset).length
     ? _c("div", { staticClass: "container" }, [
         _c("h2", [
           _vm._v(
-            _vm._s(_vm.data.player.team.season.name) +
+            _vm._s(_vm.dataset.player.team.season.name) +
               " " +
-              _vm._s(_vm.data.player.team.name)
+              _vm._s(_vm.dataset.player.team.name)
           )
         ]),
         _vm._v(" "),
-        _c("h3", [_vm._v(_vm._s(_vm.data.player.name))]),
+        _c("h3", [_vm._v(_vm._s(_vm.dataset.player.name))]),
         _vm._v(" "),
         _c(
           "div",
@@ -98076,7 +98275,7 @@ var render = function() {
                 attrs: {
                   to: {
                     name: "team.view",
-                    params: { teamId: _vm.data.player.team_id.toString() }
+                    params: { teamId: _vm.dataset.player.team_id.toString() }
                   }
                 }
               },
@@ -98096,50 +98295,50 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("tr", [
-            _c("td", [_vm._v(_vm._s(_vm.data.player.game))]),
+            _c("td", [_vm._v(_vm._s(_vm.dataset.player.game))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.player.display_avg))]),
+            _c("td", [_vm._v(_vm._s(_vm.dataset.player.display_avg))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.player.hr))]),
+            _c("td", [_vm._v(_vm._s(_vm.dataset.player.hr))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.player.daten))]),
+            _c("td", [_vm._v(_vm._s(_vm.dataset.player.daten))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.player.daseki))]),
+            _c("td", [_vm._v(_vm._s(_vm.dataset.player.daseki))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.player.dasu))]),
+            _c("td", [_vm._v(_vm._s(_vm.dataset.player.dasu))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.player.hit))]),
+            _c("td", [_vm._v(_vm._s(_vm.dataset.player.hit))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.player.hit_2))]),
+            _c("td", [_vm._v(_vm._s(_vm.dataset.player.hit_2))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.player.hit_3))]),
+            _c("td", [_vm._v(_vm._s(_vm.dataset.player.hit_3))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.player.sansin))]),
+            _c("td", [_vm._v(_vm._s(_vm.dataset.player.sansin))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.player.heisatsu))]),
+            _c("td", [_vm._v(_vm._s(_vm.dataset.player.heisatsu))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.player.walk))]),
+            _c("td", [_vm._v(_vm._s(_vm.dataset.player.walk))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.player.dead))]),
+            _c("td", [_vm._v(_vm._s(_vm.dataset.player.dead))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.player.bant))]),
+            _c("td", [_vm._v(_vm._s(_vm.dataset.player.bant))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.player.sac_fly))]),
+            _c("td", [_vm._v(_vm._s(_vm.dataset.player.sac_fly))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.player.steal_success))]),
+            _c("td", [_vm._v(_vm._s(_vm.dataset.player.steal_success))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.player.steal_miss))]),
+            _c("td", [_vm._v(_vm._s(_vm.dataset.player.steal_miss))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.player.display_obp))]),
+            _c("td", [_vm._v(_vm._s(_vm.dataset.player.display_obp))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.player.display_slg))]),
+            _c("td", [_vm._v(_vm._s(_vm.dataset.player.display_slg))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.player.display_ops))])
+            _c("td", [_vm._v(_vm._s(_vm.dataset.player.display_ops))])
           ])
         ]),
         _vm._v(" "),
-        _vm.data.player.position_main == _vm.enums.Position.POSITION_P.value ||
-        _vm.data.player.p_inning > 0
+        _vm.dataset.player.position_main ==
+          _vm.enums.Position.POSITION_P.value || _vm.dataset.player.p_inning > 0
           ? _c("div", [
               _c("h4", [_vm._v("投手成績成績")]),
               _vm._v(" "),
@@ -98147,51 +98346,53 @@ var render = function() {
                 _vm._m(1),
                 _vm._v(" "),
                 _c("tr", [
-                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_game))]),
+                  _c("td", [_vm._v(_vm._s(_vm.dataset.player.p_game))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.data.player.display_p_era))]),
+                  _c("td", [_vm._v(_vm._s(_vm.dataset.player.display_p_era))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_win))]),
+                  _c("td", [_vm._v(_vm._s(_vm.dataset.player.p_win))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_lose))]),
+                  _c("td", [_vm._v(_vm._s(_vm.dataset.player.p_lose))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_hold))]),
+                  _c("td", [_vm._v(_vm._s(_vm.dataset.player.p_hold))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_save))]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(_vm._s(_vm.data.player.display_p_win_ratio))
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_sansin))]),
+                  _c("td", [_vm._v(_vm._s(_vm.dataset.player.p_save))]),
                   _vm._v(" "),
                   _c("td", [
-                    _vm._v(_vm._s(_vm.data.player.display_p_sansin_ratio))
+                    _vm._v(_vm._s(_vm.dataset.player.display_p_win_ratio))
                   ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_hit))]),
+                  _c("td", [_vm._v(_vm._s(_vm.dataset.player.p_sansin))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.data.player.display_p_avg))]),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.dataset.player.display_p_sansin_ratio))
+                  ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_hr))]),
+                  _c("td", [_vm._v(_vm._s(_vm.dataset.player.p_hit))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_jiseki))]),
+                  _c("td", [_vm._v(_vm._s(_vm.dataset.player.display_p_avg))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.data.player.display_p_inning))]),
+                  _c("td", [_vm._v(_vm._s(_vm.dataset.player.p_hr))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_kanto))]),
+                  _c("td", [_vm._v(_vm._s(_vm.dataset.player.p_jiseki))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_kanpu))]),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.dataset.player.display_p_inning))
+                  ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_walk))]),
+                  _c("td", [_vm._v(_vm._s(_vm.dataset.player.p_kanto))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.data.player.p_dead))])
+                  _c("td", [_vm._v(_vm._s(_vm.dataset.player.p_kanpu))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.dataset.player.p_walk))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.dataset.player.p_dead))])
                 ])
               ])
             ])
           : _vm._e(),
         _vm._v(" "),
-        Object.keys(_vm.data.fielder_histories).length
+        Object.keys(_vm.dataset.fielder_histories).length
           ? _c("div", [
               _c("h4", [_vm._v("月間野手成績")]),
               _vm._v(" "),
@@ -98201,7 +98402,7 @@ var render = function() {
                 [
                   _vm._m(2),
                   _vm._v(" "),
-                  _vm._l(_vm.data.monthly_fielder_infos, function(
+                  _vm._l(_vm.dataset.monthly_fielder_infos, function(
                     monthly_fielder_info
                   ) {
                     return _c("tr", [
@@ -98266,8 +98467,8 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _vm.data.player.position_main == _vm.enums.Position.POSITION_P.value ||
-        _vm.data.player.p_inning > 0
+        _vm.dataset.player.position_main ==
+          _vm.enums.Position.POSITION_P.value || _vm.dataset.player.p_inning > 0
           ? _c("div", [
               _c("h4", [_vm._v("月間投手成績")]),
               _vm._v(" "),
@@ -98277,7 +98478,7 @@ var render = function() {
                 [
                   _vm._m(3),
                   _vm._v(" "),
-                  _vm._l(_vm.data.monthly_pitcher_infos, function(
+                  _vm._l(_vm.dataset.monthly_pitcher_infos, function(
                     monthly_pitcher_info
                   ) {
                     return _c("tr", [
@@ -98334,7 +98535,7 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        Object.keys(_vm.data.fielder_histories).length
+        Object.keys(_vm.dataset.fielder_histories).length
           ? _c("div", [
               _c("h4", [_vm._v("野手成績履歴")]),
               _vm._v(" "),
@@ -98344,7 +98545,9 @@ var render = function() {
                 [
                   _vm._m(4),
                   _vm._v(" "),
-                  _vm._l(_vm.data.fielder_histories, function(fielder_history) {
+                  _vm._l(_vm.dataset.fielder_histories, function(
+                    fielder_history
+                  ) {
                     return _c("tr", [
                       _c(
                         "td",
@@ -98406,7 +98609,7 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        Object.keys(_vm.data.pitcher_histories).length
+        Object.keys(_vm.dataset.pitcher_histories).length
           ? _c("div", [
               _c("h4", [_vm._v("投手成績履歴")]),
               _vm._v(" "),
@@ -98416,7 +98619,9 @@ var render = function() {
                 [
                   _vm._m(5),
                   _vm._v(" "),
-                  _vm._l(_vm.data.pitcher_histories, function(pitcher_history) {
+                  _vm._l(_vm.dataset.pitcher_histories, function(
+                    pitcher_history
+                  ) {
                     return _c("tr", [
                       _c(
                         "td",
@@ -98472,7 +98677,7 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        Object.keys(_vm.data.season_fielder_histories).length > 0
+        Object.keys(_vm.dataset.season_fielder_histories).length > 0
           ? _c("div", [
               _c("h4", [_vm._v("野手シーズン成績")]),
               _vm._v(" "),
@@ -98482,7 +98687,7 @@ var render = function() {
                 [
                   _vm._m(6),
                   _vm._v(" "),
-                  _vm._l(_vm.data.season_fielder_histories, function(
+                  _vm._l(_vm.dataset.season_fielder_histories, function(
                     season_history
                   ) {
                     return _c("tr", [
@@ -98712,79 +98917,85 @@ var render = function() {
                     _c("td"),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.game))
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.game))
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.display_avg))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.player.base_player.hr))]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.daten))
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.display_avg))
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.daseki))
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.hr))
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.dasu))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.player.base_player.hit))]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.hit_2))
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.daten))
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.hit_3))
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.daseki))
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.sansin))
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.dasu))
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.heisatsu))
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.hit))
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.walk))
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.hit_2))
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.dead))
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.hit_3))
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.bant))
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.sansin))
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.sac_fly))
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.heisatsu))
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.steal_success))
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.walk))
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.steal_miss))
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.dead))
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.display_obp))
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.bant))
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.display_slg))
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.sac_fly))
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.display_ops))
+                      _vm._v(
+                        _vm._s(_vm.dataset.player.base_player.steal_success)
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.steal_miss))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.display_obp))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.display_slg))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.display_ops))
                     ]),
                     _vm._v(" "),
                     _c("td")
@@ -98795,7 +99006,7 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        Object.keys(_vm.data.season_pitcher_histories).length
+        Object.keys(_vm.dataset.season_pitcher_histories).length
           ? _c("div", [
               _c("h4", [_vm._v("投手シーズン成績")]),
               _vm._v(" "),
@@ -98805,7 +99016,7 @@ var render = function() {
                 [
                   _vm._m(7),
                   _vm._v(" "),
-                  _vm._l(_vm.data.season_pitcher_histories, function(
+                  _vm._l(_vm.dataset.season_pitcher_histories, function(
                     season_history
                   ) {
                     return _c("tr", [
@@ -99016,83 +99227,89 @@ var render = function() {
                     _c("td"),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.p_game))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.display_p_era))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.p_win))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.p_lose))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.p_hold))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.p_save))
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.p_game))
                     ]),
                     _vm._v(" "),
                     _c("td", [
                       _vm._v(
-                        _vm._s(_vm.data.player.base_player.display_p_win_ratio)
+                        _vm._s(_vm.dataset.player.base_player.display_p_era)
                       )
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.p_sansin))
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.p_win))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.p_lose))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.p_hold))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.p_save))
                     ]),
                     _vm._v(" "),
                     _c("td", [
                       _vm._v(
                         _vm._s(
-                          _vm.data.player.base_player.display_p_sansin_ratio
+                          _vm.dataset.player.base_player.display_p_win_ratio
                         )
                       )
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.p_hit))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.display_p_avg))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.p_hr))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.p_jiseki))
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.p_sansin))
                     ]),
                     _vm._v(" "),
                     _c("td", [
                       _vm._v(
-                        _vm._s(_vm.data.player.base_player.display_p_inning)
+                        _vm._s(
+                          _vm.dataset.player.base_player.display_p_sansin_ratio
+                        )
                       )
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.p_kanto))
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.p_hit))
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.p_kanpu))
+                      _vm._v(
+                        _vm._s(_vm.dataset.player.base_player.display_p_avg)
+                      )
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.p_walk))
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.p_hr))
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.data.player.base_player.p_dead))
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.p_jiseki))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(_vm.dataset.player.base_player.display_p_inning)
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.p_kanto))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.p_kanpu))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.p_walk))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.dataset.player.base_player.p_dead))
                     ])
                   ])
                 ],
@@ -99111,197 +99328,665 @@ var render = function() {
               staticStyle: { width: "200px" }
             },
             [
-              _vm.data.count.mvp
+              _vm.dataset.count.mvp
                 ? _c("tr", [
                     _c("th", [_vm._v("MVP")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.mvp))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.mvp))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.b9
+              _vm.dataset.count.b9
                 ? _c("tr", [
                     _c("th", [_vm._v("ベストナイン")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.b9))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.b9))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.avg
+              _vm.dataset.count.avg
                 ? _c("tr", [
                     _c("th", [_vm._v("首位打者")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.avg))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.avg))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.hr
+              _vm.dataset.count.hr
                 ? _c("tr", [
                     _c("th", [_vm._v("ホームラン王")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.hr))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.hr))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.daten
+              _vm.dataset.count.daten
                 ? _c("tr", [
                     _c("th", [_vm._v("打点王")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.daten))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.daten))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.hit
+              _vm.dataset.count.hit
                 ? _c("tr", [
                     _c("th", [_vm._v("最多安打")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.hit))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.hit))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.steal
+              _vm.dataset.count.steal
                 ? _c("tr", [
                     _c("th", [_vm._v("盗塁王")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.steal))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.steal))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.kitei_daseki
+              _vm.dataset.count.kitei_daseki
                 ? _c("tr", [
                     _c("th", [_vm._v("規定打席到達")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.kitei_daseki))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.kitei_daseki))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.avg_3wari
+              _vm.dataset.count.avg_3wari
                 ? _c("tr", [
                     _c("th", [_vm._v("3割")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.avg_3wari))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.avg_3wari))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.hr_30
+              _vm.dataset.count.hr_30
                 ? _c("tr", [
                     _c("th", [_vm._v("30本")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.hr_30))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.hr_30))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.daten_100
+              _vm.dataset.count.daten_100
                 ? _c("tr", [
                     _c("th", [_vm._v("100打点")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.daten_100))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.daten_100))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.steal_30
+              _vm.dataset.count.steal_30
                 ? _c("tr", [
                     _c("th", [_vm._v("30盗塁")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.steal_30))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.steal_30))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.era
+              _vm.dataset.count.era
                 ? _c("tr", [
                     _c("th", [_vm._v("最優秀防御率")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.era))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.era))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.win
+              _vm.dataset.count.win
                 ? _c("tr", [
                     _c("th", [_vm._v("最多勝")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.win))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.win))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.win_ratio
+              _vm.dataset.count.win_ratio
                 ? _c("tr", [
                     _c("th", [_vm._v("最高勝率")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.win_ratio))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.win_ratio))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.sansin
+              _vm.dataset.count.sansin
                 ? _c("tr", [
                     _c("th", [_vm._v("最多奪三振")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.sansin))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.sansin))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.hold
+              _vm.dataset.count.hold
                 ? _c("tr", [
                     _c("th", [_vm._v("最優秀中継ぎ投手")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.hold))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.hold))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.save
+              _vm.dataset.count.save
                 ? _c("tr", [
                     _c("th", [_vm._v("最優秀救援投手")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.save))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.save))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.kitei_tokyu
+              _vm.dataset.count.kitei_tokyu
                 ? _c("tr", [
                     _c("th", [_vm._v("規定投球回数")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.kitei_tokyu))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.kitei_tokyu))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.game_50
+              _vm.dataset.count.game_50
                 ? _c("tr", [
                     _c("th", [_vm._v("50試合以上")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.game_50))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.game_50))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.win_10
+              _vm.dataset.count.win_10
                 ? _c("tr", [
                     _c("th", [_vm._v("10勝")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.win_10))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.win_10))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.era_1ten
+              _vm.dataset.count.era_1ten
                 ? _c("tr", [
                     _c("th", [_vm._v("防御率1点台")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.era_1ten))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.era_1ten))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.hold_30
+              _vm.dataset.count.hold_30
                 ? _c("tr", [
                     _c("th", [_vm._v("30ホールド")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.hold_30))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.hold_30))])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.data.count.save_30
+              _vm.dataset.count.save_30
                 ? _c("tr", [
                     _c("th", [_vm._v("30セーブ")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.data.count.save_30))])
+                    _c("td", [_vm._v(_vm._s(_vm.dataset.count.save_30))])
                   ])
                 : _vm._e()
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("h4", [_vm._v("カード情報")]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card_omote" },
+            [_c("card-omote-component", { attrs: { data: _vm.dataset } })],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card_ura" },
+            [_c("card-ura-component", { attrs: { data: _vm.dataset } })],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.submit("/api/cards/edit/" + _vm.dataset.player.id)
+                }
+              }
+            },
+            [
+              _c("table", { staticClass: "card_input_table" }, [
+                _c("tr", [
+                  _c("th", [_vm._v("コスト")]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c("input-component", {
+                        attrs: {
+                          label: "",
+                          value: _vm.dataset.player.card_cost
+                        },
+                        model: {
+                          value: _vm.dataset.player.card_cost,
+                          callback: function($$v) {
+                            _vm.$set(_vm.dataset.player, "card_cost", $$v)
+                          },
+                          expression: "dataset.player.card_cost"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("打撃")]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c("input-component", {
+                        attrs: {
+                          label: "",
+                          value: _vm.dataset.player.card_info.batter.meat
+                        },
+                        model: {
+                          value: _vm.dataset.player.card_info.batter.meat,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.dataset.player.card_info.batter,
+                              "meat",
+                              $$v
+                            )
+                          },
+                          expression: "dataset.player.card_info.batter.meat"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("長打力")]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c("input-component", {
+                        attrs: {
+                          label: "",
+                          value: _vm.dataset.player.card_info.batter.power
+                        },
+                        model: {
+                          value: _vm.dataset.player.card_info.batter.power,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.dataset.player.card_info.batter,
+                              "power",
+                              $$v
+                            )
+                          },
+                          expression: "dataset.player.card_info.batter.power"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("走力")]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c("input-component", {
+                        attrs: {
+                          label: "",
+                          value: _vm.dataset.player.card_info.batter.run
+                        },
+                        model: {
+                          value: _vm.dataset.player.card_info.batter.run,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.dataset.player.card_info.batter,
+                              "run",
+                              $$v
+                            )
+                          },
+                          expression: "dataset.player.card_info.batter.run"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("バント")]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c("input-component", {
+                        attrs: {
+                          label: "",
+                          value: _vm.dataset.player.card_info.batter.bant
+                        },
+                        model: {
+                          value: _vm.dataset.player.card_info.batter.bant,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.dataset.player.card_info.batter,
+                              "bant",
+                              $$v
+                            )
+                          },
+                          expression: "dataset.player.card_info.batter.bant"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("守備力")]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c("input-component", {
+                        attrs: {
+                          label: "",
+                          value: _vm.dataset.player.card_info.batter.defence
+                        },
+                        model: {
+                          value: _vm.dataset.player.card_info.batter.defence,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.dataset.player.card_info.batter,
+                              "defence",
+                              $$v
+                            )
+                          },
+                          expression: "dataset.player.card_info.batter.defence"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("精神力")]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c("input-component", {
+                        attrs: {
+                          label: "",
+                          value: _vm.dataset.player.card_info.batter.mental
+                        },
+                        model: {
+                          value: _vm.dataset.player.card_info.batter.mental,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.dataset.player.card_info.batter,
+                              "mental",
+                              $$v
+                            )
+                          },
+                          expression: "dataset.player.card_info.batter.mental"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("table", { staticClass: "card_input_table" }, [
+                _c("tr", [
+                  _c("th", [_vm._v("捕手")]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c("input-component", {
+                        attrs: {
+                          label: "",
+                          value: _vm.dataset.player.card_info.batter.position_c
+                        },
+                        model: {
+                          value: _vm.dataset.player.card_info.batter.position_c,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.dataset.player.card_info.batter,
+                              "position_c",
+                              $$v
+                            )
+                          },
+                          expression:
+                            "dataset.player.card_info.batter.position_c"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("一塁手")]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c("input-component", {
+                        attrs: {
+                          label: "",
+                          value: _vm.dataset.player.card_info.batter.position_1b
+                        },
+                        model: {
+                          value:
+                            _vm.dataset.player.card_info.batter.position_1b,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.dataset.player.card_info.batter,
+                              "position_1b",
+                              $$v
+                            )
+                          },
+                          expression:
+                            "dataset.player.card_info.batter.position_1b"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("二塁手")]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c("input-component", {
+                        attrs: {
+                          label: "",
+                          value: _vm.dataset.player.card_info.batter.position_2b
+                        },
+                        model: {
+                          value:
+                            _vm.dataset.player.card_info.batter.position_2b,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.dataset.player.card_info.batter,
+                              "position_2b",
+                              $$v
+                            )
+                          },
+                          expression:
+                            "dataset.player.card_info.batter.position_2b"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("三塁手")]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c("input-component", {
+                        attrs: {
+                          label: "",
+                          value: _vm.dataset.player.card_info.batter.position_3b
+                        },
+                        model: {
+                          value:
+                            _vm.dataset.player.card_info.batter.position_3b,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.dataset.player.card_info.batter,
+                              "position_3b",
+                              $$v
+                            )
+                          },
+                          expression:
+                            "dataset.player.card_info.batter.position_3b"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("遊撃手")]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c("input-component", {
+                        attrs: {
+                          label: "",
+                          value: _vm.dataset.player.card_info.batter.position_ss
+                        },
+                        model: {
+                          value:
+                            _vm.dataset.player.card_info.batter.position_ss,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.dataset.player.card_info.batter,
+                              "position_ss",
+                              $$v
+                            )
+                          },
+                          expression:
+                            "dataset.player.card_info.batter.position_ss"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("左翼手")]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c("input-component", {
+                        attrs: {
+                          label: "",
+                          value: _vm.dataset.player.card_info.batter.position_lf
+                        },
+                        model: {
+                          value:
+                            _vm.dataset.player.card_info.batter.position_lf,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.dataset.player.card_info.batter,
+                              "position_lf",
+                              $$v
+                            )
+                          },
+                          expression:
+                            "dataset.player.card_info.batter.position_lf"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("中堅手")]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c("input-component", {
+                        attrs: {
+                          label: "",
+                          value: _vm.dataset.player.card_info.batter.position_cf
+                        },
+                        model: {
+                          value:
+                            _vm.dataset.player.card_info.batter.position_cf,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.dataset.player.card_info.batter,
+                              "position_cf",
+                              $$v
+                            )
+                          },
+                          expression:
+                            "dataset.player.card_info.batter.position_cf"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("右翼手")]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c("input-component", {
+                        attrs: {
+                          label: "",
+                          value: _vm.dataset.player.card_info.batter.position_rf
+                        },
+                        model: {
+                          value:
+                            _vm.dataset.player.card_info.batter.position_rf,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.dataset.player.card_info.batter,
+                              "position_rf",
+                              $$v
+                            )
+                          },
+                          expression:
+                            "dataset.player.card_info.batter.position_rf"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ])
+              ])
             ]
           )
         ])
@@ -105959,20 +106644,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.data.data.player !== undefined
+    _vm.data.player !== undefined
       ? _c(
           "div",
           [
-            _vm.data.data.player.position_main != 1
-              ? _c("FielderCardComponent", {
-                  attrs: { data: { data: _vm.data } }
-                })
+            _vm.data.player.position_main != 1
+              ? _c("FielderCardComponent", { attrs: { data: _vm.data } })
               : _vm._e(),
             _vm._v(" "),
-            _vm.data.data.player.position_main == 1
-              ? _c("PitcherCardComponent", {
-                  attrs: { data: { data: _vm.data } }
-                })
+            _vm.data.player.position_main == 1
+              ? _c("PitcherCardComponent", { attrs: { data: _vm.data } })
               : _vm._e()
           ],
           1
@@ -106004,20 +106685,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.data.data.player !== undefined
+    _vm.data.player !== undefined
       ? _c(
           "div",
           [
-            _vm.data.data.player.position_main != 1
-              ? _c("FielderCardComponent", {
-                  attrs: { data: { data: _vm.data } }
-                })
+            _vm.data.player.position_main != 1
+              ? _c("FielderCardComponent", { attrs: { data: _vm.data } })
               : _vm._e(),
             _vm._v(" "),
-            _vm.data.data.player.position_main == 1
-              ? _c("PitcherCardComponent", {
-                  attrs: { data: { data: _vm.data } }
-                })
+            _vm.data.player.position_main == 1
+              ? _c("PitcherCardComponent", { attrs: { data: _vm.data } })
               : _vm._e()
           ],
           1
@@ -106215,49 +106892,36 @@ var render = function() {
     "div",
     {
       staticClass: "card_omote",
-      style: {
-        backgroundColor: _vm.data.data.data.player.team.base_team.base_color
-      }
+      style: { backgroundColor: _vm.data.player.team.base_team.base_color }
     },
     [
       _c(
         "div",
         {
           staticClass: "card_omote_team_1",
-          style: {
-            color: _vm.data.data.data.player.team.base_team.second_color
-          }
+          style: { color: _vm.data.player.team.base_team.second_color }
         },
-        [
-          _vm._v(
-            "\n        " +
-              _vm._s(_vm.data.data.data.player.team.name) +
-              "\n    "
-          )
-        ]
+        [_vm._v("\n        " + _vm._s(_vm.data.player.team.name) + "\n    ")]
       ),
       _vm._v(" "),
       _c("img", {
         staticClass: "card_omote_shashin",
-        attrs: { src: _vm.data.data.data.player.img_path }
+        attrs: { src: _vm.data.player.img_path }
       }),
       _vm._v(" "),
-      _vm.data.data.data.player.name.length > 10
+      _vm.data.player.name.length > 10
         ? _c(
             "div",
             {
               staticClass: "card_omote_name",
-              style: {
-                fontSize:
-                  (10 / _vm.data.data.data.player.name.length) * 2 + "em"
-              }
+              style: { fontSize: (10 / _vm.data.player.name.length) * 2 + "em" }
             },
             [
               _vm._v(
                 "\n        " +
-                  _vm._s(_vm.data.data.data.player.number) +
+                  _vm._s(_vm.data.player.number) +
                   ". " +
-                  _vm._s(_vm.data.data.data.player.name) +
+                  _vm._s(_vm.data.player.name) +
                   "\n    "
               )
             ]
@@ -106265,9 +106929,9 @@ var render = function() {
         : _c("div", { staticClass: "card_omote_name" }, [
             _vm._v(
               "\n        " +
-                _vm._s(_vm.data.data.data.player.number) +
+                _vm._s(_vm.data.player.number) +
                 ". " +
-                _vm._s(_vm.data.data.data.player.name) +
+                _vm._s(_vm.data.player.name) +
                 "\n    "
             )
           ]),
@@ -106276,7 +106940,14 @@ var render = function() {
         _c(
           "div",
           { staticClass: "card_omote_dageki" },
-          [_c("status-bar-component", { attrs: { label: "打撃", value: 60 } })],
+          [
+            _c("status-bar-component", {
+              attrs: {
+                label: "打撃",
+                value: _vm.data.player.card_info.batter.meat
+              }
+            })
+          ],
           1
         ),
         _vm._v(" "),
@@ -106285,7 +106956,10 @@ var render = function() {
           { staticClass: "card_omote_power" },
           [
             _c("status-bar-component", {
-              attrs: { label: "長打力", value: 70 }
+              attrs: {
+                label: "長打力",
+                value: _vm.data.player.card_info.batter.power
+              }
             })
           ],
           1
@@ -106294,7 +106968,14 @@ var render = function() {
         _c(
           "div",
           { staticClass: "card_omote_run" },
-          [_c("status-bar-component", { attrs: { label: "走力", value: 80 } })],
+          [
+            _c("status-bar-component", {
+              attrs: {
+                label: "走力",
+                value: _vm.data.player.card_info.batter.run
+              }
+            })
+          ],
           1
         ),
         _vm._v(" "),
@@ -106303,7 +106984,10 @@ var render = function() {
           { staticClass: "card_omote_bant" },
           [
             _c("status-bar-component", {
-              attrs: { label: "バント", value: 90 }
+              attrs: {
+                label: "バント",
+                value: _vm.data.player.card_info.batter.bant
+              }
             })
           ],
           1
@@ -106314,7 +106998,10 @@ var render = function() {
           { staticClass: "card_omote_def" },
           [
             _c("status-bar-component", {
-              attrs: { label: "守備力", value: 70 }
+              attrs: {
+                label: "守備力",
+                value: _vm.data.player.card_info.batter.defence
+              }
             })
           ],
           1
@@ -106325,7 +107012,10 @@ var render = function() {
           { staticClass: "card_omote_mental" },
           [
             _c("status-bar-component", {
-              attrs: { label: "精神力", value: 70 }
+              attrs: {
+                label: "精神力",
+                value: _vm.data.player.card_info.batter.mental
+              }
             })
           ],
           1
@@ -106336,17 +107026,26 @@ var render = function() {
         "div",
         {
           staticClass: "card_omote_cost",
-          style: {
-            color: _vm.data.data.data.player.team.base_team.second_color
-          }
+          style: { color: _vm.data.player.team.base_team.second_color }
         },
         [
-          _c("div", { staticClass: "card_omote_cost_star" }, [
-            _vm._v("\n            ★★★★★★★★★☆\n        ")
-          ]),
+          _c(
+            "div",
+            { staticClass: "card_omote_cost_star" },
+            _vm._l(10, function(i) {
+              return _c("span", [
+                _vm._v(_vm._s(i <= _vm.data.player.card_cost ? "★" : "☆"))
+              ])
+            }),
+            0
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "card_omote_cost_number" }, [
-            _vm._v("\n            9\n        ")
+            _vm._v(
+              "\n            " +
+                _vm._s(_vm.data.player.card_cost) +
+                "\n        "
+            )
           ])
         ]
       ),
@@ -106355,17 +107054,9 @@ var render = function() {
         "div",
         {
           staticClass: "card_omote_team_2",
-          style: {
-            color: _vm.data.data.data.player.team.base_team.second_color
-          }
+          style: { color: _vm.data.player.team.base_team.second_color }
         },
-        [
-          _vm._v(
-            "\n        " +
-              _vm._s(_vm.data.data.data.player.team.name) +
-              "\n    "
-          )
-        ]
+        [_vm._v("\n        " + _vm._s(_vm.data.player.team.name) + "\n    ")]
       )
     ]
   )
@@ -106397,77 +107088,57 @@ var render = function() {
     "div",
     {
       staticClass: "card_ura",
-      style: {
-        backgroundColor: _vm.data.data.data.player.team.base_team.base_color
-      }
+      style: { backgroundColor: _vm.data.player.team.base_team.base_color }
     },
     [
       _c(
         "div",
         {
           staticClass: "card_ura_team_1",
-          style: {
-            color: _vm.data.data.data.player.team.base_team.second_color
-          }
+          style: { color: _vm.data.player.team.base_team.second_color }
         },
-        [
-          _vm._v(
-            "\n        " +
-              _vm._s(_vm.data.data.data.player.team.name) +
-              "\n    "
-          )
-        ]
+        [_vm._v("\n        " + _vm._s(_vm.data.player.team.name) + "\n    ")]
       ),
       _vm._v(" "),
       _c("img", {
         staticClass: "card_ura_shashin",
-        attrs: { src: _vm.data.data.data.player.img_path }
+        attrs: { src: _vm.data.player.img_path }
       }),
       _vm._v(" "),
-      _vm.data.data.data.player.name.length > 7
+      _vm.data.player.name.length > 7
         ? _c(
             "div",
             {
               staticClass: "card_ura_name",
-              style: {
-                fontSize: (7 / _vm.data.data.data.player.name.length) * 2 + "em"
-              }
+              style: { fontSize: (7 / _vm.data.player.name.length) * 2 + "em" }
             },
-            [
-              _vm._v(
-                "\n        " + _vm._s(_vm.data.data.data.player.name) + "\n    "
-              )
-            ]
+            [_vm._v("\n        " + _vm._s(_vm.data.player.name) + "\n    ")]
           )
         : _c("div", { staticClass: "card_ura_name" }, [
-            _vm._v(
-              "\n        " + _vm._s(_vm.data.data.data.player.name) + "\n    "
-            )
+            _vm._v("\n        " + _vm._s(_vm.data.player.name) + "\n    ")
           ]),
       _vm._v(" "),
       _c("div", { staticClass: "card_ura_profile" }, [
         _vm._v(
-          "\n        " +
-            _vm._s(_vm.data.data.data.player.hand_full_text) +
-            "\n        "
+          "\n        " + _vm._s(_vm.data.player.hand_full_text) + "\n        "
         ),
         _c("br"),
-        _vm._v("\n        背番号" + _vm._s(_vm.data.data.data.player.number)),
+        _vm._v("\n        背番号" + _vm._s(_vm.data.player.number)),
         _c("br"),
         _vm._v(" "),
-        _vm.data.data.data.player.position_main === 1
+        _vm.data.player.position_main === 1
           ? _c("span", [_vm._v("投手")])
           : _vm._e(),
         _vm._v(" "),
-        _vm.data.data.data.player.position_main === 2
+        _vm.data.player.position_main === 2
           ? _c("span", [_vm._v("捕手")])
           : _vm._e(),
         _vm._v(" "),
-        _vm.data.data.data.player.position_main === 3
+        _vm.data.player.position_main === 3
           ? _c("span", [_vm._v("内野手")])
           : _vm._e(),
         _vm._v(" "),
-        _vm.data.data.data.player.position_main === 4
+        _vm.data.player.position_main === 4
           ? _c("span", [_vm._v("外野手")])
           : _vm._e()
       ]),
@@ -106526,61 +107197,109 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "card_ura_position_c" },
-          [_c("status-mark-component", { attrs: { value: 60 } })],
-          1
-        ),
+        _vm.data.player.card_info.batter.position_c > 0
+          ? _c(
+              "div",
+              { staticClass: "card_ura_position_c" },
+              [
+                _c("status-mark-component", {
+                  attrs: { value: _vm.data.player.card_info.batter.position_c }
+                })
+              ],
+              1
+            )
+          : _vm._e(),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "card_ura_position_1b" },
-          [_c("status-mark-component", { attrs: { value: 70 } })],
-          1
-        ),
+        _vm.data.player.card_info.batter.position_1b > 0
+          ? _c(
+              "div",
+              { staticClass: "card_ura_position_1b" },
+              [
+                _c("status-mark-component", {
+                  attrs: { value: _vm.data.player.card_info.batter.position_1b }
+                })
+              ],
+              1
+            )
+          : _vm._e(),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "card_ura_position_2b" },
-          [_c("status-mark-component", { attrs: { value: 80 } })],
-          1
-        ),
+        _vm.data.player.card_info.batter.position_2b > 0
+          ? _c(
+              "div",
+              { staticClass: "card_ura_position_2b" },
+              [
+                _c("status-mark-component", {
+                  attrs: { value: _vm.data.player.card_info.batter.position_2b }
+                })
+              ],
+              1
+            )
+          : _vm._e(),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "card_ura_position_3b" },
-          [_c("status-mark-component", { attrs: { value: 90 } })],
-          1
-        ),
+        _vm.data.player.card_info.batter.position_3b > 0
+          ? _c(
+              "div",
+              { staticClass: "card_ura_position_3b" },
+              [
+                _c("status-mark-component", {
+                  attrs: { value: _vm.data.player.card_info.batter.position_3b }
+                })
+              ],
+              1
+            )
+          : _vm._e(),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "card_ura_position_ss" },
-          [_c("status-mark-component", { attrs: { value: 50 } })],
-          1
-        ),
+        _vm.data.player.card_info.batter.position_ss > 0
+          ? _c(
+              "div",
+              { staticClass: "card_ura_position_ss" },
+              [
+                _c("status-mark-component", {
+                  attrs: { value: _vm.data.player.card_info.batter.position_ss }
+                })
+              ],
+              1
+            )
+          : _vm._e(),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "card_ura_position_lf" },
-          [_c("status-mark-component", { attrs: { value: 40 } })],
-          1
-        ),
+        _vm.data.player.card_info.batter.position_lf > 0
+          ? _c(
+              "div",
+              { staticClass: "card_ura_position_lf" },
+              [
+                _c("status-mark-component", {
+                  attrs: { value: _vm.data.player.card_info.batter.position_lf }
+                })
+              ],
+              1
+            )
+          : _vm._e(),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "card_ura_position_cf" },
-          [_c("status-mark-component", { attrs: { value: 39 } })],
-          1
-        ),
+        _vm.data.player.card_info.batter.position_cf > 0
+          ? _c(
+              "div",
+              { staticClass: "card_ura_position_cf" },
+              [
+                _c("status-mark-component", {
+                  attrs: { value: _vm.data.player.card_info.batter.position_cf }
+                })
+              ],
+              1
+            )
+          : _vm._e(),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "card_ura_position_rf" },
-          [_c("status-mark-component", { attrs: { value: 39 } })],
-          1
-        )
+        _vm.data.player.card_info.batter.position_rf > 0
+          ? _c(
+              "div",
+              { staticClass: "card_ura_position_rf" },
+              [
+                _c("status-mark-component", {
+                  attrs: { value: _vm.data.player.card_info.batter.position_rf }
+                })
+              ],
+              1
+            )
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card_ura_seiseki" }, [
@@ -106588,25 +107307,23 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("tr", [
-            _c("td", [
-              _vm._v(_vm._s(_vm.data.data.data.player.team.season.name))
-            ]),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.team.season.name))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.data.data.player.game))]),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.game))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.data.data.player.daseki))]),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.daseki))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.data.data.player.dasu))]),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.dasu))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.data.data.player.hit))]),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.hit))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.data.data.player.display_avg))]),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.display_avg))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.data.data.player.hr))]),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.hr))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.data.data.player.daten))]),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.daten))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.data.data.player.steal_success))])
+            _c("td", [_vm._v(_vm._s(_vm.data.player.steal_success))])
           ])
         ])
       ]),
@@ -106617,17 +107334,9 @@ var render = function() {
         "div",
         {
           staticClass: "card_ura_team_2",
-          style: {
-            color: _vm.data.data.data.player.team.base_team.second_color
-          }
+          style: { color: _vm.data.player.team.base_team.second_color }
         },
-        [
-          _vm._v(
-            "\n        " +
-              _vm._s(_vm.data.data.data.player.team.name) +
-              "\n    "
-          )
-        ]
+        [_vm._v("\n        " + _vm._s(_vm.data.player.team.name) + "\n    ")]
       )
     ]
   )
@@ -106684,49 +107393,36 @@ var render = function() {
     "div",
     {
       staticClass: "card_omote",
-      style: {
-        backgroundColor: _vm.data.data.data.player.team.base_team.base_color
-      }
+      style: { backgroundColor: _vm.data.player.team.base_team.base_color }
     },
     [
       _c(
         "div",
         {
           staticClass: "card_omote_team_1",
-          style: {
-            color: _vm.data.data.data.player.team.base_team.second_color
-          }
+          style: { color: _vm.data.player.team.base_team.second_color }
         },
-        [
-          _vm._v(
-            "\n        " +
-              _vm._s(_vm.data.data.data.player.team.name) +
-              "\n    "
-          )
-        ]
+        [_vm._v("\n        " + _vm._s(_vm.data.player.team.name) + "\n    ")]
       ),
       _vm._v(" "),
       _c("img", {
         staticClass: "card_omote_shashin",
-        attrs: { src: _vm.data.data.data.player.img_path }
+        attrs: { src: _vm.data.player.img_path }
       }),
       _vm._v(" "),
-      _vm.data.data.data.player.name.length > 10
+      _vm.data.player.name.length > 10
         ? _c(
             "div",
             {
               staticClass: "card_omote_name",
-              style: {
-                fontSize:
-                  (10 / _vm.data.data.data.player.name.length) * 2 + "em"
-              }
+              style: { fontSize: (10 / _vm.data.player.name.length) * 2 + "em" }
             },
             [
               _vm._v(
                 "\n        " +
-                  _vm._s(_vm.data.data.data.player.number) +
+                  _vm._s(_vm.data.player.number) +
                   ". " +
-                  _vm._s(_vm.data.data.data.player.name) +
+                  _vm._s(_vm.data.player.name) +
                   "\n    "
               )
             ]
@@ -106734,9 +107430,9 @@ var render = function() {
         : _c("div", { staticClass: "card_omote_name" }, [
             _vm._v(
               "\n        " +
-                _vm._s(_vm.data.data.data.player.number) +
+                _vm._s(_vm.data.player.number) +
                 ". " +
-                _vm._s(_vm.data.data.data.player.name) +
+                _vm._s(_vm.data.player.name) +
                 "\n    "
             )
           ]),
@@ -106801,9 +107497,7 @@ var render = function() {
         "div",
         {
           staticClass: "card_omote_cost",
-          style: {
-            color: _vm.data.data.data.player.team.base_team.second_color
-          }
+          style: { color: _vm.data.player.team.base_team.second_color }
         },
         [
           _c("div", { staticClass: "card_omote_cost_star" }, [
@@ -106820,17 +107514,9 @@ var render = function() {
         "div",
         {
           staticClass: "card_omote_team_2",
-          style: {
-            color: _vm.data.data.data.player.team.base_team.second_color
-          }
+          style: { color: _vm.data.player.team.base_team.second_color }
         },
-        [
-          _vm._v(
-            "\n        " +
-              _vm._s(_vm.data.data.data.player.team.name) +
-              "\n    "
-          )
-        ]
+        [_vm._v("\n        " + _vm._s(_vm.data.player.team.name) + "\n    ")]
       )
     ]
   )
@@ -106862,77 +107548,57 @@ var render = function() {
     "div",
     {
       staticClass: "card_ura",
-      style: {
-        backgroundColor: _vm.data.data.data.player.team.base_team.base_color
-      }
+      style: { backgroundColor: _vm.data.player.team.base_team.base_color }
     },
     [
       _c(
         "div",
         {
           staticClass: "card_ura_team_1",
-          style: {
-            color: _vm.data.data.data.player.team.base_team.second_color
-          }
+          style: { color: _vm.data.player.team.base_team.second_color }
         },
-        [
-          _vm._v(
-            "\n        " +
-              _vm._s(_vm.data.data.data.player.team.name) +
-              "\n    "
-          )
-        ]
+        [_vm._v("\n        " + _vm._s(_vm.data.player.team.name) + "\n    ")]
       ),
       _vm._v(" "),
       _c("img", {
         staticClass: "card_ura_shashin",
-        attrs: { src: _vm.data.data.data.player.img_path }
+        attrs: { src: _vm.data.player.img_path }
       }),
       _vm._v(" "),
-      _vm.data.data.data.player.name.length > 7
+      _vm.data.player.name.length > 7
         ? _c(
             "div",
             {
               staticClass: "card_ura_name",
-              style: {
-                fontSize: (7 / _vm.data.data.data.player.name.length) * 2 + "em"
-              }
+              style: { fontSize: (7 / _vm.data.player.name.length) * 2 + "em" }
             },
-            [
-              _vm._v(
-                "\n        " + _vm._s(_vm.data.data.data.player.name) + "\n    "
-              )
-            ]
+            [_vm._v("\n        " + _vm._s(_vm.data.player.name) + "\n    ")]
           )
         : _c("div", { staticClass: "card_ura_name" }, [
-            _vm._v(
-              "\n        " + _vm._s(_vm.data.data.data.player.name) + "\n    "
-            )
+            _vm._v("\n        " + _vm._s(_vm.data.player.name) + "\n    ")
           ]),
       _vm._v(" "),
       _c("div", { staticClass: "card_ura_profile" }, [
         _vm._v(
-          "\n        " +
-            _vm._s(_vm.data.data.data.player.hand_full_text) +
-            "\n        "
+          "\n        " + _vm._s(_vm.data.player.hand_full_text) + "\n        "
         ),
         _c("br"),
-        _vm._v("\n        背番号" + _vm._s(_vm.data.data.data.player.number)),
+        _vm._v("\n        背番号" + _vm._s(_vm.data.player.number)),
         _c("br"),
         _vm._v(" "),
-        _vm.data.data.data.player.position_main === 1
+        _vm.data.player.position_main === 1
           ? _c("span", [_vm._v("投手")])
           : _vm._e(),
         _vm._v(" "),
-        _vm.data.data.data.player.position_main === 2
+        _vm.data.player.position_main === 2
           ? _c("span", [_vm._v("捕手")])
           : _vm._e(),
         _vm._v(" "),
-        _vm.data.data.data.player.position_main === 3
+        _vm.data.player.position_main === 3
           ? _c("span", [_vm._v("内野手")])
           : _vm._e(),
         _vm._v(" "),
-        _vm.data.data.data.player.position_main === 4
+        _vm.data.player.position_main === 4
           ? _c("span", [_vm._v("外野手")])
           : _vm._e()
       ]),
@@ -107041,21 +107707,19 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("tr", [
-            _c("td", [
-              _vm._v(_vm._s(_vm.data.data.data.player.team.season.name))
-            ]),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.team.season.name))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.data.data.player.p_game))]),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.p_game))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.data.data.player.p_win))]),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.p_win))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.data.data.player.p_lose))]),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.p_lose))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.data.data.player.p_hold))]),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.p_hold))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.data.data.player.p_save))]),
+            _c("td", [_vm._v(_vm._s(_vm.data.player.p_save))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.data.data.data.player.display_p_era))])
+            _c("td", [_vm._v(_vm._s(_vm.data.player.display_p_era))])
           ])
         ])
       ]),
@@ -107066,17 +107730,9 @@ var render = function() {
         "div",
         {
           staticClass: "card_ura_team_2",
-          style: {
-            color: _vm.data.data.data.player.team.base_team.second_color
-          }
+          style: { color: _vm.data.player.team.base_team.second_color }
         },
-        [
-          _vm._v(
-            "\n        " +
-              _vm._s(_vm.data.data.data.player.team.name) +
-              "\n    "
-          )
-        ]
+        [_vm._v("\n        " + _vm._s(_vm.data.player.team.name) + "\n    ")]
       )
     ]
   )

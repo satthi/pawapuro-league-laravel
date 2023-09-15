@@ -1,8 +1,8 @@
 <template>
     <div>
-    <div v-if="data.data.player !== undefined">
-        <FielderCardComponent v-if="data.data.player.position_main != 1" :data={data} />
-        <PitcherCardComponent v-if="data.data.player.position_main == 1" :data={data} />
+    <div v-if="data.player !== undefined">
+        <FielderCardComponent v-if="data.player.position_main != 1" :data="data" />
+        <PitcherCardComponent v-if="data.player.position_main == 1" :data="data" />
     </div>
     </div>
 </template>

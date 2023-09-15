@@ -1,14 +1,14 @@
 <template>
-    <div class="card_omote" :style="{backgroundColor:data.data.data.player.team.base_team.base_color }">
-        <div class="card_omote_team_1" :style="{color:data.data.data.player.team.base_team.second_color }">
-            {{ data.data.data.player.team.name }}
+    <div class="card_omote" :style="{backgroundColor:data.player.team.base_team.base_color }">
+        <div class="card_omote_team_1" :style="{color:data.player.team.base_team.second_color }">
+            {{ data.player.team.name }}
         </div>
-        <img class="card_omote_shashin" :src="data.data.data.player.img_path" />
-        <div class="card_omote_name" v-if="data.data.data.player.name.length > 10" :style="{fontSize: 10 / data.data.data.player.name.length * 2 + 'em'}">
-            {{ data.data.data.player.number }}. {{ data.data.data.player.name }}
+        <img class="card_omote_shashin" :src="data.player.img_path" />
+        <div class="card_omote_name" v-if="data.player.name.length > 10" :style="{fontSize: 10 / data.player.name.length * 2 + 'em'}">
+            {{ data.player.number }}. {{ data.player.name }}
         </div>
         <div class="card_omote_name" v-else>
-            {{ data.data.data.player.number }}. {{ data.data.data.player.name }}
+            {{ data.player.number }}. {{ data.player.name }}
         </div>
         <div class="card_omote_status_wrap">
             <div class="card_omote_dageki">
@@ -30,7 +30,7 @@
                 <status-bar-component label="精神力" :value="70"/>
             </div>
         </div>
-        <div class="card_omote_cost" :style="{color:data.data.data.player.team.base_team.second_color }">
+        <div class="card_omote_cost" :style="{color:data.player.team.base_team.second_color }">
             <div class="card_omote_cost_star">
                 ★★★★★★★★★☆
             </div>
@@ -38,8 +38,8 @@
                 9
             </div>
         </div>
-        <div class="card_omote_team_2" :style="{color:data.data.data.player.team.base_team.second_color }">
-            {{ data.data.data.player.team.name }}
+        <div class="card_omote_team_2" :style="{color:data.player.team.base_team.second_color }">
+            {{ data.player.team.name }}
         </div>
     </div>
 </template>

@@ -69,8 +69,12 @@ class Player extends Model
         'p_walk_ritsu',
         'trade_flag',
         'hyoka',
+        'card_cost',
+        'card_info',
     ];
-
+    protected $casts = [
+        'card_info' => 'array',
+    ];
     protected $appends = [
         'hand_p_text',
         'hand_b_text',

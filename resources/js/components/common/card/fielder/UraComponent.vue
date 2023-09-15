@@ -1,23 +1,23 @@
 <template>
-    <div class="card_ura" :style="{backgroundColor:data.data.data.player.team.base_team.base_color }">
-        <div class="card_ura_team_1" :style="{color:data.data.data.player.team.base_team.second_color }">
-            {{ data.data.data.player.team.name }}
+    <div class="card_ura" :style="{backgroundColor:data.player.team.base_team.base_color }">
+        <div class="card_ura_team_1" :style="{color:data.player.team.base_team.second_color }">
+            {{ data.player.team.name }}
         </div>
-        <img class="card_ura_shashin" :src="data.data.data.player.img_path" />
-        <div class="card_ura_name" v-if="data.data.data.player.name.length > 7" :style="{fontSize: 7 / data.data.data.player.name.length * 2 + 'em'}">
-            {{ data.data.data.player.name }}
+        <img class="card_ura_shashin" :src="data.player.img_path" />
+        <div class="card_ura_name" v-if="data.player.name.length > 7" :style="{fontSize: 7 / data.player.name.length * 2 + 'em'}">
+            {{ data.player.name }}
         </div>
         <div class="card_ura_name" v-else>
-            {{ data.data.data.player.name }}
+            {{ data.player.name }}
         </div>
         <div class="card_ura_profile">
-            {{ data.data.data.player.hand_full_text }}
+            {{ data.player.hand_full_text }}
             <br />
-            背番号{{ data.data.data.player.number }}<br />
-            <span v-if="data.data.data.player.position_main === 1">投手</span>
-            <span v-if="data.data.data.player.position_main === 2">捕手</span>
-            <span v-if="data.data.data.player.position_main === 3">内野手</span>
-            <span v-if="data.data.data.player.position_main === 4">外野手</span>
+            背番号{{ data.player.number }}<br />
+            <span v-if="data.player.position_main === 1">投手</span>
+            <span v-if="data.player.position_main === 2">捕手</span>
+            <span v-if="data.player.position_main === 3">内野手</span>
+            <span v-if="data.player.position_main === 4">外野手</span>
         </div>
         <div class="card_ura_position_wrap">
             <div syle="background-color: black;">
@@ -46,29 +46,29 @@
                     </g>
                  </svg>
              </div>
-             <div class="card_ura_position_c">
-                <status-mark-component :value="60" />
+             <div class="card_ura_position_c" v-if="data.player.card_info.batter.position_c > 0">
+                <status-mark-component :value="data.player.card_info.batter.position_c" />
              </div>
-             <div class="card_ura_position_1b">
-                <status-mark-component :value="70" />
+             <div class="card_ura_position_1b" v-if="data.player.card_info.batter.position_1b > 0">
+                <status-mark-component :value="data.player.card_info.batter.position_1b" />
              </div>
-             <div class="card_ura_position_2b">
-                <status-mark-component :value="80" />
+             <div class="card_ura_position_2b" v-if="data.player.card_info.batter.position_2b > 0">
+                <status-mark-component :value="data.player.card_info.batter.position_2b" />
              </div>
-             <div class="card_ura_position_3b">
-                <status-mark-component :value="90" />
+             <div class="card_ura_position_3b" v-if="data.player.card_info.batter.position_3b > 0">
+                <status-mark-component :value="data.player.card_info.batter.position_3b" />
              </div>
-             <div class="card_ura_position_ss">
-                <status-mark-component :value="50" />
+             <div class="card_ura_position_ss" v-if="data.player.card_info.batter.position_ss > 0">
+                <status-mark-component :value="data.player.card_info.batter.position_ss" />
              </div>
-             <div class="card_ura_position_lf">
-                <status-mark-component :value="40" />
+             <div class="card_ura_position_lf" v-if="data.player.card_info.batter.position_lf > 0">
+                <status-mark-component :value="data.player.card_info.batter.position_lf" />
              </div>
-             <div class="card_ura_position_cf">
-                 <status-mark-component :value="39" />
+             <div class="card_ura_position_cf" v-if="data.player.card_info.batter.position_cf > 0">
+                 <status-mark-component :value="data.player.card_info.batter.position_cf" />
              </div>
-             <div class="card_ura_position_rf">
-                 <status-mark-component :value="39" />
+             <div class="card_ura_position_rf" v-if="data.player.card_info.batter.position_rf > 0">
+                 <status-mark-component :value="data.player.card_info.batter.position_rf" />
              </div>
         </div>
         <div class="card_ura_seiseki">
@@ -85,22 +85,22 @@
                     <th>盗塁</th>
                 </tr>
                 <tr>
-                    <td>{{ data.data.data.player.team.season.name }}</td>
-                    <td>{{ data.data.data.player.game }}</td>
-                    <td>{{ data.data.data.player.daseki }}</td>
-                    <td>{{ data.data.data.player.dasu }}</td>
-                    <td>{{ data.data.data.player.hit }}</td>
-                    <td>{{ data.data.data.player.display_avg }}</td>
-                    <td>{{ data.data.data.player.hr }}</td>
-                    <td>{{ data.data.data.player.daten }}</td>
-                    <td>{{ data.data.data.player.steal_success }}</td>
+                    <td>{{ data.player.team.season.name }}</td>
+                    <td>{{ data.player.game }}</td>
+                    <td>{{ data.player.daseki }}</td>
+                    <td>{{ data.player.dasu }}</td>
+                    <td>{{ data.player.hit }}</td>
+                    <td>{{ data.player.display_avg }}</td>
+                    <td>{{ data.player.hr }}</td>
+                    <td>{{ data.player.daten }}</td>
+                    <td>{{ data.player.steal_success }}</td>
                 </tr>
             </table>
         </div>
         <div class="card_ura_block_area">
         </div>
-        <div class="card_ura_team_2" :style="{color:data.data.data.player.team.base_team.second_color }">
-            {{ data.data.data.player.team.name }}
+        <div class="card_ura_team_2" :style="{color:data.player.team.base_team.second_color }">
+            {{ data.player.team.name }}
         </div>
 
     </div>

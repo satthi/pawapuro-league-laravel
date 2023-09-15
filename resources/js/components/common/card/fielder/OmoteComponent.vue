@@ -1,45 +1,45 @@
 <template>
-    <div class="card_omote" :style="{backgroundColor:data.data.data.player.team.base_team.base_color }">
-        <div class="card_omote_team_1" :style="{color:data.data.data.player.team.base_team.second_color }">
-            {{ data.data.data.player.team.name }}
+    <div class="card_omote" :style="{backgroundColor:data.player.team.base_team.base_color }">
+        <div class="card_omote_team_1" :style="{color:data.player.team.base_team.second_color }">
+            {{ data.player.team.name }}
         </div>
-        <img class="card_omote_shashin" :src="data.data.data.player.img_path" />
-        <div class="card_omote_name" v-if="data.data.data.player.name.length > 10" :style="{fontSize: 10 / data.data.data.player.name.length * 2 + 'em'}">
-            {{ data.data.data.player.number }}. {{ data.data.data.player.name }}
+        <img class="card_omote_shashin" :src="data.player.img_path" />
+        <div class="card_omote_name" v-if="data.player.name.length > 10" :style="{fontSize: 10 / data.player.name.length * 2 + 'em'}">
+            {{ data.player.number }}. {{ data.player.name }}
         </div>
         <div class="card_omote_name" v-else>
-            {{ data.data.data.player.number }}. {{ data.data.data.player.name }}
+            {{ data.player.number }}. {{ data.player.name }}
         </div>
         <div class="card_omote_status_wrap">
             <div class="card_omote_dageki">
-                <status-bar-component label="打撃" :value="60"/>
+                <status-bar-component label="打撃" :value="data.player.card_info.batter.meat"/>
             </div>
             <div class="card_omote_power">
-                <status-bar-component label="長打力" :value="70"/>
+                <status-bar-component label="長打力" :value="data.player.card_info.batter.power"/>
             </div>
             <div class="card_omote_run">
-                <status-bar-component label="走力" :value="80"/>
+                <status-bar-component label="走力" :value="data.player.card_info.batter.run"/>
             </div>
             <div class="card_omote_bant">
-                <status-bar-component label="バント" :value="90"/>
+                <status-bar-component label="バント" :value="data.player.card_info.batter.bant"/>
             </div>
             <div class="card_omote_def">
-                <status-bar-component label="守備力" :value="70"/>
+                <status-bar-component label="守備力" :value="data.player.card_info.batter.defence"/>
             </div>
             <div class="card_omote_mental">
-                <status-bar-component label="精神力" :value="70"/>
+                <status-bar-component label="精神力" :value="data.player.card_info.batter.mental"/>
             </div>
         </div>
-        <div class="card_omote_cost" :style="{color:data.data.data.player.team.base_team.second_color }">
+        <div class="card_omote_cost" :style="{color:data.player.team.base_team.second_color }">
             <div class="card_omote_cost_star">
-                ★★★★★★★★★☆
+                <span v-for="i in 10">{{ i <= data.player.card_cost ? '★' : '☆' }}</span>
             </div>
             <div class="card_omote_cost_number">
-                9
+                {{ data.player.card_cost }}
             </div>
         </div>
-        <div class="card_omote_team_2" :style="{color:data.data.data.player.team.base_team.second_color }">
-            {{ data.data.data.player.team.name }}
+        <div class="card_omote_team_2" :style="{color:data.player.team.base_team.second_color }">
+            {{ data.player.team.name }}
         </div>
     </div>
 </template>

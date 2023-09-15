@@ -24,6 +24,30 @@ class PlayerController extends Controller
         $player->team->season;
         $player->team->base_team;
         $player->base_player;
+        // dump($player->card_info);
+        // exit;
+
+        // card_info 未設定時には初期値を入れる
+        if (empty($player->card_info)) {
+            $player->card_info = [
+                'batter' => [
+                    'meat' => 0,
+                    'power' => 0,
+                    'run' => 0,
+                    'bant' => 0,
+                    'defence' => 0,
+                    'mental' => 0,
+                    'position_c' => 0,
+                    'position_1b' => 0,
+                    'position_2b' => 0,
+                    'position_3b' => 0,
+                    'position_ss' => 0,
+                    'position_lf' => 0,
+                    'position_cf' => 0,
+                    'position_rf' => 0,
+                ],
+            ];
+        }
 
         $seasonFielderHistories = $playerModel->getSeasonFielderHistory($player);
         $seasonPitcherHistories = $playerModel->getSeasonPitcherHistory($player);
