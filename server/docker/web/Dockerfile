@@ -6,7 +6,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 COPY ./httpd.conf /etc/apache2/sites-available/000-default.conf
 
 # node
-RUN curl -SL https://deb.nodesource.com/setup_12.x | bash \
+RUN curl -SL https://deb.nodesource.com/setup_14.x | bash \
     && apt-get update \
     && apt-get install -y --no-install-recommends nodejs \
     && npm install -g npm@latest \

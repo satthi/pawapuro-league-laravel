@@ -98,3 +98,5 @@ Route::get('/teams/get-month-info/{team}/{month}', 'App\Http\Controllers\TeamCon
 Route::get('/players/view/{player}', 'App\Http\Controllers\PlayerController@view');
 Route::get('/players/get-options/{season}', 'App\Http\Controllers\PlayerController@getOptions');
 Route::post('/players/trade/{season}', 'App\Http\Controllers\PlayerController@trade');
+
+Route::post('/cards/update/{player}', 'App\Http\Controllers\CardController@update');

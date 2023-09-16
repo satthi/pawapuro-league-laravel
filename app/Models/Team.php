@@ -35,6 +35,14 @@ class Team extends Model
     /**
      * home team
      */
+    public function base_team()
+    {
+        return $this->belongsTo(BaseTeam::class, 'base_team_id');
+    }
+
+    /**
+     * home team
+     */
     public function season()
     {
         return $this->belongsTo(Season::class, 'season_id');

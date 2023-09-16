@@ -1,9 +1,9 @@
 <template>
-    <div class="container" v-if="Object.keys(enums).length && Object.keys(data).length">
-        <h2>{{ data.player.team.season.name }} {{ data.player.team.name }}</h2>
-        <h3>{{ data.player.name }}</h3>
+    <div class="container" v-if="Object.keys(enums).length && Object.keys(dataset).length">
+        <h2>{{ dataset.player.team.season.name }} {{ dataset.player.team.name }}</h2>
+        <h3>{{ dataset.player.name }}</h3>
         <div class="clearfix">
-            <router-link v-bind:to="{name: 'team.view', params: {teamId: data.player.team_id.toString() }}">
+            <router-link v-bind:to="{name: 'team.view', params: {teamId: dataset.player.team_id.toString() }}">
                 <button class="btn btn-success">チーム詳細</button>
             </router-link>
         </div>
@@ -33,29 +33,29 @@
                 <th>O<br />P<br />S</th>
             </tr>
             <tr>
-                <td>{{ data.player.game }}</td>
-                <td>{{ data.player.display_avg }}</td>
-                <td>{{ data.player.hr }}</td>
-                <td>{{ data.player.daten }}</td>
-                <td>{{ data.player.daseki }}</td>
-                <td>{{ data.player.dasu }}</td>
-                <td>{{ data.player.hit }}</td>
-                <td>{{ data.player.hit_2 }}</td>
-                <td>{{ data.player.hit_3 }}</td>
-                <td>{{ data.player.sansin }}</td>
-                <td>{{ data.player.heisatsu }}</td>
-                <td>{{ data.player.walk }}</td>
-                <td>{{ data.player.dead }}</td>
-                <td>{{ data.player.bant }}</td>
-                <td>{{ data.player.sac_fly }}</td>
-                <td>{{ data.player.steal_success }}</td>
-                <td>{{ data.player.steal_miss }}</td>
-                <td>{{ data.player.display_obp }}</td>
-                <td>{{ data.player.display_slg }}</td>
-                <td>{{ data.player.display_ops }}</td>
+                <td>{{ dataset.player.game }}</td>
+                <td>{{ dataset.player.display_avg }}</td>
+                <td>{{ dataset.player.hr }}</td>
+                <td>{{ dataset.player.daten }}</td>
+                <td>{{ dataset.player.daseki }}</td>
+                <td>{{ dataset.player.dasu }}</td>
+                <td>{{ dataset.player.hit }}</td>
+                <td>{{ dataset.player.hit_2 }}</td>
+                <td>{{ dataset.player.hit_3 }}</td>
+                <td>{{ dataset.player.sansin }}</td>
+                <td>{{ dataset.player.heisatsu }}</td>
+                <td>{{ dataset.player.walk }}</td>
+                <td>{{ dataset.player.dead }}</td>
+                <td>{{ dataset.player.bant }}</td>
+                <td>{{ dataset.player.sac_fly }}</td>
+                <td>{{ dataset.player.steal_success }}</td>
+                <td>{{ dataset.player.steal_miss }}</td>
+                <td>{{ dataset.player.display_obp }}</td>
+                <td>{{ dataset.player.display_slg }}</td>
+                <td>{{ dataset.player.display_ops }}</td>
             </tr>
         </table>
-        <div v-if="data.player.position_main == enums.Position.POSITION_P.value || data.player.p_inning > 0">
+        <div v-if="dataset.player.position_main == enums.Position.POSITION_P.value || dataset.player.p_inning > 0">
             <h4>投手成績成績</h4>
             <table class="table table-hover seiseki_table">
                 <tr>
@@ -79,29 +79,29 @@
                     <th>死<br />球</th>
                 </tr>
                 <tr>
-                    <td>{{ data.player.p_game }}</td>
-                    <td>{{ data.player.display_p_era }}</td>
-                    <td>{{ data.player.p_win }}</td>
-                    <td>{{ data.player.p_lose }}</td>
-                    <td>{{ data.player.p_hold }}</td>
-                    <td>{{ data.player.p_save }}</td>
-                    <td>{{ data.player.display_p_win_ratio }}</td>
-                    <td>{{ data.player.p_sansin }}</td>
-                    <td>{{ data.player.display_p_sansin_ratio }}</td>
-                    <td>{{ data.player.p_hit }}</td>
-                    <td>{{ data.player.display_p_avg }}</td>
-                    <td>{{ data.player.p_hr }}</td>
-                    <td>{{ data.player.p_jiseki }}</td>
-                    <td>{{ data.player.display_p_inning }}</td>
-                    <td>{{ data.player.p_kanto }}</td>
-                    <td>{{ data.player.p_kanpu }}</td>
-                    <td>{{ data.player.p_walk }}</td>
-                    <td>{{ data.player.p_dead }}</td>
+                    <td>{{ dataset.player.p_game }}</td>
+                    <td>{{ dataset.player.display_p_era }}</td>
+                    <td>{{ dataset.player.p_win }}</td>
+                    <td>{{ dataset.player.p_lose }}</td>
+                    <td>{{ dataset.player.p_hold }}</td>
+                    <td>{{ dataset.player.p_save }}</td>
+                    <td>{{ dataset.player.display_p_win_ratio }}</td>
+                    <td>{{ dataset.player.p_sansin }}</td>
+                    <td>{{ dataset.player.display_p_sansin_ratio }}</td>
+                    <td>{{ dataset.player.p_hit }}</td>
+                    <td>{{ dataset.player.display_p_avg }}</td>
+                    <td>{{ dataset.player.p_hr }}</td>
+                    <td>{{ dataset.player.p_jiseki }}</td>
+                    <td>{{ dataset.player.display_p_inning }}</td>
+                    <td>{{ dataset.player.p_kanto }}</td>
+                    <td>{{ dataset.player.p_kanpu }}</td>
+                    <td>{{ dataset.player.p_walk }}</td>
+                    <td>{{ dataset.player.p_dead }}</td>
                 </tr>
             </table>
         </div>
 
-        <div v-if="Object.keys(data.fielder_histories).length">
+        <div v-if="Object.keys(dataset.fielder_histories).length">
             <h4>月間野手成績</h4>
             <table class="table table-hover seiseki_table">
                 <tr>
@@ -127,7 +127,7 @@
                     <th>長<br />打<br />率</th>
                     <th>O<br />P<br />S</th>
                 </tr>
-                <tr v-for="monthly_fielder_info in data.monthly_fielder_infos">
+                <tr v-for="monthly_fielder_info in dataset.monthly_fielder_infos">
                     <td>{{ monthly_fielder_info.month }}</td>
                     <td>{{ monthly_fielder_info.game }}</td>
                     <td>{{ monthly_fielder_info.target_avg }}</td>
@@ -153,7 +153,7 @@
             </table>
         </div>
 
-        <div v-if="data.player.position_main == enums.Position.POSITION_P.value || data.player.p_inning > 0">
+        <div v-if="dataset.player.position_main == enums.Position.POSITION_P.value || dataset.player.p_inning > 0">
             <h4>月間投手成績</h4>
             <table class="table table-hover seiseki_table">
                 <tr>
@@ -175,7 +175,7 @@
                     <th>四<br />球</th>
                     <th>死<br />球</th>
                 </tr>
-                <tr v-for="monthly_pitcher_info in data.monthly_pitcher_infos">
+                <tr v-for="monthly_pitcher_info in dataset.monthly_pitcher_infos">
                     <td>{{ monthly_pitcher_info.month }}</td>
                     <td>{{ monthly_pitcher_info.p_game }}</td>
                     <td>{{ monthly_pitcher_info.display_p_era }}</td>
@@ -197,7 +197,7 @@
             </table>
         </div>
 
-        <div v-if="Object.keys(data.fielder_histories).length">
+        <div v-if="Object.keys(dataset.fielder_histories).length">
             <h4>野手成績履歴</h4>
             <table class="table table-hover seiseki_table">
                 <tr>
@@ -215,7 +215,7 @@
                     <th>成績</th>
                     <th></th>
                 </tr>
-                <tr v-for="fielder_history in data.fielder_histories">
+                <tr v-for="fielder_history in dataset.fielder_histories">
                     <td>
                         <router-link v-bind:to="{name: 'game.summary', params: {gameId: fielder_history.game_id.toString() }}">
                             {{ fielder_history.date }}
@@ -238,7 +238,7 @@
         </div>
 
 
-        <div v-if="Object.keys(data.pitcher_histories).length">
+        <div v-if="Object.keys(dataset.pitcher_histories).length">
             <h4>投手成績履歴</h4>
             <table class="table table-hover seiseki_table">
                 <tr>
@@ -254,7 +254,7 @@
                     <th>自責点</th>
                     <th>防御率</th>
                 </tr>
-                <tr v-for="pitcher_history in data.pitcher_histories">
+                <tr v-for="pitcher_history in dataset.pitcher_histories">
                     <td>
                         <router-link v-bind:to="{name: 'game.summary', params: {gameId: pitcher_history.game_id.toString() }}">
                             {{ pitcher_history.date }}
@@ -275,7 +275,7 @@
         </div>
 
 
-        <div v-if="Object.keys(data.season_fielder_histories).length > 0">
+        <div v-if="Object.keys(dataset.season_fielder_histories).length > 0">
             <h4>野手シーズン成績</h4>
             <table class="table table-hover seiseki_table">
                 <tr>
@@ -304,7 +304,7 @@
                     <th>O<br />P<br />S</th>
                     <th></th>
                 </tr>
-                <tr v-for="season_history in data.season_fielder_histories">
+                <tr v-for="season_history in dataset.season_fielder_histories">
                     <td>
                         <router-link v-bind:to="{name: 'player.view', params: {playerId: season_history.id.toString() }}">
                             {{ season_history.season_name }}
@@ -341,32 +341,32 @@
                     <td>合計</td>
                     <td></td>
                     <td></td>
-                    <td>{{ data.player.base_player.game }}</td>
-                    <td>{{ data.player.base_player.display_avg }}</td>
-                    <td>{{ data.player.base_player.hr }}</td>
-                    <td>{{ data.player.base_player.daten }}</td>
-                    <td>{{ data.player.base_player.daseki }}</td>
-                    <td>{{ data.player.base_player.dasu }}</td>
-                    <td>{{ data.player.base_player.hit }}</td>
-                    <td>{{ data.player.base_player.hit_2 }}</td>
-                    <td>{{ data.player.base_player.hit_3 }}</td>
-                    <td>{{ data.player.base_player.sansin }}</td>
-                    <td>{{ data.player.base_player.heisatsu }}</td>
-                    <td>{{ data.player.base_player.walk }}</td>
-                    <td>{{ data.player.base_player.dead }}</td>
-                    <td>{{ data.player.base_player.bant }}</td>
-                    <td>{{ data.player.base_player.sac_fly }}</td>
-                    <td>{{ data.player.base_player.steal_success }}</td>
-                    <td>{{ data.player.base_player.steal_miss }}</td>
-                    <td>{{ data.player.base_player.display_obp }}</td>
-                    <td>{{ data.player.base_player.display_slg }}</td>
-                    <td>{{ data.player.base_player.display_ops }}</td>
+                    <td>{{ dataset.player.base_player.game }}</td>
+                    <td>{{ dataset.player.base_player.display_avg }}</td>
+                    <td>{{ dataset.player.base_player.hr }}</td>
+                    <td>{{ dataset.player.base_player.daten }}</td>
+                    <td>{{ dataset.player.base_player.daseki }}</td>
+                    <td>{{ dataset.player.base_player.dasu }}</td>
+                    <td>{{ dataset.player.base_player.hit }}</td>
+                    <td>{{ dataset.player.base_player.hit_2 }}</td>
+                    <td>{{ dataset.player.base_player.hit_3 }}</td>
+                    <td>{{ dataset.player.base_player.sansin }}</td>
+                    <td>{{ dataset.player.base_player.heisatsu }}</td>
+                    <td>{{ dataset.player.base_player.walk }}</td>
+                    <td>{{ dataset.player.base_player.dead }}</td>
+                    <td>{{ dataset.player.base_player.bant }}</td>
+                    <td>{{ dataset.player.base_player.sac_fly }}</td>
+                    <td>{{ dataset.player.base_player.steal_success }}</td>
+                    <td>{{ dataset.player.base_player.steal_miss }}</td>
+                    <td>{{ dataset.player.base_player.display_obp }}</td>
+                    <td>{{ dataset.player.base_player.display_slg }}</td>
+                    <td>{{ dataset.player.base_player.display_ops }}</td>
                     <td></td>
                 </tr>
             </table>
         </div>
 
-        <div v-if="Object.keys(data.season_pitcher_histories).length">
+        <div v-if="Object.keys(dataset.season_pitcher_histories).length">
             <h4>投手シーズン成績</h4>
             <table class="table table-hover seiseki_table">
                 <tr>
@@ -392,7 +392,7 @@
                     <th>四<br />球</th>
                     <th>死<br />球</th>
                 </tr>
-                <tr v-for="season_history in data.season_pitcher_histories">
+                <tr v-for="season_history in dataset.season_pitcher_histories">
                     <td>
                         <router-link v-bind:to="{name: 'player.view', params: {playerId: season_history.id.toString() }}">
                             {{ season_history.season_name }}
@@ -423,131 +423,340 @@
                     <td>合計</td>
                     <td></td>
                     <td></td>
-                    <td>{{ data.player.base_player.p_game }}</td>
-                    <td>{{ data.player.base_player.display_p_era }}</td>
-                    <td>{{ data.player.base_player.p_win }}</td>
-                    <td>{{ data.player.base_player.p_lose }}</td>
-                    <td>{{ data.player.base_player.p_hold }}</td>
-                    <td>{{ data.player.base_player.p_save }}</td>
-                    <td>{{ data.player.base_player.display_p_win_ratio }}</td>
-                    <td>{{ data.player.base_player.p_sansin }}</td>
-                    <td>{{ data.player.base_player.display_p_sansin_ratio }}</td>
-                    <td>{{ data.player.base_player.p_hit }}</td>
-                    <td>{{ data.player.base_player.display_p_avg }}</td>
-                    <td>{{ data.player.base_player.p_hr }}</td>
-                    <td>{{ data.player.base_player.p_jiseki }}</td>
-                    <td>{{ data.player.base_player.display_p_inning }}</td>
-                    <td>{{ data.player.base_player.p_kanto }}</td>
-                    <td>{{ data.player.base_player.p_kanpu }}</td>
-                    <td>{{ data.player.base_player.p_walk }}</td>
-                    <td>{{ data.player.base_player.p_dead }}</td>
+                    <td>{{ dataset.player.base_player.p_game }}</td>
+                    <td>{{ dataset.player.base_player.display_p_era }}</td>
+                    <td>{{ dataset.player.base_player.p_win }}</td>
+                    <td>{{ dataset.player.base_player.p_lose }}</td>
+                    <td>{{ dataset.player.base_player.p_hold }}</td>
+                    <td>{{ dataset.player.base_player.p_save }}</td>
+                    <td>{{ dataset.player.base_player.display_p_win_ratio }}</td>
+                    <td>{{ dataset.player.base_player.p_sansin }}</td>
+                    <td>{{ dataset.player.base_player.display_p_sansin_ratio }}</td>
+                    <td>{{ dataset.player.base_player.p_hit }}</td>
+                    <td>{{ dataset.player.base_player.display_p_avg }}</td>
+                    <td>{{ dataset.player.base_player.p_hr }}</td>
+                    <td>{{ dataset.player.base_player.p_jiseki }}</td>
+                    <td>{{ dataset.player.base_player.display_p_inning }}</td>
+                    <td>{{ dataset.player.base_player.p_kanto }}</td>
+                    <td>{{ dataset.player.base_player.p_kanpu }}</td>
+                    <td>{{ dataset.player.base_player.p_walk }}</td>
+                    <td>{{ dataset.player.base_player.p_dead }}</td>
                 </tr>
             </table>
         </div>
         <div>
             <h4>通算カウント</h4>
             <table class="table table-hover" style="width: 200px;">
-                <tr v-if="data.count.mvp">
+                <tr v-if="dataset.count.mvp">
                     <th>MVP</th>
-                    <td>{{ data.count.mvp }}</td>
+                    <td>{{ dataset.count.mvp }}</td>
                 </tr>
-                <tr v-if="data.count.b9">
+                <tr v-if="dataset.count.b9">
                     <th>ベストナイン</th>
-                    <td>{{ data.count.b9 }}</td>
+                    <td>{{ dataset.count.b9 }}</td>
                 </tr>
-                <tr v-if="data.count.avg">
+                <tr v-if="dataset.count.avg">
                     <th>首位打者</th>
-                    <td>{{ data.count.avg }}</td>
+                    <td>{{ dataset.count.avg }}</td>
                 </tr>
-                <tr v-if="data.count.hr">
+                <tr v-if="dataset.count.hr">
                     <th>ホームラン王</th>
-                    <td>{{ data.count.hr }}</td>
+                    <td>{{ dataset.count.hr }}</td>
                 </tr>
-                <tr v-if="data.count.daten">
+                <tr v-if="dataset.count.daten">
                     <th>打点王</th>
-                    <td>{{ data.count.daten }}</td>
+                    <td>{{ dataset.count.daten }}</td>
                 </tr>
-                <tr v-if="data.count.hit">
+                <tr v-if="dataset.count.hit">
                     <th>最多安打</th>
-                    <td>{{ data.count.hit }}</td>
+                    <td>{{ dataset.count.hit }}</td>
                 </tr>
-                <tr v-if="data.count.steal">
+                <tr v-if="dataset.count.steal">
                     <th>盗塁王</th>
-                    <td>{{ data.count.steal }}</td>
+                    <td>{{ dataset.count.steal }}</td>
                 </tr>
-                <tr v-if="data.count.kitei_daseki">
+                <tr v-if="dataset.count.kitei_daseki">
                     <th>規定打席到達</th>
-                    <td>{{ data.count.kitei_daseki }}</td>
+                    <td>{{ dataset.count.kitei_daseki }}</td>
                 </tr>
-                <tr v-if="data.count.avg_3wari">
+                <tr v-if="dataset.count.avg_3wari">
                     <th>3割</th>
-                    <td>{{ data.count.avg_3wari }}</td>
+                    <td>{{ dataset.count.avg_3wari }}</td>
                 </tr>
-                <tr v-if="data.count.hr_30">
+                <tr v-if="dataset.count.hr_30">
                     <th>30本</th>
-                    <td>{{ data.count.hr_30 }}</td>
+                    <td>{{ dataset.count.hr_30 }}</td>
                 </tr>
-                <tr v-if="data.count.daten_100">
+                <tr v-if="dataset.count.daten_100">
                     <th>100打点</th>
-                    <td>{{ data.count.daten_100 }}</td>
+                    <td>{{ dataset.count.daten_100 }}</td>
                 </tr>
-                <tr v-if="data.count.steal_30">
+                <tr v-if="dataset.count.steal_30">
                     <th>30盗塁</th>
-                    <td>{{ data.count.steal_30 }}</td>
+                    <td>{{ dataset.count.steal_30 }}</td>
                 </tr>
-                <tr v-if="data.count.era">
+                <tr v-if="dataset.count.era">
                     <th>最優秀防御率</th>
-                    <td>{{ data.count.era }}</td>
+                    <td>{{ dataset.count.era }}</td>
                 </tr>
-                <tr v-if="data.count.win">
+                <tr v-if="dataset.count.win">
                     <th>最多勝</th>
-                    <td>{{ data.count.win }}</td>
+                    <td>{{ dataset.count.win }}</td>
                 </tr>
-                <tr v-if="data.count.win_ratio">
+                <tr v-if="dataset.count.win_ratio">
                     <th>最高勝率</th>
-                    <td>{{ data.count.win_ratio }}</td>
+                    <td>{{ dataset.count.win_ratio }}</td>
                 </tr>
-                <tr v-if="data.count.sansin">
+                <tr v-if="dataset.count.sansin">
                     <th>最多奪三振</th>
-                    <td>{{ data.count.sansin }}</td>
+                    <td>{{ dataset.count.sansin }}</td>
                 </tr>
-                <tr v-if="data.count.hold">
+                <tr v-if="dataset.count.hold">
                     <th>最優秀中継ぎ投手</th>
-                    <td>{{ data.count.hold }}</td>
+                    <td>{{ dataset.count.hold }}</td>
                 </tr>
-                <tr v-if="data.count.save">
+                <tr v-if="dataset.count.save">
                     <th>最優秀救援投手</th>
-                    <td>{{ data.count.save }}</td>
+                    <td>{{ dataset.count.save }}</td>
                 </tr>
-                <tr v-if="data.count.kitei_tokyu">
+                <tr v-if="dataset.count.kitei_tokyu">
                     <th>規定投球回数</th>
-                    <td>{{ data.count.kitei_tokyu }}</td>
+                    <td>{{ dataset.count.kitei_tokyu }}</td>
                 </tr>
-                <tr v-if="data.count.game_50">
+                <tr v-if="dataset.count.game_50">
                     <th>50試合以上</th>
-                    <td>{{ data.count.game_50 }}</td>
+                    <td>{{ dataset.count.game_50 }}</td>
                 </tr>
-                <tr v-if="data.count.win_10">
+                <tr v-if="dataset.count.win_10">
                     <th>10勝</th>
-                    <td>{{ data.count.win_10 }}</td>
+                    <td>{{ dataset.count.win_10 }}</td>
                 </tr>
-                <tr v-if="data.count.era_1ten">
+                <tr v-if="dataset.count.era_1ten">
                     <th>防御率1点台</th>
-                    <td>{{ data.count.era_1ten }}</td>
+                    <td>{{ dataset.count.era_1ten }}</td>
                 </tr>
-                <tr v-if="data.count.hold_30">
+                <tr v-if="dataset.count.hold_30">
                     <th>30ホールド</th>
-                    <td>{{ data.count.hold_30 }}</td>
+                    <td>{{ dataset.count.hold_30 }}</td>
                 </tr>
-                <tr v-if="data.count.save_30">
+                <tr v-if="dataset.count.save_30">
                     <th>30セーブ</th>
-                    <td>{{ data.count.save_30 }}</td>
+                    <td>{{ dataset.count.save_30 }}</td>
                 </tr>
             </table>
         </div>
+        <div>
+            <h4>カード情報</h4>
+            <div class="card_omote">
+                <card-omote-component :data="dataset" />
+            </div>
+            <div class="card_ura">
+                <card-ura-component :data="dataset" />
+            </div>
+        </div>
+        <div>
+            <form v-on:submit.prevent="submit('/api/cards/update/' + dataset.player.id)">
+                <div v-if="dataset.player.position_main != 1">
+                    <table class="card_input_table">
+                        <tr>
+                            <th>コスト</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_cost" v-model="dataset.player.card_cost"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>打撃</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.meat" v-model="dataset.player.card_info.batter.meat"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>長打力</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.power" v-model="dataset.player.card_info.batter.power"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>走力</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.run" v-model="dataset.player.card_info.batter.run"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>バント</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.bant" v-model="dataset.player.card_info.batter.bant"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>守備力</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.defence" v-model="dataset.player.card_info.batter.defence"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>精神力</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.mental" v-model="dataset.player.card_info.batter.mental"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="card_input_table">
+                        <tr>
+                            <th>捕手</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.position_c" v-model="dataset.player.card_info.batter.position_c"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>一塁手</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.position_1b" v-model="dataset.player.card_info.batter.position_1b"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>二塁手</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.position_2b" v-model="dataset.player.card_info.batter.position_2b"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>三塁手</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.position_3b" v-model="dataset.player.card_info.batter.position_3b"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>遊撃手</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.position_ss" v-model="dataset.player.card_info.batter.position_ss"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>左翼手</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.position_lf" v-model="dataset.player.card_info.batter.position_lf"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>中堅手</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.position_cf" v-model="dataset.player.card_info.batter.position_cf"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>右翼手</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.position_rf" v-model="dataset.player.card_info.batter.position_rf"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div v-else>
+                    <table class="card_input_table">
+                        <tr>
+                            <th>コスト</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_cost" v-model="dataset.player.card_cost"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>体力</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.stamina" v-model="dataset.player.card_info.pitcher.stamina"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>球速</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.speed" v-model="dataset.player.card_info.pitcher.speed"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>球威</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.power" v-model="dataset.player.card_info.pitcher.power"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>変化球</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka" v-model="dataset.player.card_info.pitcher.henka"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>制球力</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.control" v-model="dataset.player.card_info.pitcher.control"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>精神力</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.mental" v-model="dataset.player.card_info.pitcher.mental"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="card_input_table">
+                        <tr>
+                            <th>左</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka_l" v-model="dataset.player.card_info.pitcher.henka_l"/>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka_l_name" v-model="dataset.player.card_info.pitcher.henka_l_name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>左下</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka_lb" v-model="dataset.player.card_info.pitcher.henka_lb"/>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka_lb_name" v-model="dataset.player.card_info.pitcher.henka_lb_name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>下</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka_b" v-model="dataset.player.card_info.pitcher.henka_b"/>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka_b_name" v-model="dataset.player.card_info.pitcher.henka_b_name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>右下</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka_rb" v-model="dataset.player.card_info.pitcher.henka_rb"/>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka_rb_name" v-model="dataset.player.card_info.pitcher.henka_rb_name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>右</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka_r" v-model="dataset.player.card_info.pitcher.henka_r"/>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka_r_name" v-model="dataset.player.card_info.pitcher.henka_r_name"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
     </div>
 </template>
+<style scoped>
+.card_input_table {
+    float:left;
+    width: 130px;
+}
+
+.card_input_table th {
+width: 60px;
+}
+.card_input_table td {
+width: 70px;
+}
+</style>
 <script>
+    import InputComponent from '../common/form/InputComponent';
+    import CardOmoteComponent from '../common/card/OmoteComponent';
+    import CardUraComponent from '../common/card/UraComponent';
     import EnumsMixin from '../../mixins/enums.js';
     export default {
         watch: {
@@ -556,6 +765,7 @@
             }
         },
         mixins : [EnumsMixin],
+        components: {InputComponent, CardOmoteComponent, CardUraComponent},
         methods: {
             initial() {
                 this.getData('/api/players/view/' + this.playerId);
@@ -563,16 +773,26 @@
             getData(getPath) {
                 axios.get(getPath)
                     .then((res) => {
-                        this.data = res.data;
+                        this.dataset = res.data;
                     });
             },
+            submit(postPath) {
+                var postData = this.dataset;
+                axios.post(postPath, postData)
+                    .then((res) => {
+                    alert('更新');
+                    })
+                    .catch((error) => {
+                        this.errors = error.response.data.errors;
+                    });
+            }
         },
         props: {
             playerId: String
         },
         data: function () {
             return {
-                data: {}
+                dataset: {}
             }
         },
         mounted() {

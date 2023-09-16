@@ -25,6 +25,9 @@
                     <router-link v-bind:to="{name: 'season.index'}">
                         <button class="btn btn-success">シーズン</button>
                     </router-link>
+                    <router-link v-bind:to="{name: 'card.index'}">
+                        <button class="btn btn-success">カード</button>
+                    </router-link>
                 </div>
             </nav>
         </div>
