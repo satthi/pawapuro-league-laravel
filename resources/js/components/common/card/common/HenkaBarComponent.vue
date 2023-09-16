@@ -1,6 +1,12 @@
 <template>
     <div>
-        <div v-for="i in 7" v-bind:class="{'block selected': i <= value, 'block unselected': i > value}"></div>
+        <div v-bind:class="{'block selected': value > 0, 'block unselected': value <= 0}"></div>
+        <div v-bind:class="{'block selected': value >= 40, 'block unselected': value < 40}"></div>
+        <div v-bind:class="{'block selected': value >= 50, 'block unselected': value < 50}"></div>
+        <div v-bind:class="{'block selected': value >= 60, 'block unselected': value < 60}"></div>
+        <div v-bind:class="{'block selected': value >= 70, 'block unselected': value < 70}"></div>
+        <div v-bind:class="{'block selected': value >= 80, 'block unselected': value < 80}"></div>
+        <div v-bind:class="{'block selected': value >= 90, 'block unselected': value < 90}"></div>
     </div>
 </template>
 <style scoped>

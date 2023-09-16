@@ -22,40 +22,43 @@
         <div class="card_ura_position_wrap">
             <div>
                 <svg width="230" height="220" xmlns="http://www.w3.org/2000/svg" style="background-color: gray;">
-                     <circle cx="115" cy="50" r="20" stroke="black" stroke-width="1" fill="#FFFFFF"></circle>
-                    <path d="M 103,35 a 30 30 -30 0 1 0,30" fill="none" stroke="black"/>
-                    <path d="M 127,65 a 30 30 150 0 1 0,-30" fill="none" stroke="black"/>
+                     <circle cx="115" cy="70" r="20" stroke="black" stroke-width="1" fill="#FFFFFF"></circle>
+                    <path d="M 103,55 a 30 30 -30 0 1 0,30" fill="none" stroke="black"/>
+                    <path d="M 127,85 a 30 30 150 0 1 0,-30" fill="none" stroke="black"/>
                  </svg>
              </div>
+             <div class="card_ura_speed">
+                {{ Math.floor(data.player.card_info.pitcher.speed / 2) + 115 }}km/h
+             </div>
              <div class="card_ura_henka_l">
-                <henka-bar-component :value="5" />
+                <henka-bar-component :value="data.player.card_info.pitcher.henka_l" />
              </div>
              <div class="card_ura_henka_l_text">
-                スライダー
+                {{ data.player.card_info.pitcher.henka_l_name }}
              </div>
              <div class="card_ura_henka_ld">
-                <henka-bar-component :value="5" />
+                <henka-bar-component :value="data.player.card_info.pitcher.henka_lb" />
              </div>
              <div class="card_ura_henka_ld_text">
-                 ナックルカーブ
+                 {{ data.player.card_info.pitcher.henka_lb_name }}
              </div>
              <div class="card_ura_henka_d">
-                <henka-bar-component :value="5" />
+                <henka-bar-component :value="data.player.card_info.pitcher.henka_b" />
              </div>
              <div class="card_ura_henka_d_text">
-                 チェンジアップ
+                 {{ data.player.card_info.pitcher.henka_b_name }}
              </div>
              <div class="card_ura_henka_rd">
-                <henka-bar-component :value="5" />
+                <henka-bar-component :value="data.player.card_info.pitcher.henka_rb" />
              </div>
              <div class="card_ura_henka_rd_text">
-                 Cチェンジ
+                 {{ data.player.card_info.pitcher.henka_rb_name }}
              </div>
              <div class="card_ura_henka_r">
-                <henka-bar-component :value="5" />
+                <henka-bar-component :value="data.player.card_info.pitcher.henka_r" />
              </div>
              <div class="card_ura_henka_r_text">
-                 ツーシーム
+                 {{ data.player.card_info.pitcher.henka_r_name }}
              </div>
 
         </div>
@@ -147,15 +150,24 @@
     .card_ura_position_name {
         font-size: 0.4em;
     }
+    .card_ura_speed {
+        position: absolute;
+        width: 220px;
+        top: 10px;
+        left: 5px;
+        text-align:center;
+        color: white;
+        font-size: 0.6em;
+    }
     .card_ura_henka_l {
         position: absolute;
-        top: 15px;
+        top: 35px;
         left: 40px;
         transform: rotate(90deg);
     }
     .card_ura_henka_l_text {
         position: absolute;
-        top: 15px;
+        top: 35px;
         left: 10px;
         color: white;
         font-size: 0.5em;
@@ -163,26 +175,26 @@
 
     .card_ura_henka_ld {
         position: absolute;
-        top: 70px;
+        top: 90px;
         left: 50px;
         transform: rotate(45deg);
     }
 
     .card_ura_henka_ld_text {
         position: absolute;
-        top: 130px;
+        top: 150px;
         left: 5px;
         color: white;
         font-size: 0.5em;
     }
     .card_ura_henka_d {
         position: absolute;
-        top: 90px;
+        top: 110px;
         left: 108px;
     }
     .card_ura_henka_d_text {
         position: absolute;
-        top: 160px;
+        top: 180px;
         left: 80px;
         color: white;
         font-size: 0.5em;
@@ -190,27 +202,27 @@
 
     .card_ura_henka_rd {
         position: absolute;
-        top: 70px;
+        top: 90px;
         left: 160px;
         transform: rotate(-45deg);
     }
 
     .card_ura_henka_rd_text {
         position: absolute;
-        top: 130px;
+        top: 150px;
         left: 135px;
         color: white;
         font-size: 0.5em;
     }
     .card_ura_henka_r {
         position: absolute;
-        top: 15px;
+        top: 35px;
         left: 175px;
         transform: rotate(-90deg);
     }
     .card_ura_henka_r_text {
         position: absolute;
-        top: 15px;
+        top: 35px;
         left: 140px;
         color: white;
         font-size: 0.5em;

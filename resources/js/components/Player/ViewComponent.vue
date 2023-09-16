@@ -555,101 +555,189 @@
             </div>
         </div>
         <div>
-            <form v-on:submit.prevent="submit('/api/cards/edit/' + dataset.player.id)">
-                <table class="card_input_table">
-                    <tr>
-                        <th>コスト</th>
-                        <td>
-                            <input-component label="" :value="dataset.player.card_cost" v-model="dataset.player.card_cost"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>打撃</th>
-                        <td>
-                            <input-component label="" :value="dataset.player.card_info.batter.meat" v-model="dataset.player.card_info.batter.meat"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>長打力</th>
-                        <td>
-                            <input-component label="" :value="dataset.player.card_info.batter.power" v-model="dataset.player.card_info.batter.power"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>走力</th>
-                        <td>
-                            <input-component label="" :value="dataset.player.card_info.batter.run" v-model="dataset.player.card_info.batter.run"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>バント</th>
-                        <td>
-                            <input-component label="" :value="dataset.player.card_info.batter.bant" v-model="dataset.player.card_info.batter.bant"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>守備力</th>
-                        <td>
-                            <input-component label="" :value="dataset.player.card_info.batter.defence" v-model="dataset.player.card_info.batter.defence"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>精神力</th>
-                        <td>
-                            <input-component label="" :value="dataset.player.card_info.batter.mental" v-model="dataset.player.card_info.batter.mental"/>
-                        </td>
-                    </tr>
-                </table>
-                <table class="card_input_table">
-                    <tr>
-                        <th>捕手</th>
-                        <td>
-                            <input-component label="" :value="dataset.player.card_info.batter.position_c" v-model="dataset.player.card_info.batter.position_c"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>一塁手</th>
-                        <td>
-                            <input-component label="" :value="dataset.player.card_info.batter.position_1b" v-model="dataset.player.card_info.batter.position_1b"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>二塁手</th>
-                        <td>
-                            <input-component label="" :value="dataset.player.card_info.batter.position_2b" v-model="dataset.player.card_info.batter.position_2b"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>三塁手</th>
-                        <td>
-                            <input-component label="" :value="dataset.player.card_info.batter.position_3b" v-model="dataset.player.card_info.batter.position_3b"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>遊撃手</th>
-                        <td>
-                            <input-component label="" :value="dataset.player.card_info.batter.position_ss" v-model="dataset.player.card_info.batter.position_ss"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>左翼手</th>
-                        <td>
-                            <input-component label="" :value="dataset.player.card_info.batter.position_lf" v-model="dataset.player.card_info.batter.position_lf"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>中堅手</th>
-                        <td>
-                            <input-component label="" :value="dataset.player.card_info.batter.position_cf" v-model="dataset.player.card_info.batter.position_cf"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>右翼手</th>
-                        <td>
-                            <input-component label="" :value="dataset.player.card_info.batter.position_rf" v-model="dataset.player.card_info.batter.position_rf"/>
-                        </td>
-                    </tr>
-                </table>
+            <form v-on:submit.prevent="submit('/api/cards/update/' + dataset.player.id)">
+                <div v-if="dataset.player.position_main != 1">
+                    <table class="card_input_table">
+                        <tr>
+                            <th>コスト</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_cost" v-model="dataset.player.card_cost"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>打撃</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.meat" v-model="dataset.player.card_info.batter.meat"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>長打力</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.power" v-model="dataset.player.card_info.batter.power"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>走力</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.run" v-model="dataset.player.card_info.batter.run"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>バント</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.bant" v-model="dataset.player.card_info.batter.bant"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>守備力</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.defence" v-model="dataset.player.card_info.batter.defence"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>精神力</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.mental" v-model="dataset.player.card_info.batter.mental"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="card_input_table">
+                        <tr>
+                            <th>捕手</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.position_c" v-model="dataset.player.card_info.batter.position_c"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>一塁手</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.position_1b" v-model="dataset.player.card_info.batter.position_1b"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>二塁手</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.position_2b" v-model="dataset.player.card_info.batter.position_2b"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>三塁手</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.position_3b" v-model="dataset.player.card_info.batter.position_3b"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>遊撃手</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.position_ss" v-model="dataset.player.card_info.batter.position_ss"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>左翼手</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.position_lf" v-model="dataset.player.card_info.batter.position_lf"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>中堅手</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.position_cf" v-model="dataset.player.card_info.batter.position_cf"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>右翼手</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.batter.position_rf" v-model="dataset.player.card_info.batter.position_rf"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div v-else>
+                    <table class="card_input_table">
+                        <tr>
+                            <th>コスト</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_cost" v-model="dataset.player.card_cost"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>体力</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.stamina" v-model="dataset.player.card_info.pitcher.stamina"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>球速</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.speed" v-model="dataset.player.card_info.pitcher.speed"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>球威</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.power" v-model="dataset.player.card_info.pitcher.power"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>変化球</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka" v-model="dataset.player.card_info.pitcher.henka"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>制球力</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.control" v-model="dataset.player.card_info.pitcher.control"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>精神力</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.mental" v-model="dataset.player.card_info.pitcher.mental"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="card_input_table">
+                        <tr>
+                            <th>左</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka_l" v-model="dataset.player.card_info.pitcher.henka_l"/>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka_l_name" v-model="dataset.player.card_info.pitcher.henka_l_name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>左下</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka_lb" v-model="dataset.player.card_info.pitcher.henka_lb"/>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka_lb_name" v-model="dataset.player.card_info.pitcher.henka_lb_name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>下</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka_b" v-model="dataset.player.card_info.pitcher.henka_b"/>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka_b_name" v-model="dataset.player.card_info.pitcher.henka_b_name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>右下</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka_rb" v-model="dataset.player.card_info.pitcher.henka_rb"/>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka_rb_name" v-model="dataset.player.card_info.pitcher.henka_rb_name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>右</th>
+                            <td>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka_r" v-model="dataset.player.card_info.pitcher.henka_r"/>
+                                <input-component label="" :value="dataset.player.card_info.pitcher.henka_r_name" v-model="dataset.player.card_info.pitcher.henka_r_name"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div> 
     </div>
@@ -690,6 +778,16 @@ width: 70px;
                         this.dataset = res.data;
                     });
             },
+            submit(postPath) {
+                var postData = this.dataset;
+                axios.post(postPath, postData)
+                    .then((res) => {
+                    alert('更新');
+                    })
+                    .catch((error) => {
+                        this.errors = error.response.data.errors;
+                    });
+            }
         },
         props: {
             playerId: String

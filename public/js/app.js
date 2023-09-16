@@ -6883,6 +6883,94 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6908,6 +6996,16 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get(getPath).then(function (res) {
         _this.dataset = res.data;
+      });
+    },
+    submit: function submit(postPath) {
+      var _this2 = this;
+
+      var postData = this.dataset;
+      axios.post(postPath, postData).then(function (res) {
+        alert('更新');
+      })["catch"](function (error) {
+        _this2.errors = error.response.data.errors;
       });
     }
   },
@@ -9279,6 +9377,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['value']
 });
@@ -10053,6 +10157,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _common_HenkaBarComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../common/HenkaBarComponent */ "./resources/js/components/common/card/common/HenkaBarComponent.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -31848,7 +31964,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.card_ura[data-v-e59f1a7e] {\n    width: 400px;\n    height: 600px;\n    background-color: green;\n    position: relative;\n    float: left;\n    margin: 10px;\n}\n.card_ura_team_1[data-v-e59f1a7e] {\n    width: 360px;\n    height: 20px;\n    position: absolute;\n    top: 0px;\n    left: 20px;\n    text-align: center;\n}\n.card_ura_shashin[data-v-e59f1a7e] {\n    width: 130px;\n    height: 160px;\n    -o-object-fit: cover;\n       object-fit: cover;\n    background-color: white;\n    position: absolute;\n    top: 20px;\n    left: 20px;\n}\n.card_ura_name[data-v-e59f1a7e] {\n    width: 230px;\n    height: 40px;\n    text-align: center;\n    position: absolute;\n    background-color: black;\n    color: white;\n    font-size: 2em;\n    top: 20px;\n    left: 150px;\n}\n.card_ura_profile[data-v-e59f1a7e] {\n    padding: 10px;\n    width: 130px;\n    height: 100px;\n    background-color: black;\n    color: white;\n    position: absolute;\n    top: 180px;\n    left: 20px;\n}\n.card_ura_position_wrap[data-v-e59f1a7e] {\n    width: 230px;\n    height: 220px;\n    background-color: white;\n    position: absolute;\n    font-size: 2em;\n    top: 60px;\n    left: 150px;\n}\n.card_ura_position_name[data-v-e59f1a7e] {\n    font-size: 0.4em;\n}\n.card_ura_henka_l[data-v-e59f1a7e] {\n    position: absolute;\n    top: 15px;\n    left: 40px;\n    transform: rotate(90deg);\n}\n.card_ura_henka_l_text[data-v-e59f1a7e] {\n    position: absolute;\n    top: 15px;\n    left: 10px;\n    color: white;\n    font-size: 0.5em;\n}\n.card_ura_henka_ld[data-v-e59f1a7e] {\n    position: absolute;\n    top: 70px;\n    left: 50px;\n    transform: rotate(45deg);\n}\n.card_ura_henka_ld_text[data-v-e59f1a7e] {\n    position: absolute;\n    top: 130px;\n    left: 5px;\n    color: white;\n    font-size: 0.5em;\n}\n.card_ura_henka_d[data-v-e59f1a7e] {\n    position: absolute;\n    top: 90px;\n    left: 108px;\n}\n.card_ura_henka_d_text[data-v-e59f1a7e] {\n    position: absolute;\n    top: 160px;\n    left: 80px;\n    color: white;\n    font-size: 0.5em;\n}\n.card_ura_henka_rd[data-v-e59f1a7e] {\n    position: absolute;\n    top: 70px;\n    left: 160px;\n    transform: rotate(-45deg);\n}\n.card_ura_henka_rd_text[data-v-e59f1a7e] {\n    position: absolute;\n    top: 130px;\n    left: 135px;\n    color: white;\n    font-size: 0.5em;\n}\n.card_ura_henka_r[data-v-e59f1a7e] {\n    position: absolute;\n    top: 15px;\n    left: 175px;\n    transform: rotate(-90deg);\n}\n.card_ura_henka_r_text[data-v-e59f1a7e] {\n    position: absolute;\n    top: 15px;\n    left: 140px;\n    color: white;\n    font-size: 0.5em;\n}\n.card_ura_seiseki[data-v-e59f1a7e] {\n    width: 360px;\n    height: 50px;\n    background-color: white;\n    position: absolute;\n    top: 280px;\n    left: 20px;\n}\n.card_ura_seiseki_table[data-v-e59f1a7e] {\n    width: 100%;\n}\n.card_ura_seiseki_table th[data-v-e59f1a7e] {\n    text-align:center;\n    white-space: nowrap;\n}\n.card_ura_seiseki_table td[data-v-e59f1a7e] {\n    text-align:center;\n    vertical-align: top;\n}\n.card_ura_block_area[data-v-e59f1a7e] {\n    width: 360px;\n    height: 240px;\n    background-color: white;\n    position: absolute;\n    top: 340px;\n    left: 20px;\n}\n.card_ura_team_2[data-v-e59f1a7e] {\n    width: 360px;\n    height: 20px;\n    position: absolute;\n    top: 580px;\n    left: 20px;\n    text-align: center;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.card_ura[data-v-e59f1a7e] {\n    width: 400px;\n    height: 600px;\n    background-color: green;\n    position: relative;\n    float: left;\n    margin: 10px;\n}\n.card_ura_team_1[data-v-e59f1a7e] {\n    width: 360px;\n    height: 20px;\n    position: absolute;\n    top: 0px;\n    left: 20px;\n    text-align: center;\n}\n.card_ura_shashin[data-v-e59f1a7e] {\n    width: 130px;\n    height: 160px;\n    -o-object-fit: cover;\n       object-fit: cover;\n    background-color: white;\n    position: absolute;\n    top: 20px;\n    left: 20px;\n}\n.card_ura_name[data-v-e59f1a7e] {\n    width: 230px;\n    height: 40px;\n    text-align: center;\n    position: absolute;\n    background-color: black;\n    color: white;\n    font-size: 2em;\n    top: 20px;\n    left: 150px;\n}\n.card_ura_profile[data-v-e59f1a7e] {\n    padding: 10px;\n    width: 130px;\n    height: 100px;\n    background-color: black;\n    color: white;\n    position: absolute;\n    top: 180px;\n    left: 20px;\n}\n.card_ura_position_wrap[data-v-e59f1a7e] {\n    width: 230px;\n    height: 220px;\n    background-color: white;\n    position: absolute;\n    font-size: 2em;\n    top: 60px;\n    left: 150px;\n}\n.card_ura_position_name[data-v-e59f1a7e] {\n    font-size: 0.4em;\n}\n.card_ura_speed[data-v-e59f1a7e] {\n    position: absolute;\n    width: 220px;\n    top: 10px;\n    left: 5px;\n    text-align:center;\n    color: white;\n    font-size: 0.6em;\n}\n.card_ura_henka_l[data-v-e59f1a7e] {\n    position: absolute;\n    top: 35px;\n    left: 40px;\n    transform: rotate(90deg);\n}\n.card_ura_henka_l_text[data-v-e59f1a7e] {\n    position: absolute;\n    top: 35px;\n    left: 10px;\n    color: white;\n    font-size: 0.5em;\n}\n.card_ura_henka_ld[data-v-e59f1a7e] {\n    position: absolute;\n    top: 90px;\n    left: 50px;\n    transform: rotate(45deg);\n}\n.card_ura_henka_ld_text[data-v-e59f1a7e] {\n    position: absolute;\n    top: 150px;\n    left: 5px;\n    color: white;\n    font-size: 0.5em;\n}\n.card_ura_henka_d[data-v-e59f1a7e] {\n    position: absolute;\n    top: 110px;\n    left: 108px;\n}\n.card_ura_henka_d_text[data-v-e59f1a7e] {\n    position: absolute;\n    top: 180px;\n    left: 80px;\n    color: white;\n    font-size: 0.5em;\n}\n.card_ura_henka_rd[data-v-e59f1a7e] {\n    position: absolute;\n    top: 90px;\n    left: 160px;\n    transform: rotate(-45deg);\n}\n.card_ura_henka_rd_text[data-v-e59f1a7e] {\n    position: absolute;\n    top: 150px;\n    left: 135px;\n    color: white;\n    font-size: 0.5em;\n}\n.card_ura_henka_r[data-v-e59f1a7e] {\n    position: absolute;\n    top: 35px;\n    left: 175px;\n    transform: rotate(-90deg);\n}\n.card_ura_henka_r_text[data-v-e59f1a7e] {\n    position: absolute;\n    top: 35px;\n    left: 140px;\n    color: white;\n    font-size: 0.5em;\n}\n.card_ura_seiseki[data-v-e59f1a7e] {\n    width: 360px;\n    height: 50px;\n    background-color: white;\n    position: absolute;\n    top: 280px;\n    left: 20px;\n}\n.card_ura_seiseki_table[data-v-e59f1a7e] {\n    width: 100%;\n}\n.card_ura_seiseki_table th[data-v-e59f1a7e] {\n    text-align:center;\n    white-space: nowrap;\n}\n.card_ura_seiseki_table td[data-v-e59f1a7e] {\n    text-align:center;\n    vertical-align: top;\n}\n.card_ura_block_area[data-v-e59f1a7e] {\n    width: 360px;\n    height: 240px;\n    background-color: white;\n    position: absolute;\n    top: 340px;\n    left: 20px;\n}\n.card_ura_team_2[data-v-e59f1a7e] {\n    width: 360px;\n    height: 20px;\n    position: absolute;\n    top: 580px;\n    left: 20px;\n    text-align: center;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -99548,445 +99664,976 @@ var render = function() {
               on: {
                 submit: function($event) {
                   $event.preventDefault()
-                  return _vm.submit("/api/cards/edit/" + _vm.dataset.player.id)
+                  return _vm.submit(
+                    "/api/cards/update/" + _vm.dataset.player.id
+                  )
                 }
               }
             },
             [
-              _c("table", { staticClass: "card_input_table" }, [
-                _c("tr", [
-                  _c("th", [_vm._v("コスト")]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("input-component", {
-                        attrs: {
-                          label: "",
-                          value: _vm.dataset.player.card_cost
-                        },
-                        model: {
-                          value: _vm.dataset.player.card_cost,
-                          callback: function($$v) {
-                            _vm.$set(_vm.dataset.player, "card_cost", $$v)
-                          },
-                          expression: "dataset.player.card_cost"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("th", [_vm._v("打撃")]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("input-component", {
-                        attrs: {
-                          label: "",
-                          value: _vm.dataset.player.card_info.batter.meat
-                        },
-                        model: {
-                          value: _vm.dataset.player.card_info.batter.meat,
-                          callback: function($$v) {
-                            _vm.$set(
-                              _vm.dataset.player.card_info.batter,
-                              "meat",
-                              $$v
-                            )
-                          },
-                          expression: "dataset.player.card_info.batter.meat"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("th", [_vm._v("長打力")]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("input-component", {
-                        attrs: {
-                          label: "",
-                          value: _vm.dataset.player.card_info.batter.power
-                        },
-                        model: {
-                          value: _vm.dataset.player.card_info.batter.power,
-                          callback: function($$v) {
-                            _vm.$set(
-                              _vm.dataset.player.card_info.batter,
-                              "power",
-                              $$v
-                            )
-                          },
-                          expression: "dataset.player.card_info.batter.power"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("th", [_vm._v("走力")]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("input-component", {
-                        attrs: {
-                          label: "",
-                          value: _vm.dataset.player.card_info.batter.run
-                        },
-                        model: {
-                          value: _vm.dataset.player.card_info.batter.run,
-                          callback: function($$v) {
-                            _vm.$set(
-                              _vm.dataset.player.card_info.batter,
-                              "run",
-                              $$v
-                            )
-                          },
-                          expression: "dataset.player.card_info.batter.run"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("th", [_vm._v("バント")]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("input-component", {
-                        attrs: {
-                          label: "",
-                          value: _vm.dataset.player.card_info.batter.bant
-                        },
-                        model: {
-                          value: _vm.dataset.player.card_info.batter.bant,
-                          callback: function($$v) {
-                            _vm.$set(
-                              _vm.dataset.player.card_info.batter,
-                              "bant",
-                              $$v
-                            )
-                          },
-                          expression: "dataset.player.card_info.batter.bant"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("th", [_vm._v("守備力")]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("input-component", {
-                        attrs: {
-                          label: "",
-                          value: _vm.dataset.player.card_info.batter.defence
-                        },
-                        model: {
-                          value: _vm.dataset.player.card_info.batter.defence,
-                          callback: function($$v) {
-                            _vm.$set(
-                              _vm.dataset.player.card_info.batter,
-                              "defence",
-                              $$v
-                            )
-                          },
-                          expression: "dataset.player.card_info.batter.defence"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("th", [_vm._v("精神力")]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("input-component", {
-                        attrs: {
-                          label: "",
-                          value: _vm.dataset.player.card_info.batter.mental
-                        },
-                        model: {
-                          value: _vm.dataset.player.card_info.batter.mental,
-                          callback: function($$v) {
-                            _vm.$set(
-                              _vm.dataset.player.card_info.batter,
-                              "mental",
-                              $$v
-                            )
-                          },
-                          expression: "dataset.player.card_info.batter.mental"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ])
-              ]),
+              _vm.dataset.player.position_main != 1
+                ? _c("div", [
+                    _c("table", { staticClass: "card_input_table" }, [
+                      _c("tr", [
+                        _c("th", [_vm._v("コスト")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value: _vm.dataset.player.card_cost
+                              },
+                              model: {
+                                value: _vm.dataset.player.card_cost,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.dataset.player, "card_cost", $$v)
+                                },
+                                expression: "dataset.player.card_cost"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("打撃")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value: _vm.dataset.player.card_info.batter.meat
+                              },
+                              model: {
+                                value: _vm.dataset.player.card_info.batter.meat,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.batter,
+                                    "meat",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.batter.meat"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("長打力")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value: _vm.dataset.player.card_info.batter.power
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.batter.power,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.batter,
+                                    "power",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.batter.power"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("走力")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value: _vm.dataset.player.card_info.batter.run
+                              },
+                              model: {
+                                value: _vm.dataset.player.card_info.batter.run,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.batter,
+                                    "run",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.batter.run"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("バント")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value: _vm.dataset.player.card_info.batter.bant
+                              },
+                              model: {
+                                value: _vm.dataset.player.card_info.batter.bant,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.batter,
+                                    "bant",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.batter.bant"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("守備力")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.batter.defence
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.batter.defence,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.batter,
+                                    "defence",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.batter.defence"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("精神力")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.batter.mental
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.batter.mental,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.batter,
+                                    "mental",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.batter.mental"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("table", { staticClass: "card_input_table" }, [
+                      _c("tr", [
+                        _c("th", [_vm._v("捕手")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.batter.position_c
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.batter
+                                    .position_c,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.batter,
+                                    "position_c",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.batter.position_c"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("一塁手")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.batter
+                                    .position_1b
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.batter
+                                    .position_1b,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.batter,
+                                    "position_1b",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.batter.position_1b"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("二塁手")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.batter
+                                    .position_2b
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.batter
+                                    .position_2b,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.batter,
+                                    "position_2b",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.batter.position_2b"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("三塁手")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.batter
+                                    .position_3b
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.batter
+                                    .position_3b,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.batter,
+                                    "position_3b",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.batter.position_3b"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("遊撃手")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.batter
+                                    .position_ss
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.batter
+                                    .position_ss,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.batter,
+                                    "position_ss",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.batter.position_ss"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("左翼手")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.batter
+                                    .position_lf
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.batter
+                                    .position_lf,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.batter,
+                                    "position_lf",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.batter.position_lf"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("中堅手")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.batter
+                                    .position_cf
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.batter
+                                    .position_cf,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.batter,
+                                    "position_cf",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.batter.position_cf"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("右翼手")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.batter
+                                    .position_rf
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.batter
+                                    .position_rf,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.batter,
+                                    "position_rf",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.batter.position_rf"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ])
+                    ])
+                  ])
+                : _c("div", [
+                    _c("table", { staticClass: "card_input_table" }, [
+                      _c("tr", [
+                        _c("th", [_vm._v("コスト")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value: _vm.dataset.player.card_cost
+                              },
+                              model: {
+                                value: _vm.dataset.player.card_cost,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.dataset.player, "card_cost", $$v)
+                                },
+                                expression: "dataset.player.card_cost"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("体力")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.stamina
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.stamina,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.pitcher,
+                                    "stamina",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.pitcher.stamina"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("球速")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.speed
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.speed,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.pitcher,
+                                    "speed",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.pitcher.speed"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("球威")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.power
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.power,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.pitcher,
+                                    "power",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.pitcher.power"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("変化球")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.henka
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.henka,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.pitcher,
+                                    "henka",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.pitcher.henka"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("制球力")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.control
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.control,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.pitcher,
+                                    "control",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.pitcher.control"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("精神力")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.mental
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.mental,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.pitcher,
+                                    "mental",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.pitcher.mental"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("table", { staticClass: "card_input_table" }, [
+                      _c("tr", [
+                        _c("th", [_vm._v("左")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.henka_l
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.henka_l,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.pitcher,
+                                    "henka_l",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.pitcher.henka_l"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.pitcher
+                                    .henka_l_name
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.pitcher
+                                    .henka_l_name,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.pitcher,
+                                    "henka_l_name",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.pitcher.henka_l_name"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("左下")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.henka_lb
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.henka_lb,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.pitcher,
+                                    "henka_lb",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.pitcher.henka_lb"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.pitcher
+                                    .henka_lb_name
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.pitcher
+                                    .henka_lb_name,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.pitcher,
+                                    "henka_lb_name",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.pitcher.henka_lb_name"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("下")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.henka_b
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.henka_b,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.pitcher,
+                                    "henka_b",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.pitcher.henka_b"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.pitcher
+                                    .henka_b_name
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.pitcher
+                                    .henka_b_name,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.pitcher,
+                                    "henka_b_name",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.pitcher.henka_b_name"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("右下")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.henka_rb
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.henka_rb,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.pitcher,
+                                    "henka_rb",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.pitcher.henka_rb"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.pitcher
+                                    .henka_rb_name
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.pitcher
+                                    .henka_rb_name,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.pitcher,
+                                    "henka_rb_name",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.pitcher.henka_rb_name"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("th", [_vm._v("右")]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.henka_r
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.pitcher.henka_r,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.pitcher,
+                                    "henka_r",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.pitcher.henka_r"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("input-component", {
+                              attrs: {
+                                label: "",
+                                value:
+                                  _vm.dataset.player.card_info.pitcher
+                                    .henka_r_name
+                              },
+                              model: {
+                                value:
+                                  _vm.dataset.player.card_info.pitcher
+                                    .henka_r_name,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.dataset.player.card_info.pitcher,
+                                    "henka_r_name",
+                                    $$v
+                                  )
+                                },
+                                expression:
+                                  "dataset.player.card_info.pitcher.henka_r_name"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ])
+                    ])
+                  ]),
               _vm._v(" "),
-              _c("table", { staticClass: "card_input_table" }, [
-                _c("tr", [
-                  _c("th", [_vm._v("捕手")]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("input-component", {
-                        attrs: {
-                          label: "",
-                          value: _vm.dataset.player.card_info.batter.position_c
-                        },
-                        model: {
-                          value: _vm.dataset.player.card_info.batter.position_c,
-                          callback: function($$v) {
-                            _vm.$set(
-                              _vm.dataset.player.card_info.batter,
-                              "position_c",
-                              $$v
-                            )
-                          },
-                          expression:
-                            "dataset.player.card_info.batter.position_c"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("th", [_vm._v("一塁手")]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("input-component", {
-                        attrs: {
-                          label: "",
-                          value: _vm.dataset.player.card_info.batter.position_1b
-                        },
-                        model: {
-                          value:
-                            _vm.dataset.player.card_info.batter.position_1b,
-                          callback: function($$v) {
-                            _vm.$set(
-                              _vm.dataset.player.card_info.batter,
-                              "position_1b",
-                              $$v
-                            )
-                          },
-                          expression:
-                            "dataset.player.card_info.batter.position_1b"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("th", [_vm._v("二塁手")]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("input-component", {
-                        attrs: {
-                          label: "",
-                          value: _vm.dataset.player.card_info.batter.position_2b
-                        },
-                        model: {
-                          value:
-                            _vm.dataset.player.card_info.batter.position_2b,
-                          callback: function($$v) {
-                            _vm.$set(
-                              _vm.dataset.player.card_info.batter,
-                              "position_2b",
-                              $$v
-                            )
-                          },
-                          expression:
-                            "dataset.player.card_info.batter.position_2b"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("th", [_vm._v("三塁手")]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("input-component", {
-                        attrs: {
-                          label: "",
-                          value: _vm.dataset.player.card_info.batter.position_3b
-                        },
-                        model: {
-                          value:
-                            _vm.dataset.player.card_info.batter.position_3b,
-                          callback: function($$v) {
-                            _vm.$set(
-                              _vm.dataset.player.card_info.batter,
-                              "position_3b",
-                              $$v
-                            )
-                          },
-                          expression:
-                            "dataset.player.card_info.batter.position_3b"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("th", [_vm._v("遊撃手")]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("input-component", {
-                        attrs: {
-                          label: "",
-                          value: _vm.dataset.player.card_info.batter.position_ss
-                        },
-                        model: {
-                          value:
-                            _vm.dataset.player.card_info.batter.position_ss,
-                          callback: function($$v) {
-                            _vm.$set(
-                              _vm.dataset.player.card_info.batter,
-                              "position_ss",
-                              $$v
-                            )
-                          },
-                          expression:
-                            "dataset.player.card_info.batter.position_ss"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("th", [_vm._v("左翼手")]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("input-component", {
-                        attrs: {
-                          label: "",
-                          value: _vm.dataset.player.card_info.batter.position_lf
-                        },
-                        model: {
-                          value:
-                            _vm.dataset.player.card_info.batter.position_lf,
-                          callback: function($$v) {
-                            _vm.$set(
-                              _vm.dataset.player.card_info.batter,
-                              "position_lf",
-                              $$v
-                            )
-                          },
-                          expression:
-                            "dataset.player.card_info.batter.position_lf"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("th", [_vm._v("中堅手")]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("input-component", {
-                        attrs: {
-                          label: "",
-                          value: _vm.dataset.player.card_info.batter.position_cf
-                        },
-                        model: {
-                          value:
-                            _vm.dataset.player.card_info.batter.position_cf,
-                          callback: function($$v) {
-                            _vm.$set(
-                              _vm.dataset.player.card_info.batter,
-                              "position_cf",
-                              $$v
-                            )
-                          },
-                          expression:
-                            "dataset.player.card_info.batter.position_cf"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("th", [_vm._v("右翼手")]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("input-component", {
-                        attrs: {
-                          label: "",
-                          value: _vm.dataset.player.card_info.batter.position_rf
-                        },
-                        model: {
-                          value:
-                            _vm.dataset.player.card_info.batter.position_rf,
-                          callback: function($$v) {
-                            _vm.$set(
-                              _vm.dataset.player.card_info.batter,
-                              "position_rf",
-                              $$v
-                            )
-                          },
-                          expression:
-                            "dataset.player.card_info.batter.position_rf"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ])
-              ])
+              _c(
+                "button",
+                { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+                [_vm._v("Submit")]
+              )
             ]
           )
         ])
@@ -106725,18 +107372,56 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    _vm._l(7, function(i) {
-      return _c("div", {
-        class: {
-          "block selected": i <= _vm.value,
-          "block unselected": i > _vm.value
-        }
-      })
+  return _c("div", [
+    _c("div", {
+      class: {
+        "block selected": _vm.value > 0,
+        "block unselected": _vm.value <= 0
+      }
     }),
-    0
-  )
+    _vm._v(" "),
+    _c("div", {
+      class: {
+        "block selected": _vm.value >= 40,
+        "block unselected": _vm.value < 40
+      }
+    }),
+    _vm._v(" "),
+    _c("div", {
+      class: {
+        "block selected": _vm.value >= 50,
+        "block unselected": _vm.value < 50
+      }
+    }),
+    _vm._v(" "),
+    _c("div", {
+      class: {
+        "block selected": _vm.value >= 60,
+        "block unselected": _vm.value < 60
+      }
+    }),
+    _vm._v(" "),
+    _c("div", {
+      class: {
+        "block selected": _vm.value >= 70,
+        "block unselected": _vm.value < 70
+      }
+    }),
+    _vm._v(" "),
+    _c("div", {
+      class: {
+        "block selected": _vm.value >= 80,
+        "block unselected": _vm.value < 80
+      }
+    }),
+    _vm._v(" "),
+    _c("div", {
+      class: {
+        "block selected": _vm.value >= 90,
+        "block unselected": _vm.value < 90
+      }
+    })
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -107441,21 +108126,42 @@ var render = function() {
         _c(
           "div",
           { staticClass: "card_omote_dageki" },
-          [_c("status-bar-component", { attrs: { label: "体力", value: 60 } })],
+          [
+            _c("status-bar-component", {
+              attrs: {
+                label: "体力",
+                value: _vm.data.player.card_info.pitcher.stamina
+              }
+            })
+          ],
           1
         ),
         _vm._v(" "),
         _c(
           "div",
           { staticClass: "card_omote_power" },
-          [_c("status-bar-component", { attrs: { label: "球速", value: 70 } })],
+          [
+            _c("status-bar-component", {
+              attrs: {
+                label: "球速",
+                value: _vm.data.player.card_info.pitcher.speed
+              }
+            })
+          ],
           1
         ),
         _vm._v(" "),
         _c(
           "div",
           { staticClass: "card_omote_run" },
-          [_c("status-bar-component", { attrs: { label: "球威", value: 80 } })],
+          [
+            _c("status-bar-component", {
+              attrs: {
+                label: "球威",
+                value: _vm.data.player.card_info.pitcher.power
+              }
+            })
+          ],
           1
         ),
         _vm._v(" "),
@@ -107464,7 +108170,10 @@ var render = function() {
           { staticClass: "card_omote_bant" },
           [
             _c("status-bar-component", {
-              attrs: { label: "変化球", value: 90 }
+              attrs: {
+                label: "変化球",
+                value: _vm.data.player.card_info.pitcher.henka
+              }
             })
           ],
           1
@@ -107475,7 +108184,10 @@ var render = function() {
           { staticClass: "card_omote_def" },
           [
             _c("status-bar-component", {
-              attrs: { label: "制球力", value: 70 }
+              attrs: {
+                label: "制球力",
+                value: _vm.data.player.card_info.pitcher.control
+              }
             })
           ],
           1
@@ -107486,7 +108198,10 @@ var render = function() {
           { staticClass: "card_omote_mental" },
           [
             _c("status-bar-component", {
-              attrs: { label: "精神力", value: 70 }
+              attrs: {
+                label: "精神力",
+                value: _vm.data.player.card_info.pitcher.mental
+              }
             })
           ],
           1
@@ -107500,12 +108215,23 @@ var render = function() {
           style: { color: _vm.data.player.team.base_team.second_color }
         },
         [
-          _c("div", { staticClass: "card_omote_cost_star" }, [
-            _vm._v("\n            ★★★★★★★★★☆\n        ")
-          ]),
+          _c(
+            "div",
+            { staticClass: "card_omote_cost_star" },
+            _vm._l(10, function(i) {
+              return _c("span", [
+                _vm._v(_vm._s(i <= _vm.data.player.card_cost ? "★" : "☆"))
+              ])
+            }),
+            0
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "card_omote_cost_number" }, [
-            _vm._v("\n            9\n        ")
+            _vm._v(
+              "\n            " +
+                _vm._s(_vm.data.player.card_cost) +
+                "\n        "
+            )
           ])
         ]
       ),
@@ -107619,7 +108345,7 @@ var render = function() {
               _c("circle", {
                 attrs: {
                   cx: "115",
-                  cy: "50",
+                  cy: "70",
                   r: "20",
                   stroke: "black",
                   "stroke-width": "1",
@@ -107629,7 +108355,7 @@ var render = function() {
               _vm._v(" "),
               _c("path", {
                 attrs: {
-                  d: "M 103,35 a 30 30 -30 0 1 0,30",
+                  d: "M 103,55 a 30 30 -30 0 1 0,30",
                   fill: "none",
                   stroke: "black"
                 }
@@ -107637,7 +108363,7 @@ var render = function() {
               _vm._v(" "),
               _c("path", {
                 attrs: {
-                  d: "M 127,65 a 30 30 150 0 1 0,-30",
+                  d: "M 127,85 a 30 30 150 0 1 0,-30",
                   fill: "none",
                   stroke: "black"
                 }
@@ -107646,59 +108372,109 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
+        _c("div", { staticClass: "card_ura_speed" }, [
+          _vm._v(
+            "\n            " +
+              _vm._s(
+                Math.floor(_vm.data.player.card_info.pitcher.speed / 2) + 115
+              ) +
+              "km/h\n         "
+          )
+        ]),
+        _vm._v(" "),
         _c(
           "div",
           { staticClass: "card_ura_henka_l" },
-          [_c("henka-bar-component", { attrs: { value: 5 } })],
+          [
+            _c("henka-bar-component", {
+              attrs: { value: _vm.data.player.card_info.pitcher.henka_l }
+            })
+          ],
           1
         ),
         _vm._v(" "),
         _c("div", { staticClass: "card_ura_henka_l_text" }, [
-          _vm._v("\n            スライダー\n         ")
+          _vm._v(
+            "\n            " +
+              _vm._s(_vm.data.player.card_info.pitcher.henka_l_name) +
+              "\n         "
+          )
         ]),
         _vm._v(" "),
         _c(
           "div",
           { staticClass: "card_ura_henka_ld" },
-          [_c("henka-bar-component", { attrs: { value: 5 } })],
+          [
+            _c("henka-bar-component", {
+              attrs: { value: _vm.data.player.card_info.pitcher.henka_lb }
+            })
+          ],
           1
         ),
         _vm._v(" "),
         _c("div", { staticClass: "card_ura_henka_ld_text" }, [
-          _vm._v("\n             ナックルカーブ\n         ")
+          _vm._v(
+            "\n             " +
+              _vm._s(_vm.data.player.card_info.pitcher.henka_lb_name) +
+              "\n         "
+          )
         ]),
         _vm._v(" "),
         _c(
           "div",
           { staticClass: "card_ura_henka_d" },
-          [_c("henka-bar-component", { attrs: { value: 5 } })],
+          [
+            _c("henka-bar-component", {
+              attrs: { value: _vm.data.player.card_info.pitcher.henka_b }
+            })
+          ],
           1
         ),
         _vm._v(" "),
         _c("div", { staticClass: "card_ura_henka_d_text" }, [
-          _vm._v("\n             チェンジアップ\n         ")
+          _vm._v(
+            "\n             " +
+              _vm._s(_vm.data.player.card_info.pitcher.henka_b_name) +
+              "\n         "
+          )
         ]),
         _vm._v(" "),
         _c(
           "div",
           { staticClass: "card_ura_henka_rd" },
-          [_c("henka-bar-component", { attrs: { value: 5 } })],
+          [
+            _c("henka-bar-component", {
+              attrs: { value: _vm.data.player.card_info.pitcher.henka_rb }
+            })
+          ],
           1
         ),
         _vm._v(" "),
         _c("div", { staticClass: "card_ura_henka_rd_text" }, [
-          _vm._v("\n             Cチェンジ\n         ")
+          _vm._v(
+            "\n             " +
+              _vm._s(_vm.data.player.card_info.pitcher.henka_rb_name) +
+              "\n         "
+          )
         ]),
         _vm._v(" "),
         _c(
           "div",
           { staticClass: "card_ura_henka_r" },
-          [_c("henka-bar-component", { attrs: { value: 5 } })],
+          [
+            _c("henka-bar-component", {
+              attrs: { value: _vm.data.player.card_info.pitcher.henka_r }
+            })
+          ],
           1
         ),
         _vm._v(" "),
         _c("div", { staticClass: "card_ura_henka_r_text" }, [
-          _vm._v("\n             ツーシーム\n         ")
+          _vm._v(
+            "\n             " +
+              _vm._s(_vm.data.player.card_info.pitcher.henka_r_name) +
+              "\n         "
+          )
         ])
       ]),
       _vm._v(" "),

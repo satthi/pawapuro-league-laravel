@@ -12,30 +12,30 @@
         </div>
         <div class="card_omote_status_wrap">
             <div class="card_omote_dageki">
-                <status-bar-component label="体力" :value="60"/>
+                <status-bar-component label="体力" :value="data.player.card_info.pitcher.stamina"/>
             </div>
             <div class="card_omote_power">
-                <status-bar-component label="球速" :value="70"/>
+                <status-bar-component label="球速" :value="data.player.card_info.pitcher.speed"/>
             </div>
             <div class="card_omote_run">
-                <status-bar-component label="球威" :value="80"/>
+                <status-bar-component label="球威" :value="data.player.card_info.pitcher.power"/>
             </div>
             <div class="card_omote_bant">
-                <status-bar-component label="変化球" :value="90"/>
+                <status-bar-component label="変化球" :value="data.player.card_info.pitcher.henka"/>
             </div>
             <div class="card_omote_def">
-                <status-bar-component label="制球力" :value="70"/>
+                <status-bar-component label="制球力" :value="data.player.card_info.pitcher.control"/>
             </div>
             <div class="card_omote_mental">
-                <status-bar-component label="精神力" :value="70"/>
+                <status-bar-component label="精神力" :value="data.player.card_info.pitcher.mental"/>
             </div>
         </div>
         <div class="card_omote_cost" :style="{color:data.player.team.base_team.second_color }">
             <div class="card_omote_cost_star">
-                ★★★★★★★★★☆
+                <span v-for="i in 10">{{ i <= data.player.card_cost ? '★' : '☆' }}</span>
             </div>
             <div class="card_omote_cost_number">
-                9
+                {{ data.player.card_cost }}
             </div>
         </div>
         <div class="card_omote_team_2" :style="{color:data.player.team.base_team.second_color }">

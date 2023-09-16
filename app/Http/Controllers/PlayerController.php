@@ -24,29 +24,55 @@ class PlayerController extends Controller
         $player->team->season;
         $player->team->base_team;
         $player->base_player;
-        // dump($player->card_info);
-        // exit;
 
         // card_info 未設定時には初期値を入れる
         if (empty($player->card_info)) {
-            $player->card_info = [
-                'batter' => [
-                    'meat' => 0,
-                    'power' => 0,
-                    'run' => 0,
-                    'bant' => 0,
-                    'defence' => 0,
-                    'mental' => 0,
-                    'position_c' => 0,
-                    'position_1b' => 0,
-                    'position_2b' => 0,
-                    'position_3b' => 0,
-                    'position_ss' => 0,
-                    'position_lf' => 0,
-                    'position_cf' => 0,
-                    'position_rf' => 0,
-                ],
-            ];
+            // 前に設定されているデータがあれば上書き
+            $checkPlayer = Player::where('base_player_id', $player->base_player_id)
+                ->whereNotNull('card_cost')
+                ->orderBy('id', 'DESC')
+                ->first();
+            if (is_null($checkPlayer)) {
+                $player->card_info = [
+                    'batter' => [
+                        'meat' => 0,
+                        'power' => 0,
+                        'run' => 0,
+                        'bant' => 0,
+                        'defence' => 0,
+                        'mental' => 0,
+                        'position_c' => 0,
+                        'position_1b' => 0,
+                        'position_2b' => 0,
+                        'position_3b' => 0,
+                        'position_ss' => 0,
+                        'position_lf' => 0,
+                        'position_cf' => 0,
+                        'position_rf' => 0,
+                    ],
+                    'pitcher' => [
+                        'stamina' => 0,
+                        'speed' => 0,
+                        'power' => 0,
+                        'henka' => 0,
+                        'control' => 0,
+                        'mental' => 0,
+                        'henka_l' => 0,
+                        'henka_l_name' => '',
+                        'henka_lb' => 0,
+                        'henka_lb_name' => '',
+                        'henka_b' => 0,
+                        'henka_b_name' => '',
+                        'henka_rb' => 0,
+                        'henka_rb_name' => '',
+                        'henka_r' => 0,
+                        'henka_r_name' => '',
+                    ],
+                ];
+            } else {
+                $player->card_cost = $checkPlayer->card_cost;
+                $player->card_info = $checkPlayer->card_info;
+            }
         }
 
         $seasonFielderHistories = $playerModel->getSeasonFielderHistory($player);
